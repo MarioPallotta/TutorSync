@@ -31,6 +31,7 @@ export default function UserHomePage() {
     }
     setEditingLoaded(true);
   }, []);
+  
   useEffect(() => {
     localStorage.setItem("isEditing", isEditing);
   }, [isEditing]);

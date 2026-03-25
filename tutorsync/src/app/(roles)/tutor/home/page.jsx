@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import TopHeader from "@/components/user/TopHeader/TopHeader";
-import BottomNav from "@/components/user/BottomNav/BottomNav";
+import TopHeader from "@/components/tutor/TopHeader/TopHeader";
+import BottomNav from "@/components/tutor/BottomNav/BottomNav";
+import Image from "next/image";
+import Link from "next/link";
 import styles from "./page.module.css";
 
 export default function TutorHomePage() {
@@ -43,11 +45,11 @@ export default function TutorHomePage() {
                   <div className={styles.cardBody}>
                     <div className={styles.details}>
                       <span className={styles.detailRow}>
-                        <svg className={styles.icon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        <Image className={styles.icon} src="/location.svg" alt="location" width={18} height={18} />
                         {req.location}
                       </span>
                       <span className={styles.detailRow}>
-                        <svg className={styles.icon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <Image className={styles.icon} src="/person.svg" alt="person" width={18} height={18} />
                         {req.capacity}
                       </span>
                     </div>
@@ -107,9 +109,9 @@ export default function TutorHomePage() {
           </div>
 
           {/* Request Availability Button */}
-          <button className={styles.requestButton}>
+          <Link href="./schedule" className={styles.requestButton}>
             Request Availability
-          </button>
+          </Link>
 
         </div>
 
