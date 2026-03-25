@@ -1,0 +1,48 @@
+.nav {
+  border-top: 2px solid #111111;
+  width: 100%;
+  height: 92px;
+  background-color: #2f63dd;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 24px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.navItem {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle,
+.circleLarge {
+  background-color: #f4c524;
+  border: 4px solid #111111;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.circle:hover, .circleLarge:hover{
+  transform: scale(1.1);
+}
+.circle {
+  width: 70px;
+  height: 70px;
+}
+
+.circleLarge {
+  width: 94px;
+  height: 94px;
+  margin-top: -26px; /* lifts the home button above the blue bar */
+}
+
+.icon {
+  object-fit: contain;
+}
