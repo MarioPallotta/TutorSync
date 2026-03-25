@@ -92,7 +92,7 @@
   transition: background-color 0.2s ease,
 }
 .circle:hover {
-  background-color: rgb(250, 71, 71);
+  background-color: #EC3F3F;
   transition: background-color 0.2s ease, transform 0.2s ease;
 } 
 

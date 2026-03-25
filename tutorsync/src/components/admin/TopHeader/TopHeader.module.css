@@ -1,0 +1,46 @@
+.header {
+  width: 100%;
+  min-height: 118px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 26px 12px;
+  box-sizing: border-box;
+  border-bottom: 1.5px solid #8f8f8f;
+  background-color: #f2f2f2;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  object-fit: contain;
+}
+
+.center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  pointer-events: none;
+}
+
+.userIcon {
+  object-fit: contain;
+}
+
+.email {
+  white-space: nowrap;
+  margin: 0;
+  font-size: clamp(1rem, 2.6vw, 1.35rem);
+  font-weight: 400;
+  color: #1a1a1a;
+  text-align: center;
+}
