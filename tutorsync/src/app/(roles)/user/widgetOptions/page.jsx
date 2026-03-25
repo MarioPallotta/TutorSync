@@ -11,7 +11,7 @@ export default function WidgetOptionsPage() {
       <section className={styles.card}>
         <div className={styles.topSpacer}></div>
         <div className={styles.titleBar}>
-        <h1 className={styles.title}>Widget Options</h1>
+        <h1 className={styles.title}>Select a Widget</h1>
         </div>
         <div className={styles.content}>
 

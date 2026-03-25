@@ -18,7 +18,6 @@ export default function WidgetCard({ type, isEditing, onDelete }) {
     ],
   };
 
-  // ⭐ Helper to wrap each widget with delete button
   const wrap = (content) => (
     <div className={styles.card}>
       {isEditing && (
@@ -46,7 +45,7 @@ export default function WidgetCard({ type, isEditing, onDelete }) {
       </>
     );
   }
-
+// find Tutor & studyGroups test for isEditing, to make sure when the user is editing, the widget can't be used. 
   if (type === "findTutor") {
     return (
       <>

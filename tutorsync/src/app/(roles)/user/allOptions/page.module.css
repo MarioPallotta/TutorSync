@@ -1,26 +1,71 @@
 .page {
+  width: 100%;
+  min-height: 100vh;
+  background: #f5f5f5;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center; 
-  height: 100vh;
-  width: 100vw;
-  margin: 0;
 }
 
 .card {
   width: 100%;
-  max-width: 430px;
-  min-height: min(932px, 100vh);
-  background-color: #f2f2f2;
+  max-width: 480px;
+  background: #f5f5f5;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
+  padding-bottom: 80px; /* space for bottom nav */
   box-sizing: border-box;
-  overflow: hidden;
 }
+
 .content {
-  flex: 1;
-  background-color: #f2f2f2;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ⭐ Main button style (same as your widget link style) */
+.link {
+  width: 100%;
+  background: white;
+  border: 3px solid #111;
+  border-radius: 14px;
+  padding: 14px;
+  box-sizing: border-box;
+  color: #111;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  position: relative;
+
+  /* Smooth, premium transitions */
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.25s ease;
+}
+
+.link:hover {
+  transform: scale(1.05);
+  background-color: #e5e5e5;
+}
+
+/* Icon inside each option */
+.icon {
+  width: 32px;
+  height: 32px;
+}
+
+/* Title text */
+.linkTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* Optional: section headers if you want them later */
+.sectionHeader {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 6px;
+  color: #333;
 }
