@@ -36,7 +36,7 @@ export default function LandingPage() {
               className={styles.input}
             />
 
-            <Link href="/user/home" type="submit" className={styles.signInButton}>
+            <Link href="/tutor/home" type="submit" className={styles.signInButton}>
               Sign In
             </Link>
           </form>
