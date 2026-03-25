@@ -62,7 +62,7 @@
   cursor: pointer;
   position: absolute; 
   bottom: 120px;
-  right: 20px;     /* float over content */            /* distance from right */
+  left: 20px;     /* float over content */            /* distance from right */
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
   transition: transform 0.2s;
 }

@@ -20,10 +20,6 @@
   box-sizing: border-box;
   overflow: hidden;
 }
-.topSpacer {
-  height: 38px;
-  background-color: #f2f2f2;
-}
 
 .titleBar {
   width: 100%;

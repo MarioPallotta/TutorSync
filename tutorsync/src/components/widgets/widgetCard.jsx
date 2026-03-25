@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
 import styles from "./widgetCard.module.css";
 
 export default function WidgetCard({ type, isEditing, onDelete }) {
@@ -9,15 +11,6 @@ export default function WidgetCard({ type, isEditing, onDelete }) {
       { course: "Algebra", grade: "A+" },
       { course: "Writing", grade: "B+" },
       { course: "Chemistry", grade: "A" },
-    ],
-    findTutor: {
-      tutor: "Dr. Smith",
-      subject: "Calculus",
-      availability: "Today 3–5 PM",
-    },
-    studyGroups: [
-      { name: "Bio 101 Group", members: 5 },
-      { name: "History Review", members: 3 },
     ],
     upcomingSessions: [
       { title: "Math Tutoring", time: "Tomorrow 2 PM" },
@@ -30,7 +23,9 @@ export default function WidgetCard({ type, isEditing, onDelete }) {
     <div className={styles.card}>
       {isEditing && (
         <button className={styles.deleteButton} onClick={onDelete}>
+          <div className={styles.circle}>
           <img src="/trash.svg" alt="Delete widget" />
+          </div>
         </button>
       )}
       {content}
@@ -53,30 +48,50 @@ export default function WidgetCard({ type, isEditing, onDelete }) {
   }
 
   if (type === "findTutor") {
-    const t = mockData.findTutor;
-    return wrap(
+    return (
       <>
-        <h3 className={styles.title}>Tutor Match</h3>
-        <p>{t.tutor}</p>
-        <p>{t.subject}</p>
-        <p>{t.availability}</p>
-      </>
-    );
-  }
+        {isEditing ? (
+        <div className={styles.linkcard}>
+        <img src="/userplus.svg" alt="Find a Tutor" className={styles.icon} />
+        <h3 className={styles.linkTitle}>Find a Tutor</h3>
+        <button className={styles.deleteButton} onClick={onDelete}>
+          <div className={styles.circle}>
+          <img src="/trash.svg" alt="Delete widget" />
+          </div>
+        </button>
+      </div>
+      ) : (
+      <Link href="/user/findTutor" className={styles.link}>
+      <img src="/userplus.svg" alt="Find a Tutor" className={styles.icon} />
+        <h3 className={styles.linkTitle}>Find a Tutor</h3>
+      </Link>
+    )}
+    </>
+  );
+}
 
   if (type === "studyGroups") {
-    return wrap(
+    return (
       <>
-        <h3 className={styles.title}>Study Groups</h3>
-        {mockData.studyGroups.map((g, i) => (
-          <div key={i} className={styles.row}>
-            <span>{g.name}</span>
-            <span>{g.members} members</span>
+        {isEditing ? (
+        <div className={styles.linkcard}>
+        <img src="/users.svg" alt="Study Groups" className={styles.icon} />
+        <h3 className={styles.linkTitle}>Study Groups</h3>
+        <button className={styles.deleteButton} onClick={onDelete}>
+          <div className={styles.circle}>
+          <img src="/trash.svg" alt="Delete widget" />
           </div>
-        ))}
-      </>
-    );
-  }
+        </button>
+      </div>
+      ) : (
+      <Link href="/user/studyGroups" className={styles.link}>
+      <img src="/users.svg" alt="Study Groups" className={styles.icon} />
+        <h3 className={styles.linkTitle}>Study Groups</h3>
+      </Link>
+    )}
+    </>
+  );
+}
 
   if (type === "upcomingSessions") {
     return wrap(

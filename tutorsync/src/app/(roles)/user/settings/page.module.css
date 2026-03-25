@@ -21,10 +21,6 @@
   overflow: hidden;
 }
 
-.topSpacer {
-  height: 38px;
-  background-color: #f2f2f2;
-}
 
 .content {
   width: 100%;
@@ -98,6 +94,13 @@
   padding: 10px 12px;
   box-sizing: border-box;
   cursor: pointer;
+   transition: transform 0.25s,
+    background-color 0.25s ease;
+}
+
+.settingButton:hover {
+  transform: scale(1.04);
+  background-color: rgb(162, 162, 162);
 }
 
 .toggle {
@@ -168,6 +171,13 @@
   font-weight: 500;
   padding: 0 18px;
   cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+.submitButton:hover {
+  transform: translateY(-2px);
+  opacity: 0.96;
 }
 
 .signOutWrapper {
@@ -186,4 +196,11 @@
   font-size: clamp(1.1rem, 3vw, 1.3rem);
   font-weight: 400;
   cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+.signOutButton:hover {
+  transform: translateY(-2px);
+  opacity: 0.96;
 }

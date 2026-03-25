@@ -101,3 +101,7 @@
     transform 0.2s ease,
     opacity 0.2s ease;
 }
+.signInButton:hover {
+  transform: translateY(-2px);
+  opacity: 0.96;
+}

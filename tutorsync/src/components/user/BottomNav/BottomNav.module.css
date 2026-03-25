@@ -26,8 +26,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.2s;
 }
 
+.circle:hover, .circleLarge:hover{
+  transform: scale(1.1);
+}
 .circle {
   width: 70px;
   height: 70px;

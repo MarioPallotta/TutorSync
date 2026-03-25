@@ -55,4 +55,9 @@
   align-items: center;
   justify-content: center;
   padding: 0;
+  transition: transform 0.2s;
+}
+
+.editButton:hover {
+  transform: scale(1.1);
 }

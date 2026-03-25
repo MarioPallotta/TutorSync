@@ -1,18 +1,19 @@
 "use client";
-import { useState } from "react";
 import Image from "next/image";
 import styles from "./TopHeader.module.css";
 
-export default function TopHeader({ email = "user@kent.edu", onEdit, onExitEdit }) {
-  const [isEditing, setIsEditing] = useState(false);
+export default function TopHeader({ 
+  email = "user@kent.edu", 
+  isEditing, 
+  onEdit, 
+  onExitEdit 
+}) {
 
   const handleClick = () => {
-    setIsEditing(prev => !prev); // toggle local state first
-
     if (isEditing) {
-      onExitEdit?.(); // exit edit mode
+      onExitEdit?.();
     } else {
-      onEdit?.(); // enter edit mode
+      onEdit?.();
     }
   };
 

@@ -22,10 +22,18 @@ export default function UserHomePage() {
   const removeWidget = (type) => {
     setWidgets((prev) => prev.filter((w) => w !== type));
   };
+  const [editingLoaded, setEditingLoaded] = useState(false);
 
   useEffect(() => {
-    addedRef.current = false;
+    const savedEditing = localStorage.getItem("isEditing");
+    if (savedEditing === "true") {
+      setIsEditing(true);
+    }
+    setEditingLoaded(true);
   }, []);
+  useEffect(() => {
+    localStorage.setItem("isEditing", isEditing);
+  }, [isEditing]);
 
   useEffect(() => {
     const saved = localStorage.getItem("widgets");
@@ -33,6 +41,10 @@ export default function UserHomePage() {
       setWidgets(JSON.parse(saved));
     }
     setLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    addedRef.current = false;
   }, []);
 
   useEffect(() => {

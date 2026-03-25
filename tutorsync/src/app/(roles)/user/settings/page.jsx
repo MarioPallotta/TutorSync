@@ -32,7 +32,6 @@ export default function UserSettingsPage() {
   return (
     <main className={styles.page}>
       <section className={styles.card}>
-        <div className={styles.topSpacer}></div>
         <div className={styles.content}>
           <div className={styles.titleBar}>
             <h1 className={styles.title}>Settings</h1>
