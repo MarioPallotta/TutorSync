@@ -1,0 +1,103 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+}
+.card {
+  width: 100%;
+  max-width: 430px;
+  min-height: min(932px, 100vh);
+  background-color: #f2f2f2;
+  padding: 36px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.topSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 24px;
+}
+.logo {
+  width: 100%;
+  max-width: 320px;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 24px;
+}
+.title {
+  margin: 0;
+  font-size: clamp(2.3rem, 6vw, 3rem);
+  font-weight: 800;
+  color: #111111;
+  text-align: center;
+  line-height: 1.1;
+}
+.bottomSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 300px;
+}
+.flashlineTitle {
+  width: 100%;
+  max-width: 15rem;
+  background-color: #f5c400;
+  color: #111111;
+  border: 3px solid #111111;
+  border-radius: 10px;
+  padding: 5px 10px;
+  font-size: clamp(1.1rem, 3.8vw, 1.45rem);
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;
+  margin-bottom: 5px;
+}
+.input:first-of-type {
+  margin-top: 5px;
+}
+
+.input {
+  width: 100%;
+  max-width: 100%;
+  background-color: white;
+  color: #111111;
+  border: 3px solid #111111;
+  border-radius: 22px;
+  padding: 18px 20px;
+  font-size: clamp(1.1rem, 3.8vw, 1.45rem);
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+.signInButton {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  background-color: #002664;
+  color: white;
+  border: 3px solid #111111;
+  border-radius: 22px;
+  padding: 18px 20px;
+  font-size: clamp(1.1rem, 3.8vw, 1.45rem);
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  box-sizing: border-box;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
