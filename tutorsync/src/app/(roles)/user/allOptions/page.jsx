@@ -15,13 +15,13 @@ export default function AllOptionsPage() {
         <div className={styles.content}>
 
           {/* ⭐ FIND TUTOR */}
-          <Link href="/user/findTutor" className={styles.link}>
+          <Link href="/user/tutorPages/findTutor" className={styles.link}>
             <img src="/userplus.svg" alt="Find Tutor" className={styles.icon} />
             <h3 className={styles.linkTitle}>Find Tutor</h3>
           </Link>
 
           {/* ⭐ FIND STUDY BUDDY */}
-          <Link href="/user/studyGroups" className={styles.link}>
+          <Link href="/user/studyGroupPages/studyGroups" className={styles.link}>
             <img src="/users.svg" alt="Find Study Buddy" className={styles.icon} />
             <h3 className={styles.linkTitle}>Find Study Buddy</h3>
           </Link>

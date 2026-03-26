@@ -55,9 +55,10 @@
   align-items: center;
   justify-content: center;
   padding: 0;
-  transition: transform 0.2s;
+transition: background-color 0.1s ease, transform 0.1s ease;
 }
 
 .editButton:hover {
   transform: scale(1.1);
+  background-color: rgb(162, 162, 162);
 }
