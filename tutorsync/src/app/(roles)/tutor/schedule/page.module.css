@@ -1,5 +1,8 @@
+/* ===========================
+   PAGE + CARD
+=========================== */
 .page {
- display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -21,12 +24,66 @@
   overflow: hidden;
 }
 
-/* Header Styling */
+/* ===========================
+   ANIMATIONS
+=========================== */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Apply fadeUp to major layout elements */
+.titleBar,
+.content,
+.section,
+.sectionLabel {
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+}
+
+/* Stagger timing */
+.titleBar { animation-delay: 0.1s; }
+.content { animation-delay: 0.2s; }
+.section { animation-delay: 0.3s; }
+.sectionLabel { animation-delay: 0.4s; }
+
+/* Rows and stacked boxes pop in */
+.stackedBox,
+.row,
+.selectInput,
+.requestRow,
+.pendingBadge,
+.submitBtn {
+  opacity: 0;
+  animation: popIn 0.55s ease forwards;
+  animation-delay: 0.45s;
+}
+
+/* ===========================
+   TITLE BAR
+=========================== */
 .titleBar {
-width: 100%;
+  width: 100%;
   background-color: #f4c524;
-  border-top: 2px solid #111111;
-  border-bottom: 2px solid #111111;
+  border-top: 3px solid #111;
+  border-bottom: 3px solid #111;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,14 +92,17 @@ width: 100%;
 }
 
 .title {
- margin: 0;
+  margin: 0;
   font-size: clamp(1.8rem, 5vw, 2.2rem);
   font-weight: 500;
-  color: #111111;
+  color: #111;
 }
 
+/* ===========================
+   CONTENT
+=========================== */
 .content {
-width: 100%;
+  width: 100%;
   flex: 1;
   background-color: #f2f2f2;
   display: flex;
@@ -69,33 +129,65 @@ width: 100%;
   color: #000;
 }
 
-/* The Bordered Container Logic */
+/* ===========================
+   STACKED BOX
+=========================== */
 .stackedBox {
-  border: 1.5px solid #000;
-  border-radius: 12px;
+  border: 3px solid #111;
+  border-radius: 14px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  background: white;
 }
 
+/* Rows inside stackedBox */
 .row {
   display: flex;
   justify-content: space-between;
   padding: 12px 16px;
   font-size: 18px;
+  background: white;
+  border-bottom: 3px solid #111;
 }
 
-/* Adds a line between items in the same box */
-.row + .row, 
-.selectInput + .selectInput {
-  border-top: 1.5px solid #000;
+.row:last-of-type {
+  border-bottom: none;
 }
 
+/* ===========================
+   SELECT INPUTS
+=========================== */
+.selectInput {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 18px;
+  background: white;
+  border: none;
+  border-bottom: 3px solid #111;
+  outline: none;
+  cursor: pointer;
+  color: #444;
+  transition: background-color 0.25s ease;
+}
+
+.selectInput:last-of-type {
+  border-bottom: none;
+}
+
+.selectInput:hover {
+  background-color: rgb(162, 162, 162);
+}
+
+/* ===========================
+   REQUEST ROW
+=========================== */
 .requestRow {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 12px 16px;
+  background: white;
 }
 
 .requestInfo {
@@ -106,49 +198,35 @@ width: 100%;
 .dayText { font-size: 18px; font-weight: 500; }
 .timeText { font-size: 14px; color: #444; }
 
+/* ===========================
+   BADGE
+=========================== */
 .pendingBadge {
   background-color: #f6ca69;
-  border: 1.5px solid #000;
+  border: 3px solid #111;
   padding: 6px 16px;
-  border-radius: 20px;
+  border-radius: 5px;
   font-size: 14px;
   font-weight: 500;
 }
 
-/* Input/Select Styling */
-.selectInput {
-color:#444;
-  width: 100%;
-  padding: 12px 16px;
-  border: none;
-  font-size: 18px;
-  background-color: transparent;
-  outline: none;
-  cursor: pointer;
-transition:
-    background-color 0.25s ease;
-}
-
-.selectInput:hover {
-  background-color: rgb(162, 162, 162);
-}
-
-/* Submit Button */
+/* ===========================
+   SUBMIT BUTTON
+=========================== */
 .submitBtn {
   width: 100%;
   padding: 16px;
   margin-top: 8px;
-  background-color: #122858; /* Dark Blue */
-  color: #ffffff;
-  border: none;
-  border-radius: 8px;
+  background-color: #122858;
+  color: #fff;
+  border-radius: 10px;
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
   text-align: center;
- transition: transform 0.2s ease,
-    opacity 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
+
 .submitBtn:hover {
   transform: translateY(-2px);
   opacity: 0.96;

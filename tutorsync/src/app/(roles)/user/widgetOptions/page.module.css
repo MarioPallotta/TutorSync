@@ -1,3 +1,6 @@
+/* ===========================
+   PAGE + CARD
+=========================== */
 .page {
   display: flex;
   flex-direction: column;
@@ -21,6 +24,57 @@
   overflow: hidden;
 }
 
+/* ===========================
+   ANIMATIONS
+=========================== */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Fade-up for page structure */
+.titleBar,
+.content,
+.section,
+.sectionLabel {
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+}
+
+/* Stagger timing */
+.titleBar { animation-delay: 0.1s; }
+.content { animation-delay: 0.1s; }
+.section { animation-delay: 0.1s; }
+.sectionLabel { animation-delay: 0.2s; }
+
+/* Pop-in for interactive rows */
+.widgetRow {
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards; /* same animation */
+  animation-delay: 0.1s;                /* same delay */
+}
+
+
+/* ===========================
+   CONTENT
+=========================== */
 .content {
   width: 100%;
   flex: 1;
@@ -31,7 +85,9 @@
   overflow-y: auto;
 }
 
-
+/* ===========================
+   TITLE BAR
+=========================== */
 .titleBar {
   width: 100%;
   background-color: #f4c524;
@@ -51,12 +107,14 @@
   color: #111111;
 }
 
+/* ===========================
+   SECTIONS
+=========================== */
 .section {
   padding: 22px 16px 0;
   box-sizing: border-box;
   flex-shrink: 0;
 }
-
 
 .sectionLabel {
   margin: 0 0 10px;
@@ -65,6 +123,9 @@
   color: #111111;
 }
 
+/* ===========================
+   SETTING ROWS
+=========================== */
 .settingRow {
   width: 100%;
   min-height: 54px;
@@ -99,12 +160,15 @@
   cursor: pointer;
 }
 
+/* ===========================
+   TOGGLE
+=========================== */
 .toggle {
   width: 52px;
   height: 32px;
   border: none;
   border-radius: 999px;
-  background-color: #bdbdbd; /* OFF = gray */
+  background-color: #bdbdbd;
   position: relative;
   cursor: pointer;
   padding: 0;
@@ -131,6 +195,9 @@
   transform: translateX(20px);
 }
 
+/* ===========================
+   ISSUE SECTION
+=========================== */
 .issueSection {
   padding: 24px 16px 0;
   box-sizing: border-box;
@@ -155,6 +222,9 @@
   color: #9c9c9c;
 }
 
+/* ===========================
+   SUBMIT BUTTON
+=========================== */
 .submitButton {
   margin-top: 8px;
   min-width: 100px;
@@ -169,6 +239,9 @@
   cursor: pointer;
 }
 
+/* ===========================
+   SIGN OUT
+=========================== */
 .signOutWrapper {
   margin-top: auto;
   padding: 0 16px 24px;
@@ -187,10 +260,9 @@
   cursor: pointer;
 }
 
-.aPlus{
-    font-size: 25px
-}
-
+/* ===========================
+   WIDGET ROW
+=========================== */
 .widgetRow {
   width: 100%;
   min-height: 100px;
@@ -204,8 +276,7 @@
   text-decoration: none;
   color: #111111;
   box-sizing: border-box;
-   transition: transform 0.25s,
-    background-color 0.25s ease;
+  transition: transform 0.25s, background-color 0.25s ease;
 }
 
 .widgetRow:hover {
@@ -222,4 +293,8 @@
 .widgetText {
   font-size: clamp(1rem, 3vw, 1.25rem);
   font-weight: 400;
+}
+
+.aPlus {
+  font-size: 25px;
 }

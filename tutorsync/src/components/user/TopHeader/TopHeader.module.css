@@ -10,6 +10,13 @@
   background-color: #f2f2f2;
 }
 
+.editSpacer {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+}
+
+
 .left {
   display: flex;
   align-items: center;
