@@ -25,7 +25,6 @@ export default function AdminHomePage() {
         <div className={styles.content}>
           <h1 className={styles.welcome}>Welcome, Admin</h1>
 
-          {/* Pending Section */}
           <div className={styles.section}>
             <h2 className={styles.sectionTitle}>Pending ({pending.length})</h2>
 
@@ -46,7 +45,6 @@ export default function AdminHomePage() {
             </div>
           </div>
 
-          {/* Approved Section */}
           <div className={styles.section}>
             <h2 className={styles.sectionTitle}>Approved availability</h2>
 

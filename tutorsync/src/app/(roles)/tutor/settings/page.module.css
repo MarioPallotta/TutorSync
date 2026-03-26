@@ -21,7 +21,6 @@
   overflow: hidden;
 }
 
-
 .content {
   width: 100%;
   flex: 1;
@@ -95,7 +94,8 @@
   padding: 10px 12px;
   box-sizing: border-box;
   cursor: pointer;
-   transition: transform 0.25s,
+  transition:
+    transform 0.25s,
     background-color 0.25s ease;
 }
 
@@ -109,7 +109,7 @@
   height: 32px;
   border: none;
   border-radius: 999px;
-  background-color: #bdbdbd; /* OFF = gray */
+  background-color: #bdbdbd;
   position: relative;
   cursor: pointer;
   padding: 0;

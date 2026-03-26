@@ -2,13 +2,12 @@
 import Image from "next/image";
 import styles from "./TopHeader.module.css";
 
-export default function TopHeader({ 
-  email = "user@kent.edu", 
-  isEditing, 
-  onEdit, 
-  onExitEdit 
+export default function TopHeader({
+  email = "user@kent.edu",
+  isEditing,
+  onEdit,
+  onExitEdit,
 }) {
-
   const handleClick = () => {
     if (isEditing) {
       onExitEdit?.();

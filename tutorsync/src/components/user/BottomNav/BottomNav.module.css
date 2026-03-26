@@ -29,7 +29,8 @@
   transition: transform 0.2s;
 }
 
-.circle:hover, .circleLarge:hover{
+.circle:hover,
+.circleLarge:hover {
   transform: scale(1.1);
 }
 .circle {

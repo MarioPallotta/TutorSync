@@ -1,6 +1,3 @@
-/* ===========================
-   PAGE + CARD
-=========================== */
 .page {
   display: flex;
   flex-direction: column;
@@ -24,9 +21,6 @@
   overflow: hidden;
 }
 
-/* ===========================
-   ANIMATIONS
-=========================== */
 @keyframes fadeUp {
   0% {
     opacity: 0;
@@ -49,7 +43,6 @@
   }
 }
 
-/* Fade-up for page structure */
 .titleBar,
 .content,
 .section,
@@ -58,23 +51,25 @@
   animation: fadeUp 0.6s ease forwards;
 }
 
-/* Stagger timing */
-.titleBar { animation-delay: 0.1s; }
-.content { animation-delay: 0.1s; }
-.section { animation-delay: 0.1s; }
-.sectionLabel { animation-delay: 0.2s; }
-
-/* Pop-in for interactive rows */
-.widgetRow {
-  opacity: 0;
-  animation: fadeUp 0.6s ease forwards; /* same animation */
-  animation-delay: 0.1s;                /* same delay */
+.titleBar {
+  animation-delay: 0.1s;
+}
+.content {
+  animation-delay: 0.1s;
+}
+.section {
+  animation-delay: 0.1s;
+}
+.sectionLabel {
+  animation-delay: 0.2s;
 }
 
+.widgetRow {
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+  animation-delay: 0.1s;
+}
 
-/* ===========================
-   CONTENT
-=========================== */
 .content {
   width: 100%;
   flex: 1;
@@ -85,9 +80,6 @@
   overflow-y: auto;
 }
 
-/* ===========================
-   TITLE BAR
-=========================== */
 .titleBar {
   width: 100%;
   background-color: #f4c524;
@@ -107,9 +99,6 @@
   color: #111111;
 }
 
-/* ===========================
-   SECTIONS
-=========================== */
 .section {
   padding: 22px 16px 0;
   box-sizing: border-box;
@@ -123,9 +112,6 @@
   color: #111111;
 }
 
-/* ===========================
-   SETTING ROWS
-=========================== */
 .settingRow {
   width: 100%;
   min-height: 54px;
@@ -160,9 +146,6 @@
   cursor: pointer;
 }
 
-/* ===========================
-   TOGGLE
-=========================== */
 .toggle {
   width: 52px;
   height: 32px;
@@ -195,9 +178,6 @@
   transform: translateX(20px);
 }
 
-/* ===========================
-   ISSUE SECTION
-=========================== */
 .issueSection {
   padding: 24px 16px 0;
   box-sizing: border-box;
@@ -222,9 +202,6 @@
   color: #9c9c9c;
 }
 
-/* ===========================
-   SUBMIT BUTTON
-=========================== */
 .submitButton {
   margin-top: 8px;
   min-width: 100px;
@@ -239,9 +216,6 @@
   cursor: pointer;
 }
 
-/* ===========================
-   SIGN OUT
-=========================== */
 .signOutWrapper {
   margin-top: auto;
   padding: 0 16px 24px;
@@ -260,9 +234,6 @@
   cursor: pointer;
 }
 
-/* ===========================
-   WIDGET ROW
-=========================== */
 .widgetRow {
   width: 100%;
   min-height: 100px;
@@ -276,7 +247,9 @@
   text-decoration: none;
   color: #111111;
   box-sizing: border-box;
-  transition: transform 0.25s, background-color 0.25s ease;
+  transition:
+    transform 0.25s,
+    background-color 0.25s ease;
 }
 
 .widgetRow:hover {

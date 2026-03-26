@@ -13,13 +13,13 @@ export default function AllOptionsPage() {
         <TopHeader email="user@kent.edu" showEdit={false} />
 
         <div className={styles.content}>
-          {/* ⭐ FIND TUTOR */}
+          {/* Find Tutor */}
           <Link href="/user/tutorPages/findTutor" className={styles.link}>
             <img src="/userplus.svg" alt="Find Tutor" className={styles.icon} />
             <h3 className={styles.linkTitle}>Find Tutor</h3>
           </Link>
 
-          {/* ⭐ FIND STUDY BUDDY */}
+          {/* Find Study Group */}
           <Link
             href="/user/studyGroupPages/studyGroups"
             className={styles.link}
