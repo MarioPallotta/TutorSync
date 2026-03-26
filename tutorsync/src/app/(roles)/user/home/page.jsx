@@ -73,13 +73,12 @@ export default function UserHomePage() {
     <main className={styles.page}>
       <section className={styles.card}>
         <TopHeader
-  email="user@kent.edu"
-  isEditing={isEditing}
-  onEdit={() => setIsEditing(true)}
-  onExitEdit={() => setIsEditing(false)}
-  showEdit={true}
-/>
-
+          email="user@kent.edu"
+          isEditing={isEditing}
+          onEdit={() => setIsEditing(true)}
+          onExitEdit={() => setIsEditing(false)}
+          showEdit={true}
+        />
 
         <div className={styles.content}>
           <div className={styles.widgetContainer}>

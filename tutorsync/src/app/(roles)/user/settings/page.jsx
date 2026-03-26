@@ -36,53 +36,57 @@ export default function UserSettingsPage() {
           <div className={styles.titleBar}>
             <h1 className={styles.title}>Settings</h1>
           </div>
-            <div className={styles.section}>
-              <h2 className={styles.sectionLabel}>Application Settings</h2>
+          <div className={styles.section}>
+            <h2 className={styles.sectionLabel}>Application Settings</h2>
 
-              <div className={styles.settingRow}>
-                <span className={styles.settingText}>Dark Mode</span>
+            <div className={styles.settingRow}>
+              <span className={styles.settingText}>Dark Mode</span>
 
-                <button
-                  type="button"
-                  className={`${styles.toggle} ${darkMode ? styles.toggleOn : ""}`}
-                  onClick={() => setDarkMode(!darkMode)}
-                  aria-pressed={darkMode}
-                  aria-label="Toggle dark mode"
-                >
-                  <span className={styles.toggleKnob}></span>
-                </button>
-              </div>
-
-              <Link href="/user/notificationPreferences" type="button" className={styles.settingButton}>
-                Notification Preferences
-              </Link>
-            </div>
-
-            <form className={styles.issueSection} onSubmit={handleSubmitIssue}>
-              <h2 className={styles.sectionLabel}>Submit an App Issue</h2>
-
-              <textarea
-                className={styles.textarea}
-                placeholder="Enter Text"
-                value={issueText}
-                onChange={(e) => setIssueText(e.target.value)}
-              />
-
-              <button type="submit" className={styles.submitButton}>
-                Submit
-              </button>
-            </form>
-
-            <div className={styles.signOutWrapper}>
               <button
                 type="button"
-                className={styles.signOutButton}
-                onClick={handleSignOut}
+                className={`${styles.toggle} ${darkMode ? styles.toggleOn : ""}`}
+                onClick={() => setDarkMode(!darkMode)}
+                aria-pressed={darkMode}
+                aria-label="Toggle dark mode"
               >
-                Sign Out
+                <span className={styles.toggleKnob}></span>
               </button>
             </div>
+
+            <Link
+              href="/user/notificationPreferences"
+              type="button"
+              className={styles.settingButton}
+            >
+              Notification Preferences
+            </Link>
           </div>
+
+          <form className={styles.issueSection} onSubmit={handleSubmitIssue}>
+            <h2 className={styles.sectionLabel}>Submit an App Issue</h2>
+
+            <textarea
+              className={styles.textarea}
+              placeholder="Enter Text"
+              value={issueText}
+              onChange={(e) => setIssueText(e.target.value)}
+            />
+
+            <button type="submit" className={styles.submitButton}>
+              Submit
+            </button>
+          </form>
+
+          <div className={styles.signOutWrapper}>
+            <button
+              type="button"
+              className={styles.signOutButton}
+              onClick={handleSignOut}
+            >
+              Sign Out
+            </button>
+          </div>
+        </div>
         <BottomNav />
       </section>
     </main>

@@ -1,11 +1,8 @@
-/* ===========================
-   PAGE + CARD
-=========================== */
 .page {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
   height: 100vh;
   width: 100vw;
   margin: 0;
@@ -24,9 +21,6 @@
   overflow: hidden;
 }
 
-/* ===========================
-   ANIMATIONS
-=========================== */
 @keyframes fadeUp {
   0% {
     opacity: 0;
@@ -49,7 +43,6 @@
   }
 }
 
-/* Apply fadeUp to major layout sections */
 .content,
 .section,
 .sectionTitle {
@@ -57,21 +50,22 @@
   animation: fadeUp 0.6s ease forwards;
 }
 
-/* Stagger timing for smooth flow */
-.content { animation-delay: 0.1s; }
-.section { animation-delay: 0.2s; }
-.sectionTitle { animation-delay: 0.3s; }
+.content {
+  animation-delay: 0.1s;
+}
+.section {
+  animation-delay: 0.2s;
+}
+.sectionTitle {
+  animation-delay: 0.3s;
+}
 
-/* Cards pop in slightly for a premium feel */
 .infoCard {
   opacity: 0;
   animation: popIn 0.55s ease forwards;
   animation-delay: 0.35s;
 }
 
-/* ===========================
-   CONTENT
-=========================== */
 .content {
   flex: 1;
   width: 100%;
@@ -103,9 +97,6 @@
   gap: 8px;
 }
 
-/* ===========================
-   INFO CARDS (Unified Borders)
-=========================== */
 .infoCard {
   border: 3px solid #111;
   border-radius: 14px;
@@ -114,9 +105,6 @@
   color: #000;
 }
 
-/* ===========================
-   CARD HEADER
-=========================== */
 .cardHeader {
   display: flex;
   justify-content: space-between;
@@ -139,9 +127,6 @@
   margin-left: 12px;
 }
 
-/* ===========================
-   CARD BODY
-=========================== */
 .cardBody {
   display: flex;
   justify-content: space-between;
@@ -173,9 +158,6 @@
   height: 16px;
 }
 
-/* ===========================
-   ACTION BUTTONS
-=========================== */
 .actions {
   display: flex;
   gap: 8px;
@@ -191,22 +173,22 @@
   cursor: pointer;
   background-color: #fff;
   color: #000;
-  transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .acceptBtn:hover {
-  background-color: #34C759;
+  background-color: #34c759;
   color: #fff;
 }
 
 .denyBtn:hover {
-  background-color: #EC3F3F;
+  background-color: #ec3f3f;
   color: #fff;
 }
 
-/* ===========================
-   REQUEST AVAILABILITY BUTTON
-=========================== */
 .requestButton {
   width: 100%;
   padding: 16px;
@@ -218,7 +200,9 @@
   font-weight: 500;
   cursor: pointer;
   text-align: center;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .requestButton:hover {

@@ -1,6 +1,3 @@
-/* ===========================
-   PAGE + CARD
-=========================== */
 .page {
   display: flex;
   flex-direction: column;
@@ -24,13 +21,9 @@
   box-sizing: border-box;
   overflow: hidden;
 
-  /* Subtle depth */
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 }
 
-/* ===========================
-   ANIMATIONS
-=========================== */
 @keyframes fadeUp {
   0% {
     opacity: 0;
@@ -55,7 +48,6 @@
   }
 }
 
-/* Apply fadeUp to all major elements */
 .topSection,
 .logo,
 .title,
@@ -66,7 +58,6 @@
   animation: fadeUp 0.7s ease forwards;
 }
 
-/* Staggered timing for premium feel */
 .topSection {
   animation-delay: 0.1s;
 }
@@ -96,9 +87,6 @@
   animation-delay: 0.7s;
 }
 
-/* ===========================
-   TOP SECTION
-=========================== */
 .topSection {
   width: 100%;
   display: flex;
@@ -124,9 +112,6 @@
   line-height: 1.1;
 }
 
-/* ===========================
-   BOTTOM SECTION
-=========================== */
 .bottomSection {
   width: 100%;
   display: flex;
@@ -147,9 +132,6 @@
   margin-bottom: 5px;
 }
 
-/* ===========================
-   INPUTS
-=========================== */
 .input:first-of-type {
   margin-top: 5px;
 }
@@ -169,10 +151,6 @@
   margin-bottom: 20px;
 }
 
-/* ===========================
-   SIGN IN BUTTON
-=========================== */
-
 .signInButton {
   display: block;
   margin: 0 auto;
@@ -189,7 +167,6 @@
   box-sizing: border-box;
   padding: 10px;
 
-  /* Force transitions to win */
   transition:
     background-color 0.3s ease,
     color 0.3s ease,

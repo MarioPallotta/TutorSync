@@ -2,14 +2,13 @@
 import Image from "next/image";
 import styles from "./TopHeader.module.css";
 
-export default function TopHeader({ 
-  email = "user@kent.edu", 
-  isEditing, 
-  onEdit, 
+export default function TopHeader({
+  email = "user@kent.edu",
+  isEditing,
+  onEdit,
   onExitEdit,
-  showEdit = true
+  showEdit = true,
 }) {
-
   const handleClick = () => {
     if (!showEdit) return;
     if (isEditing) onExitEdit?.();
@@ -42,7 +41,11 @@ export default function TopHeader({
       {/* ⭐ If showEdit is true → show button  
           ⭐ If false → show an invisible spacer of equal width */}
       {showEdit ? (
-        <button className={styles.editButton} onClick={handleClick} type="button">
+        <button
+          className={styles.editButton}
+          onClick={handleClick}
+          type="button"
+        >
           {isEditing ? (
             <span className={styles.exitIcon}>✕</span>
           ) : (

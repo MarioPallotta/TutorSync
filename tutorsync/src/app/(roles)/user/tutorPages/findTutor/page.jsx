@@ -7,11 +7,36 @@ import BottomNav from "@/components/user/BottomNav/BottomNav";
 import styles from "./page.module.css";
 
 const mockTutors = [
-  { id: 1, name: "Sarah M.", subject: "Chemistry", availability: "3:00PM - 6:00PM" },
-  { id: 2, name: "Joe Q.", subject: "Chemistry", availability: "3:00PM - 6:00PM" },
-  { id: 3, name: "Earl E.", subject: "Chemistry", availability: "3:00PM - 6:00PM" },
-  { id: 4, name: "Samuel M.", subject: "Chemistry", availability: "3:00PM - 6:00PM" },
-  { id: 5, name: "Craig T.", subject: "Chemistry", availability: "3:00PM - 6:00PM" },
+  {
+    id: 1,
+    name: "Sarah M.",
+    subject: "Chemistry",
+    availability: "3:00PM - 6:00PM",
+  },
+  {
+    id: 2,
+    name: "Joe Q.",
+    subject: "Chemistry",
+    availability: "3:00PM - 6:00PM",
+  },
+  {
+    id: 3,
+    name: "Earl E.",
+    subject: "Chemistry",
+    availability: "3:00PM - 6:00PM",
+  },
+  {
+    id: 4,
+    name: "Samuel M.",
+    subject: "Chemistry",
+    availability: "3:00PM - 6:00PM",
+  },
+  {
+    id: 5,
+    name: "Craig T.",
+    subject: "Chemistry",
+    availability: "3:00PM - 6:00PM",
+  },
 ];
 
 const subjects = [
@@ -71,7 +96,11 @@ export default function FindTutorPage() {
         <div className={styles.topSpacer} />
 
         <div className={styles.headerRow}>
-          <Link href="/user/home" className={styles.backButton} aria-label="Go back">
+          <Link
+            href="/user/home"
+            className={styles.backButton}
+            aria-label="Go back"
+          >
             <Image src="/backbutton.svg" alt="Back" width={28} height={28} />
           </Link>
 
@@ -103,11 +132,22 @@ export default function FindTutorPage() {
               aria-label="Select date"
             >
               <div className={styles.dateBarLeft}>
-                <Image src="/calendar.svg" alt="Calendar" width={18} height={18} />
+                <Image
+                  src="/calendar.svg"
+                  alt="Calendar"
+                  width={18}
+                  height={18}
+                />
                 <span className={styles.dateText}>{formattedDate}</span>
               </div>
 
-              <Image className={styles.dateChevron} src="/chevron-down.svg" alt="Expand date picker" width={18} height={18} />  
+              <Image
+                className={styles.dateChevron}
+                src="/chevron-down.svg"
+                alt="Expand date picker"
+                width={18}
+                height={18}
+              />
             </button>
 
             <input

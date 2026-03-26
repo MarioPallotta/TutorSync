@@ -11,10 +11,9 @@ export default function WidgetOptionsPage() {
       <section className={styles.card}>
         <div className={styles.topSpacer}></div>
         <div className={styles.titleBar}>
-        <h1 className={styles.title}>Select a Widget</h1>
+          <h1 className={styles.title}>Select a Widget</h1>
         </div>
         <div className={styles.content}>
-
           <div className={styles.section}>
             <Link href="/user/home?add=findTutor" className={styles.widgetRow}>
               <div className={styles.widgetLeft}>
@@ -28,7 +27,10 @@ export default function WidgetOptionsPage() {
               </div>
             </Link>
 
-            <Link href="/user/home?add=studyGroups" className={styles.widgetRow}>
+            <Link
+              href="/user/home?add=studyGroups"
+              className={styles.widgetRow}
+            >
               <div className={styles.widgetLeft}>
                 <Image
                   src="/users.svg"
@@ -40,7 +42,10 @@ export default function WidgetOptionsPage() {
               </div>
             </Link>
 
-            <Link href="/user/home?add=upcomingSessions" className={styles.widgetRow}>
+            <Link
+              href="/user/home?add=upcomingSessions"
+              className={styles.widgetRow}
+            >
               <div className={styles.widgetLeft}>
                 <Image
                   src="/calendar.svg"
