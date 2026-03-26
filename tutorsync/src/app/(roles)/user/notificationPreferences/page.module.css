@@ -35,21 +35,24 @@
 
 .title {
   margin: 0;
-  font-size: clamp(1.7rem, 4.8vw, 2.1rem);
+  font-size: clamp(1.8rem, 5vw, 2.2rem);
   font-weight: 500;
   color: #111111;
 }
 
 .content {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   flex: 1;
-  padding: 22px 16px 20px;
+  padding-bottom: 20px;
   box-sizing: border-box;
   background-color: #f2f2f2;
 }
 
 .section {
-  margin-bottom: 28px;
+  padding: 22px 16px 0;
+  box-sizing: border-box;
 }
 
 .sectionLabel {
