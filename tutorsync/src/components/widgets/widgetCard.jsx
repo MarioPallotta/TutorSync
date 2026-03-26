@@ -23,7 +23,7 @@ export default function WidgetCard({ type, isEditing, onDelete }) {
       {isEditing && (
         <button className={styles.deleteButton} onClick={onDelete}>
           <div className={styles.circle}>
-          <img src="/trash.svg" alt="Delete widget" />
+            <img src="/trash.svg" alt="Delete widget" />
           </div>
         </button>
       )}
@@ -42,55 +42,66 @@ export default function WidgetCard({ type, isEditing, onDelete }) {
             <span>{g.grade}</span>
           </div>
         ))}
-      </>
+      </>,
     );
   }
-// find Tutor & studyGroups test for isEditing, to make sure when the user is editing, the widget can't be used. 
+  // find Tutor & studyGroups test for isEditing, to make sure when the user is editing, the widget can't be used.
   if (type === "findTutor") {
     return (
       <>
         {isEditing ? (
-        <div className={styles.linkcard}>
-        <img src="/userplus.svg" alt="Find a Tutor" className={styles.icon} />
-        <h3 className={styles.linkTitle}>Find a Tutor</h3>
-        <button className={styles.deleteButton} onClick={onDelete}>
-          <div className={styles.circle}>
-          <img src="/trash.svg" alt="Delete widget" />
+          <div className={styles.linkcard}>
+            <img
+              src="/userplus.svg"
+              alt="Find a Tutor"
+              className={styles.icon}
+            />
+            <h3 className={styles.linkTitle}>Find a Tutor</h3>
+            <button className={styles.deleteButton} onClick={onDelete}>
+              <div className={styles.circle}>
+                <img src="/trash.svg" alt="Delete widget" />
+              </div>
+            </button>
           </div>
-        </button>
-      </div>
-      ) : (
-      <Link href="/user/tutorPages/findTutor" className={styles.link}>
-      <img src="/userplus.svg" alt="Find a Tutor" className={styles.icon} />
-        <h3 className={styles.linkTitle}>Find a Tutor</h3>
-      </Link>
-    )}
-    </>
-  );
-}
+        ) : (
+          <Link href="/user/tutorPages/findTutor" className={styles.link}>
+            <img
+              src="/userplus.svg"
+              alt="Find a Tutor"
+              className={styles.icon}
+            />
+            <h3 className={styles.linkTitle}>Find a Tutor</h3>
+          </Link>
+        )}
+      </>
+    );
+  }
 
   if (type === "studyGroups") {
     return (
       <>
         {isEditing ? (
-        <div className={styles.linkcard}>
-        <img src="/users.svg" alt="Study Groups" className={styles.icon} />
-        <h3 className={styles.linkTitle}>Study Groups</h3>
-        <button className={styles.deleteButton} onClick={onDelete}>
-          <div className={styles.circle}>
-          <img src="/trash.svg" alt="Delete widget" />
+          <div className={styles.linkcard}>
+            <img src="/users.svg" alt="Study Groups" className={styles.icon} />
+            <h3 className={styles.linkTitle}>Study Groups</h3>
+            <button className={styles.deleteButton} onClick={onDelete}>
+              <div className={styles.circle}>
+                <img src="/trash.svg" alt="Delete widget" />
+              </div>
+            </button>
           </div>
-        </button>
-      </div>
-      ) : (
-      <Link href="/user/studyGroupPages/studyGroups" className={styles.link}>
-      <img src="/users.svg" alt="Study Groups" className={styles.icon} />
-        <h3 className={styles.linkTitle}>Study Groups</h3>
-      </Link>
-    )}
-    </>
-  );
-}
+        ) : (
+          <Link
+            href="/user/studyGroupPages/findStudyGroup"
+            className={styles.link}
+          >
+            <img src="/users.svg" alt="Study Groups" className={styles.icon} />
+            <h3 className={styles.linkTitle}>Study Groups</h3>
+          </Link>
+        )}
+      </>
+    );
+  }
 
   if (type === "upcomingSessions") {
     return wrap(
@@ -102,7 +113,7 @@ export default function WidgetCard({ type, isEditing, onDelete }) {
             <span>{s.time}</span>
           </div>
         ))}
-      </>
+      </>,
     );
   }
 
