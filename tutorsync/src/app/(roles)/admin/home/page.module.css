@@ -60,10 +60,12 @@
 }
 
 .welcome {
+  width: 100%;
+  background-color: blue;
+  color: #fff;
   font-size: 28px;
   font-weight: 400;
   margin: 0 0 20px 0;
-  color: #000;
 
   opacity: 0;
   animation: fadeUp 0.6s ease forwards;

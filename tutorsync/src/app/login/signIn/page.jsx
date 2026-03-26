@@ -20,9 +20,7 @@ export default function LandingPage() {
         </div>
 
         <div className={styles.bottomSection}>
-          <h2 className={styles.flashlineTitle}>
-            Flashline Login
-          </h2>
+          <h2 className={styles.flashlineTitle}>Flashline Login</h2>
           <form className={styles.loginForm}>
             <input
               type="text"
@@ -36,7 +34,11 @@ export default function LandingPage() {
               className={styles.input}
             />
 
-            <Link href="/tutor/home" type="submit" className={styles.signInButton}>
+            <Link
+              href="/tutor/home"
+              type="submit"
+              className={styles.signInButton}
+            >
               Sign In
             </Link>
           </form>

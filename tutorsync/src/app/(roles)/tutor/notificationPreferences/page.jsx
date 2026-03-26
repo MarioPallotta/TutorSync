@@ -12,11 +12,10 @@ export default function NotificationPreferencesPage() {
   return (
     <main className={styles.page}>
       <section className={styles.card}>
-        <div className={styles.titleBar}>
-          <h1 className={styles.title}>Notifications</h1>
-        </div>
-
         <div className={styles.content}>
+          <div className={styles.titleBar}>
+            <h1 className={styles.title}>Notifications</h1>
+          </div>
           <section className={styles.section}>
             <h2 className={styles.sectionLabel}>Notification Types</h2>
 
