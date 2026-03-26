@@ -6,15 +6,14 @@ export default function TopHeader({
   email = "user@kent.edu", 
   isEditing, 
   onEdit, 
-  onExitEdit 
+  onExitEdit,
+  showEdit = true
 }) {
 
   const handleClick = () => {
-    if (isEditing) {
-      onExitEdit?.();
-    } else {
-      onEdit?.();
-    }
+    if (!showEdit) return;
+    if (isEditing) onExitEdit?.();
+    else onEdit?.();
   };
 
   return (
@@ -40,13 +39,19 @@ export default function TopHeader({
         <p className={styles.email}>{email}</p>
       </div>
 
-      <button className={styles.editButton} onClick={handleClick} type="button">
-        {isEditing ? (
-          <span className={styles.exitIcon}>✕</span>
-        ) : (
-          <img src="/edit.svg" alt="Edit" className={styles.icon} />
-        )}
-      </button>
+      {/* ⭐ If showEdit is true → show button  
+          ⭐ If false → show an invisible spacer of equal width */}
+      {showEdit ? (
+        <button className={styles.editButton} onClick={handleClick} type="button">
+          {isEditing ? (
+            <span className={styles.exitIcon}>✕</span>
+          ) : (
+            <img src="/edit.svg" alt="Edit" className={styles.icon} />
+          )}
+        </button>
+      ) : (
+        <div className={styles.editSpacer} />
+      )}
     </header>
   );
 }

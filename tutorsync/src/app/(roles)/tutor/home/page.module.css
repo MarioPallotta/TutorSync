@@ -1,5 +1,8 @@
+/* ===========================
+   PAGE + CARD
+=========================== */
 .page {
-display: flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center; 
@@ -9,7 +12,7 @@ display: flex;
 }
 
 .card {
- width: 100%;
+  width: 100%;
   max-width: 430px;
   min-height: min(932px, 100vh);
   background-color: #fff;
@@ -21,17 +24,63 @@ display: flex;
   overflow: hidden;
 }
 
+/* ===========================
+   ANIMATIONS
+=========================== */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Apply fadeUp to major layout sections */
+.content,
+.section,
+.sectionTitle {
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+}
+
+/* Stagger timing for smooth flow */
+.content { animation-delay: 0.1s; }
+.section { animation-delay: 0.2s; }
+.sectionTitle { animation-delay: 0.3s; }
+
+/* Cards pop in slightly for a premium feel */
+.infoCard {
+  opacity: 0;
+  animation: popIn 0.55s ease forwards;
+  animation-delay: 0.35s;
+}
+
+/* ===========================
+   CONTENT
+=========================== */
 .content {
   flex: 1;
-  width: 100%;             /* keep full card width */
-  background-color: #f2f2f2;
-  position: relative;      /* needed for absolute add button */
-  display: flex;
-  flex-direction: column;  /* stack widgets vertically */
-  gap: 12px;               /* spacing between widgets */
-  padding: 16px;  
   width: 100%;
   background-color: #f2f2f2;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
   overflow-y: auto;
 }
 
@@ -54,15 +103,20 @@ display: flex;
   gap: 8px;
 }
 
-/* Common Card Styles */
+/* ===========================
+   INFO CARDS (Unified Borders)
+=========================== */
 .infoCard {
-  border: 1.5px solid #000;
-  border-radius: 12px;
+  border: 3px solid #111;
+  border-radius: 14px;
   padding: 12px 16px;
   background-color: #fff;
   color: #000;
 }
 
+/* ===========================
+   CARD HEADER
+=========================== */
 .cardHeader {
   display: flex;
   justify-content: space-between;
@@ -75,17 +129,19 @@ display: flex;
   font-weight: 500;
 }
 
-.dateTime {
+.dateTime,
+.dateTimeUpcoming {
   font-size: 14px;
   color: #333;
 }
 
 .dateTimeUpcoming {
-  font-size: 14px;
-  color: #333;
   margin-left: 12px;
 }
 
+/* ===========================
+   CARD BODY
+=========================== */
 .cardBody {
   display: flex;
   justify-content: space-between;
@@ -117,57 +173,54 @@ display: flex;
   height: 16px;
 }
 
-/* Action Buttons */
+/* ===========================
+   ACTION BUTTONS
+=========================== */
 .actions {
   display: flex;
   gap: 8px;
 }
 
-.acceptBtn, .denyBtn {
+.acceptBtn,
+.denyBtn {
   padding: 6px 16px;
-  border-radius: 16px;
-  border: 1px solid #000;
+  border-radius: 10px;
+  border: 2px solid #111;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-}
-
-.acceptBtn {
-  background-color: #fff; /* Match the green */
+  background-color: #fff;
   color: #000;
   transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
 }
+
 .acceptBtn:hover {
   background-color: #34C759;
   color: #fff;
 }
 
-.denyBtn {
-  background-color: #fff; /* Match the red */
-  color: #000;
-  transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
-}
 .denyBtn:hover {
   background-color: #EC3F3F;
   color: #fff;
 }
 
-/* Request Availability Button */
+/* ===========================
+   REQUEST AVAILABILITY BUTTON
+=========================== */
 .requestButton {
   width: 100%;
   padding: 16px;
   margin-top: 8px;
-  background-color: #122858; /* Dark Blue */
+  background-color: #122858;
   color: #ffffff;
-  border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 18px;
   font-weight: 500;
   cursor: pointer;
   text-align: center;
-    transition: transform 0.2s ease,
-    opacity 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
+
 .requestButton:hover {
   transform: translateY(-2px);
   opacity: 0.96;

@@ -89,11 +89,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.2s ease,
+  transition: background-color 0.1s ease, transform 0.1s ease;
 }
 .circle:hover {
   background-color: #EC3F3F;
-  transition: background-color 0.2s ease, transform 0.2s ease;
 } 
 
 .deleteButton {
@@ -104,7 +103,7 @@
   border: none;
   padding: 0;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: transform 0.1s;
 }
 
 .deleteButton:hover {

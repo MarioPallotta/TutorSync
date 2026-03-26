@@ -1,3 +1,6 @@
+/* ===========================
+   PAGE + CARD
+=========================== */
 .page {
   display: flex;
   flex-direction: column;
@@ -7,6 +10,7 @@
   width: 100vw;
   margin: 0;
 }
+
 .card {
   width: 100%;
   max-width: 430px;
@@ -20,6 +24,66 @@
   box-sizing: border-box;
   overflow: hidden;
 }
+
+/* ===========================
+   ANIMATIONS
+=========================== */
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Button-only fade (no transform) */
+@keyframes fadeInOnly {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Apply fadeUp to major elements EXCEPT button */
+.topSection,
+.logo,
+.title,
+.flashlineTitle,
+.input {
+  opacity: 0;
+  animation: fadeUp 0.7s ease forwards;
+}
+
+/* Staggered timing */
+.topSection { animation-delay: 0.1s; }
+.logo { animation: popIn 0.6s ease forwards; animation-delay: 0.2s; }
+.title { animation-delay: 0.3s; }
+.flashlineTitle { animation-delay: 0.4s; }
+.input:nth-of-type(1) { animation-delay: 0.5s; }
+.input:nth-of-type(2) { animation-delay: 0.6s; }
+
+/* Button fades in but does NOT animate transform */
+.signInButton {
+  opacity: 0;
+  animation: fadeInOnly 0.7s ease forwards;
+  animation-delay: 0.7s;
+}
+
+/* ===========================
+   TOP SECTION
+=========================== */
 .topSection {
   width: 100%;
   display: flex;
@@ -27,6 +91,7 @@
   align-items: center;
   margin-top: 24px;
 }
+
 .logo {
   width: 100%;
   max-width: 320px;
@@ -34,14 +99,19 @@
   object-fit: contain;
   margin-bottom: 24px;
 }
+
 .title {
-  margin: 0;
+  margin-bottom: 10px;
   font-size: clamp(2.3rem, 6vw, 3rem);
   font-weight: 800;
   color: #111111;
   text-align: center;
   line-height: 1.1;
 }
+
+/* ===========================
+   BOTTOM SECTION
+=========================== */
 .bottomSection {
   width: 100%;
   display: flex;
@@ -49,21 +119,27 @@
   align-items: center;
   margin-bottom: 300px;
 }
+
 .flashlineTitle {
   width: 100%;
-  max-width: 15rem;
-  background-color: #f5c400;
+  background: linear-gradient(
+    to right,
+    #f2f2f2 0%,
+    #f5c400 50%,
+    #f2f2f2 100%
+  );
   color: #111111;
-  border: 3px solid #111111;
-  border-radius: 10px;
   padding: 5px 10px;
   font-size: clamp(1.1rem, 3.8vw, 1.45rem);
-  font-weight: 500;
+  font-weight: bolder;
   text-align: center;
-  text-decoration: none;
   box-sizing: border-box;
   margin-bottom: 5px;
 }
+
+/* ===========================
+   INPUTS
+=========================== */
 .input:first-of-type {
   margin-top: 5px;
 }
@@ -73,34 +149,41 @@
   max-width: 100%;
   background-color: white;
   color: #111111;
-  border: 3px solid #111111;
-  border-radius: 22px;
-  padding: 18px 20px;
+  border: 2px solid #111111;
+  border-radius: 12px;
+  padding: 12px 14px;
   font-size: clamp(1.1rem, 3.8vw, 1.45rem);
   font-weight: 500;
   text-align: center;
-  text-decoration: none;
   box-sizing: border-box;
   margin-bottom: 20px;
 }
+
+/* ===========================
+   SIGN IN BUTTON
+=========================== */
 .signInButton {
   display: block;
-  width: 100%;
+  margin: 0 auto;
+  width: 50%;
   max-width: 100%;
   background-color: #002664;
   color: white;
   border: 3px solid #111111;
-  border-radius: 22px;
-  padding: 18px 20px;
+  border-radius: 12px;
   font-size: clamp(1.1rem, 3.8vw, 1.45rem);
   font-weight: 500;
   text-align: center;
   text-decoration: none;
   box-sizing: border-box;
+  padding: 10px;
+
+  /* Hover transitions */
   transition:
     transform 0.2s ease,
     opacity 0.2s ease;
 }
+
 .signInButton:hover {
   transform: translateY(-2px);
   opacity: 0.96;

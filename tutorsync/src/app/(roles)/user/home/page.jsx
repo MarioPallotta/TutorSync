@@ -31,7 +31,7 @@ export default function UserHomePage() {
     }
     setEditingLoaded(true);
   }, []);
-  
+
   useEffect(() => {
     localStorage.setItem("isEditing", isEditing);
   }, [isEditing]);
@@ -73,11 +73,13 @@ export default function UserHomePage() {
     <main className={styles.page}>
       <section className={styles.card}>
         <TopHeader
-          email="user@kent.edu"
-          isEditing={isEditing}
-          onEdit={() => setIsEditing(true)}
-          onExitEdit={() => setIsEditing(false)}
-        />
+  email="user@kent.edu"
+  isEditing={isEditing}
+  onEdit={() => setIsEditing(true)}
+  onExitEdit={() => setIsEditing(false)}
+  showEdit={true}
+/>
+
 
         <div className={styles.content}>
           <div className={styles.widgetContainer}>

@@ -31,11 +31,11 @@ export default function RequestAvailabilityPage() {
             <p className={styles.sectionLabel}>Current Schedule</p>
             <div className={styles.stackedBox}>
               <div className={styles.row}>
-                <span>Monday</span>
+                <span>Mon, Wed, Fri</span>
                 <span>3:00 - 5:00 PM</span>
               </div>
               <div className={styles.row}>
-                <span>Wednesday</span>
+                <span>Tues, Thurs</span>
                 <span>3:00 - 5:00 PM</span>
               </div>
             </div>
@@ -47,7 +47,7 @@ export default function RequestAvailabilityPage() {
             <div className={styles.stackedBox}>
               <div className={styles.requestRow}>
                 <div className={styles.requestInfo}>
-                  <span className={styles.dayText}>Friday</span>
+                  <span className={styles.dayText}>Tues, Thurs </span>
                   <span className={styles.timeText}>3:00 - 5:00 PM</span>
                 </div>
                 <span className={styles.pendingBadge}>Pending</span>
