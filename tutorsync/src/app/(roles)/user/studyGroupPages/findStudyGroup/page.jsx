@@ -84,7 +84,9 @@ export default function StudyBuddyPage() {
                   <p className={styles.groupSpots}>{group.spots}</p>
                 </div>
 
-                <button className={styles.joinButton}>Join</button>
+                <Link href="/user/studyGroupPages/bookStudyGroup" className={styles.joinButton}>
+                  Join
+                </Link>
               </div>
             ))}
           </div>

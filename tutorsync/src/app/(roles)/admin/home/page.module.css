@@ -165,7 +165,7 @@
 
 .denyBtn:hover {
   background-color: #ec3f3f;
-  color: #fff;
+  color: hsl(0, 0%, 100%);
 }
 
 .approvedBadge {

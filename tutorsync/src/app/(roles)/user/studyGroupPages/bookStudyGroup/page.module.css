@@ -1,0 +1,202 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+}
+
+.card {
+  width: 100%;
+  max-width: 430px;
+  min-height: min(932px, 100vh);
+  background-color: #f2f2f2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.topSpacer {
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.headerRow {
+  width: 100%;
+  min-height: 78px;
+  background-color: #f2f2f2;
+  border-bottom: 2px solid #b7b7b7;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 14px;
+  box-sizing: border-box;
+}
+
+.backButton {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  font-weight: 500;
+  color: #111;
+}
+
+.headerSpacer {
+  width: 36px;
+  flex-shrink: 0;
+}
+
+.content {
+  flex: 1;
+  width: 100%;
+  padding: 18px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  overflow-y: auto;
+
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+  animation-delay: 0.15s;
+}
+
+.courseTitle {
+  margin: 0;
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
+  font-weight: 600;
+  color: #111;
+
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+  animation-delay: 0.2s;
+}
+
+.infoBox {
+  background-color: #fff;
+  border: 3px solid #111;
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+  animation-delay: 0.25s;
+}
+
+.infoLine {
+  margin: 0;
+  font-size: 1rem;
+  color: #111;
+}
+
+.participantSection {
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+  animation-delay: 0.3s;
+}
+
+.participantHeader {
+  margin: 0 0 8px 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #111;
+}
+
+.participantList {
+  background-color: #fff;
+  border: 3px solid #111;
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.participantName {
+  margin: 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.tutorBox {
+  background-color: #fff;
+  border: 3px solid #111;
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+  animation-delay: 0.35s;
+}
+
+.tutorStatus {
+  margin: 0;
+  font-size: 1rem;
+  color: #111;
+}
+
+.tutorSub {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #444;
+  font-style: italic;
+}
+
+.joinWrapper {
+  margin-top: auto;
+  padding: 0 4px 24px;
+  box-sizing: border-box;
+
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+  animation-delay: 0.4s;
+}
+
+.joinButton {
+  width: 100%;
+  padding: 16px;
+  background-color: #2f63e0;
+  color: #fff;
+  border: 2px solid #111;
+  border-radius: 12px;
+  font-size: clamp(1.1rem, 3vw, 1.3rem);
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.joinButton:hover {
+  transform: scale(1.03);
+  opacity: 0.96;
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
