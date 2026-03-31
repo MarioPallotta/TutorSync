@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import TopHeader from "@/components/user/TopHeader/TopHeader";
+import TopHeader from "@/components/student/TopHeader/TopHeader";
 import BottomNav from "@/components/tutor/BottomNav/BottomNav";
 import styles from "./page.module.css";
 import Link from "next/link";
@@ -21,12 +21,9 @@ export default function UserSettingsPage() {
     setIssueText("");
   };
 
-  const handleSignOut = () => {
+  const handleSignOut = async () => {
     console.log("Sign out clicked");
-
-    // Later: add sign-out logic here
-    // Example with next-auth or your auth flow:
-    // signOut();
+    await signOut({ callbackUrl: "/login/signIn", redirect: true });
   };
 
   return (

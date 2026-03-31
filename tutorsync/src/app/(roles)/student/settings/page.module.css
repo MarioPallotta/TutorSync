@@ -1,0 +1,206 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+}
+
+.card {
+  width: 100%;
+  max-width: 430px;
+  min-height: min(932px, 100vh);
+  background-color: #f2f2f2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.content {
+  width: 100%;
+  flex: 1;
+  background-color: #f2f2f2;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+}
+
+.titleBar {
+  width: 100%;
+  background-color: #f4c524;
+  border-top: 2px solid #111111;
+  border-bottom: 2px solid #111111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 12px;
+  box-sizing: border-box;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.8rem, 5vw, 2.2rem);
+  font-weight: 500;
+  color: #111111;
+}
+
+.section {
+  padding: 22px 16px 0;
+  box-sizing: border-box;
+}
+
+.sectionLabel {
+  margin: 0 0 10px;
+  font-size: clamp(1.05rem, 3vw, 1.25rem);
+  font-weight: 400;
+  color: #111111;
+}
+
+.settingRow {
+  width: 100%;
+  min-height: 54px;
+  border: 3px solid #111111;
+  border-radius: 14px;
+  background-color: #f2f2f2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px 0 12px;
+  box-sizing: border-box;
+  margin-bottom: 8px;
+}
+
+.settingText {
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  color: #111111;
+}
+
+.settingButton {
+  display: block;
+  width: 100%;
+  min-height: 54px;
+  border: 3px solid #111111;
+  border-radius: 14px;
+  background-color: #f2f2f2;
+  color: #111111;
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  text-align: left;
+  padding: 10px 12px;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition:
+    transform 0.25s,
+    background-color 0.25s ease;
+}
+
+.settingButton:hover {
+  transform: scale(1.04);
+  background-color: rgb(162, 162, 162);
+}
+
+.toggle {
+  width: 52px;
+  height: 32px;
+  border: none;
+  border-radius: 999px;
+  background-color: #bdbdbd;
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.toggleKnob {
+  width: 24px;
+  height: 24px;
+  background-color: #f2f2f2;
+  border-radius: 50%;
+  position: absolute;
+  left: 4px;
+  transition: transform 0.2s ease;
+}
+
+.toggleOn {
+  background-color: #f4c524;
+}
+
+.toggleOn .toggleKnob {
+  transform: translateX(20px);
+}
+
+.issueSection {
+  padding: 24px 16px 0;
+  box-sizing: border-box;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 130px;
+  border: 3px solid #111111;
+  border-radius: 10px;
+  background-color: #f2f2f2;
+  resize: none;
+  padding: 12px;
+  font-size: 1rem;
+  box-sizing: border-box;
+  outline: none;
+  color: #111111;
+  font-family: inherit;
+}
+
+.textarea::placeholder {
+  color: #9c9c9c;
+}
+
+.submitButton {
+  margin-top: 8px;
+  min-width: 100px;
+  min-height: 46px;
+  background-color: #002664;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: clamp(1rem, 3vw, 1.15rem);
+  font-weight: 500;
+  padding: 0 18px;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+.submitButton:hover {
+  transform: translateY(-2px);
+  opacity: 0.96;
+}
+
+.signOutWrapper {
+  margin-top: auto;
+  padding: 0 16px 24px;
+  box-sizing: border-box;
+}
+
+.signOutButton {
+  width: 100%;
+  min-height: 52px;
+  background-color: #002664;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: clamp(1.1rem, 3vw, 1.3rem);
+  font-weight: 400;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+.signOutButton:hover {
+  transform: translateY(-2px);
+  opacity: 0.96;
+}

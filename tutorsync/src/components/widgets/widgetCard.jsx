@@ -64,7 +64,7 @@ export default function WidgetCard({ type, isEditing, onDelete }) {
             </button>
           </div>
         ) : (
-          <Link href="/user/tutorPages/findTutor" className={styles.link}>
+          <Link href="/student/tutorPages/findTutor" className={styles.link}>
             <img
               src="/userplus.svg"
               alt="Find a Tutor"
@@ -92,7 +92,7 @@ export default function WidgetCard({ type, isEditing, onDelete }) {
           </div>
         ) : (
           <Link
-            href="/user/studyGroupPages/findStudyGroup"
+            href="/student/studyGroupPages/findStudyGroup"
             className={styles.link}
           >
             <img src="/users.svg" alt="Study Groups" className={styles.icon} />
