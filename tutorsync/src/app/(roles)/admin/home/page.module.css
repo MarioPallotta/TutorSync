@@ -61,8 +61,7 @@
 
 .welcome {
   width: 100%;
-  background-color: blue;
-  color: #fff;
+  color: #000;
   font-size: 28px;
   font-weight: 400;
   margin: 0 0 20px 0;
@@ -165,7 +164,7 @@
 
 .denyBtn:hover {
   background-color: #ec3f3f;
-  color: #fff;
+  color: hsl(0, 0%, 100%);
 }
 
 .approvedBadge {
