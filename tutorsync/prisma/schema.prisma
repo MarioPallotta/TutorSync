@@ -16,13 +16,14 @@ model Admin {
 }
 
 model COURSES {
-  Course_ID         Int           @id @default(autoincrement())
+  Course_ID         Int            @id @default(autoincrement())
   Course_Number     Int?
-  Course_Section    Decimal?      @db.Decimal(4, 1)
-  Course_Title      String?       @db.VarChar(255)
-  Course_Instructor String?       @db.VarChar(255)
-  Enrolled_Count    Int?          @default(0)
+  Course_Section    Decimal?       @db.Decimal(4, 1)
+  Course_Title      String?        @db.VarChar(255)
+  Course_Instructor String?        @db.VarChar(255)
+  Enrolled_Count    Int?           @default(0)
   ENROLLMENTS       ENROLLMENTS[]
+  TUTOR_COURSE      TUTOR_COURSE[]
 }
 
 model ENROLLMENTS {
@@ -115,6 +116,7 @@ model Tutor {
   STUDY_BUDDY_GROUPS STUDY_BUDDY_GROUPS[]
   TUTORING_SESSION   TUTORING_SESSION[]
   TUTOR_AVAILABILITY TUTOR_AVAILABILITY[]
+  TUTOR_COURSE       TUTOR_COURSE[]
   USERS              USERS                @relation(fields: [User_ID], references: [User_ID], onDelete: Cascade, map: "Tutor_ibfk_1")
 }
 
@@ -131,4 +133,15 @@ model USERS {
   Student            Student?
   TUTORING_SESSION   TUTORING_SESSION[]
   Tutor              Tutor?
+}
+
+model TUTOR_COURSE {
+  TutorCourseID Int     @id @default(autoincrement())
+  Tutor_ID      Int
+  Course_ID     Int
+  Tutor         Tutor   @relation(fields: [Tutor_ID], references: [Tutor_ID], onDelete: Cascade, map: "TUTOR_COURSE_ibfk_1")
+  COURSES       COURSES @relation(fields: [Course_ID], references: [Course_ID], onDelete: Cascade, map: "TUTOR_COURSE_ibfk_2")
+
+  @@index([Course_ID], map: "Course_ID")
+  @@index([Tutor_ID], map: "Tutor_ID")
 }
