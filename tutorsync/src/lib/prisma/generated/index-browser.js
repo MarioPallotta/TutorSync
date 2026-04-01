@@ -199,6 +199,12 @@ exports.Prisma.USERSScalarFieldEnum = {
   Is_Student: 'Is_Student'
 };
 
+exports.Prisma.TUTOR_COURSEScalarFieldEnum = {
+  TutorCourseID: 'TutorCourseID',
+  Tutor_ID: 'Tutor_ID',
+  Course_ID: 'Course_ID'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -234,7 +240,8 @@ exports.Prisma.ModelName = {
   TUTORING_SESSION: 'TUTORING_SESSION',
   TUTOR_AVAILABILITY: 'TUTOR_AVAILABILITY',
   Tutor: 'Tutor',
-  USERS: 'USERS'
+  USERS: 'USERS',
+  TUTOR_COURSE: 'TUTOR_COURSE'
 };
 
 /**

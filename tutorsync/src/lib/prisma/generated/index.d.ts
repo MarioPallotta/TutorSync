@@ -63,6 +63,11 @@ export type Tutor = $Result.DefaultSelection<Prisma.$TutorPayload>
  * 
  */
 export type USERS = $Result.DefaultSelection<Prisma.$USERSPayload>
+/**
+ * Model TUTOR_COURSE
+ * 
+ */
+export type TUTOR_COURSE = $Result.DefaultSelection<Prisma.$TUTOR_COURSEPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -281,6 +286,16 @@ export class PrismaClient<
     * ```
     */
   get uSERS(): Prisma.USERSDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.tUTOR_COURSE`: Exposes CRUD operations for the **TUTOR_COURSE** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TUTOR_COURSES
+    * const tUTOR_COURSES = await prisma.tUTOR_COURSE.findMany()
+    * ```
+    */
+  get tUTOR_COURSE(): Prisma.TUTOR_COURSEDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -731,7 +746,8 @@ export namespace Prisma {
     TUTORING_SESSION: 'TUTORING_SESSION',
     TUTOR_AVAILABILITY: 'TUTOR_AVAILABILITY',
     Tutor: 'Tutor',
-    USERS: 'USERS'
+    USERS: 'USERS',
+    TUTOR_COURSE: 'TUTOR_COURSE'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -750,7 +766,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "admin" | "cOURSES" | "eNROLLMENTS" | "sCHEDULE" | "sTUDY_BUDDY_GROUPS" | "student" | "tUTORING_SESSION" | "tUTOR_AVAILABILITY" | "tutor" | "uSERS"
+      modelProps: "admin" | "cOURSES" | "eNROLLMENTS" | "sCHEDULE" | "sTUDY_BUDDY_GROUPS" | "student" | "tUTORING_SESSION" | "tUTOR_AVAILABILITY" | "tutor" | "uSERS" | "tUTOR_COURSE"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1414,6 +1430,72 @@ export namespace Prisma {
           }
         }
       }
+      TUTOR_COURSE: {
+        payload: Prisma.$TUTOR_COURSEPayload<ExtArgs>
+        fields: Prisma.TUTOR_COURSEFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TUTOR_COURSEFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TUTOR_COURSEPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TUTOR_COURSEFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TUTOR_COURSEPayload>
+          }
+          findFirst: {
+            args: Prisma.TUTOR_COURSEFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TUTOR_COURSEPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TUTOR_COURSEFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TUTOR_COURSEPayload>
+          }
+          findMany: {
+            args: Prisma.TUTOR_COURSEFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TUTOR_COURSEPayload>[]
+          }
+          create: {
+            args: Prisma.TUTOR_COURSECreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TUTOR_COURSEPayload>
+          }
+          createMany: {
+            args: Prisma.TUTOR_COURSECreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.TUTOR_COURSEDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TUTOR_COURSEPayload>
+          }
+          update: {
+            args: Prisma.TUTOR_COURSEUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TUTOR_COURSEPayload>
+          }
+          deleteMany: {
+            args: Prisma.TUTOR_COURSEDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TUTOR_COURSEUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.TUTOR_COURSEUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TUTOR_COURSEPayload>
+          }
+          aggregate: {
+            args: Prisma.TUTOR_COURSEAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTUTOR_COURSE>
+          }
+          groupBy: {
+            args: Prisma.TUTOR_COURSEGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TUTOR_COURSEGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TUTOR_COURSECountArgs<ExtArgs>
+            result: $Utils.Optional<TUTOR_COURSECountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1520,6 +1602,7 @@ export namespace Prisma {
     tUTOR_AVAILABILITY?: TUTOR_AVAILABILITYOmit
     tutor?: TutorOmit
     uSERS?: USERSOmit
+    tUTOR_COURSE?: TUTOR_COURSEOmit
   }
 
   /* Types for Logging */
@@ -1632,10 +1715,12 @@ export namespace Prisma {
 
   export type COURSESCountOutputType = {
     ENROLLMENTS: number
+    TUTOR_COURSE: number
   }
 
   export type COURSESCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ENROLLMENTS?: boolean | COURSESCountOutputTypeCountENROLLMENTSArgs
+    TUTOR_COURSE?: boolean | COURSESCountOutputTypeCountTUTOR_COURSEArgs
   }
 
   // Custom InputTypes
@@ -1654,6 +1739,13 @@ export namespace Prisma {
    */
   export type COURSESCountOutputTypeCountENROLLMENTSArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: ENROLLMENTSWhereInput
+  }
+
+  /**
+   * COURSESCountOutputType without action
+   */
+  export type COURSESCountOutputTypeCountTUTOR_COURSEArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TUTOR_COURSEWhereInput
   }
 
 
@@ -1737,6 +1829,7 @@ export namespace Prisma {
     STUDY_BUDDY_GROUPS: number
     TUTORING_SESSION: number
     TUTOR_AVAILABILITY: number
+    TUTOR_COURSE: number
   }
 
   export type TutorCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1744,6 +1837,7 @@ export namespace Prisma {
     STUDY_BUDDY_GROUPS?: boolean | TutorCountOutputTypeCountSTUDY_BUDDY_GROUPSArgs
     TUTORING_SESSION?: boolean | TutorCountOutputTypeCountTUTORING_SESSIONArgs
     TUTOR_AVAILABILITY?: boolean | TutorCountOutputTypeCountTUTOR_AVAILABILITYArgs
+    TUTOR_COURSE?: boolean | TutorCountOutputTypeCountTUTOR_COURSEArgs
   }
 
   // Custom InputTypes
@@ -1783,6 +1877,13 @@ export namespace Prisma {
    */
   export type TutorCountOutputTypeCountTUTOR_AVAILABILITYArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TUTOR_AVAILABILITYWhereInput
+  }
+
+  /**
+   * TutorCountOutputType without action
+   */
+  export type TutorCountOutputTypeCountTUTOR_COURSEArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TUTOR_COURSEWhereInput
   }
 
 
@@ -3022,6 +3123,7 @@ export namespace Prisma {
     Course_Instructor?: boolean
     Enrolled_Count?: boolean
     ENROLLMENTS?: boolean | COURSES$ENROLLMENTSArgs<ExtArgs>
+    TUTOR_COURSE?: boolean | COURSES$TUTOR_COURSEArgs<ExtArgs>
     _count?: boolean | COURSESCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["cOURSES"]>
 
@@ -3039,6 +3141,7 @@ export namespace Prisma {
   export type COURSESOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Course_ID" | "Course_Number" | "Course_Section" | "Course_Title" | "Course_Instructor" | "Enrolled_Count", ExtArgs["result"]["cOURSES"]>
   export type COURSESInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ENROLLMENTS?: boolean | COURSES$ENROLLMENTSArgs<ExtArgs>
+    TUTOR_COURSE?: boolean | COURSES$TUTOR_COURSEArgs<ExtArgs>
     _count?: boolean | COURSESCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -3046,6 +3149,7 @@ export namespace Prisma {
     name: "COURSES"
     objects: {
       ENROLLMENTS: Prisma.$ENROLLMENTSPayload<ExtArgs>[]
+      TUTOR_COURSE: Prisma.$TUTOR_COURSEPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       Course_ID: number
@@ -3395,6 +3499,7 @@ export namespace Prisma {
   export interface Prisma__COURSESClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     ENROLLMENTS<T extends COURSES$ENROLLMENTSArgs<ExtArgs> = {}>(args?: Subset<T, COURSES$ENROLLMENTSArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ENROLLMENTSPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    TUTOR_COURSE<T extends COURSES$TUTOR_COURSEArgs<ExtArgs> = {}>(args?: Subset<T, COURSES$TUTOR_COURSEArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TUTOR_COURSEPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3794,6 +3899,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: ENROLLMENTSScalarFieldEnum | ENROLLMENTSScalarFieldEnum[]
+  }
+
+  /**
+   * COURSES.TUTOR_COURSE
+   */
+  export type COURSES$TUTOR_COURSEArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TUTOR_COURSE
+     */
+    select?: TUTOR_COURSESelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TUTOR_COURSE
+     */
+    omit?: TUTOR_COURSEOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TUTOR_COURSEInclude<ExtArgs> | null
+    where?: TUTOR_COURSEWhereInput
+    orderBy?: TUTOR_COURSEOrderByWithRelationInput | TUTOR_COURSEOrderByWithRelationInput[]
+    cursor?: TUTOR_COURSEWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TUTOR_COURSEScalarFieldEnum | TUTOR_COURSEScalarFieldEnum[]
   }
 
   /**
@@ -10019,6 +10148,7 @@ export namespace Prisma {
     STUDY_BUDDY_GROUPS?: boolean | Tutor$STUDY_BUDDY_GROUPSArgs<ExtArgs>
     TUTORING_SESSION?: boolean | Tutor$TUTORING_SESSIONArgs<ExtArgs>
     TUTOR_AVAILABILITY?: boolean | Tutor$TUTOR_AVAILABILITYArgs<ExtArgs>
+    TUTOR_COURSE?: boolean | Tutor$TUTOR_COURSEArgs<ExtArgs>
     USERS?: boolean | USERSDefaultArgs<ExtArgs>
     _count?: boolean | TutorCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["tutor"]>
@@ -10036,6 +10166,7 @@ export namespace Prisma {
     STUDY_BUDDY_GROUPS?: boolean | Tutor$STUDY_BUDDY_GROUPSArgs<ExtArgs>
     TUTORING_SESSION?: boolean | Tutor$TUTORING_SESSIONArgs<ExtArgs>
     TUTOR_AVAILABILITY?: boolean | Tutor$TUTOR_AVAILABILITYArgs<ExtArgs>
+    TUTOR_COURSE?: boolean | Tutor$TUTOR_COURSEArgs<ExtArgs>
     USERS?: boolean | USERSDefaultArgs<ExtArgs>
     _count?: boolean | TutorCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -10047,6 +10178,7 @@ export namespace Prisma {
       STUDY_BUDDY_GROUPS: Prisma.$STUDY_BUDDY_GROUPSPayload<ExtArgs>[]
       TUTORING_SESSION: Prisma.$TUTORING_SESSIONPayload<ExtArgs>[]
       TUTOR_AVAILABILITY: Prisma.$TUTOR_AVAILABILITYPayload<ExtArgs>[]
+      TUTOR_COURSE: Prisma.$TUTOR_COURSEPayload<ExtArgs>[]
       USERS: Prisma.$USERSPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -10396,6 +10528,7 @@ export namespace Prisma {
     STUDY_BUDDY_GROUPS<T extends Tutor$STUDY_BUDDY_GROUPSArgs<ExtArgs> = {}>(args?: Subset<T, Tutor$STUDY_BUDDY_GROUPSArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$STUDY_BUDDY_GROUPSPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     TUTORING_SESSION<T extends Tutor$TUTORING_SESSIONArgs<ExtArgs> = {}>(args?: Subset<T, Tutor$TUTORING_SESSIONArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TUTORING_SESSIONPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     TUTOR_AVAILABILITY<T extends Tutor$TUTOR_AVAILABILITYArgs<ExtArgs> = {}>(args?: Subset<T, Tutor$TUTOR_AVAILABILITYArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TUTOR_AVAILABILITYPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    TUTOR_COURSE<T extends Tutor$TUTOR_COURSEArgs<ExtArgs> = {}>(args?: Subset<T, Tutor$TUTOR_COURSEArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TUTOR_COURSEPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     USERS<T extends USERSDefaultArgs<ExtArgs> = {}>(args?: Subset<T, USERSDefaultArgs<ExtArgs>>): Prisma__USERSClient<$Result.GetResult<Prisma.$USERSPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -10864,6 +10997,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: TUTOR_AVAILABILITYScalarFieldEnum | TUTOR_AVAILABILITYScalarFieldEnum[]
+  }
+
+  /**
+   * Tutor.TUTOR_COURSE
+   */
+  export type Tutor$TUTOR_COURSEArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TUTOR_COURSE
+     */
+    select?: TUTOR_COURSESelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TUTOR_COURSE
+     */
+    omit?: TUTOR_COURSEOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TUTOR_COURSEInclude<ExtArgs> | null
+    where?: TUTOR_COURSEWhereInput
+    orderBy?: TUTOR_COURSEOrderByWithRelationInput | TUTOR_COURSEOrderByWithRelationInput[]
+    cursor?: TUTOR_COURSEWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TUTOR_COURSEScalarFieldEnum | TUTOR_COURSEScalarFieldEnum[]
   }
 
   /**
@@ -12011,6 +12168,959 @@ export namespace Prisma {
 
 
   /**
+   * Model TUTOR_COURSE
+   */
+
+  export type AggregateTUTOR_COURSE = {
+    _count: TUTOR_COURSECountAggregateOutputType | null
+    _avg: TUTOR_COURSEAvgAggregateOutputType | null
+    _sum: TUTOR_COURSESumAggregateOutputType | null
+    _min: TUTOR_COURSEMinAggregateOutputType | null
+    _max: TUTOR_COURSEMaxAggregateOutputType | null
+  }
+
+  export type TUTOR_COURSEAvgAggregateOutputType = {
+    TutorCourseID: number | null
+    Tutor_ID: number | null
+    Course_ID: number | null
+  }
+
+  export type TUTOR_COURSESumAggregateOutputType = {
+    TutorCourseID: number | null
+    Tutor_ID: number | null
+    Course_ID: number | null
+  }
+
+  export type TUTOR_COURSEMinAggregateOutputType = {
+    TutorCourseID: number | null
+    Tutor_ID: number | null
+    Course_ID: number | null
+  }
+
+  export type TUTOR_COURSEMaxAggregateOutputType = {
+    TutorCourseID: number | null
+    Tutor_ID: number | null
+    Course_ID: number | null
+  }
+
+  export type TUTOR_COURSECountAggregateOutputType = {
+    TutorCourseID: number
+    Tutor_ID: number
+    Course_ID: number
+    _all: number
+  }
+
+
+  export type TUTOR_COURSEAvgAggregateInputType = {
+    TutorCourseID?: true
+    Tutor_ID?: true
+    Course_ID?: true
+  }
+
+  export type TUTOR_COURSESumAggregateInputType = {
+    TutorCourseID?: true
+    Tutor_ID?: true
+    Course_ID?: true
+  }
+
+  export type TUTOR_COURSEMinAggregateInputType = {
+    TutorCourseID?: true
+    Tutor_ID?: true
+    Course_ID?: true
+  }
+
+  export type TUTOR_COURSEMaxAggregateInputType = {
+    TutorCourseID?: true
+    Tutor_ID?: true
+    Course_ID?: true
+  }
+
+  export type TUTOR_COURSECountAggregateInputType = {
+    TutorCourseID?: true
+    Tutor_ID?: true
+    Course_ID?: true
+    _all?: true
+  }
+
+  export type TUTOR_COURSEAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TUTOR_COURSE to aggregate.
+     */
+    where?: TUTOR_COURSEWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TUTOR_COURSES to fetch.
+     */
+    orderBy?: TUTOR_COURSEOrderByWithRelationInput | TUTOR_COURSEOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TUTOR_COURSEWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TUTOR_COURSES from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TUTOR_COURSES.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TUTOR_COURSES
+    **/
+    _count?: true | TUTOR_COURSECountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TUTOR_COURSEAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TUTOR_COURSESumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TUTOR_COURSEMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TUTOR_COURSEMaxAggregateInputType
+  }
+
+  export type GetTUTOR_COURSEAggregateType<T extends TUTOR_COURSEAggregateArgs> = {
+        [P in keyof T & keyof AggregateTUTOR_COURSE]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTUTOR_COURSE[P]>
+      : GetScalarType<T[P], AggregateTUTOR_COURSE[P]>
+  }
+
+
+
+
+  export type TUTOR_COURSEGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TUTOR_COURSEWhereInput
+    orderBy?: TUTOR_COURSEOrderByWithAggregationInput | TUTOR_COURSEOrderByWithAggregationInput[]
+    by: TUTOR_COURSEScalarFieldEnum[] | TUTOR_COURSEScalarFieldEnum
+    having?: TUTOR_COURSEScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TUTOR_COURSECountAggregateInputType | true
+    _avg?: TUTOR_COURSEAvgAggregateInputType
+    _sum?: TUTOR_COURSESumAggregateInputType
+    _min?: TUTOR_COURSEMinAggregateInputType
+    _max?: TUTOR_COURSEMaxAggregateInputType
+  }
+
+  export type TUTOR_COURSEGroupByOutputType = {
+    TutorCourseID: number
+    Tutor_ID: number
+    Course_ID: number
+    _count: TUTOR_COURSECountAggregateOutputType | null
+    _avg: TUTOR_COURSEAvgAggregateOutputType | null
+    _sum: TUTOR_COURSESumAggregateOutputType | null
+    _min: TUTOR_COURSEMinAggregateOutputType | null
+    _max: TUTOR_COURSEMaxAggregateOutputType | null
+  }
+
+  type GetTUTOR_COURSEGroupByPayload<T extends TUTOR_COURSEGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TUTOR_COURSEGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TUTOR_COURSEGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TUTOR_COURSEGroupByOutputType[P]>
+            : GetScalarType<T[P], TUTOR_COURSEGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TUTOR_COURSESelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    TutorCourseID?: boolean
+    Tutor_ID?: boolean
+    Course_ID?: boolean
+    Tutor?: boolean | TutorDefaultArgs<ExtArgs>
+    COURSES?: boolean | COURSESDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tUTOR_COURSE"]>
+
+
+
+  export type TUTOR_COURSESelectScalar = {
+    TutorCourseID?: boolean
+    Tutor_ID?: boolean
+    Course_ID?: boolean
+  }
+
+  export type TUTOR_COURSEOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"TutorCourseID" | "Tutor_ID" | "Course_ID", ExtArgs["result"]["tUTOR_COURSE"]>
+  export type TUTOR_COURSEInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    Tutor?: boolean | TutorDefaultArgs<ExtArgs>
+    COURSES?: boolean | COURSESDefaultArgs<ExtArgs>
+  }
+
+  export type $TUTOR_COURSEPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TUTOR_COURSE"
+    objects: {
+      Tutor: Prisma.$TutorPayload<ExtArgs>
+      COURSES: Prisma.$COURSESPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      TutorCourseID: number
+      Tutor_ID: number
+      Course_ID: number
+    }, ExtArgs["result"]["tUTOR_COURSE"]>
+    composites: {}
+  }
+
+  type TUTOR_COURSEGetPayload<S extends boolean | null | undefined | TUTOR_COURSEDefaultArgs> = $Result.GetResult<Prisma.$TUTOR_COURSEPayload, S>
+
+  type TUTOR_COURSECountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TUTOR_COURSEFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TUTOR_COURSECountAggregateInputType | true
+    }
+
+  export interface TUTOR_COURSEDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TUTOR_COURSE'], meta: { name: 'TUTOR_COURSE' } }
+    /**
+     * Find zero or one TUTOR_COURSE that matches the filter.
+     * @param {TUTOR_COURSEFindUniqueArgs} args - Arguments to find a TUTOR_COURSE
+     * @example
+     * // Get one TUTOR_COURSE
+     * const tUTOR_COURSE = await prisma.tUTOR_COURSE.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TUTOR_COURSEFindUniqueArgs>(args: SelectSubset<T, TUTOR_COURSEFindUniqueArgs<ExtArgs>>): Prisma__TUTOR_COURSEClient<$Result.GetResult<Prisma.$TUTOR_COURSEPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one TUTOR_COURSE that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TUTOR_COURSEFindUniqueOrThrowArgs} args - Arguments to find a TUTOR_COURSE
+     * @example
+     * // Get one TUTOR_COURSE
+     * const tUTOR_COURSE = await prisma.tUTOR_COURSE.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TUTOR_COURSEFindUniqueOrThrowArgs>(args: SelectSubset<T, TUTOR_COURSEFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TUTOR_COURSEClient<$Result.GetResult<Prisma.$TUTOR_COURSEPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TUTOR_COURSE that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TUTOR_COURSEFindFirstArgs} args - Arguments to find a TUTOR_COURSE
+     * @example
+     * // Get one TUTOR_COURSE
+     * const tUTOR_COURSE = await prisma.tUTOR_COURSE.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TUTOR_COURSEFindFirstArgs>(args?: SelectSubset<T, TUTOR_COURSEFindFirstArgs<ExtArgs>>): Prisma__TUTOR_COURSEClient<$Result.GetResult<Prisma.$TUTOR_COURSEPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first TUTOR_COURSE that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TUTOR_COURSEFindFirstOrThrowArgs} args - Arguments to find a TUTOR_COURSE
+     * @example
+     * // Get one TUTOR_COURSE
+     * const tUTOR_COURSE = await prisma.tUTOR_COURSE.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TUTOR_COURSEFindFirstOrThrowArgs>(args?: SelectSubset<T, TUTOR_COURSEFindFirstOrThrowArgs<ExtArgs>>): Prisma__TUTOR_COURSEClient<$Result.GetResult<Prisma.$TUTOR_COURSEPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more TUTOR_COURSES that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TUTOR_COURSEFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TUTOR_COURSES
+     * const tUTOR_COURSES = await prisma.tUTOR_COURSE.findMany()
+     * 
+     * // Get first 10 TUTOR_COURSES
+     * const tUTOR_COURSES = await prisma.tUTOR_COURSE.findMany({ take: 10 })
+     * 
+     * // Only select the `TutorCourseID`
+     * const tUTOR_COURSEWithTutorCourseIDOnly = await prisma.tUTOR_COURSE.findMany({ select: { TutorCourseID: true } })
+     * 
+     */
+    findMany<T extends TUTOR_COURSEFindManyArgs>(args?: SelectSubset<T, TUTOR_COURSEFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TUTOR_COURSEPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a TUTOR_COURSE.
+     * @param {TUTOR_COURSECreateArgs} args - Arguments to create a TUTOR_COURSE.
+     * @example
+     * // Create one TUTOR_COURSE
+     * const TUTOR_COURSE = await prisma.tUTOR_COURSE.create({
+     *   data: {
+     *     // ... data to create a TUTOR_COURSE
+     *   }
+     * })
+     * 
+     */
+    create<T extends TUTOR_COURSECreateArgs>(args: SelectSubset<T, TUTOR_COURSECreateArgs<ExtArgs>>): Prisma__TUTOR_COURSEClient<$Result.GetResult<Prisma.$TUTOR_COURSEPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many TUTOR_COURSES.
+     * @param {TUTOR_COURSECreateManyArgs} args - Arguments to create many TUTOR_COURSES.
+     * @example
+     * // Create many TUTOR_COURSES
+     * const tUTOR_COURSE = await prisma.tUTOR_COURSE.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TUTOR_COURSECreateManyArgs>(args?: SelectSubset<T, TUTOR_COURSECreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a TUTOR_COURSE.
+     * @param {TUTOR_COURSEDeleteArgs} args - Arguments to delete one TUTOR_COURSE.
+     * @example
+     * // Delete one TUTOR_COURSE
+     * const TUTOR_COURSE = await prisma.tUTOR_COURSE.delete({
+     *   where: {
+     *     // ... filter to delete one TUTOR_COURSE
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TUTOR_COURSEDeleteArgs>(args: SelectSubset<T, TUTOR_COURSEDeleteArgs<ExtArgs>>): Prisma__TUTOR_COURSEClient<$Result.GetResult<Prisma.$TUTOR_COURSEPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one TUTOR_COURSE.
+     * @param {TUTOR_COURSEUpdateArgs} args - Arguments to update one TUTOR_COURSE.
+     * @example
+     * // Update one TUTOR_COURSE
+     * const tUTOR_COURSE = await prisma.tUTOR_COURSE.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TUTOR_COURSEUpdateArgs>(args: SelectSubset<T, TUTOR_COURSEUpdateArgs<ExtArgs>>): Prisma__TUTOR_COURSEClient<$Result.GetResult<Prisma.$TUTOR_COURSEPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more TUTOR_COURSES.
+     * @param {TUTOR_COURSEDeleteManyArgs} args - Arguments to filter TUTOR_COURSES to delete.
+     * @example
+     * // Delete a few TUTOR_COURSES
+     * const { count } = await prisma.tUTOR_COURSE.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TUTOR_COURSEDeleteManyArgs>(args?: SelectSubset<T, TUTOR_COURSEDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TUTOR_COURSES.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TUTOR_COURSEUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TUTOR_COURSES
+     * const tUTOR_COURSE = await prisma.tUTOR_COURSE.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TUTOR_COURSEUpdateManyArgs>(args: SelectSubset<T, TUTOR_COURSEUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one TUTOR_COURSE.
+     * @param {TUTOR_COURSEUpsertArgs} args - Arguments to update or create a TUTOR_COURSE.
+     * @example
+     * // Update or create a TUTOR_COURSE
+     * const tUTOR_COURSE = await prisma.tUTOR_COURSE.upsert({
+     *   create: {
+     *     // ... data to create a TUTOR_COURSE
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TUTOR_COURSE we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TUTOR_COURSEUpsertArgs>(args: SelectSubset<T, TUTOR_COURSEUpsertArgs<ExtArgs>>): Prisma__TUTOR_COURSEClient<$Result.GetResult<Prisma.$TUTOR_COURSEPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of TUTOR_COURSES.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TUTOR_COURSECountArgs} args - Arguments to filter TUTOR_COURSES to count.
+     * @example
+     * // Count the number of TUTOR_COURSES
+     * const count = await prisma.tUTOR_COURSE.count({
+     *   where: {
+     *     // ... the filter for the TUTOR_COURSES we want to count
+     *   }
+     * })
+    **/
+    count<T extends TUTOR_COURSECountArgs>(
+      args?: Subset<T, TUTOR_COURSECountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TUTOR_COURSECountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TUTOR_COURSE.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TUTOR_COURSEAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TUTOR_COURSEAggregateArgs>(args: Subset<T, TUTOR_COURSEAggregateArgs>): Prisma.PrismaPromise<GetTUTOR_COURSEAggregateType<T>>
+
+    /**
+     * Group by TUTOR_COURSE.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TUTOR_COURSEGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TUTOR_COURSEGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TUTOR_COURSEGroupByArgs['orderBy'] }
+        : { orderBy?: TUTOR_COURSEGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TUTOR_COURSEGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTUTOR_COURSEGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TUTOR_COURSE model
+   */
+  readonly fields: TUTOR_COURSEFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TUTOR_COURSE.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TUTOR_COURSEClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    Tutor<T extends TutorDefaultArgs<ExtArgs> = {}>(args?: Subset<T, TutorDefaultArgs<ExtArgs>>): Prisma__TutorClient<$Result.GetResult<Prisma.$TutorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    COURSES<T extends COURSESDefaultArgs<ExtArgs> = {}>(args?: Subset<T, COURSESDefaultArgs<ExtArgs>>): Prisma__COURSESClient<$Result.GetResult<Prisma.$COURSESPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TUTOR_COURSE model
+   */
+  interface TUTOR_COURSEFieldRefs {
+    readonly TutorCourseID: FieldRef<"TUTOR_COURSE", 'Int'>
+    readonly Tutor_ID: FieldRef<"TUTOR_COURSE", 'Int'>
+    readonly Course_ID: FieldRef<"TUTOR_COURSE", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TUTOR_COURSE findUnique
+   */
+  export type TUTOR_COURSEFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TUTOR_COURSE
+     */
+    select?: TUTOR_COURSESelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TUTOR_COURSE
+     */
+    omit?: TUTOR_COURSEOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TUTOR_COURSEInclude<ExtArgs> | null
+    /**
+     * Filter, which TUTOR_COURSE to fetch.
+     */
+    where: TUTOR_COURSEWhereUniqueInput
+  }
+
+  /**
+   * TUTOR_COURSE findUniqueOrThrow
+   */
+  export type TUTOR_COURSEFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TUTOR_COURSE
+     */
+    select?: TUTOR_COURSESelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TUTOR_COURSE
+     */
+    omit?: TUTOR_COURSEOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TUTOR_COURSEInclude<ExtArgs> | null
+    /**
+     * Filter, which TUTOR_COURSE to fetch.
+     */
+    where: TUTOR_COURSEWhereUniqueInput
+  }
+
+  /**
+   * TUTOR_COURSE findFirst
+   */
+  export type TUTOR_COURSEFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TUTOR_COURSE
+     */
+    select?: TUTOR_COURSESelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TUTOR_COURSE
+     */
+    omit?: TUTOR_COURSEOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TUTOR_COURSEInclude<ExtArgs> | null
+    /**
+     * Filter, which TUTOR_COURSE to fetch.
+     */
+    where?: TUTOR_COURSEWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TUTOR_COURSES to fetch.
+     */
+    orderBy?: TUTOR_COURSEOrderByWithRelationInput | TUTOR_COURSEOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TUTOR_COURSES.
+     */
+    cursor?: TUTOR_COURSEWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TUTOR_COURSES from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TUTOR_COURSES.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TUTOR_COURSES.
+     */
+    distinct?: TUTOR_COURSEScalarFieldEnum | TUTOR_COURSEScalarFieldEnum[]
+  }
+
+  /**
+   * TUTOR_COURSE findFirstOrThrow
+   */
+  export type TUTOR_COURSEFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TUTOR_COURSE
+     */
+    select?: TUTOR_COURSESelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TUTOR_COURSE
+     */
+    omit?: TUTOR_COURSEOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TUTOR_COURSEInclude<ExtArgs> | null
+    /**
+     * Filter, which TUTOR_COURSE to fetch.
+     */
+    where?: TUTOR_COURSEWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TUTOR_COURSES to fetch.
+     */
+    orderBy?: TUTOR_COURSEOrderByWithRelationInput | TUTOR_COURSEOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TUTOR_COURSES.
+     */
+    cursor?: TUTOR_COURSEWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TUTOR_COURSES from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TUTOR_COURSES.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TUTOR_COURSES.
+     */
+    distinct?: TUTOR_COURSEScalarFieldEnum | TUTOR_COURSEScalarFieldEnum[]
+  }
+
+  /**
+   * TUTOR_COURSE findMany
+   */
+  export type TUTOR_COURSEFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TUTOR_COURSE
+     */
+    select?: TUTOR_COURSESelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TUTOR_COURSE
+     */
+    omit?: TUTOR_COURSEOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TUTOR_COURSEInclude<ExtArgs> | null
+    /**
+     * Filter, which TUTOR_COURSES to fetch.
+     */
+    where?: TUTOR_COURSEWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TUTOR_COURSES to fetch.
+     */
+    orderBy?: TUTOR_COURSEOrderByWithRelationInput | TUTOR_COURSEOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TUTOR_COURSES.
+     */
+    cursor?: TUTOR_COURSEWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TUTOR_COURSES from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TUTOR_COURSES.
+     */
+    skip?: number
+    distinct?: TUTOR_COURSEScalarFieldEnum | TUTOR_COURSEScalarFieldEnum[]
+  }
+
+  /**
+   * TUTOR_COURSE create
+   */
+  export type TUTOR_COURSECreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TUTOR_COURSE
+     */
+    select?: TUTOR_COURSESelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TUTOR_COURSE
+     */
+    omit?: TUTOR_COURSEOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TUTOR_COURSEInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TUTOR_COURSE.
+     */
+    data: XOR<TUTOR_COURSECreateInput, TUTOR_COURSEUncheckedCreateInput>
+  }
+
+  /**
+   * TUTOR_COURSE createMany
+   */
+  export type TUTOR_COURSECreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TUTOR_COURSES.
+     */
+    data: TUTOR_COURSECreateManyInput | TUTOR_COURSECreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TUTOR_COURSE update
+   */
+  export type TUTOR_COURSEUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TUTOR_COURSE
+     */
+    select?: TUTOR_COURSESelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TUTOR_COURSE
+     */
+    omit?: TUTOR_COURSEOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TUTOR_COURSEInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TUTOR_COURSE.
+     */
+    data: XOR<TUTOR_COURSEUpdateInput, TUTOR_COURSEUncheckedUpdateInput>
+    /**
+     * Choose, which TUTOR_COURSE to update.
+     */
+    where: TUTOR_COURSEWhereUniqueInput
+  }
+
+  /**
+   * TUTOR_COURSE updateMany
+   */
+  export type TUTOR_COURSEUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TUTOR_COURSES.
+     */
+    data: XOR<TUTOR_COURSEUpdateManyMutationInput, TUTOR_COURSEUncheckedUpdateManyInput>
+    /**
+     * Filter which TUTOR_COURSES to update
+     */
+    where?: TUTOR_COURSEWhereInput
+    /**
+     * Limit how many TUTOR_COURSES to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TUTOR_COURSE upsert
+   */
+  export type TUTOR_COURSEUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TUTOR_COURSE
+     */
+    select?: TUTOR_COURSESelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TUTOR_COURSE
+     */
+    omit?: TUTOR_COURSEOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TUTOR_COURSEInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TUTOR_COURSE to update in case it exists.
+     */
+    where: TUTOR_COURSEWhereUniqueInput
+    /**
+     * In case the TUTOR_COURSE found by the `where` argument doesn't exist, create a new TUTOR_COURSE with this data.
+     */
+    create: XOR<TUTOR_COURSECreateInput, TUTOR_COURSEUncheckedCreateInput>
+    /**
+     * In case the TUTOR_COURSE was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TUTOR_COURSEUpdateInput, TUTOR_COURSEUncheckedUpdateInput>
+  }
+
+  /**
+   * TUTOR_COURSE delete
+   */
+  export type TUTOR_COURSEDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TUTOR_COURSE
+     */
+    select?: TUTOR_COURSESelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TUTOR_COURSE
+     */
+    omit?: TUTOR_COURSEOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TUTOR_COURSEInclude<ExtArgs> | null
+    /**
+     * Filter which TUTOR_COURSE to delete.
+     */
+    where: TUTOR_COURSEWhereUniqueInput
+  }
+
+  /**
+   * TUTOR_COURSE deleteMany
+   */
+  export type TUTOR_COURSEDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TUTOR_COURSES to delete
+     */
+    where?: TUTOR_COURSEWhereInput
+    /**
+     * Limit how many TUTOR_COURSES to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TUTOR_COURSE without action
+   */
+  export type TUTOR_COURSEDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TUTOR_COURSE
+     */
+    select?: TUTOR_COURSESelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TUTOR_COURSE
+     */
+    omit?: TUTOR_COURSEOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TUTOR_COURSEInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -12130,6 +13240,15 @@ export namespace Prisma {
   };
 
   export type USERSScalarFieldEnum = (typeof USERSScalarFieldEnum)[keyof typeof USERSScalarFieldEnum]
+
+
+  export const TUTOR_COURSEScalarFieldEnum: {
+    TutorCourseID: 'TutorCourseID',
+    Tutor_ID: 'Tutor_ID',
+    Course_ID: 'Course_ID'
+  };
+
+  export type TUTOR_COURSEScalarFieldEnum = (typeof TUTOR_COURSEScalarFieldEnum)[keyof typeof TUTOR_COURSEScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -12277,6 +13396,7 @@ export namespace Prisma {
     Course_Instructor?: StringNullableFilter<"COURSES"> | string | null
     Enrolled_Count?: IntNullableFilter<"COURSES"> | number | null
     ENROLLMENTS?: ENROLLMENTSListRelationFilter
+    TUTOR_COURSE?: TUTOR_COURSEListRelationFilter
   }
 
   export type COURSESOrderByWithRelationInput = {
@@ -12287,6 +13407,7 @@ export namespace Prisma {
     Course_Instructor?: SortOrderInput | SortOrder
     Enrolled_Count?: SortOrderInput | SortOrder
     ENROLLMENTS?: ENROLLMENTSOrderByRelationAggregateInput
+    TUTOR_COURSE?: TUTOR_COURSEOrderByRelationAggregateInput
     _relevance?: COURSESOrderByRelevanceInput
   }
 
@@ -12301,6 +13422,7 @@ export namespace Prisma {
     Course_Instructor?: StringNullableFilter<"COURSES"> | string | null
     Enrolled_Count?: IntNullableFilter<"COURSES"> | number | null
     ENROLLMENTS?: ENROLLMENTSListRelationFilter
+    TUTOR_COURSE?: TUTOR_COURSEListRelationFilter
   }, "Course_ID">
 
   export type COURSESOrderByWithAggregationInput = {
@@ -12722,6 +13844,7 @@ export namespace Prisma {
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSListRelationFilter
     TUTORING_SESSION?: TUTORING_SESSIONListRelationFilter
     TUTOR_AVAILABILITY?: TUTOR_AVAILABILITYListRelationFilter
+    TUTOR_COURSE?: TUTOR_COURSEListRelationFilter
     USERS?: XOR<USERSScalarRelationFilter, USERSWhereInput>
   }
 
@@ -12732,6 +13855,7 @@ export namespace Prisma {
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSOrderByRelationAggregateInput
     TUTORING_SESSION?: TUTORING_SESSIONOrderByRelationAggregateInput
     TUTOR_AVAILABILITY?: TUTOR_AVAILABILITYOrderByRelationAggregateInput
+    TUTOR_COURSE?: TUTOR_COURSEOrderByRelationAggregateInput
     USERS?: USERSOrderByWithRelationInput
   }
 
@@ -12745,6 +13869,7 @@ export namespace Prisma {
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSListRelationFilter
     TUTORING_SESSION?: TUTORING_SESSIONListRelationFilter
     TUTOR_AVAILABILITY?: TUTOR_AVAILABILITYListRelationFilter
+    TUTOR_COURSE?: TUTOR_COURSEListRelationFilter
     USERS?: XOR<USERSScalarRelationFilter, USERSWhereInput>
   }, "Tutor_ID" | "User_ID">
 
@@ -12844,6 +13969,56 @@ export namespace Prisma {
     Is_Student?: BoolNullableWithAggregatesFilter<"USERS"> | boolean | null
   }
 
+  export type TUTOR_COURSEWhereInput = {
+    AND?: TUTOR_COURSEWhereInput | TUTOR_COURSEWhereInput[]
+    OR?: TUTOR_COURSEWhereInput[]
+    NOT?: TUTOR_COURSEWhereInput | TUTOR_COURSEWhereInput[]
+    TutorCourseID?: IntFilter<"TUTOR_COURSE"> | number
+    Tutor_ID?: IntFilter<"TUTOR_COURSE"> | number
+    Course_ID?: IntFilter<"TUTOR_COURSE"> | number
+    Tutor?: XOR<TutorScalarRelationFilter, TutorWhereInput>
+    COURSES?: XOR<COURSESScalarRelationFilter, COURSESWhereInput>
+  }
+
+  export type TUTOR_COURSEOrderByWithRelationInput = {
+    TutorCourseID?: SortOrder
+    Tutor_ID?: SortOrder
+    Course_ID?: SortOrder
+    Tutor?: TutorOrderByWithRelationInput
+    COURSES?: COURSESOrderByWithRelationInput
+  }
+
+  export type TUTOR_COURSEWhereUniqueInput = Prisma.AtLeast<{
+    TutorCourseID?: number
+    AND?: TUTOR_COURSEWhereInput | TUTOR_COURSEWhereInput[]
+    OR?: TUTOR_COURSEWhereInput[]
+    NOT?: TUTOR_COURSEWhereInput | TUTOR_COURSEWhereInput[]
+    Tutor_ID?: IntFilter<"TUTOR_COURSE"> | number
+    Course_ID?: IntFilter<"TUTOR_COURSE"> | number
+    Tutor?: XOR<TutorScalarRelationFilter, TutorWhereInput>
+    COURSES?: XOR<COURSESScalarRelationFilter, COURSESWhereInput>
+  }, "TutorCourseID">
+
+  export type TUTOR_COURSEOrderByWithAggregationInput = {
+    TutorCourseID?: SortOrder
+    Tutor_ID?: SortOrder
+    Course_ID?: SortOrder
+    _count?: TUTOR_COURSECountOrderByAggregateInput
+    _avg?: TUTOR_COURSEAvgOrderByAggregateInput
+    _max?: TUTOR_COURSEMaxOrderByAggregateInput
+    _min?: TUTOR_COURSEMinOrderByAggregateInput
+    _sum?: TUTOR_COURSESumOrderByAggregateInput
+  }
+
+  export type TUTOR_COURSEScalarWhereWithAggregatesInput = {
+    AND?: TUTOR_COURSEScalarWhereWithAggregatesInput | TUTOR_COURSEScalarWhereWithAggregatesInput[]
+    OR?: TUTOR_COURSEScalarWhereWithAggregatesInput[]
+    NOT?: TUTOR_COURSEScalarWhereWithAggregatesInput | TUTOR_COURSEScalarWhereWithAggregatesInput[]
+    TutorCourseID?: IntWithAggregatesFilter<"TUTOR_COURSE"> | number
+    Tutor_ID?: IntWithAggregatesFilter<"TUTOR_COURSE"> | number
+    Course_ID?: IntWithAggregatesFilter<"TUTOR_COURSE"> | number
+  }
+
   export type AdminCreateInput = {
     USERS: USERSCreateNestedOneWithoutAdminInput
     SCHEDULE?: SCHEDULECreateNestedManyWithoutAdminInput
@@ -12887,6 +14062,7 @@ export namespace Prisma {
     Course_Instructor?: string | null
     Enrolled_Count?: number | null
     ENROLLMENTS?: ENROLLMENTSCreateNestedManyWithoutCOURSESInput
+    TUTOR_COURSE?: TUTOR_COURSECreateNestedManyWithoutCOURSESInput
   }
 
   export type COURSESUncheckedCreateInput = {
@@ -12897,6 +14073,7 @@ export namespace Prisma {
     Course_Instructor?: string | null
     Enrolled_Count?: number | null
     ENROLLMENTS?: ENROLLMENTSUncheckedCreateNestedManyWithoutCOURSESInput
+    TUTOR_COURSE?: TUTOR_COURSEUncheckedCreateNestedManyWithoutCOURSESInput
   }
 
   export type COURSESUpdateInput = {
@@ -12906,6 +14083,7 @@ export namespace Prisma {
     Course_Instructor?: NullableStringFieldUpdateOperationsInput | string | null
     Enrolled_Count?: NullableIntFieldUpdateOperationsInput | number | null
     ENROLLMENTS?: ENROLLMENTSUpdateManyWithoutCOURSESNestedInput
+    TUTOR_COURSE?: TUTOR_COURSEUpdateManyWithoutCOURSESNestedInput
   }
 
   export type COURSESUncheckedUpdateInput = {
@@ -12916,6 +14094,7 @@ export namespace Prisma {
     Course_Instructor?: NullableStringFieldUpdateOperationsInput | string | null
     Enrolled_Count?: NullableIntFieldUpdateOperationsInput | number | null
     ENROLLMENTS?: ENROLLMENTSUncheckedUpdateManyWithoutCOURSESNestedInput
+    TUTOR_COURSE?: TUTOR_COURSEUncheckedUpdateManyWithoutCOURSESNestedInput
   }
 
   export type COURSESCreateManyInput = {
@@ -13283,6 +14462,7 @@ export namespace Prisma {
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSCreateNestedManyWithoutTutorInput
     TUTORING_SESSION?: TUTORING_SESSIONCreateNestedManyWithoutTutorInput
     TUTOR_AVAILABILITY?: TUTOR_AVAILABILITYCreateNestedManyWithoutTutorInput
+    TUTOR_COURSE?: TUTOR_COURSECreateNestedManyWithoutTutorInput
     USERS: USERSCreateNestedOneWithoutTutorInput
   }
 
@@ -13293,6 +14473,7 @@ export namespace Prisma {
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedCreateNestedManyWithoutTutorInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedCreateNestedManyWithoutTutorInput
     TUTOR_AVAILABILITY?: TUTOR_AVAILABILITYUncheckedCreateNestedManyWithoutTutorInput
+    TUTOR_COURSE?: TUTOR_COURSEUncheckedCreateNestedManyWithoutTutorInput
   }
 
   export type TutorUpdateInput = {
@@ -13300,6 +14481,7 @@ export namespace Prisma {
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUpdateManyWithoutTutorNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUpdateManyWithoutTutorNestedInput
     TUTOR_AVAILABILITY?: TUTOR_AVAILABILITYUpdateManyWithoutTutorNestedInput
+    TUTOR_COURSE?: TUTOR_COURSEUpdateManyWithoutTutorNestedInput
     USERS?: USERSUpdateOneRequiredWithoutTutorNestedInput
   }
 
@@ -13310,6 +14492,7 @@ export namespace Prisma {
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedUpdateManyWithoutTutorNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedUpdateManyWithoutTutorNestedInput
     TUTOR_AVAILABILITY?: TUTOR_AVAILABILITYUncheckedUpdateManyWithoutTutorNestedInput
+    TUTOR_COURSE?: TUTOR_COURSEUncheckedUpdateManyWithoutTutorNestedInput
   }
 
   export type TutorCreateManyInput = {
@@ -13408,6 +14591,44 @@ export namespace Prisma {
     Is_Admin?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Is_Tutor?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Is_Student?: NullableBoolFieldUpdateOperationsInput | boolean | null
+  }
+
+  export type TUTOR_COURSECreateInput = {
+    Tutor: TutorCreateNestedOneWithoutTUTOR_COURSEInput
+    COURSES: COURSESCreateNestedOneWithoutTUTOR_COURSEInput
+  }
+
+  export type TUTOR_COURSEUncheckedCreateInput = {
+    TutorCourseID?: number
+    Tutor_ID: number
+    Course_ID: number
+  }
+
+  export type TUTOR_COURSEUpdateInput = {
+    Tutor?: TutorUpdateOneRequiredWithoutTUTOR_COURSENestedInput
+    COURSES?: COURSESUpdateOneRequiredWithoutTUTOR_COURSENestedInput
+  }
+
+  export type TUTOR_COURSEUncheckedUpdateInput = {
+    TutorCourseID?: IntFieldUpdateOperationsInput | number
+    Tutor_ID?: IntFieldUpdateOperationsInput | number
+    Course_ID?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type TUTOR_COURSECreateManyInput = {
+    TutorCourseID?: number
+    Tutor_ID: number
+    Course_ID: number
+  }
+
+  export type TUTOR_COURSEUpdateManyMutationInput = {
+
+  }
+
+  export type TUTOR_COURSEUncheckedUpdateManyInput = {
+    TutorCourseID?: IntFieldUpdateOperationsInput | number
+    Tutor_ID?: IntFieldUpdateOperationsInput | number
+    Course_ID?: IntFieldUpdateOperationsInput | number
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -13520,12 +14741,22 @@ export namespace Prisma {
     none?: ENROLLMENTSWhereInput
   }
 
+  export type TUTOR_COURSEListRelationFilter = {
+    every?: TUTOR_COURSEWhereInput
+    some?: TUTOR_COURSEWhereInput
+    none?: TUTOR_COURSEWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
   }
 
   export type ENROLLMENTSOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TUTOR_COURSEOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -14071,6 +15302,36 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type TUTOR_COURSECountOrderByAggregateInput = {
+    TutorCourseID?: SortOrder
+    Tutor_ID?: SortOrder
+    Course_ID?: SortOrder
+  }
+
+  export type TUTOR_COURSEAvgOrderByAggregateInput = {
+    TutorCourseID?: SortOrder
+    Tutor_ID?: SortOrder
+    Course_ID?: SortOrder
+  }
+
+  export type TUTOR_COURSEMaxOrderByAggregateInput = {
+    TutorCourseID?: SortOrder
+    Tutor_ID?: SortOrder
+    Course_ID?: SortOrder
+  }
+
+  export type TUTOR_COURSEMinOrderByAggregateInput = {
+    TutorCourseID?: SortOrder
+    Tutor_ID?: SortOrder
+    Course_ID?: SortOrder
+  }
+
+  export type TUTOR_COURSESumOrderByAggregateInput = {
+    TutorCourseID?: SortOrder
+    Tutor_ID?: SortOrder
+    Course_ID?: SortOrder
+  }
+
   export type USERSCreateNestedOneWithoutAdminInput = {
     create?: XOR<USERSCreateWithoutAdminInput, USERSUncheckedCreateWithoutAdminInput>
     connectOrCreate?: USERSCreateOrConnectWithoutAdminInput
@@ -14142,11 +15403,25 @@ export namespace Prisma {
     connect?: ENROLLMENTSWhereUniqueInput | ENROLLMENTSWhereUniqueInput[]
   }
 
+  export type TUTOR_COURSECreateNestedManyWithoutCOURSESInput = {
+    create?: XOR<TUTOR_COURSECreateWithoutCOURSESInput, TUTOR_COURSEUncheckedCreateWithoutCOURSESInput> | TUTOR_COURSECreateWithoutCOURSESInput[] | TUTOR_COURSEUncheckedCreateWithoutCOURSESInput[]
+    connectOrCreate?: TUTOR_COURSECreateOrConnectWithoutCOURSESInput | TUTOR_COURSECreateOrConnectWithoutCOURSESInput[]
+    createMany?: TUTOR_COURSECreateManyCOURSESInputEnvelope
+    connect?: TUTOR_COURSEWhereUniqueInput | TUTOR_COURSEWhereUniqueInput[]
+  }
+
   export type ENROLLMENTSUncheckedCreateNestedManyWithoutCOURSESInput = {
     create?: XOR<ENROLLMENTSCreateWithoutCOURSESInput, ENROLLMENTSUncheckedCreateWithoutCOURSESInput> | ENROLLMENTSCreateWithoutCOURSESInput[] | ENROLLMENTSUncheckedCreateWithoutCOURSESInput[]
     connectOrCreate?: ENROLLMENTSCreateOrConnectWithoutCOURSESInput | ENROLLMENTSCreateOrConnectWithoutCOURSESInput[]
     createMany?: ENROLLMENTSCreateManyCOURSESInputEnvelope
     connect?: ENROLLMENTSWhereUniqueInput | ENROLLMENTSWhereUniqueInput[]
+  }
+
+  export type TUTOR_COURSEUncheckedCreateNestedManyWithoutCOURSESInput = {
+    create?: XOR<TUTOR_COURSECreateWithoutCOURSESInput, TUTOR_COURSEUncheckedCreateWithoutCOURSESInput> | TUTOR_COURSECreateWithoutCOURSESInput[] | TUTOR_COURSEUncheckedCreateWithoutCOURSESInput[]
+    connectOrCreate?: TUTOR_COURSECreateOrConnectWithoutCOURSESInput | TUTOR_COURSECreateOrConnectWithoutCOURSESInput[]
+    createMany?: TUTOR_COURSECreateManyCOURSESInputEnvelope
+    connect?: TUTOR_COURSEWhereUniqueInput | TUTOR_COURSEWhereUniqueInput[]
   }
 
   export type NullableIntFieldUpdateOperationsInput = {
@@ -14183,6 +15458,20 @@ export namespace Prisma {
     deleteMany?: ENROLLMENTSScalarWhereInput | ENROLLMENTSScalarWhereInput[]
   }
 
+  export type TUTOR_COURSEUpdateManyWithoutCOURSESNestedInput = {
+    create?: XOR<TUTOR_COURSECreateWithoutCOURSESInput, TUTOR_COURSEUncheckedCreateWithoutCOURSESInput> | TUTOR_COURSECreateWithoutCOURSESInput[] | TUTOR_COURSEUncheckedCreateWithoutCOURSESInput[]
+    connectOrCreate?: TUTOR_COURSECreateOrConnectWithoutCOURSESInput | TUTOR_COURSECreateOrConnectWithoutCOURSESInput[]
+    upsert?: TUTOR_COURSEUpsertWithWhereUniqueWithoutCOURSESInput | TUTOR_COURSEUpsertWithWhereUniqueWithoutCOURSESInput[]
+    createMany?: TUTOR_COURSECreateManyCOURSESInputEnvelope
+    set?: TUTOR_COURSEWhereUniqueInput | TUTOR_COURSEWhereUniqueInput[]
+    disconnect?: TUTOR_COURSEWhereUniqueInput | TUTOR_COURSEWhereUniqueInput[]
+    delete?: TUTOR_COURSEWhereUniqueInput | TUTOR_COURSEWhereUniqueInput[]
+    connect?: TUTOR_COURSEWhereUniqueInput | TUTOR_COURSEWhereUniqueInput[]
+    update?: TUTOR_COURSEUpdateWithWhereUniqueWithoutCOURSESInput | TUTOR_COURSEUpdateWithWhereUniqueWithoutCOURSESInput[]
+    updateMany?: TUTOR_COURSEUpdateManyWithWhereWithoutCOURSESInput | TUTOR_COURSEUpdateManyWithWhereWithoutCOURSESInput[]
+    deleteMany?: TUTOR_COURSEScalarWhereInput | TUTOR_COURSEScalarWhereInput[]
+  }
+
   export type ENROLLMENTSUncheckedUpdateManyWithoutCOURSESNestedInput = {
     create?: XOR<ENROLLMENTSCreateWithoutCOURSESInput, ENROLLMENTSUncheckedCreateWithoutCOURSESInput> | ENROLLMENTSCreateWithoutCOURSESInput[] | ENROLLMENTSUncheckedCreateWithoutCOURSESInput[]
     connectOrCreate?: ENROLLMENTSCreateOrConnectWithoutCOURSESInput | ENROLLMENTSCreateOrConnectWithoutCOURSESInput[]
@@ -14195,6 +15484,20 @@ export namespace Prisma {
     update?: ENROLLMENTSUpdateWithWhereUniqueWithoutCOURSESInput | ENROLLMENTSUpdateWithWhereUniqueWithoutCOURSESInput[]
     updateMany?: ENROLLMENTSUpdateManyWithWhereWithoutCOURSESInput | ENROLLMENTSUpdateManyWithWhereWithoutCOURSESInput[]
     deleteMany?: ENROLLMENTSScalarWhereInput | ENROLLMENTSScalarWhereInput[]
+  }
+
+  export type TUTOR_COURSEUncheckedUpdateManyWithoutCOURSESNestedInput = {
+    create?: XOR<TUTOR_COURSECreateWithoutCOURSESInput, TUTOR_COURSEUncheckedCreateWithoutCOURSESInput> | TUTOR_COURSECreateWithoutCOURSESInput[] | TUTOR_COURSEUncheckedCreateWithoutCOURSESInput[]
+    connectOrCreate?: TUTOR_COURSECreateOrConnectWithoutCOURSESInput | TUTOR_COURSECreateOrConnectWithoutCOURSESInput[]
+    upsert?: TUTOR_COURSEUpsertWithWhereUniqueWithoutCOURSESInput | TUTOR_COURSEUpsertWithWhereUniqueWithoutCOURSESInput[]
+    createMany?: TUTOR_COURSECreateManyCOURSESInputEnvelope
+    set?: TUTOR_COURSEWhereUniqueInput | TUTOR_COURSEWhereUniqueInput[]
+    disconnect?: TUTOR_COURSEWhereUniqueInput | TUTOR_COURSEWhereUniqueInput[]
+    delete?: TUTOR_COURSEWhereUniqueInput | TUTOR_COURSEWhereUniqueInput[]
+    connect?: TUTOR_COURSEWhereUniqueInput | TUTOR_COURSEWhereUniqueInput[]
+    update?: TUTOR_COURSEUpdateWithWhereUniqueWithoutCOURSESInput | TUTOR_COURSEUpdateWithWhereUniqueWithoutCOURSESInput[]
+    updateMany?: TUTOR_COURSEUpdateManyWithWhereWithoutCOURSESInput | TUTOR_COURSEUpdateManyWithWhereWithoutCOURSESInput[]
+    deleteMany?: TUTOR_COURSEScalarWhereInput | TUTOR_COURSEScalarWhereInput[]
   }
 
   export type USERSCreateNestedOneWithoutENROLLMENTSInput = {
@@ -14545,6 +15848,13 @@ export namespace Prisma {
     connect?: TUTOR_AVAILABILITYWhereUniqueInput | TUTOR_AVAILABILITYWhereUniqueInput[]
   }
 
+  export type TUTOR_COURSECreateNestedManyWithoutTutorInput = {
+    create?: XOR<TUTOR_COURSECreateWithoutTutorInput, TUTOR_COURSEUncheckedCreateWithoutTutorInput> | TUTOR_COURSECreateWithoutTutorInput[] | TUTOR_COURSEUncheckedCreateWithoutTutorInput[]
+    connectOrCreate?: TUTOR_COURSECreateOrConnectWithoutTutorInput | TUTOR_COURSECreateOrConnectWithoutTutorInput[]
+    createMany?: TUTOR_COURSECreateManyTutorInputEnvelope
+    connect?: TUTOR_COURSEWhereUniqueInput | TUTOR_COURSEWhereUniqueInput[]
+  }
+
   export type USERSCreateNestedOneWithoutTutorInput = {
     create?: XOR<USERSCreateWithoutTutorInput, USERSUncheckedCreateWithoutTutorInput>
     connectOrCreate?: USERSCreateOrConnectWithoutTutorInput
@@ -14577,6 +15887,13 @@ export namespace Prisma {
     connectOrCreate?: TUTOR_AVAILABILITYCreateOrConnectWithoutTutorInput | TUTOR_AVAILABILITYCreateOrConnectWithoutTutorInput[]
     createMany?: TUTOR_AVAILABILITYCreateManyTutorInputEnvelope
     connect?: TUTOR_AVAILABILITYWhereUniqueInput | TUTOR_AVAILABILITYWhereUniqueInput[]
+  }
+
+  export type TUTOR_COURSEUncheckedCreateNestedManyWithoutTutorInput = {
+    create?: XOR<TUTOR_COURSECreateWithoutTutorInput, TUTOR_COURSEUncheckedCreateWithoutTutorInput> | TUTOR_COURSECreateWithoutTutorInput[] | TUTOR_COURSEUncheckedCreateWithoutTutorInput[]
+    connectOrCreate?: TUTOR_COURSECreateOrConnectWithoutTutorInput | TUTOR_COURSECreateOrConnectWithoutTutorInput[]
+    createMany?: TUTOR_COURSECreateManyTutorInputEnvelope
+    connect?: TUTOR_COURSEWhereUniqueInput | TUTOR_COURSEWhereUniqueInput[]
   }
 
   export type ENROLLMENTSUpdateManyWithoutTutorNestedInput = {
@@ -14633,6 +15950,20 @@ export namespace Prisma {
     update?: TUTOR_AVAILABILITYUpdateWithWhereUniqueWithoutTutorInput | TUTOR_AVAILABILITYUpdateWithWhereUniqueWithoutTutorInput[]
     updateMany?: TUTOR_AVAILABILITYUpdateManyWithWhereWithoutTutorInput | TUTOR_AVAILABILITYUpdateManyWithWhereWithoutTutorInput[]
     deleteMany?: TUTOR_AVAILABILITYScalarWhereInput | TUTOR_AVAILABILITYScalarWhereInput[]
+  }
+
+  export type TUTOR_COURSEUpdateManyWithoutTutorNestedInput = {
+    create?: XOR<TUTOR_COURSECreateWithoutTutorInput, TUTOR_COURSEUncheckedCreateWithoutTutorInput> | TUTOR_COURSECreateWithoutTutorInput[] | TUTOR_COURSEUncheckedCreateWithoutTutorInput[]
+    connectOrCreate?: TUTOR_COURSECreateOrConnectWithoutTutorInput | TUTOR_COURSECreateOrConnectWithoutTutorInput[]
+    upsert?: TUTOR_COURSEUpsertWithWhereUniqueWithoutTutorInput | TUTOR_COURSEUpsertWithWhereUniqueWithoutTutorInput[]
+    createMany?: TUTOR_COURSECreateManyTutorInputEnvelope
+    set?: TUTOR_COURSEWhereUniqueInput | TUTOR_COURSEWhereUniqueInput[]
+    disconnect?: TUTOR_COURSEWhereUniqueInput | TUTOR_COURSEWhereUniqueInput[]
+    delete?: TUTOR_COURSEWhereUniqueInput | TUTOR_COURSEWhereUniqueInput[]
+    connect?: TUTOR_COURSEWhereUniqueInput | TUTOR_COURSEWhereUniqueInput[]
+    update?: TUTOR_COURSEUpdateWithWhereUniqueWithoutTutorInput | TUTOR_COURSEUpdateWithWhereUniqueWithoutTutorInput[]
+    updateMany?: TUTOR_COURSEUpdateManyWithWhereWithoutTutorInput | TUTOR_COURSEUpdateManyWithWhereWithoutTutorInput[]
+    deleteMany?: TUTOR_COURSEScalarWhereInput | TUTOR_COURSEScalarWhereInput[]
   }
 
   export type USERSUpdateOneRequiredWithoutTutorNestedInput = {
@@ -14697,6 +16028,20 @@ export namespace Prisma {
     update?: TUTOR_AVAILABILITYUpdateWithWhereUniqueWithoutTutorInput | TUTOR_AVAILABILITYUpdateWithWhereUniqueWithoutTutorInput[]
     updateMany?: TUTOR_AVAILABILITYUpdateManyWithWhereWithoutTutorInput | TUTOR_AVAILABILITYUpdateManyWithWhereWithoutTutorInput[]
     deleteMany?: TUTOR_AVAILABILITYScalarWhereInput | TUTOR_AVAILABILITYScalarWhereInput[]
+  }
+
+  export type TUTOR_COURSEUncheckedUpdateManyWithoutTutorNestedInput = {
+    create?: XOR<TUTOR_COURSECreateWithoutTutorInput, TUTOR_COURSEUncheckedCreateWithoutTutorInput> | TUTOR_COURSECreateWithoutTutorInput[] | TUTOR_COURSEUncheckedCreateWithoutTutorInput[]
+    connectOrCreate?: TUTOR_COURSECreateOrConnectWithoutTutorInput | TUTOR_COURSECreateOrConnectWithoutTutorInput[]
+    upsert?: TUTOR_COURSEUpsertWithWhereUniqueWithoutTutorInput | TUTOR_COURSEUpsertWithWhereUniqueWithoutTutorInput[]
+    createMany?: TUTOR_COURSECreateManyTutorInputEnvelope
+    set?: TUTOR_COURSEWhereUniqueInput | TUTOR_COURSEWhereUniqueInput[]
+    disconnect?: TUTOR_COURSEWhereUniqueInput | TUTOR_COURSEWhereUniqueInput[]
+    delete?: TUTOR_COURSEWhereUniqueInput | TUTOR_COURSEWhereUniqueInput[]
+    connect?: TUTOR_COURSEWhereUniqueInput | TUTOR_COURSEWhereUniqueInput[]
+    update?: TUTOR_COURSEUpdateWithWhereUniqueWithoutTutorInput | TUTOR_COURSEUpdateWithWhereUniqueWithoutTutorInput[]
+    updateMany?: TUTOR_COURSEUpdateManyWithWhereWithoutTutorInput | TUTOR_COURSEUpdateManyWithWhereWithoutTutorInput[]
+    deleteMany?: TUTOR_COURSEScalarWhereInput | TUTOR_COURSEScalarWhereInput[]
   }
 
   export type AdminCreateNestedOneWithoutUSERSInput = {
@@ -14923,6 +16268,34 @@ export namespace Prisma {
     delete?: TutorWhereInput | boolean
     connect?: TutorWhereUniqueInput
     update?: XOR<XOR<TutorUpdateToOneWithWhereWithoutUSERSInput, TutorUpdateWithoutUSERSInput>, TutorUncheckedUpdateWithoutUSERSInput>
+  }
+
+  export type TutorCreateNestedOneWithoutTUTOR_COURSEInput = {
+    create?: XOR<TutorCreateWithoutTUTOR_COURSEInput, TutorUncheckedCreateWithoutTUTOR_COURSEInput>
+    connectOrCreate?: TutorCreateOrConnectWithoutTUTOR_COURSEInput
+    connect?: TutorWhereUniqueInput
+  }
+
+  export type COURSESCreateNestedOneWithoutTUTOR_COURSEInput = {
+    create?: XOR<COURSESCreateWithoutTUTOR_COURSEInput, COURSESUncheckedCreateWithoutTUTOR_COURSEInput>
+    connectOrCreate?: COURSESCreateOrConnectWithoutTUTOR_COURSEInput
+    connect?: COURSESWhereUniqueInput
+  }
+
+  export type TutorUpdateOneRequiredWithoutTUTOR_COURSENestedInput = {
+    create?: XOR<TutorCreateWithoutTUTOR_COURSEInput, TutorUncheckedCreateWithoutTUTOR_COURSEInput>
+    connectOrCreate?: TutorCreateOrConnectWithoutTUTOR_COURSEInput
+    upsert?: TutorUpsertWithoutTUTOR_COURSEInput
+    connect?: TutorWhereUniqueInput
+    update?: XOR<XOR<TutorUpdateToOneWithWhereWithoutTUTOR_COURSEInput, TutorUpdateWithoutTUTOR_COURSEInput>, TutorUncheckedUpdateWithoutTUTOR_COURSEInput>
+  }
+
+  export type COURSESUpdateOneRequiredWithoutTUTOR_COURSENestedInput = {
+    create?: XOR<COURSESCreateWithoutTUTOR_COURSEInput, COURSESUncheckedCreateWithoutTUTOR_COURSEInput>
+    connectOrCreate?: COURSESCreateOrConnectWithoutTUTOR_COURSEInput
+    upsert?: COURSESUpsertWithoutTUTOR_COURSEInput
+    connect?: COURSESWhereUniqueInput
+    update?: XOR<XOR<COURSESUpdateToOneWithWhereWithoutTUTOR_COURSEInput, COURSESUpdateWithoutTUTOR_COURSEInput>, COURSESUncheckedUpdateWithoutTUTOR_COURSEInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -15276,6 +16649,25 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type TUTOR_COURSECreateWithoutCOURSESInput = {
+    Tutor: TutorCreateNestedOneWithoutTUTOR_COURSEInput
+  }
+
+  export type TUTOR_COURSEUncheckedCreateWithoutCOURSESInput = {
+    TutorCourseID?: number
+    Tutor_ID: number
+  }
+
+  export type TUTOR_COURSECreateOrConnectWithoutCOURSESInput = {
+    where: TUTOR_COURSEWhereUniqueInput
+    create: XOR<TUTOR_COURSECreateWithoutCOURSESInput, TUTOR_COURSEUncheckedCreateWithoutCOURSESInput>
+  }
+
+  export type TUTOR_COURSECreateManyCOURSESInputEnvelope = {
+    data: TUTOR_COURSECreateManyCOURSESInput | TUTOR_COURSECreateManyCOURSESInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ENROLLMENTSUpsertWithWhereUniqueWithoutCOURSESInput = {
     where: ENROLLMENTSWhereUniqueInput
     update: XOR<ENROLLMENTSUpdateWithoutCOURSESInput, ENROLLMENTSUncheckedUpdateWithoutCOURSESInput>
@@ -15301,6 +16693,31 @@ export namespace Prisma {
     Tutor_ID?: IntNullableFilter<"ENROLLMENTS"> | number | null
     Course_ID?: IntFilter<"ENROLLMENTS"> | number
     Total_Enrollment?: IntNullableFilter<"ENROLLMENTS"> | number | null
+  }
+
+  export type TUTOR_COURSEUpsertWithWhereUniqueWithoutCOURSESInput = {
+    where: TUTOR_COURSEWhereUniqueInput
+    update: XOR<TUTOR_COURSEUpdateWithoutCOURSESInput, TUTOR_COURSEUncheckedUpdateWithoutCOURSESInput>
+    create: XOR<TUTOR_COURSECreateWithoutCOURSESInput, TUTOR_COURSEUncheckedCreateWithoutCOURSESInput>
+  }
+
+  export type TUTOR_COURSEUpdateWithWhereUniqueWithoutCOURSESInput = {
+    where: TUTOR_COURSEWhereUniqueInput
+    data: XOR<TUTOR_COURSEUpdateWithoutCOURSESInput, TUTOR_COURSEUncheckedUpdateWithoutCOURSESInput>
+  }
+
+  export type TUTOR_COURSEUpdateManyWithWhereWithoutCOURSESInput = {
+    where: TUTOR_COURSEScalarWhereInput
+    data: XOR<TUTOR_COURSEUpdateManyMutationInput, TUTOR_COURSEUncheckedUpdateManyWithoutCOURSESInput>
+  }
+
+  export type TUTOR_COURSEScalarWhereInput = {
+    AND?: TUTOR_COURSEScalarWhereInput | TUTOR_COURSEScalarWhereInput[]
+    OR?: TUTOR_COURSEScalarWhereInput[]
+    NOT?: TUTOR_COURSEScalarWhereInput | TUTOR_COURSEScalarWhereInput[]
+    TutorCourseID?: IntFilter<"TUTOR_COURSE"> | number
+    Tutor_ID?: IntFilter<"TUTOR_COURSE"> | number
+    Course_ID?: IntFilter<"TUTOR_COURSE"> | number
   }
 
   export type USERSCreateWithoutENROLLMENTSInput = {
@@ -15339,6 +16756,7 @@ export namespace Prisma {
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSCreateNestedManyWithoutTutorInput
     TUTORING_SESSION?: TUTORING_SESSIONCreateNestedManyWithoutTutorInput
     TUTOR_AVAILABILITY?: TUTOR_AVAILABILITYCreateNestedManyWithoutTutorInput
+    TUTOR_COURSE?: TUTOR_COURSECreateNestedManyWithoutTutorInput
     USERS: USERSCreateNestedOneWithoutTutorInput
   }
 
@@ -15348,6 +16766,7 @@ export namespace Prisma {
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedCreateNestedManyWithoutTutorInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedCreateNestedManyWithoutTutorInput
     TUTOR_AVAILABILITY?: TUTOR_AVAILABILITYUncheckedCreateNestedManyWithoutTutorInput
+    TUTOR_COURSE?: TUTOR_COURSEUncheckedCreateNestedManyWithoutTutorInput
   }
 
   export type TutorCreateOrConnectWithoutENROLLMENTSInput = {
@@ -15361,6 +16780,7 @@ export namespace Prisma {
     Course_Title?: string | null
     Course_Instructor?: string | null
     Enrolled_Count?: number | null
+    TUTOR_COURSE?: TUTOR_COURSECreateNestedManyWithoutCOURSESInput
   }
 
   export type COURSESUncheckedCreateWithoutENROLLMENTSInput = {
@@ -15370,6 +16790,7 @@ export namespace Prisma {
     Course_Title?: string | null
     Course_Instructor?: string | null
     Enrolled_Count?: number | null
+    TUTOR_COURSE?: TUTOR_COURSEUncheckedCreateNestedManyWithoutCOURSESInput
   }
 
   export type COURSESCreateOrConnectWithoutENROLLMENTSInput = {
@@ -15488,6 +16909,7 @@ export namespace Prisma {
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUpdateManyWithoutTutorNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUpdateManyWithoutTutorNestedInput
     TUTOR_AVAILABILITY?: TUTOR_AVAILABILITYUpdateManyWithoutTutorNestedInput
+    TUTOR_COURSE?: TUTOR_COURSEUpdateManyWithoutTutorNestedInput
     USERS?: USERSUpdateOneRequiredWithoutTutorNestedInput
   }
 
@@ -15497,6 +16919,7 @@ export namespace Prisma {
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedUpdateManyWithoutTutorNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedUpdateManyWithoutTutorNestedInput
     TUTOR_AVAILABILITY?: TUTOR_AVAILABILITYUncheckedUpdateManyWithoutTutorNestedInput
+    TUTOR_COURSE?: TUTOR_COURSEUncheckedUpdateManyWithoutTutorNestedInput
   }
 
   export type COURSESUpsertWithoutENROLLMENTSInput = {
@@ -15516,6 +16939,7 @@ export namespace Prisma {
     Course_Title?: NullableStringFieldUpdateOperationsInput | string | null
     Course_Instructor?: NullableStringFieldUpdateOperationsInput | string | null
     Enrolled_Count?: NullableIntFieldUpdateOperationsInput | number | null
+    TUTOR_COURSE?: TUTOR_COURSEUpdateManyWithoutCOURSESNestedInput
   }
 
   export type COURSESUncheckedUpdateWithoutENROLLMENTSInput = {
@@ -15525,6 +16949,7 @@ export namespace Prisma {
     Course_Title?: NullableStringFieldUpdateOperationsInput | string | null
     Course_Instructor?: NullableStringFieldUpdateOperationsInput | string | null
     Enrolled_Count?: NullableIntFieldUpdateOperationsInput | number | null
+    TUTOR_COURSE?: TUTOR_COURSEUncheckedUpdateManyWithoutCOURSESNestedInput
   }
 
   export type STUDY_BUDDY_GROUPSUpsertWithWhereUniqueWithoutENROLLMENTSInput = {
@@ -15703,6 +17128,7 @@ export namespace Prisma {
     ENROLLMENTS?: ENROLLMENTSCreateNestedManyWithoutTutorInput
     TUTORING_SESSION?: TUTORING_SESSIONCreateNestedManyWithoutTutorInput
     TUTOR_AVAILABILITY?: TUTOR_AVAILABILITYCreateNestedManyWithoutTutorInput
+    TUTOR_COURSE?: TUTOR_COURSECreateNestedManyWithoutTutorInput
     USERS: USERSCreateNestedOneWithoutTutorInput
   }
 
@@ -15712,6 +17138,7 @@ export namespace Prisma {
     ENROLLMENTS?: ENROLLMENTSUncheckedCreateNestedManyWithoutTutorInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedCreateNestedManyWithoutTutorInput
     TUTOR_AVAILABILITY?: TUTOR_AVAILABILITYUncheckedCreateNestedManyWithoutTutorInput
+    TUTOR_COURSE?: TUTOR_COURSEUncheckedCreateNestedManyWithoutTutorInput
   }
 
   export type TutorCreateOrConnectWithoutSTUDY_BUDDY_GROUPSInput = {
@@ -15794,6 +17221,7 @@ export namespace Prisma {
     ENROLLMENTS?: ENROLLMENTSUpdateManyWithoutTutorNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUpdateManyWithoutTutorNestedInput
     TUTOR_AVAILABILITY?: TUTOR_AVAILABILITYUpdateManyWithoutTutorNestedInput
+    TUTOR_COURSE?: TUTOR_COURSEUpdateManyWithoutTutorNestedInput
     USERS?: USERSUpdateOneRequiredWithoutTutorNestedInput
   }
 
@@ -15803,6 +17231,7 @@ export namespace Prisma {
     ENROLLMENTS?: ENROLLMENTSUncheckedUpdateManyWithoutTutorNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedUpdateManyWithoutTutorNestedInput
     TUTOR_AVAILABILITY?: TUTOR_AVAILABILITYUncheckedUpdateManyWithoutTutorNestedInput
+    TUTOR_COURSE?: TUTOR_COURSEUncheckedUpdateManyWithoutTutorNestedInput
   }
 
   export type ENROLLMENTSUpsertWithoutSTUDY_BUDDY_GROUPSInput = {
@@ -15939,6 +17368,7 @@ export namespace Prisma {
     ENROLLMENTS?: ENROLLMENTSCreateNestedManyWithoutTutorInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSCreateNestedManyWithoutTutorInput
     TUTOR_AVAILABILITY?: TUTOR_AVAILABILITYCreateNestedManyWithoutTutorInput
+    TUTOR_COURSE?: TUTOR_COURSECreateNestedManyWithoutTutorInput
     USERS: USERSCreateNestedOneWithoutTutorInput
   }
 
@@ -15948,6 +17378,7 @@ export namespace Prisma {
     ENROLLMENTS?: ENROLLMENTSUncheckedCreateNestedManyWithoutTutorInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedCreateNestedManyWithoutTutorInput
     TUTOR_AVAILABILITY?: TUTOR_AVAILABILITYUncheckedCreateNestedManyWithoutTutorInput
+    TUTOR_COURSE?: TUTOR_COURSEUncheckedCreateNestedManyWithoutTutorInput
   }
 
   export type TutorCreateOrConnectWithoutTUTORING_SESSIONInput = {
@@ -16030,6 +17461,7 @@ export namespace Prisma {
     ENROLLMENTS?: ENROLLMENTSUpdateManyWithoutTutorNestedInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUpdateManyWithoutTutorNestedInput
     TUTOR_AVAILABILITY?: TUTOR_AVAILABILITYUpdateManyWithoutTutorNestedInput
+    TUTOR_COURSE?: TUTOR_COURSEUpdateManyWithoutTutorNestedInput
     USERS?: USERSUpdateOneRequiredWithoutTutorNestedInput
   }
 
@@ -16039,6 +17471,7 @@ export namespace Prisma {
     ENROLLMENTS?: ENROLLMENTSUncheckedUpdateManyWithoutTutorNestedInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedUpdateManyWithoutTutorNestedInput
     TUTOR_AVAILABILITY?: TUTOR_AVAILABILITYUncheckedUpdateManyWithoutTutorNestedInput
+    TUTOR_COURSE?: TUTOR_COURSEUncheckedUpdateManyWithoutTutorNestedInput
   }
 
   export type ENROLLMENTSUpsertWithoutTUTORING_SESSIONInput = {
@@ -16094,6 +17527,7 @@ export namespace Prisma {
     ENROLLMENTS?: ENROLLMENTSCreateNestedManyWithoutTutorInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSCreateNestedManyWithoutTutorInput
     TUTORING_SESSION?: TUTORING_SESSIONCreateNestedManyWithoutTutorInput
+    TUTOR_COURSE?: TUTOR_COURSECreateNestedManyWithoutTutorInput
     USERS: USERSCreateNestedOneWithoutTutorInput
   }
 
@@ -16103,6 +17537,7 @@ export namespace Prisma {
     ENROLLMENTS?: ENROLLMENTSUncheckedCreateNestedManyWithoutTutorInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedCreateNestedManyWithoutTutorInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedCreateNestedManyWithoutTutorInput
+    TUTOR_COURSE?: TUTOR_COURSEUncheckedCreateNestedManyWithoutTutorInput
   }
 
   export type TutorCreateOrConnectWithoutTUTOR_AVAILABILITYInput = {
@@ -16141,6 +17576,7 @@ export namespace Prisma {
     ENROLLMENTS?: ENROLLMENTSUpdateManyWithoutTutorNestedInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUpdateManyWithoutTutorNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUpdateManyWithoutTutorNestedInput
+    TUTOR_COURSE?: TUTOR_COURSEUpdateManyWithoutTutorNestedInput
     USERS?: USERSUpdateOneRequiredWithoutTutorNestedInput
   }
 
@@ -16150,6 +17586,7 @@ export namespace Prisma {
     ENROLLMENTS?: ENROLLMENTSUncheckedUpdateManyWithoutTutorNestedInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedUpdateManyWithoutTutorNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedUpdateManyWithoutTutorNestedInput
+    TUTOR_COURSE?: TUTOR_COURSEUncheckedUpdateManyWithoutTutorNestedInput
   }
 
   export type ENROLLMENTSCreateWithoutTutorInput = {
@@ -16262,6 +17699,25 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type TUTOR_COURSECreateWithoutTutorInput = {
+    COURSES: COURSESCreateNestedOneWithoutTUTOR_COURSEInput
+  }
+
+  export type TUTOR_COURSEUncheckedCreateWithoutTutorInput = {
+    TutorCourseID?: number
+    Course_ID: number
+  }
+
+  export type TUTOR_COURSECreateOrConnectWithoutTutorInput = {
+    where: TUTOR_COURSEWhereUniqueInput
+    create: XOR<TUTOR_COURSECreateWithoutTutorInput, TUTOR_COURSEUncheckedCreateWithoutTutorInput>
+  }
+
+  export type TUTOR_COURSECreateManyTutorInputEnvelope = {
+    data: TUTOR_COURSECreateManyTutorInput | TUTOR_COURSECreateManyTutorInput[]
+    skipDuplicates?: boolean
+  }
+
   export type USERSCreateWithoutTutorInput = {
     Name: string
     Email: string
@@ -16367,6 +17823,22 @@ export namespace Prisma {
     Date_Requested?: DateTimeNullableFilter<"TUTOR_AVAILABILITY"> | Date | string | null
     Times_Requested?: DateTimeNullableFilter<"TUTOR_AVAILABILITY"> | Date | string | null
     Is_Approved?: BoolNullableFilter<"TUTOR_AVAILABILITY"> | boolean | null
+  }
+
+  export type TUTOR_COURSEUpsertWithWhereUniqueWithoutTutorInput = {
+    where: TUTOR_COURSEWhereUniqueInput
+    update: XOR<TUTOR_COURSEUpdateWithoutTutorInput, TUTOR_COURSEUncheckedUpdateWithoutTutorInput>
+    create: XOR<TUTOR_COURSECreateWithoutTutorInput, TUTOR_COURSEUncheckedCreateWithoutTutorInput>
+  }
+
+  export type TUTOR_COURSEUpdateWithWhereUniqueWithoutTutorInput = {
+    where: TUTOR_COURSEWhereUniqueInput
+    data: XOR<TUTOR_COURSEUpdateWithoutTutorInput, TUTOR_COURSEUncheckedUpdateWithoutTutorInput>
+  }
+
+  export type TUTOR_COURSEUpdateManyWithWhereWithoutTutorInput = {
+    where: TUTOR_COURSEScalarWhereInput
+    data: XOR<TUTOR_COURSEUpdateManyMutationInput, TUTOR_COURSEUncheckedUpdateManyWithoutTutorInput>
   }
 
   export type USERSUpsertWithoutTutorInput = {
@@ -16524,6 +17996,7 @@ export namespace Prisma {
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSCreateNestedManyWithoutTutorInput
     TUTORING_SESSION?: TUTORING_SESSIONCreateNestedManyWithoutTutorInput
     TUTOR_AVAILABILITY?: TUTOR_AVAILABILITYCreateNestedManyWithoutTutorInput
+    TUTOR_COURSE?: TUTOR_COURSECreateNestedManyWithoutTutorInput
   }
 
   export type TutorUncheckedCreateWithoutUSERSInput = {
@@ -16532,6 +18005,7 @@ export namespace Prisma {
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedCreateNestedManyWithoutTutorInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedCreateNestedManyWithoutTutorInput
     TUTOR_AVAILABILITY?: TUTOR_AVAILABILITYUncheckedCreateNestedManyWithoutTutorInput
+    TUTOR_COURSE?: TUTOR_COURSEUncheckedCreateNestedManyWithoutTutorInput
   }
 
   export type TutorCreateOrConnectWithoutUSERSInput = {
@@ -16642,6 +18116,7 @@ export namespace Prisma {
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUpdateManyWithoutTutorNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUpdateManyWithoutTutorNestedInput
     TUTOR_AVAILABILITY?: TUTOR_AVAILABILITYUpdateManyWithoutTutorNestedInput
+    TUTOR_COURSE?: TUTOR_COURSEUpdateManyWithoutTutorNestedInput
   }
 
   export type TutorUncheckedUpdateWithoutUSERSInput = {
@@ -16650,6 +18125,111 @@ export namespace Prisma {
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedUpdateManyWithoutTutorNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedUpdateManyWithoutTutorNestedInput
     TUTOR_AVAILABILITY?: TUTOR_AVAILABILITYUncheckedUpdateManyWithoutTutorNestedInput
+    TUTOR_COURSE?: TUTOR_COURSEUncheckedUpdateManyWithoutTutorNestedInput
+  }
+
+  export type TutorCreateWithoutTUTOR_COURSEInput = {
+    ENROLLMENTS?: ENROLLMENTSCreateNestedManyWithoutTutorInput
+    STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSCreateNestedManyWithoutTutorInput
+    TUTORING_SESSION?: TUTORING_SESSIONCreateNestedManyWithoutTutorInput
+    TUTOR_AVAILABILITY?: TUTOR_AVAILABILITYCreateNestedManyWithoutTutorInput
+    USERS: USERSCreateNestedOneWithoutTutorInput
+  }
+
+  export type TutorUncheckedCreateWithoutTUTOR_COURSEInput = {
+    Tutor_ID?: number
+    User_ID: number
+    ENROLLMENTS?: ENROLLMENTSUncheckedCreateNestedManyWithoutTutorInput
+    STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedCreateNestedManyWithoutTutorInput
+    TUTORING_SESSION?: TUTORING_SESSIONUncheckedCreateNestedManyWithoutTutorInput
+    TUTOR_AVAILABILITY?: TUTOR_AVAILABILITYUncheckedCreateNestedManyWithoutTutorInput
+  }
+
+  export type TutorCreateOrConnectWithoutTUTOR_COURSEInput = {
+    where: TutorWhereUniqueInput
+    create: XOR<TutorCreateWithoutTUTOR_COURSEInput, TutorUncheckedCreateWithoutTUTOR_COURSEInput>
+  }
+
+  export type COURSESCreateWithoutTUTOR_COURSEInput = {
+    Course_Number?: number | null
+    Course_Section?: Decimal | DecimalJsLike | number | string | null
+    Course_Title?: string | null
+    Course_Instructor?: string | null
+    Enrolled_Count?: number | null
+    ENROLLMENTS?: ENROLLMENTSCreateNestedManyWithoutCOURSESInput
+  }
+
+  export type COURSESUncheckedCreateWithoutTUTOR_COURSEInput = {
+    Course_ID?: number
+    Course_Number?: number | null
+    Course_Section?: Decimal | DecimalJsLike | number | string | null
+    Course_Title?: string | null
+    Course_Instructor?: string | null
+    Enrolled_Count?: number | null
+    ENROLLMENTS?: ENROLLMENTSUncheckedCreateNestedManyWithoutCOURSESInput
+  }
+
+  export type COURSESCreateOrConnectWithoutTUTOR_COURSEInput = {
+    where: COURSESWhereUniqueInput
+    create: XOR<COURSESCreateWithoutTUTOR_COURSEInput, COURSESUncheckedCreateWithoutTUTOR_COURSEInput>
+  }
+
+  export type TutorUpsertWithoutTUTOR_COURSEInput = {
+    update: XOR<TutorUpdateWithoutTUTOR_COURSEInput, TutorUncheckedUpdateWithoutTUTOR_COURSEInput>
+    create: XOR<TutorCreateWithoutTUTOR_COURSEInput, TutorUncheckedCreateWithoutTUTOR_COURSEInput>
+    where?: TutorWhereInput
+  }
+
+  export type TutorUpdateToOneWithWhereWithoutTUTOR_COURSEInput = {
+    where?: TutorWhereInput
+    data: XOR<TutorUpdateWithoutTUTOR_COURSEInput, TutorUncheckedUpdateWithoutTUTOR_COURSEInput>
+  }
+
+  export type TutorUpdateWithoutTUTOR_COURSEInput = {
+    ENROLLMENTS?: ENROLLMENTSUpdateManyWithoutTutorNestedInput
+    STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUpdateManyWithoutTutorNestedInput
+    TUTORING_SESSION?: TUTORING_SESSIONUpdateManyWithoutTutorNestedInput
+    TUTOR_AVAILABILITY?: TUTOR_AVAILABILITYUpdateManyWithoutTutorNestedInput
+    USERS?: USERSUpdateOneRequiredWithoutTutorNestedInput
+  }
+
+  export type TutorUncheckedUpdateWithoutTUTOR_COURSEInput = {
+    Tutor_ID?: IntFieldUpdateOperationsInput | number
+    User_ID?: IntFieldUpdateOperationsInput | number
+    ENROLLMENTS?: ENROLLMENTSUncheckedUpdateManyWithoutTutorNestedInput
+    STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedUpdateManyWithoutTutorNestedInput
+    TUTORING_SESSION?: TUTORING_SESSIONUncheckedUpdateManyWithoutTutorNestedInput
+    TUTOR_AVAILABILITY?: TUTOR_AVAILABILITYUncheckedUpdateManyWithoutTutorNestedInput
+  }
+
+  export type COURSESUpsertWithoutTUTOR_COURSEInput = {
+    update: XOR<COURSESUpdateWithoutTUTOR_COURSEInput, COURSESUncheckedUpdateWithoutTUTOR_COURSEInput>
+    create: XOR<COURSESCreateWithoutTUTOR_COURSEInput, COURSESUncheckedCreateWithoutTUTOR_COURSEInput>
+    where?: COURSESWhereInput
+  }
+
+  export type COURSESUpdateToOneWithWhereWithoutTUTOR_COURSEInput = {
+    where?: COURSESWhereInput
+    data: XOR<COURSESUpdateWithoutTUTOR_COURSEInput, COURSESUncheckedUpdateWithoutTUTOR_COURSEInput>
+  }
+
+  export type COURSESUpdateWithoutTUTOR_COURSEInput = {
+    Course_Number?: NullableIntFieldUpdateOperationsInput | number | null
+    Course_Section?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    Course_Title?: NullableStringFieldUpdateOperationsInput | string | null
+    Course_Instructor?: NullableStringFieldUpdateOperationsInput | string | null
+    Enrolled_Count?: NullableIntFieldUpdateOperationsInput | number | null
+    ENROLLMENTS?: ENROLLMENTSUpdateManyWithoutCOURSESNestedInput
+  }
+
+  export type COURSESUncheckedUpdateWithoutTUTOR_COURSEInput = {
+    Course_ID?: IntFieldUpdateOperationsInput | number
+    Course_Number?: NullableIntFieldUpdateOperationsInput | number | null
+    Course_Section?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    Course_Title?: NullableStringFieldUpdateOperationsInput | string | null
+    Course_Instructor?: NullableStringFieldUpdateOperationsInput | string | null
+    Enrolled_Count?: NullableIntFieldUpdateOperationsInput | number | null
+    ENROLLMENTS?: ENROLLMENTSUncheckedUpdateManyWithoutCOURSESNestedInput
   }
 
   export type SCHEDULECreateManyAdminInput = {
@@ -16682,6 +18262,11 @@ export namespace Prisma {
     Total_Enrollment?: number | null
   }
 
+  export type TUTOR_COURSECreateManyCOURSESInput = {
+    TutorCourseID?: number
+    Tutor_ID: number
+  }
+
   export type ENROLLMENTSUpdateWithoutCOURSESInput = {
     Total_Enrollment?: NullableIntFieldUpdateOperationsInput | number | null
     USERS?: USERSUpdateOneRequiredWithoutENROLLMENTSNestedInput
@@ -16704,6 +18289,20 @@ export namespace Prisma {
     User_ID?: IntFieldUpdateOperationsInput | number
     Tutor_ID?: NullableIntFieldUpdateOperationsInput | number | null
     Total_Enrollment?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type TUTOR_COURSEUpdateWithoutCOURSESInput = {
+    Tutor?: TutorUpdateOneRequiredWithoutTUTOR_COURSENestedInput
+  }
+
+  export type TUTOR_COURSEUncheckedUpdateWithoutCOURSESInput = {
+    TutorCourseID?: IntFieldUpdateOperationsInput | number
+    Tutor_ID?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type TUTOR_COURSEUncheckedUpdateManyWithoutCOURSESInput = {
+    TutorCourseID?: IntFieldUpdateOperationsInput | number
+    Tutor_ID?: IntFieldUpdateOperationsInput | number
   }
 
   export type STUDY_BUDDY_GROUPSCreateManyENROLLMENTSInput = {
@@ -16841,6 +18440,11 @@ export namespace Prisma {
     Is_Approved?: boolean | null
   }
 
+  export type TUTOR_COURSECreateManyTutorInput = {
+    TutorCourseID?: number
+    Course_ID: number
+  }
+
   export type ENROLLMENTSUpdateWithoutTutorInput = {
     Total_Enrollment?: NullableIntFieldUpdateOperationsInput | number | null
     USERS?: USERSUpdateOneRequiredWithoutENROLLMENTSNestedInput
@@ -16943,6 +18547,20 @@ export namespace Prisma {
     Date_Requested?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Times_Requested?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Is_Approved?: NullableBoolFieldUpdateOperationsInput | boolean | null
+  }
+
+  export type TUTOR_COURSEUpdateWithoutTutorInput = {
+    COURSES?: COURSESUpdateOneRequiredWithoutTUTOR_COURSENestedInput
+  }
+
+  export type TUTOR_COURSEUncheckedUpdateWithoutTutorInput = {
+    TutorCourseID?: IntFieldUpdateOperationsInput | number
+    Course_ID?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type TUTOR_COURSEUncheckedUpdateManyWithoutTutorInput = {
+    TutorCourseID?: IntFieldUpdateOperationsInput | number
+    Course_ID?: IntFieldUpdateOperationsInput | number
   }
 
   export type ENROLLMENTSCreateManyUSERSInput = {
