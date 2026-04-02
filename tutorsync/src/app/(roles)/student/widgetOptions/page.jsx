@@ -15,7 +15,10 @@ export default function WidgetOptionsPage() {
         </div>
         <div className={styles.content}>
           <div className={styles.section}>
-            <Link href="/student/home?add=findTutor" className={styles.widgetRow}>
+            <Link
+              href="/student/home?add=findTutor"
+              className={styles.widgetRow}
+            >
               <div className={styles.widgetLeft}>
                 <Image
                   src="/userplus.svg"
@@ -54,7 +57,7 @@ export default function WidgetOptionsPage() {
                   height={32}
                 />
                 <span className={styles.widgetText}>Upcoming Sessions</span>
-              </div> 
+              </div>
             </Link>
 
             <Link href="/student/home?add=grades" className={styles.widgetRow}>

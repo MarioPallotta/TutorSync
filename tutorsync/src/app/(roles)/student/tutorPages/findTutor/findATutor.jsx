@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import BottomNav from "@/components/student/BottomNav/BottomNav";
@@ -9,20 +9,12 @@ import styles from "./page.module.css";
 export default function FindTutorClient({ courses }) {
   const [selectedSubject, setSelectedSubject] = useState("Select a subject");
   const [selectedDate, setSelectedDate] = useState("");
+  const [tutors, setTutors] = useState([]);
   const dateInputRef = useRef(null);
 
-  // Build subject list from DB
   const subjects = useMemo(() => {
-    return ["Select a subject", ...courses.map(c => `${c.Course_Title}`)];
+    return ["Select a subject", ...courses.map((c) => `${c.Course_Title}`)];
   }, [courses]);
-
-  const mockTutors = [
-    { id: 1, name: "Sarah M.", subject: "Section 1.0", availability: "3:00PM - 6:00PM" },
-    { id: 2, name: "Joe Q.", subject: "Section 1.0", availability: "3:00PM - 6:00PM" },
-    { id: 3, name: "Earl E.", subject: "Section 2.0", availability: "3:00PM - 6:00PM" },
-    { id: 4, name: "Samuel M.", subject: "Section 2.0", availability: "3:00PM - 6:00PM" },
-    { id: 5, name: "Craig T.", subject: "Section 3.0", availability: "3:00PM - 6:00PM" },
-  ];
 
   const formattedDate = useMemo(() => {
     if (!selectedDate) return "Select Date";
@@ -44,10 +36,25 @@ export default function FindTutorClient({ courses }) {
     return isToday ? `Today, ${shortDate}` : shortDate;
   }, [selectedDate]);
 
-  const filteredTutors = useMemo(() => {
-    if (selectedSubject === "Select a subject") return [];
-    return mockTutors.filter((tutor) => tutor.subject === selectedSubject);
-  }, [selectedSubject]);
+  async function fetchTutors() {
+    if (selectedSubject === "Select a subject" || !selectedDate) return;
+
+    const res = await fetch("/api/getTutors", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        courseTitle: selectedSubject,
+        date: selectedDate,
+      }),
+    });
+
+    const data = await res.json();
+    setTutors(data.tutors || []);
+  }
+
+  useEffect(() => {
+    fetchTutors();
+  }, [selectedSubject, selectedDate]);
 
   const handleOpenDatePicker = () => {
     if (!dateInputRef.current) return;
@@ -64,7 +71,7 @@ export default function FindTutorClient({ courses }) {
         <div className={styles.topSpacer} />
 
         <div className={styles.headerRow}>
-          <Link href="/student/home" className={styles.backButton} aria-label="Go back">
+          <Link href="/student/home" className={styles.backButton}>
             <Image src="/backbutton.svg" alt="Back" width={28} height={28} />
           </Link>
 
@@ -93,10 +100,14 @@ export default function FindTutorClient({ courses }) {
               type="button"
               className={styles.dateBar}
               onClick={handleOpenDatePicker}
-              aria-label="Select date"
             >
               <div className={styles.dateBarLeft}>
-                <Image src="/calendar.svg" alt="Calendar" width={18} height={18} />
+                <Image
+                  src="/calendar.svg"
+                  alt="Calendar"
+                  width={18}
+                  height={18}
+                />
                 <span className={styles.dateText}>{formattedDate}</span>
               </div>
 
@@ -122,7 +133,7 @@ export default function FindTutorClient({ courses }) {
             <h2 className={styles.sectionTitle}>Available Tutors</h2>
 
             <div className={styles.tutorList}>
-              {filteredTutors.length === 0 && (
+              {tutors.length === 0 && (
                 <p className={styles.emptyState}>
                   {selectedSubject === "Select a subject"
                     ? "Please select a subject to view available tutors."
@@ -130,7 +141,7 @@ export default function FindTutorClient({ courses }) {
                 </p>
               )}
 
-              {filteredTutors.map((tutor) => (
+              {tutors.map((tutor) => (
                 <div key={tutor.id} className={styles.tutorCard}>
                   <div className={styles.tutorLeft}>
                     <div className={styles.avatarCircle}>
@@ -152,8 +163,7 @@ export default function FindTutorClient({ courses }) {
 
                   <Link
                     className={styles.bookButton}
-                    href="/student/tutorPages/bookTutor"
-                    aria-label={`Book ${tutor.name}`}
+                    href={`/student/tutorPages/bookTutor/${tutor.id}`}
                   >
                     <span>Book</span>
                     <span className={styles.bookArrow}>›</span>

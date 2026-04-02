@@ -21,7 +21,7 @@ export default function AllOptionsPage() {
 
           {/* Find Study Group */}
           <Link
-            href="/student/studyGroupPages/studyGroups"
+            href="/student/studyGroupPages/findStudyGroup"
             className={styles.link}
           >
             <img

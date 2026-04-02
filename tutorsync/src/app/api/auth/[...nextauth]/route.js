@@ -19,7 +19,7 @@ export const authOptions = {
 
       async authorize(credentials) {
         console.log("[AUTH] authorize called with credentials:", credentials);
-        
+
         try {
           const user = await prisma.uSERS.findUnique({
             where: { Email: credentials.email },
@@ -32,7 +32,9 @@ export const authOptions = {
             return null;
           }
 
-          console.log(`[AUTH] User found: ${user.Name}, isAdmin: ${user.Is_Admin}, isTutor: ${user.Is_Tutor}, isStudent: ${user.Is_Student}`);
+          console.log(
+            `[AUTH] User found: ${user.Name}, isAdmin: ${user.Is_Admin}, isTutor: ${user.Is_Tutor}, isStudent: ${user.Is_Student}`,
+          );
 
           return {
             id: user.User_ID,

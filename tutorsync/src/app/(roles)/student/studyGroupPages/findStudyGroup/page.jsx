@@ -48,7 +48,7 @@ export default function StudyBuddyPage() {
         <div className={styles.topSpacer} />
 
         <div className={styles.headerRow}>
-          <Link href="/user/home" className={styles.backButton}>
+          <Link href="/student/home" className={styles.backButton}>
             <Image src="/backbutton.svg" alt="Back" width={28} height={28} />
           </Link>
 

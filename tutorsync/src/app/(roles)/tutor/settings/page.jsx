@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { signOut } from "next-auth/react";
 import TopHeader from "@/components/student/TopHeader/TopHeader";
 import BottomNav from "@/components/tutor/BottomNav/BottomNav";
 import styles from "./page.module.css";
