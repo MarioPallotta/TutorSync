@@ -157,12 +157,12 @@ export default function FindTutorClient({ courses }) {
                   </div>
 
                   <Link
-                    className={styles.bookButton}
-                    href="/student/tutorPages/bookTutor"
-                  >
-                    <span>Book</span>
-                    <span className={styles.bookArrow}>›</span>
-                  </Link>
+  className={styles.bookButton}
+  href={`/student/tutorPages/bookTutor/${tutor.id}`}
+>
+  <span>Book</span>
+  <span className={styles.bookArrow}>›</span>
+</Link>
                 </div>
               ))}
             </div>
