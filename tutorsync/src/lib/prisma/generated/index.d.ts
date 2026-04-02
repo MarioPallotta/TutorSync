@@ -85,7 +85,7 @@ export type TUTOR_COURSE = $Result.DefaultSelection<Prisma.$TUTOR_COURSEPayload>
  */
 export class PrismaClient<
   ClientOptions extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
-  const U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
+  U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
   ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
 > {
   [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
@@ -117,6 +117,13 @@ export class PrismaClient<
    * Disconnect from the database
    */
   $disconnect(): $Utils.JsPromise<void>;
+
+  /**
+   * Add a middleware
+   * @deprecated since 4.16.0. For new code, prefer client extensions instead.
+   * @see https://pris.ly/d/extensions
+   */
+  $use(cb: Prisma.Middleware): void
 
 /**
    * Executes a prepared raw query and returns the number of affected rows.
@@ -354,8 +361,8 @@ export namespace Prisma {
   export import Exact = $Public.Exact
 
   /**
-   * Prisma Client JS version: 6.19.2
-   * Query Engine version: c2990dca591cba766e3b7ef5d9e8a84796e47ab7
+   * Prisma Client JS version: 6.7.0
+   * Query Engine version: 3cff47a7f5d65c3ea74883f1d736e41d68ce91ed
    */
   export type PrismaVersion = {
     client: string
@@ -368,7 +375,6 @@ export namespace Prisma {
    */
 
 
-  export import Bytes = runtime.Bytes
   export import JsonObject = runtime.JsonObject
   export import JsonArray = runtime.JsonArray
   export import JsonValue = runtime.JsonValue
@@ -1539,24 +1545,16 @@ export namespace Prisma {
     /**
      * @example
      * ```
-     * // Shorthand for `emit: 'stdout'`
+     * // Defaults to stdout
      * log: ['query', 'info', 'warn', 'error']
      * 
-     * // Emit as events only
+     * // Emit as events
      * log: [
-     *   { emit: 'event', level: 'query' },
-     *   { emit: 'event', level: 'info' },
-     *   { emit: 'event', level: 'warn' }
-     *   { emit: 'event', level: 'error' }
+     *   { emit: 'stdout', level: 'query' },
+     *   { emit: 'stdout', level: 'info' },
+     *   { emit: 'stdout', level: 'warn' }
+     *   { emit: 'stdout', level: 'error' }
      * ]
-     * 
-     * / Emit as events and log to stdout
-     * og: [
-     *  { emit: 'stdout', level: 'query' },
-     *  { emit: 'stdout', level: 'info' },
-     *  { emit: 'stdout', level: 'warn' }
-     *  { emit: 'stdout', level: 'error' }
-     * 
      * ```
      * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
      */
@@ -1571,10 +1569,6 @@ export namespace Prisma {
       timeout?: number
       isolationLevel?: Prisma.TransactionIsolationLevel
     }
-    /**
-     * Instance of a Driver Adapter, e.g., like one provided by `@prisma/adapter-planetscale`
-     */
-    adapter?: runtime.SqlDriverAdapterFactory | null
     /**
      * Global configuration for omitting model fields by default.
      * 
@@ -1612,15 +1606,10 @@ export namespace Prisma {
     emit: 'stdout' | 'event'
   }
 
-  export type CheckIsLogLevel<T> = T extends LogLevel ? T : never;
-
-  export type GetLogType<T> = CheckIsLogLevel<
-    T extends LogDefinition ? T['level'] : T
-  >;
-
-  export type GetEvents<T extends any[]> = T extends Array<LogLevel | LogDefinition>
-    ? GetLogType<T[number]>
-    : never;
+  export type GetLogType<T extends LogLevel | LogDefinition> = T extends LogDefinition ? T['emit'] extends 'event' ? T['level'] : never : never
+  export type GetEvents<T extends any> = T extends Array<LogLevel | LogDefinition> ?
+    GetLogType<T[0]> | GetLogType<T[1]> | GetLogType<T[2]> | GetLogType<T[3]>
+    : never
 
   export type QueryEvent = {
     timestamp: Date
@@ -1660,6 +1649,25 @@ export namespace Prisma {
     | 'runCommandRaw'
     | 'findRaw'
     | 'groupBy'
+
+  /**
+   * These options are being passed into the middleware as "params"
+   */
+  export type MiddlewareParams = {
+    model?: ModelName
+    action: PrismaAction
+    args: any
+    dataPath: string[]
+    runInTransaction: boolean
+  }
+
+  /**
+   * The `T` type makes sure, that the `return proceed` is not forgotten in the middleware implementation
+   */
+  export type Middleware<T = any> = (
+    params: MiddlewareParams,
+    next: (params: MiddlewareParams) => $Utils.JsPromise<T>,
+  ) => $Utils.JsPromise<T>
 
   // tested in getLogLevel.test.ts
   export function getLogLevel(log: Array<LogLevel | LogDefinition>): LogLevel | undefined;
@@ -8995,24 +9003,24 @@ export namespace Prisma {
     Availability_ID: number | null
     Tutor_ID: number | null
     Date_Requested: Date | null
-    Times_Requested: Date | null
     Is_Approved: boolean | null
+    Times_Requested: Date | null
   }
 
   export type TUTOR_AVAILABILITYMaxAggregateOutputType = {
     Availability_ID: number | null
     Tutor_ID: number | null
     Date_Requested: Date | null
-    Times_Requested: Date | null
     Is_Approved: boolean | null
+    Times_Requested: Date | null
   }
 
   export type TUTOR_AVAILABILITYCountAggregateOutputType = {
     Availability_ID: number
     Tutor_ID: number
     Date_Requested: number
-    Times_Requested: number
     Is_Approved: number
+    Times_Requested: number
     _all: number
   }
 
@@ -9031,24 +9039,24 @@ export namespace Prisma {
     Availability_ID?: true
     Tutor_ID?: true
     Date_Requested?: true
-    Times_Requested?: true
     Is_Approved?: true
+    Times_Requested?: true
   }
 
   export type TUTOR_AVAILABILITYMaxAggregateInputType = {
     Availability_ID?: true
     Tutor_ID?: true
     Date_Requested?: true
-    Times_Requested?: true
     Is_Approved?: true
+    Times_Requested?: true
   }
 
   export type TUTOR_AVAILABILITYCountAggregateInputType = {
     Availability_ID?: true
     Tutor_ID?: true
     Date_Requested?: true
-    Times_Requested?: true
     Is_Approved?: true
+    Times_Requested?: true
     _all?: true
   }
 
@@ -9142,8 +9150,8 @@ export namespace Prisma {
     Availability_ID: number
     Tutor_ID: number
     Date_Requested: Date | null
-    Times_Requested: Date | null
     Is_Approved: boolean | null
+    Times_Requested: Date | null
     _count: TUTOR_AVAILABILITYCountAggregateOutputType | null
     _avg: TUTOR_AVAILABILITYAvgAggregateOutputType | null
     _sum: TUTOR_AVAILABILITYSumAggregateOutputType | null
@@ -9169,8 +9177,8 @@ export namespace Prisma {
     Availability_ID?: boolean
     Tutor_ID?: boolean
     Date_Requested?: boolean
-    Times_Requested?: boolean
     Is_Approved?: boolean
+    Times_Requested?: boolean
     SCHEDULE?: boolean | TUTOR_AVAILABILITY$SCHEDULEArgs<ExtArgs>
     Tutor?: boolean | TutorDefaultArgs<ExtArgs>
     _count?: boolean | TUTOR_AVAILABILITYCountOutputTypeDefaultArgs<ExtArgs>
@@ -9182,11 +9190,11 @@ export namespace Prisma {
     Availability_ID?: boolean
     Tutor_ID?: boolean
     Date_Requested?: boolean
-    Times_Requested?: boolean
     Is_Approved?: boolean
+    Times_Requested?: boolean
   }
 
-  export type TUTOR_AVAILABILITYOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Availability_ID" | "Tutor_ID" | "Date_Requested" | "Times_Requested" | "Is_Approved", ExtArgs["result"]["tUTOR_AVAILABILITY"]>
+  export type TUTOR_AVAILABILITYOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Availability_ID" | "Tutor_ID" | "Date_Requested" | "Is_Approved" | "Times_Requested", ExtArgs["result"]["tUTOR_AVAILABILITY"]>
   export type TUTOR_AVAILABILITYInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     SCHEDULE?: boolean | TUTOR_AVAILABILITY$SCHEDULEArgs<ExtArgs>
     Tutor?: boolean | TutorDefaultArgs<ExtArgs>
@@ -9203,8 +9211,8 @@ export namespace Prisma {
       Availability_ID: number
       Tutor_ID: number
       Date_Requested: Date | null
-      Times_Requested: Date | null
       Is_Approved: boolean | null
+      Times_Requested: Date | null
     }, ExtArgs["result"]["tUTOR_AVAILABILITY"]>
     composites: {}
   }
@@ -9579,8 +9587,8 @@ export namespace Prisma {
     readonly Availability_ID: FieldRef<"TUTOR_AVAILABILITY", 'Int'>
     readonly Tutor_ID: FieldRef<"TUTOR_AVAILABILITY", 'Int'>
     readonly Date_Requested: FieldRef<"TUTOR_AVAILABILITY", 'DateTime'>
-    readonly Times_Requested: FieldRef<"TUTOR_AVAILABILITY", 'DateTime'>
     readonly Is_Approved: FieldRef<"TUTOR_AVAILABILITY", 'Boolean'>
+    readonly Times_Requested: FieldRef<"TUTOR_AVAILABILITY", 'DateTime'>
   }
     
 
@@ -13215,8 +13223,8 @@ export namespace Prisma {
     Availability_ID: 'Availability_ID',
     Tutor_ID: 'Tutor_ID',
     Date_Requested: 'Date_Requested',
-    Times_Requested: 'Times_Requested',
-    Is_Approved: 'Is_Approved'
+    Is_Approved: 'Is_Approved',
+    Times_Requested: 'Times_Requested'
   };
 
   export type TUTOR_AVAILABILITYScalarFieldEnum = (typeof TUTOR_AVAILABILITYScalarFieldEnum)[keyof typeof TUTOR_AVAILABILITYScalarFieldEnum]
@@ -13781,8 +13789,8 @@ export namespace Prisma {
     Availability_ID?: IntFilter<"TUTOR_AVAILABILITY"> | number
     Tutor_ID?: IntFilter<"TUTOR_AVAILABILITY"> | number
     Date_Requested?: DateTimeNullableFilter<"TUTOR_AVAILABILITY"> | Date | string | null
-    Times_Requested?: DateTimeNullableFilter<"TUTOR_AVAILABILITY"> | Date | string | null
     Is_Approved?: BoolNullableFilter<"TUTOR_AVAILABILITY"> | boolean | null
+    Times_Requested?: DateTimeNullableFilter<"TUTOR_AVAILABILITY"> | Date | string | null
     SCHEDULE?: SCHEDULEListRelationFilter
     Tutor?: XOR<TutorScalarRelationFilter, TutorWhereInput>
   }
@@ -13791,8 +13799,8 @@ export namespace Prisma {
     Availability_ID?: SortOrder
     Tutor_ID?: SortOrder
     Date_Requested?: SortOrderInput | SortOrder
-    Times_Requested?: SortOrderInput | SortOrder
     Is_Approved?: SortOrderInput | SortOrder
+    Times_Requested?: SortOrderInput | SortOrder
     SCHEDULE?: SCHEDULEOrderByRelationAggregateInput
     Tutor?: TutorOrderByWithRelationInput
   }
@@ -13804,8 +13812,8 @@ export namespace Prisma {
     NOT?: TUTOR_AVAILABILITYWhereInput | TUTOR_AVAILABILITYWhereInput[]
     Tutor_ID?: IntFilter<"TUTOR_AVAILABILITY"> | number
     Date_Requested?: DateTimeNullableFilter<"TUTOR_AVAILABILITY"> | Date | string | null
-    Times_Requested?: DateTimeNullableFilter<"TUTOR_AVAILABILITY"> | Date | string | null
     Is_Approved?: BoolNullableFilter<"TUTOR_AVAILABILITY"> | boolean | null
+    Times_Requested?: DateTimeNullableFilter<"TUTOR_AVAILABILITY"> | Date | string | null
     SCHEDULE?: SCHEDULEListRelationFilter
     Tutor?: XOR<TutorScalarRelationFilter, TutorWhereInput>
   }, "Availability_ID">
@@ -13814,8 +13822,8 @@ export namespace Prisma {
     Availability_ID?: SortOrder
     Tutor_ID?: SortOrder
     Date_Requested?: SortOrderInput | SortOrder
-    Times_Requested?: SortOrderInput | SortOrder
     Is_Approved?: SortOrderInput | SortOrder
+    Times_Requested?: SortOrderInput | SortOrder
     _count?: TUTOR_AVAILABILITYCountOrderByAggregateInput
     _avg?: TUTOR_AVAILABILITYAvgOrderByAggregateInput
     _max?: TUTOR_AVAILABILITYMaxOrderByAggregateInput
@@ -13830,8 +13838,8 @@ export namespace Prisma {
     Availability_ID?: IntWithAggregatesFilter<"TUTOR_AVAILABILITY"> | number
     Tutor_ID?: IntWithAggregatesFilter<"TUTOR_AVAILABILITY"> | number
     Date_Requested?: DateTimeNullableWithAggregatesFilter<"TUTOR_AVAILABILITY"> | Date | string | null
-    Times_Requested?: DateTimeNullableWithAggregatesFilter<"TUTOR_AVAILABILITY"> | Date | string | null
     Is_Approved?: BoolNullableWithAggregatesFilter<"TUTOR_AVAILABILITY"> | boolean | null
+    Times_Requested?: DateTimeNullableWithAggregatesFilter<"TUTOR_AVAILABILITY"> | Date | string | null
   }
 
   export type TutorWhereInput = {
@@ -14403,8 +14411,8 @@ export namespace Prisma {
 
   export type TUTOR_AVAILABILITYCreateInput = {
     Date_Requested?: Date | string | null
-    Times_Requested?: Date | string | null
     Is_Approved?: boolean | null
+    Times_Requested?: Date | string | null
     SCHEDULE?: SCHEDULECreateNestedManyWithoutTUTOR_AVAILABILITYInput
     Tutor: TutorCreateNestedOneWithoutTUTOR_AVAILABILITYInput
   }
@@ -14413,15 +14421,15 @@ export namespace Prisma {
     Availability_ID?: number
     Tutor_ID: number
     Date_Requested?: Date | string | null
-    Times_Requested?: Date | string | null
     Is_Approved?: boolean | null
+    Times_Requested?: Date | string | null
     SCHEDULE?: SCHEDULEUncheckedCreateNestedManyWithoutTUTOR_AVAILABILITYInput
   }
 
   export type TUTOR_AVAILABILITYUpdateInput = {
     Date_Requested?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Times_Requested?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Is_Approved?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Times_Requested?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     SCHEDULE?: SCHEDULEUpdateManyWithoutTUTOR_AVAILABILITYNestedInput
     Tutor?: TutorUpdateOneRequiredWithoutTUTOR_AVAILABILITYNestedInput
   }
@@ -14430,8 +14438,8 @@ export namespace Prisma {
     Availability_ID?: IntFieldUpdateOperationsInput | number
     Tutor_ID?: IntFieldUpdateOperationsInput | number
     Date_Requested?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Times_Requested?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Is_Approved?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Times_Requested?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     SCHEDULE?: SCHEDULEUncheckedUpdateManyWithoutTUTOR_AVAILABILITYNestedInput
   }
 
@@ -14439,22 +14447,22 @@ export namespace Prisma {
     Availability_ID?: number
     Tutor_ID: number
     Date_Requested?: Date | string | null
-    Times_Requested?: Date | string | null
     Is_Approved?: boolean | null
+    Times_Requested?: Date | string | null
   }
 
   export type TUTOR_AVAILABILITYUpdateManyMutationInput = {
     Date_Requested?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Times_Requested?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Is_Approved?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Times_Requested?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type TUTOR_AVAILABILITYUncheckedUpdateManyInput = {
     Availability_ID?: IntFieldUpdateOperationsInput | number
     Tutor_ID?: IntFieldUpdateOperationsInput | number
     Date_Requested?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Times_Requested?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Is_Approved?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Times_Requested?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type TutorCreateInput = {
@@ -15153,8 +15161,8 @@ export namespace Prisma {
     Availability_ID?: SortOrder
     Tutor_ID?: SortOrder
     Date_Requested?: SortOrder
-    Times_Requested?: SortOrder
     Is_Approved?: SortOrder
+    Times_Requested?: SortOrder
   }
 
   export type TUTOR_AVAILABILITYAvgOrderByAggregateInput = {
@@ -15166,16 +15174,16 @@ export namespace Prisma {
     Availability_ID?: SortOrder
     Tutor_ID?: SortOrder
     Date_Requested?: SortOrder
-    Times_Requested?: SortOrder
     Is_Approved?: SortOrder
+    Times_Requested?: SortOrder
   }
 
   export type TUTOR_AVAILABILITYMinOrderByAggregateInput = {
     Availability_ID?: SortOrder
     Tutor_ID?: SortOrder
     Date_Requested?: SortOrder
-    Times_Requested?: SortOrder
     Is_Approved?: SortOrder
+    Times_Requested?: SortOrder
   }
 
   export type TUTOR_AVAILABILITYSumOrderByAggregateInput = {
@@ -17028,8 +17036,8 @@ export namespace Prisma {
 
   export type TUTOR_AVAILABILITYCreateWithoutSCHEDULEInput = {
     Date_Requested?: Date | string | null
-    Times_Requested?: Date | string | null
     Is_Approved?: boolean | null
+    Times_Requested?: Date | string | null
     Tutor: TutorCreateNestedOneWithoutTUTOR_AVAILABILITYInput
   }
 
@@ -17037,8 +17045,8 @@ export namespace Prisma {
     Availability_ID?: number
     Tutor_ID: number
     Date_Requested?: Date | string | null
-    Times_Requested?: Date | string | null
     Is_Approved?: boolean | null
+    Times_Requested?: Date | string | null
   }
 
   export type TUTOR_AVAILABILITYCreateOrConnectWithoutSCHEDULEInput = {
@@ -17079,8 +17087,8 @@ export namespace Prisma {
 
   export type TUTOR_AVAILABILITYUpdateWithoutSCHEDULEInput = {
     Date_Requested?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Times_Requested?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Is_Approved?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Times_Requested?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Tutor?: TutorUpdateOneRequiredWithoutTUTOR_AVAILABILITYNestedInput
   }
 
@@ -17088,8 +17096,8 @@ export namespace Prisma {
     Availability_ID?: IntFieldUpdateOperationsInput | number
     Tutor_ID?: IntFieldUpdateOperationsInput | number
     Date_Requested?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Times_Requested?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Is_Approved?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Times_Requested?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type USERSCreateWithoutSTUDY_BUDDY_GROUPSInput = {
@@ -17676,16 +17684,16 @@ export namespace Prisma {
 
   export type TUTOR_AVAILABILITYCreateWithoutTutorInput = {
     Date_Requested?: Date | string | null
-    Times_Requested?: Date | string | null
     Is_Approved?: boolean | null
+    Times_Requested?: Date | string | null
     SCHEDULE?: SCHEDULECreateNestedManyWithoutTUTOR_AVAILABILITYInput
   }
 
   export type TUTOR_AVAILABILITYUncheckedCreateWithoutTutorInput = {
     Availability_ID?: number
     Date_Requested?: Date | string | null
-    Times_Requested?: Date | string | null
     Is_Approved?: boolean | null
+    Times_Requested?: Date | string | null
     SCHEDULE?: SCHEDULEUncheckedCreateNestedManyWithoutTUTOR_AVAILABILITYInput
   }
 
@@ -17821,8 +17829,8 @@ export namespace Prisma {
     Availability_ID?: IntFilter<"TUTOR_AVAILABILITY"> | number
     Tutor_ID?: IntFilter<"TUTOR_AVAILABILITY"> | number
     Date_Requested?: DateTimeNullableFilter<"TUTOR_AVAILABILITY"> | Date | string | null
-    Times_Requested?: DateTimeNullableFilter<"TUTOR_AVAILABILITY"> | Date | string | null
     Is_Approved?: BoolNullableFilter<"TUTOR_AVAILABILITY"> | boolean | null
+    Times_Requested?: DateTimeNullableFilter<"TUTOR_AVAILABILITY"> | Date | string | null
   }
 
   export type TUTOR_COURSEUpsertWithWhereUniqueWithoutTutorInput = {
@@ -18436,8 +18444,8 @@ export namespace Prisma {
   export type TUTOR_AVAILABILITYCreateManyTutorInput = {
     Availability_ID?: number
     Date_Requested?: Date | string | null
-    Times_Requested?: Date | string | null
     Is_Approved?: boolean | null
+    Times_Requested?: Date | string | null
   }
 
   export type TUTOR_COURSECreateManyTutorInput = {
@@ -18529,24 +18537,24 @@ export namespace Prisma {
 
   export type TUTOR_AVAILABILITYUpdateWithoutTutorInput = {
     Date_Requested?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Times_Requested?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Is_Approved?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Times_Requested?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     SCHEDULE?: SCHEDULEUpdateManyWithoutTUTOR_AVAILABILITYNestedInput
   }
 
   export type TUTOR_AVAILABILITYUncheckedUpdateWithoutTutorInput = {
     Availability_ID?: IntFieldUpdateOperationsInput | number
     Date_Requested?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Times_Requested?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Is_Approved?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Times_Requested?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     SCHEDULE?: SCHEDULEUncheckedUpdateManyWithoutTUTOR_AVAILABILITYNestedInput
   }
 
   export type TUTOR_AVAILABILITYUncheckedUpdateManyWithoutTutorInput = {
     Availability_ID?: IntFieldUpdateOperationsInput | number
     Date_Requested?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    Times_Requested?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Is_Approved?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Times_Requested?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type TUTOR_COURSEUpdateWithoutTutorInput = {
