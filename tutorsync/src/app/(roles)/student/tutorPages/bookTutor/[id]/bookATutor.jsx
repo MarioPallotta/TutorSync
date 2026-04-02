@@ -9,7 +9,7 @@ import Link from "next/link";
 import styles from "./page.module.css";
 
 export default function BookingTutorPage({ tutor }) {
-  const { data: session } = useSession();   // ⭐ ADDED
+  const { data: session } = useSession(); // ⭐ ADDED
   const router = useRouter();
   const [selectedTime, setSelectedTime] = useState(null);
   const [selectedLocation, setSelectedLocation] = useState("");
@@ -20,7 +20,10 @@ export default function BookingTutorPage({ tutor }) {
   const timeSlots = useMemo(() => {
     if (!tutor?.Times_Requested) return [];
     const base = new Date(tutor.Times_Requested);
-    return Array.from({ length: 4 }, (_, i) => new Date(base.getTime() + i * 3600000));
+    return Array.from(
+      { length: 4 },
+      (_, i) => new Date(base.getTime() + i * 3600000),
+    );
   }, [tutor]);
 
   const formatTime = (date) =>
@@ -39,7 +42,7 @@ export default function BookingTutorPage({ tutor }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           tutorId: tutor.id,
-          studentId: session?.user?.id,   // ⭐ FIXED
+          studentId: session?.user?.id, // ⭐ FIXED
           courseTitle: tutor.course,
           sessionDate: new Date(selectedTime).toISOString().split("T")[0],
           sessionTime: selectedTime,
@@ -73,7 +76,8 @@ export default function BookingTutorPage({ tutor }) {
               <Image src="/check.svg" alt="Confirmed" width={64} height={64} />
               <h2 className={styles.confirmationTitle}>Booking Confirmed!</h2>
               <p className={styles.confirmationText}>
-                Your tutoring session with {tutor.name} in {selectedLocation} at {formatTime(selectedTime)} has been booked.
+                Your tutoring session with {tutor.name} in {selectedLocation} at{" "}
+                {formatTime(selectedTime)} has been booked.
               </p>
             </div>
           </div>
@@ -88,7 +92,10 @@ export default function BookingTutorPage({ tutor }) {
         <div className={styles.topSpacer} />
 
         <div className={styles.headerRow}>
-          <Link href="/student/tutorPages/findTutor" className={styles.backButton}>
+          <Link
+            href="/student/tutorPages/findTutor"
+            className={styles.backButton}
+          >
             <Image src="/backbutton.svg" alt="Back" width={28} height={28} />
           </Link>
 
@@ -120,7 +127,9 @@ export default function BookingTutorPage({ tutor }) {
                 <button
                   key={i}
                   className={`${styles.timeButton} ${
-                    selectedTime === slot.toISOString() ? styles.timeSelected : ""
+                    selectedTime === slot.toISOString()
+                      ? styles.timeSelected
+                      : ""
                   }`}
                   onClick={() => setSelectedTime(slot.toISOString())}
                 >

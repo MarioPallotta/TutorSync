@@ -13,7 +13,7 @@ export default function FindTutorClient({ courses }) {
   const dateInputRef = useRef(null);
 
   const subjects = useMemo(() => {
-    return ["Select a subject", ...courses.map(c => `${c.Course_Title}`)];
+    return ["Select a subject", ...courses.map((c) => `${c.Course_Title}`)];
   }, [courses]);
 
   const formattedDate = useMemo(() => {
@@ -102,7 +102,12 @@ export default function FindTutorClient({ courses }) {
               onClick={handleOpenDatePicker}
             >
               <div className={styles.dateBarLeft}>
-                <Image src="/calendar.svg" alt="Calendar" width={18} height={18} />
+                <Image
+                  src="/calendar.svg"
+                  alt="Calendar"
+                  width={18}
+                  height={18}
+                />
                 <span className={styles.dateText}>{formattedDate}</span>
               </div>
 
@@ -157,12 +162,12 @@ export default function FindTutorClient({ courses }) {
                   </div>
 
                   <Link
-  className={styles.bookButton}
-  href={`/student/tutorPages/bookTutor/${tutor.id}`}
->
-  <span>Book</span>
-  <span className={styles.bookArrow}>›</span>
-</Link>
+                    className={styles.bookButton}
+                    href={`/student/tutorPages/bookTutor/${tutor.id}`}
+                  >
+                    <span>Book</span>
+                    <span className={styles.bookArrow}>›</span>
+                  </Link>
                 </div>
               ))}
             </div>

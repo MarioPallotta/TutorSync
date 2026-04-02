@@ -16,15 +16,15 @@ export default async function Page({ params }) {
       USERS: { select: { Name: true, Email: true } },
       TUTOR_COURSE: {
         select: {
-          COURSES: { select: { Course_Title: true } }
-        }
+          COURSES: { select: { Course_Title: true } },
+        },
       },
       TUTOR_AVAILABILITY: {
         select: { Times_Requested: true },
         orderBy: { Times_Requested: "asc" },
-        take: 1
-      }
-    }
+        take: 1,
+      },
+    },
   });
 
   if (!tutor) return <div>Invalid tutor.</div>;
@@ -37,7 +37,7 @@ export default async function Page({ params }) {
         email: tutor.USERS.Email,
         course: tutor.TUTOR_COURSE[0]?.COURSES.Course_Title || "Course",
         Times_Requested: tutor.TUTOR_AVAILABILITY[0]?.Times_Requested || null,
-        bio: "Bio coming soon."
+        bio: "Bio coming soon.",
       }}
     />
   );
