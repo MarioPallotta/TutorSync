@@ -164,6 +164,12 @@
   border-color: #111111;
 }
 
+.timeSelected:hover {
+  background-color: #2f63e0;
+  color: #ffffff;
+  border-color: #111111;
+}
+
 /* LOCATION SECTION */
 .locationSection {
   width: 100%;
@@ -254,11 +260,4 @@
   font-size: 1.1rem;
   color: #555555;
   line-height: 1.4;
-}
-
-.redirectText {
-  margin: 10px 0 0;
-  font-size: 0.9rem;
-  color: #999999;
-  font-style: italic;
 }

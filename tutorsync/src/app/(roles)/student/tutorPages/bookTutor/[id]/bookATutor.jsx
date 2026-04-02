@@ -1,5 +1,6 @@
 "use client";
 
+import BottomNav from "@/components/student/BottomNav/BottomNav";
 import { useSession } from "next-auth/react";
 import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -55,7 +56,7 @@ export default function BookingTutorPage({ tutor }) {
 
       setTimeout(() => {
         router.push("/student/home");
-      }, 2000);
+      }, 3000);
     } catch (err) {
       setError(err.message);
       setIsLoading(false);
@@ -69,12 +70,11 @@ export default function BookingTutorPage({ tutor }) {
           <div className={styles.topSpacer} />
           <div className={styles.confirmationModal}>
             <div className={styles.confirmationContent}>
-              <Image src="/checkmark.svg" alt="Confirmed" width={64} height={64} />
+              <Image src="/check.svg" alt="Confirmed" width={64} height={64} />
               <h2 className={styles.confirmationTitle}>Booking Confirmed!</h2>
               <p className={styles.confirmationText}>
-                Your tutoring session with {tutor.name} has been booked.
+                Your tutoring session with {tutor.name} in {selectedLocation} at {formatTime(selectedTime)} has been booked.
               </p>
-              <p className={styles.redirectText}>Redirecting to home...</p>
             </div>
           </div>
         </section>
@@ -153,6 +153,7 @@ export default function BookingTutorPage({ tutor }) {
             {isLoading ? "Confirming..." : "Confirm Booking"}
           </button>
         </div>
+        <BottomNav />
       </section>
     </main>
   );
