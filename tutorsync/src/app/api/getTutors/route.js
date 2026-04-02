@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { getAvailableTutors } from "@/app/(roles)/student/tutorPages/findTutor/page";
 
 export async function POST(req) {
