@@ -9,7 +9,7 @@ import Link from "next/link";
 import styles from "./page.module.css";
 
 export default function BookingTutorPage({ tutor }) {
-  const { data: session } = useSession(); // ⭐ ADDED
+  const { data: session } = useSession();
   const router = useRouter();
   const [selectedTime, setSelectedTime] = useState(null);
   const [selectedLocation, setSelectedLocation] = useState("");
@@ -42,7 +42,7 @@ export default function BookingTutorPage({ tutor }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           tutorId: tutor.id,
-          studentId: session?.user?.id, // ⭐ FIXED
+          studentId: session?.user?.id,
           courseTitle: tutor.course,
           sessionDate: new Date(selectedTime).toISOString().split("T")[0],
           sessionTime: selectedTime,

@@ -1,5 +1,7 @@
-import prisma from "@/lib/prisma";
+import { PrismaClient } from "@prisma/client";
 import BookingTutorPage from "./bookATutor";
+
+const prisma = new PrismaClient();
 
 export default async function Page({ params }) {
   const { id } = await params;
