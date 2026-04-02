@@ -1,6 +1,5 @@
-export const dynamic = "force-dynamic";
-
-import { getAvailableTutors } from "@/app/(roles)/student/tutorPages/findTutor/page";
+import { PrismaClient } from "@prisma/client";
+import { getAvailableTutors } from "@/lib/getAvailableTutors";
 
 export async function POST(req) {
   try {
