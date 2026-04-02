@@ -1,6 +1,6 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/lib/prisma/generated"
+  output   = "node_modules/@prisma/client"
 }
 
 datasource db {
@@ -101,8 +101,8 @@ model TUTOR_AVAILABILITY {
   Availability_ID Int        @id @default(autoincrement())
   Tutor_ID        Int
   Date_Requested  DateTime?  @db.Date
-  Times_Requested DateTime?  @db.Timestamp(0)
   Is_Approved     Boolean?   @default(false)
+  Times_Requested DateTime?  @db.Timestamp(0)
   SCHEDULE        SCHEDULE[]
   Tutor           Tutor      @relation(fields: [Tutor_ID], references: [Tutor_ID], onDelete: Cascade, map: "TUTOR_AVAILABILITY_ibfk_1")
 
