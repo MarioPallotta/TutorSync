@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@/lib/prisma/generated";
 import BookingTutorPage from "./bookATutor";
 
 const prisma = new PrismaClient();

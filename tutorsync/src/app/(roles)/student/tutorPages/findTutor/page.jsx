@@ -1,6 +1,6 @@
 export const dynamic = "force-dynamic";
 
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@/lib/prisma/generated";
 import FindTutorClient from "./findATutor";
 
 const prisma = new PrismaClient();

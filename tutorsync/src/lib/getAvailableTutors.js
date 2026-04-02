@@ -1,5 +1,4 @@
-// lib/getAvailableTutors.js
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@/lib/prisma/generated";
 
 export async function getAvailableTutors(courseTitle, date) {
   const prisma = new PrismaClient();

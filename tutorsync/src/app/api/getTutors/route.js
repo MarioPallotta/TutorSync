@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@/lib/prisma/generated";
 import { getAvailableTutors } from "@/lib/getAvailableTutors";
 
 export async function POST(req) {
