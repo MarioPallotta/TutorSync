@@ -127,15 +127,6 @@
   line-height: 1;
 }
 
-.hiddenDateInput {
-  left: 20px;
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-  width: 0;
-  height: 0;
-}
-
 .listSection {
   padding: 10px 18px 18px;
   box-sizing: border-box;
@@ -172,6 +163,9 @@
   justify-content: space-between;
   padding: 12px 14px;
   box-sizing: border-box;
+  opacity: 0;
+  animation: fadeUp 0.55s ease forwards;
+  will-change: transform, opacity; /* iOS fix */
 }
 
 @keyframes fadeUp {
@@ -271,4 +265,93 @@
 .bookArrow {
   font-size: 1.2rem;
   line-height: 1;
+}
+
+.tutorCard {
+  will-change: transform, opacity;
+}
+
+.calendarOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.calendarModal {
+  width: 90%;
+  max-width: 360px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  animation: fadeIn 0.25s ease;
+  color: #111111;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.calendarHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.calendarHeader select {
+  cursor: pointer;
+}
+
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.calendarDay {
+  padding: 10px;
+  background: #f2f2f2;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition:
+  transform 0.2s ease, background-color 0.2s ease,
+  opacity 0.2s ease;
+}
+
+.calendarDay:hover {
+  transform: translateY(-2px);
+  opacity: 0.96;
+  background-color:rgb(208, 208, 208);
+  cursor: pointer;
+}
+
+.closeCalendar {
+  margin-top: 14px;
+  width: 100%;
+  padding: 10px;
+  background: #2f63e0;
+  color: white;
+  border-radius: 10px;
+  border: none;
+  font-size: 1rem;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.closeCalendar:hover {
+  transform: translateY(-2px);
+  opacity: 0.96;
+  cursor: pointer;
+}
+
+body.modal-open {
+  overflow: hidden;
 }
