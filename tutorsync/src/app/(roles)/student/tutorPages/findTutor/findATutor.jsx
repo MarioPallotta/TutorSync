@@ -8,15 +8,15 @@ import styles from "./page.module.css";
 
 export default function FindTutorClient({ courses }) {
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
-const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   const [showCalendar, setShowCalendar] = useState(false);
   const [selectedSubject, setSelectedSubject] = useState("Select a subject");
   const [selectedDate, setSelectedDate] = useState("");
   const [tutors, setTutors] = useState([]);
   const daysInMonth = Array.from(
-  { length: new Date(currentYear, currentMonth + 1, 0).getDate() },
-  (_, i) => i + 1
-);
+    { length: new Date(currentYear, currentMonth + 1, 0).getDate() },
+    (_, i) => i + 1,
+  );
 
   const subjects = useMemo(() => {
     return ["Select a subject", ...courses.map((c) => `${c.Course_Title}`)];
@@ -63,19 +63,16 @@ const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   }, [selectedSubject, selectedDate]);
 
   useEffect(() => {
-  if (showCalendar) {
-    document.body.classList.add("modal-open");
-  } else {
-    document.body.classList.remove("modal-open");
-  }
-}, [showCalendar]);
+    if (showCalendar) {
+      document.body.classList.add("modal-open");
+    } else {
+      document.body.classList.remove("modal-open");
+    }
+  }, [showCalendar]);
 
-
-const handleOpenDatePicker = () => {
-  setShowCalendar(true);
-};
-
-
+  const handleOpenDatePicker = () => {
+    setShowCalendar(true);
+  };
 
   return (
     <main className={styles.page}>
@@ -177,60 +174,62 @@ const handleOpenDatePicker = () => {
             </div>
           </div>
         </div>
-{showCalendar && (
-  <div className={styles.calendarOverlay}>
-    <div className={styles.calendarModal}>
-      <div className={styles.calendarHeader}>
-        <select
-          value={currentMonth}
-          onChange={(e) => setCurrentMonth(Number(e.target.value))}
-        >
-          {Array.from({ length: 12 }).map((_, i) => (
-            <option key={i} value={i}>
-              {new Date(0, i).toLocaleString("en-US", { month: "long" })}
-            </option>
-          ))}
-        </select>
+        {showCalendar && (
+          <div className={styles.calendarOverlay}>
+            <div className={styles.calendarModal}>
+              <div className={styles.calendarHeader}>
+                <select
+                  value={currentMonth}
+                  onChange={(e) => setCurrentMonth(Number(e.target.value))}
+                >
+                  {Array.from({ length: 12 }).map((_, i) => (
+                    <option key={i} value={i}>
+                      {new Date(0, i).toLocaleString("en-US", {
+                        month: "long",
+                      })}
+                    </option>
+                  ))}
+                </select>
 
-        <select
-          value={currentYear}
-          onChange={(e) => setCurrentYear(Number(e.target.value))}
-        >
-          {Array.from({ length: 5 }).map((_, i) => (
-            <option key={i} value={currentYear - 2 + i}>
-              {currentYear - 2 + i}
-            </option>
-          ))}
-        </select>
-      </div>
+                <select
+                  value={currentYear}
+                  onChange={(e) => setCurrentYear(Number(e.target.value))}
+                >
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <option key={i} value={currentYear - 2 + i}>
+                      {currentYear - 2 + i}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-      <div className={styles.calendarGrid}>
-        {daysInMonth.map((day) => (
-          <button
-            key={day}
-            className={styles.calendarDay}
-            onClick={() => {
-              const formatted = `${currentYear}-${String(
-                currentMonth + 1
-              ).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-              setSelectedDate(formatted);
-              setShowCalendar(false);
-            }}
-          >
-            {day}
-          </button>
-        ))}
-      </div>
+              <div className={styles.calendarGrid}>
+                {daysInMonth.map((day) => (
+                  <button
+                    key={day}
+                    className={styles.calendarDay}
+                    onClick={() => {
+                      const formatted = `${currentYear}-${String(
+                        currentMonth + 1,
+                      ).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+                      setSelectedDate(formatted);
+                      setShowCalendar(false);
+                    }}
+                  >
+                    {day}
+                  </button>
+                ))}
+              </div>
 
-      <button
-        className={styles.closeCalendar}
-        onClick={() => setShowCalendar(false)}
-      >
-        Close
-      </button>
-    </div>
-  </div>
-)}
+              <button
+                className={styles.closeCalendar}
+                onClick={() => setShowCalendar(false)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        )}
 
         <BottomNav />
       </section>
