@@ -37,21 +37,26 @@ export async function getAvailableTutors(courseTitle, date) {
           id: t.Tutor_ID,
           name: t.USERS.Name,
           availability: "Unavailable",
+          Times_Requested: null,
         };
       }
+
       const start = new Date(String(t.TUTOR_AVAILABILITY[0].Times_Requested));
       const end = new Date(start.getTime() + 3 * 60 * 60 * 1000);
 
       return {
         id: t.Tutor_ID,
         name: t.USERS.Name,
+        Times_Requested: start.toISOString(),
         availability:
-          start.toLocaleTimeString([], {
+          start.toLocaleTimeString("en-US", {
+            timeZone: "America/New_York",
             hour: "numeric",
             minute: "2-digit",
           }) +
           " - " +
-          end.toLocaleTimeString([], {
+          end.toLocaleTimeString("en-US", {
+            timeZone: "America/New_York",
             hour: "numeric",
             minute: "2-digit",
           }),

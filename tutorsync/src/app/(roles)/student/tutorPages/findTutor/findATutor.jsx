@@ -34,10 +34,7 @@ export default function FindTutorClient({ courses }) {
       dateObj.getMonth() === today.getMonth() &&
       dateObj.getDate() === today.getDate();
 
-    const shortDate = dateObj.toLocaleDateString("en-US", {
-      month: "short",
-      day: "numeric",
-    });
+    const shortDate = dateObj.toLocaleDateString("en-US", { timeZone: "America/New_York", month: "short", day: "numeric" });
 
     return isToday ? `Today, ${shortDate}` : shortDate;
   }, [selectedDate]);
@@ -164,7 +161,10 @@ export default function FindTutorClient({ courses }) {
 
                   <Link
                     className={styles.bookButton}
-                    href={`/student/tutorPages/bookTutor/${tutor.id}`}
+                    href={{
+                      pathname: `/student/tutorPages/bookTutor/${tutor.id}`,
+                      query: { time: tutor.Times_Requested },
+                    }}
                   >
                     <span>Book</span>
                     <span className={styles.bookArrow}>›</span>
@@ -184,9 +184,7 @@ export default function FindTutorClient({ courses }) {
                 >
                   {Array.from({ length: 12 }).map((_, i) => (
                     <option key={i} value={i}>
-                      {new Date(0, i).toLocaleString("en-US", {
-                        month: "long",
-                      })}
+                      {new Date(0, i).toLocaleString("en-US", { timeZone: "America/New_York", month: "long" })}
                     </option>
                   ))}
                 </select>
