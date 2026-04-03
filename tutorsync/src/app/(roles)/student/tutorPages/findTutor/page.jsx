@@ -54,19 +54,32 @@ export async function getAvailableTutors(courseTitle, date) {
   });
 
   return {
-    tutors: tutors.map((t) => ({
-      id: t.Tutor_ID,
-      name: t.USERS.Name,
-      availability: t.TUTOR_AVAILABILITY.length
-        ? new Date(t.TUTOR_AVAILABILITY[0].Times_Requested).toLocaleTimeString(
-            [],
-            { hour: "numeric", minute: "2-digit" },
-          ) +
+    tutors: tutors.map((t) => {
+      if (!t.TUTOR_AVAILABILITY.length) {
+        return {
+          id: t.Tutor_ID,
+          name: t.USERS.Name,
+          availability: "Unavailable",
+        };
+      }
+
+      const start = new Date(String(t.TUTOR_AVAILABILITY[0].Times_Requested));
+      const end = new Date(start.getTime() + 3 * 60 * 60 * 1000);
+
+      return {
+        id: t.Tutor_ID,
+        name: t.USERS.Name,
+        availability:
+          start.toLocaleTimeString([], {
+            hour: "numeric",
+            minute: "2-digit",
+          }) +
           " - " +
-          new Date(
-            t.TUTOR_AVAILABILITY[0].Times_Requested.getTime() + 60 * 60 * 1000,
-          ).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })
-        : "Unavailable",
-    })),
+          end.toLocaleTimeString([], {
+            hour: "numeric",
+            minute: "2-digit",
+          }),
+      };
+    }),
   };
 }

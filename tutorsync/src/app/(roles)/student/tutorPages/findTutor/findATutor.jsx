@@ -1,16 +1,22 @@
 "use client";
 
-import { useMemo, useRef, useState, useEffect } from "react";
+import { useMemo, useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import BottomNav from "@/components/student/BottomNav/BottomNav";
 import styles from "./page.module.css";
 
 export default function FindTutorClient({ courses }) {
+  const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+  const [showCalendar, setShowCalendar] = useState(false);
   const [selectedSubject, setSelectedSubject] = useState("Select a subject");
   const [selectedDate, setSelectedDate] = useState("");
   const [tutors, setTutors] = useState([]);
-  const dateInputRef = useRef(null);
+  const daysInMonth = Array.from(
+    { length: new Date(currentYear, currentMonth + 1, 0).getDate() },
+    (_, i) => i + 1,
+  );
 
   const subjects = useMemo(() => {
     return ["Select a subject", ...courses.map((c) => `${c.Course_Title}`)];
@@ -56,13 +62,16 @@ export default function FindTutorClient({ courses }) {
     fetchTutors();
   }, [selectedSubject, selectedDate]);
 
-  const handleOpenDatePicker = () => {
-    if (!dateInputRef.current) return;
-    if (typeof dateInputRef.current.showPicker === "function") {
-      dateInputRef.current.showPicker();
+  useEffect(() => {
+    if (showCalendar) {
+      document.body.classList.add("modal-open");
     } else {
-      dateInputRef.current.click();
+      document.body.classList.remove("modal-open");
     }
+  }, [showCalendar]);
+
+  const handleOpenDatePicker = () => {
+    setShowCalendar(true);
   };
 
   return (
@@ -119,14 +128,6 @@ export default function FindTutorClient({ courses }) {
                 height={18}
               />
             </button>
-
-            <input
-              type="date"
-              ref={dateInputRef}
-              className={styles.hiddenDateInput}
-              value={selectedDate}
-              onChange={(e) => setSelectedDate(e.target.value)}
-            />
           </div>
 
           <div className={styles.listSection}>
@@ -173,6 +174,62 @@ export default function FindTutorClient({ courses }) {
             </div>
           </div>
         </div>
+        {showCalendar && (
+          <div className={styles.calendarOverlay}>
+            <div className={styles.calendarModal}>
+              <div className={styles.calendarHeader}>
+                <select
+                  value={currentMonth}
+                  onChange={(e) => setCurrentMonth(Number(e.target.value))}
+                >
+                  {Array.from({ length: 12 }).map((_, i) => (
+                    <option key={i} value={i}>
+                      {new Date(0, i).toLocaleString("en-US", {
+                        month: "long",
+                      })}
+                    </option>
+                  ))}
+                </select>
+
+                <select
+                  value={currentYear}
+                  onChange={(e) => setCurrentYear(Number(e.target.value))}
+                >
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <option key={i} value={currentYear - 2 + i}>
+                      {currentYear - 2 + i}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div className={styles.calendarGrid}>
+                {daysInMonth.map((day) => (
+                  <button
+                    key={day}
+                    className={styles.calendarDay}
+                    onClick={() => {
+                      const formatted = `${currentYear}-${String(
+                        currentMonth + 1,
+                      ).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+                      setSelectedDate(formatted);
+                      setShowCalendar(false);
+                    }}
+                  >
+                    {day}
+                  </button>
+                ))}
+              </div>
+
+              <button
+                className={styles.closeCalendar}
+                onClick={() => setShowCalendar(false)}
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        )}
 
         <BottomNav />
       </section>
