@@ -1,43 +1,26 @@
-import { PrismaClient } from "@/lib/prisma/generated";
-
-const prisma = new PrismaClient();
+import prisma from "@/lib/prisma";
 
 export async function POST(req) {
   try {
-    const {
-      tutorId,
-      studentId,
-      courseTitle,
-      sessionDate,
-      sessionTime,
-      sessionLocation,
-    } = await req.json();
+    const { tutorId, studentId, courseTitle, sessionDate, sessionTime, sessionLocation } = await req.json();
 
-    if (
-      !tutorId ||
-      !studentId ||
-      !courseTitle ||
-      !sessionDate ||
-      !sessionTime ||
-      !sessionLocation
-    ) {
+    if (!tutorId || !studentId || !courseTitle || !sessionDate || !sessionTime || !sessionLocation) {
       return Response.json(
         { error: "Missing required fields" },
-        { status: 400 },
+        { status: 400 }
       );
     }
-
-    // Find the course by title to get course ID
     const course = await prisma.COURSES.findFirst({
       where: { Course_Title: courseTitle },
       select: { Course_ID: true },
     });
 
     if (!course) {
-      return Response.json({ error: "Course not found" }, { status: 404 });
+      return Response.json(
+        { error: "Course not found" },
+        { status: 404 }
+      );
     }
-
-    // Check if student is enrolled in this course
     const enrollment = await prisma.ENROLLMENTS.findFirst({
       where: {
         User_ID: studentId,
@@ -49,11 +32,9 @@ export async function POST(req) {
     if (!enrollment) {
       return Response.json(
         { error: "Student not enrolled in this course" },
-        { status: 403 },
+        { status: 403 }
       );
     }
-
-    // Create the tutoring session
     const session = await prisma.TUTORING_SESSION.create({
       data: {
         User_ID: studentId,
@@ -68,7 +49,7 @@ export async function POST(req) {
 
     return Response.json(
       { session, message: "Booking confirmed!" },
-      { status: 201 },
+      { status: 201 }
     );
   } catch (error) {
     console.error("Booking API error:", {
@@ -77,7 +58,7 @@ export async function POST(req) {
     });
     return Response.json(
       { error: "Failed to create booking", details: error.message },
-      { status: 500 },
+      { status: 500 }
     );
   }
 }

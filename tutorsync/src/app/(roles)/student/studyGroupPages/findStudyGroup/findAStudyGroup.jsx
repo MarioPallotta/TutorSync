@@ -17,14 +17,25 @@ export default function StudyGroupClient({ courses }) {
   async function fetchGroups() {
     if (selectedCourse === "Select Course") return;
 
-    const res = await fetch("/api/getStudyGroups", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ courseTitle: selectedCourse }),
-    });
+    try {
+      const res = await fetch("/api/getStudyGroups", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ courseTitle: selectedCourse }),
+      });
 
-    const data = await res.json();
-    setGroups(data.groups || []);
+      if (!res.ok) {
+        console.error("API error:", res.status, res.statusText);
+        setGroups([]);
+        return;
+      }
+
+      const data = await res.json();
+      setGroups(data.groups || []);
+    } catch (error) {
+      console.error("fetchGroups error:", error);
+      setGroups([]);
+    }
   }
 
   useEffect(() => {
@@ -73,7 +84,7 @@ export default function StudyGroupClient({ courses }) {
               <div key={group.id} className={styles.groupCard}>
                 <div className={styles.groupLeft}>
                   <p className={styles.groupCourse}>{group.course}</p>
-                  <p className={styles.groupTime}>{group.time}</p>
+                  <p className={styles.groupTime}>{group.date} at {group.time}</p>
                   <p className={styles.groupSpots}>
                     {group.members} of {group.max} spots filled
                   </p>

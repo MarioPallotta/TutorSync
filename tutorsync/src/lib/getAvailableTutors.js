@@ -1,9 +1,6 @@
-import { PrismaClient } from "@/lib/prisma/generated";
+import prisma from "@/lib/prisma";
 
 export async function getAvailableTutors(courseTitle, date) {
-  const prisma = new PrismaClient();
-
-  // Parse date string as UTC to match database @db.Date storage
   const [year, month, day] = date.split("-");
   const queryDate = new Date(Date.UTC(parseInt(year), parseInt(month) - 1, parseInt(day)));
 

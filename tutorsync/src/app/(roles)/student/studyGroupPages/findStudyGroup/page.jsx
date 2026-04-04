@@ -1,11 +1,9 @@
 export const dynamic = "force-dynamic";
 
-import { PrismaClient } from "@/lib/prisma/generated";
+import prisma from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import StudyGroupClient from "./findAStudyGroup";
-
-const prisma = new PrismaClient();
 
 export default async function StudyGroupPage() {
   const session = await getServerSession(authOptions);
@@ -15,8 +13,7 @@ export default async function StudyGroupPage() {
     return <div>You must be logged in to view study groups.</div>;
   }
 
-  // Get ONLY courses the student is enrolled in
-  const enrollments = await prisma.eNROLLMENTS.findMany({
+  const enrollments = await prisma.ENROLLMENTS.findMany({
     where: { User_ID: studentId },
     select: {
       COURSES: {
