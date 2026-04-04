@@ -164,7 +164,7 @@ export default function FindTutorClient({ courses }) {
                     className={styles.bookButton}
                     href={{
                       pathname: `/student/tutorPages/bookTutor/${tutor.id}`,
-                      query: { time: tutor.Times_Requested },
+                      query: { date: selectedDate, time: tutor.Times_Requested },
                     }}
                   >
                     <span>Book</span>

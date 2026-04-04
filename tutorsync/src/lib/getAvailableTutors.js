@@ -46,7 +46,7 @@ export async function getAvailableTutors(courseTitle, date) {
       }
 
       const start = new Date(String(t.TUTOR_AVAILABILITY[0].Times_Requested));
-      const end = new Date(start.getTime() + 3 * 60 * 60 * 1000);
+      const end = new Date(start.getTime() + 4 * 60 * 60 * 1000);
 
       return {
         id: t.Tutor_ID,
