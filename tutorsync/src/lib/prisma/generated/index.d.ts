@@ -39,6 +39,11 @@ export type SCHEDULE = $Result.DefaultSelection<Prisma.$SCHEDULEPayload>
  */
 export type STUDY_BUDDY_GROUPS = $Result.DefaultSelection<Prisma.$STUDY_BUDDY_GROUPSPayload>
 /**
+ * Model STUDY_GROUP_MEMBERS
+ * 
+ */
+export type STUDY_GROUP_MEMBERS = $Result.DefaultSelection<Prisma.$STUDY_GROUP_MEMBERSPayload>
+/**
  * Model Student
  * 
  */
@@ -243,6 +248,16 @@ export class PrismaClient<
     * ```
     */
   get sTUDY_BUDDY_GROUPS(): Prisma.STUDY_BUDDY_GROUPSDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.sTUDY_GROUP_MEMBERS`: Exposes CRUD operations for the **STUDY_GROUP_MEMBERS** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more STUDY_GROUP_MEMBERS
+    * const sTUDY_GROUP_MEMBERS = await prisma.sTUDY_GROUP_MEMBERS.findMany()
+    * ```
+    */
+  get sTUDY_GROUP_MEMBERS(): Prisma.STUDY_GROUP_MEMBERSDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.student`: Exposes CRUD operations for the **Student** model.
@@ -748,6 +763,7 @@ export namespace Prisma {
     ENROLLMENTS: 'ENROLLMENTS',
     SCHEDULE: 'SCHEDULE',
     STUDY_BUDDY_GROUPS: 'STUDY_BUDDY_GROUPS',
+    STUDY_GROUP_MEMBERS: 'STUDY_GROUP_MEMBERS',
     Student: 'Student',
     TUTORING_SESSION: 'TUTORING_SESSION',
     TUTOR_AVAILABILITY: 'TUTOR_AVAILABILITY',
@@ -772,7 +788,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "admin" | "cOURSES" | "eNROLLMENTS" | "sCHEDULE" | "sTUDY_BUDDY_GROUPS" | "student" | "tUTORING_SESSION" | "tUTOR_AVAILABILITY" | "tutor" | "uSERS" | "tUTOR_COURSE"
+      modelProps: "admin" | "cOURSES" | "eNROLLMENTS" | "sCHEDULE" | "sTUDY_BUDDY_GROUPS" | "sTUDY_GROUP_MEMBERS" | "student" | "tUTORING_SESSION" | "tUTOR_AVAILABILITY" | "tutor" | "uSERS" | "tUTOR_COURSE"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1103,6 +1119,72 @@ export namespace Prisma {
           count: {
             args: Prisma.STUDY_BUDDY_GROUPSCountArgs<ExtArgs>
             result: $Utils.Optional<STUDY_BUDDY_GROUPSCountAggregateOutputType> | number
+          }
+        }
+      }
+      STUDY_GROUP_MEMBERS: {
+        payload: Prisma.$STUDY_GROUP_MEMBERSPayload<ExtArgs>
+        fields: Prisma.STUDY_GROUP_MEMBERSFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.STUDY_GROUP_MEMBERSFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$STUDY_GROUP_MEMBERSPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.STUDY_GROUP_MEMBERSFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$STUDY_GROUP_MEMBERSPayload>
+          }
+          findFirst: {
+            args: Prisma.STUDY_GROUP_MEMBERSFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$STUDY_GROUP_MEMBERSPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.STUDY_GROUP_MEMBERSFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$STUDY_GROUP_MEMBERSPayload>
+          }
+          findMany: {
+            args: Prisma.STUDY_GROUP_MEMBERSFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$STUDY_GROUP_MEMBERSPayload>[]
+          }
+          create: {
+            args: Prisma.STUDY_GROUP_MEMBERSCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$STUDY_GROUP_MEMBERSPayload>
+          }
+          createMany: {
+            args: Prisma.STUDY_GROUP_MEMBERSCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.STUDY_GROUP_MEMBERSDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$STUDY_GROUP_MEMBERSPayload>
+          }
+          update: {
+            args: Prisma.STUDY_GROUP_MEMBERSUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$STUDY_GROUP_MEMBERSPayload>
+          }
+          deleteMany: {
+            args: Prisma.STUDY_GROUP_MEMBERSDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.STUDY_GROUP_MEMBERSUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.STUDY_GROUP_MEMBERSUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$STUDY_GROUP_MEMBERSPayload>
+          }
+          aggregate: {
+            args: Prisma.STUDY_GROUP_MEMBERSAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSTUDY_GROUP_MEMBERS>
+          }
+          groupBy: {
+            args: Prisma.STUDY_GROUP_MEMBERSGroupByArgs<ExtArgs>
+            result: $Utils.Optional<STUDY_GROUP_MEMBERSGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.STUDY_GROUP_MEMBERSCountArgs<ExtArgs>
+            result: $Utils.Optional<STUDY_GROUP_MEMBERSCountAggregateOutputType> | number
           }
         }
       }
@@ -1591,6 +1673,7 @@ export namespace Prisma {
     eNROLLMENTS?: ENROLLMENTSOmit
     sCHEDULE?: SCHEDULEOmit
     sTUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSOmit
+    sTUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSOmit
     student?: StudentOmit
     tUTORING_SESSION?: TUTORING_SESSIONOmit
     tUTOR_AVAILABILITY?: TUTOR_AVAILABILITYOmit
@@ -1763,11 +1846,13 @@ export namespace Prisma {
 
   export type ENROLLMENTSCountOutputType = {
     STUDY_BUDDY_GROUPS: number
+    STUDY_GROUP_MEMBERS: number
     TUTORING_SESSION: number
   }
 
   export type ENROLLMENTSCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     STUDY_BUDDY_GROUPS?: boolean | ENROLLMENTSCountOutputTypeCountSTUDY_BUDDY_GROUPSArgs
+    STUDY_GROUP_MEMBERS?: boolean | ENROLLMENTSCountOutputTypeCountSTUDY_GROUP_MEMBERSArgs
     TUTORING_SESSION?: boolean | ENROLLMENTSCountOutputTypeCountTUTORING_SESSIONArgs
   }
 
@@ -1792,8 +1877,46 @@ export namespace Prisma {
   /**
    * ENROLLMENTSCountOutputType without action
    */
+  export type ENROLLMENTSCountOutputTypeCountSTUDY_GROUP_MEMBERSArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: STUDY_GROUP_MEMBERSWhereInput
+  }
+
+  /**
+   * ENROLLMENTSCountOutputType without action
+   */
   export type ENROLLMENTSCountOutputTypeCountTUTORING_SESSIONArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TUTORING_SESSIONWhereInput
+  }
+
+
+  /**
+   * Count Type STUDY_BUDDY_GROUPSCountOutputType
+   */
+
+  export type STUDY_BUDDY_GROUPSCountOutputType = {
+    STUDY_GROUP_MEMBERS: number
+  }
+
+  export type STUDY_BUDDY_GROUPSCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    STUDY_GROUP_MEMBERS?: boolean | STUDY_BUDDY_GROUPSCountOutputTypeCountSTUDY_GROUP_MEMBERSArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * STUDY_BUDDY_GROUPSCountOutputType without action
+   */
+  export type STUDY_BUDDY_GROUPSCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the STUDY_BUDDY_GROUPSCountOutputType
+     */
+    select?: STUDY_BUDDY_GROUPSCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * STUDY_BUDDY_GROUPSCountOutputType without action
+   */
+  export type STUDY_BUDDY_GROUPSCountOutputTypeCountSTUDY_GROUP_MEMBERSArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: STUDY_GROUP_MEMBERSWhereInput
   }
 
 
@@ -1902,12 +2025,14 @@ export namespace Prisma {
   export type USERSCountOutputType = {
     ENROLLMENTS: number
     STUDY_BUDDY_GROUPS: number
+    STUDY_GROUP_MEMBERS: number
     TUTORING_SESSION: number
   }
 
   export type USERSCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ENROLLMENTS?: boolean | USERSCountOutputTypeCountENROLLMENTSArgs
     STUDY_BUDDY_GROUPS?: boolean | USERSCountOutputTypeCountSTUDY_BUDDY_GROUPSArgs
+    STUDY_GROUP_MEMBERS?: boolean | USERSCountOutputTypeCountSTUDY_GROUP_MEMBERSArgs
     TUTORING_SESSION?: boolean | USERSCountOutputTypeCountTUTORING_SESSIONArgs
   }
 
@@ -1934,6 +2059,13 @@ export namespace Prisma {
    */
   export type USERSCountOutputTypeCountSTUDY_BUDDY_GROUPSArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: STUDY_BUDDY_GROUPSWhereInput
+  }
+
+  /**
+   * USERSCountOutputType without action
+   */
+  export type USERSCountOutputTypeCountSTUDY_GROUP_MEMBERSArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: STUDY_GROUP_MEMBERSWhereInput
   }
 
   /**
@@ -4170,6 +4302,7 @@ export namespace Prisma {
     Tutor?: boolean | ENROLLMENTS$TutorArgs<ExtArgs>
     COURSES?: boolean | COURSESDefaultArgs<ExtArgs>
     STUDY_BUDDY_GROUPS?: boolean | ENROLLMENTS$STUDY_BUDDY_GROUPSArgs<ExtArgs>
+    STUDY_GROUP_MEMBERS?: boolean | ENROLLMENTS$STUDY_GROUP_MEMBERSArgs<ExtArgs>
     TUTORING_SESSION?: boolean | ENROLLMENTS$TUTORING_SESSIONArgs<ExtArgs>
     _count?: boolean | ENROLLMENTSCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["eNROLLMENTS"]>
@@ -4190,6 +4323,7 @@ export namespace Prisma {
     Tutor?: boolean | ENROLLMENTS$TutorArgs<ExtArgs>
     COURSES?: boolean | COURSESDefaultArgs<ExtArgs>
     STUDY_BUDDY_GROUPS?: boolean | ENROLLMENTS$STUDY_BUDDY_GROUPSArgs<ExtArgs>
+    STUDY_GROUP_MEMBERS?: boolean | ENROLLMENTS$STUDY_GROUP_MEMBERSArgs<ExtArgs>
     TUTORING_SESSION?: boolean | ENROLLMENTS$TUTORING_SESSIONArgs<ExtArgs>
     _count?: boolean | ENROLLMENTSCountOutputTypeDefaultArgs<ExtArgs>
   }
@@ -4201,6 +4335,7 @@ export namespace Prisma {
       Tutor: Prisma.$TutorPayload<ExtArgs> | null
       COURSES: Prisma.$COURSESPayload<ExtArgs>
       STUDY_BUDDY_GROUPS: Prisma.$STUDY_BUDDY_GROUPSPayload<ExtArgs>[]
+      STUDY_GROUP_MEMBERS: Prisma.$STUDY_GROUP_MEMBERSPayload<ExtArgs>[]
       TUTORING_SESSION: Prisma.$TUTORING_SESSIONPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -4553,6 +4688,7 @@ export namespace Prisma {
     Tutor<T extends ENROLLMENTS$TutorArgs<ExtArgs> = {}>(args?: Subset<T, ENROLLMENTS$TutorArgs<ExtArgs>>): Prisma__TutorClient<$Result.GetResult<Prisma.$TutorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     COURSES<T extends COURSESDefaultArgs<ExtArgs> = {}>(args?: Subset<T, COURSESDefaultArgs<ExtArgs>>): Prisma__COURSESClient<$Result.GetResult<Prisma.$COURSESPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     STUDY_BUDDY_GROUPS<T extends ENROLLMENTS$STUDY_BUDDY_GROUPSArgs<ExtArgs> = {}>(args?: Subset<T, ENROLLMENTS$STUDY_BUDDY_GROUPSArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$STUDY_BUDDY_GROUPSPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    STUDY_GROUP_MEMBERS<T extends ENROLLMENTS$STUDY_GROUP_MEMBERSArgs<ExtArgs> = {}>(args?: Subset<T, ENROLLMENTS$STUDY_GROUP_MEMBERSArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$STUDY_GROUP_MEMBERSPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     TUTORING_SESSION<T extends ENROLLMENTS$TUTORING_SESSIONArgs<ExtArgs> = {}>(args?: Subset<T, ENROLLMENTS$TUTORING_SESSIONArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TUTORING_SESSIONPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -4971,6 +5107,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: STUDY_BUDDY_GROUPSScalarFieldEnum | STUDY_BUDDY_GROUPSScalarFieldEnum[]
+  }
+
+  /**
+   * ENROLLMENTS.STUDY_GROUP_MEMBERS
+   */
+  export type ENROLLMENTS$STUDY_GROUP_MEMBERSArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the STUDY_GROUP_MEMBERS
+     */
+    select?: STUDY_GROUP_MEMBERSSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the STUDY_GROUP_MEMBERS
+     */
+    omit?: STUDY_GROUP_MEMBERSOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: STUDY_GROUP_MEMBERSInclude<ExtArgs> | null
+    where?: STUDY_GROUP_MEMBERSWhereInput
+    orderBy?: STUDY_GROUP_MEMBERSOrderByWithRelationInput | STUDY_GROUP_MEMBERSOrderByWithRelationInput[]
+    cursor?: STUDY_GROUP_MEMBERSWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: STUDY_GROUP_MEMBERSScalarFieldEnum | STUDY_GROUP_MEMBERSScalarFieldEnum[]
   }
 
   /**
@@ -6013,6 +6173,8 @@ export namespace Prisma {
     User_ID: number | null
     Tutor_ID: number | null
     Enrollment_ID: number | null
+    Group_Date: Date | null
+    Group_Time: Date | null
     Is_Accepted: boolean | null
     Has_Tutor: boolean | null
     Group_Members: number | null
@@ -6023,6 +6185,8 @@ export namespace Prisma {
     User_ID: number | null
     Tutor_ID: number | null
     Enrollment_ID: number | null
+    Group_Date: Date | null
+    Group_Time: Date | null
     Is_Accepted: boolean | null
     Has_Tutor: boolean | null
     Group_Members: number | null
@@ -6033,6 +6197,8 @@ export namespace Prisma {
     User_ID: number
     Tutor_ID: number
     Enrollment_ID: number
+    Group_Date: number
+    Group_Time: number
     Is_Accepted: number
     Has_Tutor: number
     Group_Members: number
@@ -6061,6 +6227,8 @@ export namespace Prisma {
     User_ID?: true
     Tutor_ID?: true
     Enrollment_ID?: true
+    Group_Date?: true
+    Group_Time?: true
     Is_Accepted?: true
     Has_Tutor?: true
     Group_Members?: true
@@ -6071,6 +6239,8 @@ export namespace Prisma {
     User_ID?: true
     Tutor_ID?: true
     Enrollment_ID?: true
+    Group_Date?: true
+    Group_Time?: true
     Is_Accepted?: true
     Has_Tutor?: true
     Group_Members?: true
@@ -6081,6 +6251,8 @@ export namespace Prisma {
     User_ID?: true
     Tutor_ID?: true
     Enrollment_ID?: true
+    Group_Date?: true
+    Group_Time?: true
     Is_Accepted?: true
     Has_Tutor?: true
     Group_Members?: true
@@ -6178,6 +6350,8 @@ export namespace Prisma {
     User_ID: number
     Tutor_ID: number | null
     Enrollment_ID: number
+    Group_Date: Date | null
+    Group_Time: Date | null
     Is_Accepted: boolean | null
     Has_Tutor: boolean | null
     Group_Members: number | null
@@ -6207,12 +6381,16 @@ export namespace Prisma {
     User_ID?: boolean
     Tutor_ID?: boolean
     Enrollment_ID?: boolean
+    Group_Date?: boolean
+    Group_Time?: boolean
     Is_Accepted?: boolean
     Has_Tutor?: boolean
     Group_Members?: boolean
     USERS?: boolean | USERSDefaultArgs<ExtArgs>
     Tutor?: boolean | STUDY_BUDDY_GROUPS$TutorArgs<ExtArgs>
     ENROLLMENTS?: boolean | ENROLLMENTSDefaultArgs<ExtArgs>
+    STUDY_GROUP_MEMBERS?: boolean | STUDY_BUDDY_GROUPS$STUDY_GROUP_MEMBERSArgs<ExtArgs>
+    _count?: boolean | STUDY_BUDDY_GROUPSCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["sTUDY_BUDDY_GROUPS"]>
 
 
@@ -6222,16 +6400,20 @@ export namespace Prisma {
     User_ID?: boolean
     Tutor_ID?: boolean
     Enrollment_ID?: boolean
+    Group_Date?: boolean
+    Group_Time?: boolean
     Is_Accepted?: boolean
     Has_Tutor?: boolean
     Group_Members?: boolean
   }
 
-  export type STUDY_BUDDY_GROUPSOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Group_ID" | "User_ID" | "Tutor_ID" | "Enrollment_ID" | "Is_Accepted" | "Has_Tutor" | "Group_Members", ExtArgs["result"]["sTUDY_BUDDY_GROUPS"]>
+  export type STUDY_BUDDY_GROUPSOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Group_ID" | "User_ID" | "Tutor_ID" | "Enrollment_ID" | "Group_Date" | "Group_Time" | "Is_Accepted" | "Has_Tutor" | "Group_Members", ExtArgs["result"]["sTUDY_BUDDY_GROUPS"]>
   export type STUDY_BUDDY_GROUPSInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     USERS?: boolean | USERSDefaultArgs<ExtArgs>
     Tutor?: boolean | STUDY_BUDDY_GROUPS$TutorArgs<ExtArgs>
     ENROLLMENTS?: boolean | ENROLLMENTSDefaultArgs<ExtArgs>
+    STUDY_GROUP_MEMBERS?: boolean | STUDY_BUDDY_GROUPS$STUDY_GROUP_MEMBERSArgs<ExtArgs>
+    _count?: boolean | STUDY_BUDDY_GROUPSCountOutputTypeDefaultArgs<ExtArgs>
   }
 
   export type $STUDY_BUDDY_GROUPSPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6240,12 +6422,15 @@ export namespace Prisma {
       USERS: Prisma.$USERSPayload<ExtArgs>
       Tutor: Prisma.$TutorPayload<ExtArgs> | null
       ENROLLMENTS: Prisma.$ENROLLMENTSPayload<ExtArgs>
+      STUDY_GROUP_MEMBERS: Prisma.$STUDY_GROUP_MEMBERSPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       Group_ID: number
       User_ID: number
       Tutor_ID: number | null
       Enrollment_ID: number
+      Group_Date: Date | null
+      Group_Time: Date | null
       Is_Accepted: boolean | null
       Has_Tutor: boolean | null
       Group_Members: number | null
@@ -6592,6 +6777,7 @@ export namespace Prisma {
     USERS<T extends USERSDefaultArgs<ExtArgs> = {}>(args?: Subset<T, USERSDefaultArgs<ExtArgs>>): Prisma__USERSClient<$Result.GetResult<Prisma.$USERSPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     Tutor<T extends STUDY_BUDDY_GROUPS$TutorArgs<ExtArgs> = {}>(args?: Subset<T, STUDY_BUDDY_GROUPS$TutorArgs<ExtArgs>>): Prisma__TutorClient<$Result.GetResult<Prisma.$TutorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     ENROLLMENTS<T extends ENROLLMENTSDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ENROLLMENTSDefaultArgs<ExtArgs>>): Prisma__ENROLLMENTSClient<$Result.GetResult<Prisma.$ENROLLMENTSPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    STUDY_GROUP_MEMBERS<T extends STUDY_BUDDY_GROUPS$STUDY_GROUP_MEMBERSArgs<ExtArgs> = {}>(args?: Subset<T, STUDY_BUDDY_GROUPS$STUDY_GROUP_MEMBERSArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$STUDY_GROUP_MEMBERSPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6625,6 +6811,8 @@ export namespace Prisma {
     readonly User_ID: FieldRef<"STUDY_BUDDY_GROUPS", 'Int'>
     readonly Tutor_ID: FieldRef<"STUDY_BUDDY_GROUPS", 'Int'>
     readonly Enrollment_ID: FieldRef<"STUDY_BUDDY_GROUPS", 'Int'>
+    readonly Group_Date: FieldRef<"STUDY_BUDDY_GROUPS", 'DateTime'>
+    readonly Group_Time: FieldRef<"STUDY_BUDDY_GROUPS", 'DateTime'>
     readonly Is_Accepted: FieldRef<"STUDY_BUDDY_GROUPS", 'Boolean'>
     readonly Has_Tutor: FieldRef<"STUDY_BUDDY_GROUPS", 'Boolean'>
     readonly Group_Members: FieldRef<"STUDY_BUDDY_GROUPS", 'Int'>
@@ -6990,6 +7178,30 @@ export namespace Prisma {
   }
 
   /**
+   * STUDY_BUDDY_GROUPS.STUDY_GROUP_MEMBERS
+   */
+  export type STUDY_BUDDY_GROUPS$STUDY_GROUP_MEMBERSArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the STUDY_GROUP_MEMBERS
+     */
+    select?: STUDY_GROUP_MEMBERSSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the STUDY_GROUP_MEMBERS
+     */
+    omit?: STUDY_GROUP_MEMBERSOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: STUDY_GROUP_MEMBERSInclude<ExtArgs> | null
+    where?: STUDY_GROUP_MEMBERSWhereInput
+    orderBy?: STUDY_GROUP_MEMBERSOrderByWithRelationInput | STUDY_GROUP_MEMBERSOrderByWithRelationInput[]
+    cursor?: STUDY_GROUP_MEMBERSWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: STUDY_GROUP_MEMBERSScalarFieldEnum | STUDY_GROUP_MEMBERSScalarFieldEnum[]
+  }
+
+  /**
    * STUDY_BUDDY_GROUPS without action
    */
   export type STUDY_BUDDY_GROUPSDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7005,6 +7217,978 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: STUDY_BUDDY_GROUPSInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model STUDY_GROUP_MEMBERS
+   */
+
+  export type AggregateSTUDY_GROUP_MEMBERS = {
+    _count: STUDY_GROUP_MEMBERSCountAggregateOutputType | null
+    _avg: STUDY_GROUP_MEMBERSAvgAggregateOutputType | null
+    _sum: STUDY_GROUP_MEMBERSSumAggregateOutputType | null
+    _min: STUDY_GROUP_MEMBERSMinAggregateOutputType | null
+    _max: STUDY_GROUP_MEMBERSMaxAggregateOutputType | null
+  }
+
+  export type STUDY_GROUP_MEMBERSAvgAggregateOutputType = {
+    Member_ID: number | null
+    Group_ID: number | null
+    User_ID: number | null
+    Enrollment_ID: number | null
+  }
+
+  export type STUDY_GROUP_MEMBERSSumAggregateOutputType = {
+    Member_ID: number | null
+    Group_ID: number | null
+    User_ID: number | null
+    Enrollment_ID: number | null
+  }
+
+  export type STUDY_GROUP_MEMBERSMinAggregateOutputType = {
+    Member_ID: number | null
+    Group_ID: number | null
+    User_ID: number | null
+    Enrollment_ID: number | null
+  }
+
+  export type STUDY_GROUP_MEMBERSMaxAggregateOutputType = {
+    Member_ID: number | null
+    Group_ID: number | null
+    User_ID: number | null
+    Enrollment_ID: number | null
+  }
+
+  export type STUDY_GROUP_MEMBERSCountAggregateOutputType = {
+    Member_ID: number
+    Group_ID: number
+    User_ID: number
+    Enrollment_ID: number
+    _all: number
+  }
+
+
+  export type STUDY_GROUP_MEMBERSAvgAggregateInputType = {
+    Member_ID?: true
+    Group_ID?: true
+    User_ID?: true
+    Enrollment_ID?: true
+  }
+
+  export type STUDY_GROUP_MEMBERSSumAggregateInputType = {
+    Member_ID?: true
+    Group_ID?: true
+    User_ID?: true
+    Enrollment_ID?: true
+  }
+
+  export type STUDY_GROUP_MEMBERSMinAggregateInputType = {
+    Member_ID?: true
+    Group_ID?: true
+    User_ID?: true
+    Enrollment_ID?: true
+  }
+
+  export type STUDY_GROUP_MEMBERSMaxAggregateInputType = {
+    Member_ID?: true
+    Group_ID?: true
+    User_ID?: true
+    Enrollment_ID?: true
+  }
+
+  export type STUDY_GROUP_MEMBERSCountAggregateInputType = {
+    Member_ID?: true
+    Group_ID?: true
+    User_ID?: true
+    Enrollment_ID?: true
+    _all?: true
+  }
+
+  export type STUDY_GROUP_MEMBERSAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which STUDY_GROUP_MEMBERS to aggregate.
+     */
+    where?: STUDY_GROUP_MEMBERSWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of STUDY_GROUP_MEMBERS to fetch.
+     */
+    orderBy?: STUDY_GROUP_MEMBERSOrderByWithRelationInput | STUDY_GROUP_MEMBERSOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: STUDY_GROUP_MEMBERSWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` STUDY_GROUP_MEMBERS from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` STUDY_GROUP_MEMBERS.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned STUDY_GROUP_MEMBERS
+    **/
+    _count?: true | STUDY_GROUP_MEMBERSCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: STUDY_GROUP_MEMBERSAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: STUDY_GROUP_MEMBERSSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: STUDY_GROUP_MEMBERSMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: STUDY_GROUP_MEMBERSMaxAggregateInputType
+  }
+
+  export type GetSTUDY_GROUP_MEMBERSAggregateType<T extends STUDY_GROUP_MEMBERSAggregateArgs> = {
+        [P in keyof T & keyof AggregateSTUDY_GROUP_MEMBERS]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSTUDY_GROUP_MEMBERS[P]>
+      : GetScalarType<T[P], AggregateSTUDY_GROUP_MEMBERS[P]>
+  }
+
+
+
+
+  export type STUDY_GROUP_MEMBERSGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: STUDY_GROUP_MEMBERSWhereInput
+    orderBy?: STUDY_GROUP_MEMBERSOrderByWithAggregationInput | STUDY_GROUP_MEMBERSOrderByWithAggregationInput[]
+    by: STUDY_GROUP_MEMBERSScalarFieldEnum[] | STUDY_GROUP_MEMBERSScalarFieldEnum
+    having?: STUDY_GROUP_MEMBERSScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: STUDY_GROUP_MEMBERSCountAggregateInputType | true
+    _avg?: STUDY_GROUP_MEMBERSAvgAggregateInputType
+    _sum?: STUDY_GROUP_MEMBERSSumAggregateInputType
+    _min?: STUDY_GROUP_MEMBERSMinAggregateInputType
+    _max?: STUDY_GROUP_MEMBERSMaxAggregateInputType
+  }
+
+  export type STUDY_GROUP_MEMBERSGroupByOutputType = {
+    Member_ID: number
+    Group_ID: number
+    User_ID: number
+    Enrollment_ID: number
+    _count: STUDY_GROUP_MEMBERSCountAggregateOutputType | null
+    _avg: STUDY_GROUP_MEMBERSAvgAggregateOutputType | null
+    _sum: STUDY_GROUP_MEMBERSSumAggregateOutputType | null
+    _min: STUDY_GROUP_MEMBERSMinAggregateOutputType | null
+    _max: STUDY_GROUP_MEMBERSMaxAggregateOutputType | null
+  }
+
+  type GetSTUDY_GROUP_MEMBERSGroupByPayload<T extends STUDY_GROUP_MEMBERSGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<STUDY_GROUP_MEMBERSGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof STUDY_GROUP_MEMBERSGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], STUDY_GROUP_MEMBERSGroupByOutputType[P]>
+            : GetScalarType<T[P], STUDY_GROUP_MEMBERSGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type STUDY_GROUP_MEMBERSSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    Member_ID?: boolean
+    Group_ID?: boolean
+    User_ID?: boolean
+    Enrollment_ID?: boolean
+    STUDY_BUDDY_GROUPS?: boolean | STUDY_BUDDY_GROUPSDefaultArgs<ExtArgs>
+    USERS?: boolean | USERSDefaultArgs<ExtArgs>
+    ENROLLMENTS?: boolean | ENROLLMENTSDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["sTUDY_GROUP_MEMBERS"]>
+
+
+
+  export type STUDY_GROUP_MEMBERSSelectScalar = {
+    Member_ID?: boolean
+    Group_ID?: boolean
+    User_ID?: boolean
+    Enrollment_ID?: boolean
+  }
+
+  export type STUDY_GROUP_MEMBERSOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Member_ID" | "Group_ID" | "User_ID" | "Enrollment_ID", ExtArgs["result"]["sTUDY_GROUP_MEMBERS"]>
+  export type STUDY_GROUP_MEMBERSInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    STUDY_BUDDY_GROUPS?: boolean | STUDY_BUDDY_GROUPSDefaultArgs<ExtArgs>
+    USERS?: boolean | USERSDefaultArgs<ExtArgs>
+    ENROLLMENTS?: boolean | ENROLLMENTSDefaultArgs<ExtArgs>
+  }
+
+  export type $STUDY_GROUP_MEMBERSPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "STUDY_GROUP_MEMBERS"
+    objects: {
+      STUDY_BUDDY_GROUPS: Prisma.$STUDY_BUDDY_GROUPSPayload<ExtArgs>
+      USERS: Prisma.$USERSPayload<ExtArgs>
+      ENROLLMENTS: Prisma.$ENROLLMENTSPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      Member_ID: number
+      Group_ID: number
+      User_ID: number
+      Enrollment_ID: number
+    }, ExtArgs["result"]["sTUDY_GROUP_MEMBERS"]>
+    composites: {}
+  }
+
+  type STUDY_GROUP_MEMBERSGetPayload<S extends boolean | null | undefined | STUDY_GROUP_MEMBERSDefaultArgs> = $Result.GetResult<Prisma.$STUDY_GROUP_MEMBERSPayload, S>
+
+  type STUDY_GROUP_MEMBERSCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<STUDY_GROUP_MEMBERSFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: STUDY_GROUP_MEMBERSCountAggregateInputType | true
+    }
+
+  export interface STUDY_GROUP_MEMBERSDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['STUDY_GROUP_MEMBERS'], meta: { name: 'STUDY_GROUP_MEMBERS' } }
+    /**
+     * Find zero or one STUDY_GROUP_MEMBERS that matches the filter.
+     * @param {STUDY_GROUP_MEMBERSFindUniqueArgs} args - Arguments to find a STUDY_GROUP_MEMBERS
+     * @example
+     * // Get one STUDY_GROUP_MEMBERS
+     * const sTUDY_GROUP_MEMBERS = await prisma.sTUDY_GROUP_MEMBERS.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends STUDY_GROUP_MEMBERSFindUniqueArgs>(args: SelectSubset<T, STUDY_GROUP_MEMBERSFindUniqueArgs<ExtArgs>>): Prisma__STUDY_GROUP_MEMBERSClient<$Result.GetResult<Prisma.$STUDY_GROUP_MEMBERSPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one STUDY_GROUP_MEMBERS that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {STUDY_GROUP_MEMBERSFindUniqueOrThrowArgs} args - Arguments to find a STUDY_GROUP_MEMBERS
+     * @example
+     * // Get one STUDY_GROUP_MEMBERS
+     * const sTUDY_GROUP_MEMBERS = await prisma.sTUDY_GROUP_MEMBERS.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends STUDY_GROUP_MEMBERSFindUniqueOrThrowArgs>(args: SelectSubset<T, STUDY_GROUP_MEMBERSFindUniqueOrThrowArgs<ExtArgs>>): Prisma__STUDY_GROUP_MEMBERSClient<$Result.GetResult<Prisma.$STUDY_GROUP_MEMBERSPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first STUDY_GROUP_MEMBERS that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {STUDY_GROUP_MEMBERSFindFirstArgs} args - Arguments to find a STUDY_GROUP_MEMBERS
+     * @example
+     * // Get one STUDY_GROUP_MEMBERS
+     * const sTUDY_GROUP_MEMBERS = await prisma.sTUDY_GROUP_MEMBERS.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends STUDY_GROUP_MEMBERSFindFirstArgs>(args?: SelectSubset<T, STUDY_GROUP_MEMBERSFindFirstArgs<ExtArgs>>): Prisma__STUDY_GROUP_MEMBERSClient<$Result.GetResult<Prisma.$STUDY_GROUP_MEMBERSPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first STUDY_GROUP_MEMBERS that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {STUDY_GROUP_MEMBERSFindFirstOrThrowArgs} args - Arguments to find a STUDY_GROUP_MEMBERS
+     * @example
+     * // Get one STUDY_GROUP_MEMBERS
+     * const sTUDY_GROUP_MEMBERS = await prisma.sTUDY_GROUP_MEMBERS.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends STUDY_GROUP_MEMBERSFindFirstOrThrowArgs>(args?: SelectSubset<T, STUDY_GROUP_MEMBERSFindFirstOrThrowArgs<ExtArgs>>): Prisma__STUDY_GROUP_MEMBERSClient<$Result.GetResult<Prisma.$STUDY_GROUP_MEMBERSPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more STUDY_GROUP_MEMBERS that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {STUDY_GROUP_MEMBERSFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all STUDY_GROUP_MEMBERS
+     * const sTUDY_GROUP_MEMBERS = await prisma.sTUDY_GROUP_MEMBERS.findMany()
+     * 
+     * // Get first 10 STUDY_GROUP_MEMBERS
+     * const sTUDY_GROUP_MEMBERS = await prisma.sTUDY_GROUP_MEMBERS.findMany({ take: 10 })
+     * 
+     * // Only select the `Member_ID`
+     * const sTUDY_GROUP_MEMBERSWithMember_IDOnly = await prisma.sTUDY_GROUP_MEMBERS.findMany({ select: { Member_ID: true } })
+     * 
+     */
+    findMany<T extends STUDY_GROUP_MEMBERSFindManyArgs>(args?: SelectSubset<T, STUDY_GROUP_MEMBERSFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$STUDY_GROUP_MEMBERSPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a STUDY_GROUP_MEMBERS.
+     * @param {STUDY_GROUP_MEMBERSCreateArgs} args - Arguments to create a STUDY_GROUP_MEMBERS.
+     * @example
+     * // Create one STUDY_GROUP_MEMBERS
+     * const STUDY_GROUP_MEMBERS = await prisma.sTUDY_GROUP_MEMBERS.create({
+     *   data: {
+     *     // ... data to create a STUDY_GROUP_MEMBERS
+     *   }
+     * })
+     * 
+     */
+    create<T extends STUDY_GROUP_MEMBERSCreateArgs>(args: SelectSubset<T, STUDY_GROUP_MEMBERSCreateArgs<ExtArgs>>): Prisma__STUDY_GROUP_MEMBERSClient<$Result.GetResult<Prisma.$STUDY_GROUP_MEMBERSPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many STUDY_GROUP_MEMBERS.
+     * @param {STUDY_GROUP_MEMBERSCreateManyArgs} args - Arguments to create many STUDY_GROUP_MEMBERS.
+     * @example
+     * // Create many STUDY_GROUP_MEMBERS
+     * const sTUDY_GROUP_MEMBERS = await prisma.sTUDY_GROUP_MEMBERS.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends STUDY_GROUP_MEMBERSCreateManyArgs>(args?: SelectSubset<T, STUDY_GROUP_MEMBERSCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a STUDY_GROUP_MEMBERS.
+     * @param {STUDY_GROUP_MEMBERSDeleteArgs} args - Arguments to delete one STUDY_GROUP_MEMBERS.
+     * @example
+     * // Delete one STUDY_GROUP_MEMBERS
+     * const STUDY_GROUP_MEMBERS = await prisma.sTUDY_GROUP_MEMBERS.delete({
+     *   where: {
+     *     // ... filter to delete one STUDY_GROUP_MEMBERS
+     *   }
+     * })
+     * 
+     */
+    delete<T extends STUDY_GROUP_MEMBERSDeleteArgs>(args: SelectSubset<T, STUDY_GROUP_MEMBERSDeleteArgs<ExtArgs>>): Prisma__STUDY_GROUP_MEMBERSClient<$Result.GetResult<Prisma.$STUDY_GROUP_MEMBERSPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one STUDY_GROUP_MEMBERS.
+     * @param {STUDY_GROUP_MEMBERSUpdateArgs} args - Arguments to update one STUDY_GROUP_MEMBERS.
+     * @example
+     * // Update one STUDY_GROUP_MEMBERS
+     * const sTUDY_GROUP_MEMBERS = await prisma.sTUDY_GROUP_MEMBERS.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends STUDY_GROUP_MEMBERSUpdateArgs>(args: SelectSubset<T, STUDY_GROUP_MEMBERSUpdateArgs<ExtArgs>>): Prisma__STUDY_GROUP_MEMBERSClient<$Result.GetResult<Prisma.$STUDY_GROUP_MEMBERSPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more STUDY_GROUP_MEMBERS.
+     * @param {STUDY_GROUP_MEMBERSDeleteManyArgs} args - Arguments to filter STUDY_GROUP_MEMBERS to delete.
+     * @example
+     * // Delete a few STUDY_GROUP_MEMBERS
+     * const { count } = await prisma.sTUDY_GROUP_MEMBERS.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends STUDY_GROUP_MEMBERSDeleteManyArgs>(args?: SelectSubset<T, STUDY_GROUP_MEMBERSDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more STUDY_GROUP_MEMBERS.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {STUDY_GROUP_MEMBERSUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many STUDY_GROUP_MEMBERS
+     * const sTUDY_GROUP_MEMBERS = await prisma.sTUDY_GROUP_MEMBERS.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends STUDY_GROUP_MEMBERSUpdateManyArgs>(args: SelectSubset<T, STUDY_GROUP_MEMBERSUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one STUDY_GROUP_MEMBERS.
+     * @param {STUDY_GROUP_MEMBERSUpsertArgs} args - Arguments to update or create a STUDY_GROUP_MEMBERS.
+     * @example
+     * // Update or create a STUDY_GROUP_MEMBERS
+     * const sTUDY_GROUP_MEMBERS = await prisma.sTUDY_GROUP_MEMBERS.upsert({
+     *   create: {
+     *     // ... data to create a STUDY_GROUP_MEMBERS
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the STUDY_GROUP_MEMBERS we want to update
+     *   }
+     * })
+     */
+    upsert<T extends STUDY_GROUP_MEMBERSUpsertArgs>(args: SelectSubset<T, STUDY_GROUP_MEMBERSUpsertArgs<ExtArgs>>): Prisma__STUDY_GROUP_MEMBERSClient<$Result.GetResult<Prisma.$STUDY_GROUP_MEMBERSPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of STUDY_GROUP_MEMBERS.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {STUDY_GROUP_MEMBERSCountArgs} args - Arguments to filter STUDY_GROUP_MEMBERS to count.
+     * @example
+     * // Count the number of STUDY_GROUP_MEMBERS
+     * const count = await prisma.sTUDY_GROUP_MEMBERS.count({
+     *   where: {
+     *     // ... the filter for the STUDY_GROUP_MEMBERS we want to count
+     *   }
+     * })
+    **/
+    count<T extends STUDY_GROUP_MEMBERSCountArgs>(
+      args?: Subset<T, STUDY_GROUP_MEMBERSCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], STUDY_GROUP_MEMBERSCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a STUDY_GROUP_MEMBERS.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {STUDY_GROUP_MEMBERSAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends STUDY_GROUP_MEMBERSAggregateArgs>(args: Subset<T, STUDY_GROUP_MEMBERSAggregateArgs>): Prisma.PrismaPromise<GetSTUDY_GROUP_MEMBERSAggregateType<T>>
+
+    /**
+     * Group by STUDY_GROUP_MEMBERS.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {STUDY_GROUP_MEMBERSGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends STUDY_GROUP_MEMBERSGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: STUDY_GROUP_MEMBERSGroupByArgs['orderBy'] }
+        : { orderBy?: STUDY_GROUP_MEMBERSGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, STUDY_GROUP_MEMBERSGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSTUDY_GROUP_MEMBERSGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the STUDY_GROUP_MEMBERS model
+   */
+  readonly fields: STUDY_GROUP_MEMBERSFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for STUDY_GROUP_MEMBERS.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__STUDY_GROUP_MEMBERSClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    STUDY_BUDDY_GROUPS<T extends STUDY_BUDDY_GROUPSDefaultArgs<ExtArgs> = {}>(args?: Subset<T, STUDY_BUDDY_GROUPSDefaultArgs<ExtArgs>>): Prisma__STUDY_BUDDY_GROUPSClient<$Result.GetResult<Prisma.$STUDY_BUDDY_GROUPSPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    USERS<T extends USERSDefaultArgs<ExtArgs> = {}>(args?: Subset<T, USERSDefaultArgs<ExtArgs>>): Prisma__USERSClient<$Result.GetResult<Prisma.$USERSPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    ENROLLMENTS<T extends ENROLLMENTSDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ENROLLMENTSDefaultArgs<ExtArgs>>): Prisma__ENROLLMENTSClient<$Result.GetResult<Prisma.$ENROLLMENTSPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the STUDY_GROUP_MEMBERS model
+   */
+  interface STUDY_GROUP_MEMBERSFieldRefs {
+    readonly Member_ID: FieldRef<"STUDY_GROUP_MEMBERS", 'Int'>
+    readonly Group_ID: FieldRef<"STUDY_GROUP_MEMBERS", 'Int'>
+    readonly User_ID: FieldRef<"STUDY_GROUP_MEMBERS", 'Int'>
+    readonly Enrollment_ID: FieldRef<"STUDY_GROUP_MEMBERS", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * STUDY_GROUP_MEMBERS findUnique
+   */
+  export type STUDY_GROUP_MEMBERSFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the STUDY_GROUP_MEMBERS
+     */
+    select?: STUDY_GROUP_MEMBERSSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the STUDY_GROUP_MEMBERS
+     */
+    omit?: STUDY_GROUP_MEMBERSOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: STUDY_GROUP_MEMBERSInclude<ExtArgs> | null
+    /**
+     * Filter, which STUDY_GROUP_MEMBERS to fetch.
+     */
+    where: STUDY_GROUP_MEMBERSWhereUniqueInput
+  }
+
+  /**
+   * STUDY_GROUP_MEMBERS findUniqueOrThrow
+   */
+  export type STUDY_GROUP_MEMBERSFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the STUDY_GROUP_MEMBERS
+     */
+    select?: STUDY_GROUP_MEMBERSSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the STUDY_GROUP_MEMBERS
+     */
+    omit?: STUDY_GROUP_MEMBERSOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: STUDY_GROUP_MEMBERSInclude<ExtArgs> | null
+    /**
+     * Filter, which STUDY_GROUP_MEMBERS to fetch.
+     */
+    where: STUDY_GROUP_MEMBERSWhereUniqueInput
+  }
+
+  /**
+   * STUDY_GROUP_MEMBERS findFirst
+   */
+  export type STUDY_GROUP_MEMBERSFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the STUDY_GROUP_MEMBERS
+     */
+    select?: STUDY_GROUP_MEMBERSSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the STUDY_GROUP_MEMBERS
+     */
+    omit?: STUDY_GROUP_MEMBERSOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: STUDY_GROUP_MEMBERSInclude<ExtArgs> | null
+    /**
+     * Filter, which STUDY_GROUP_MEMBERS to fetch.
+     */
+    where?: STUDY_GROUP_MEMBERSWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of STUDY_GROUP_MEMBERS to fetch.
+     */
+    orderBy?: STUDY_GROUP_MEMBERSOrderByWithRelationInput | STUDY_GROUP_MEMBERSOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for STUDY_GROUP_MEMBERS.
+     */
+    cursor?: STUDY_GROUP_MEMBERSWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` STUDY_GROUP_MEMBERS from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` STUDY_GROUP_MEMBERS.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of STUDY_GROUP_MEMBERS.
+     */
+    distinct?: STUDY_GROUP_MEMBERSScalarFieldEnum | STUDY_GROUP_MEMBERSScalarFieldEnum[]
+  }
+
+  /**
+   * STUDY_GROUP_MEMBERS findFirstOrThrow
+   */
+  export type STUDY_GROUP_MEMBERSFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the STUDY_GROUP_MEMBERS
+     */
+    select?: STUDY_GROUP_MEMBERSSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the STUDY_GROUP_MEMBERS
+     */
+    omit?: STUDY_GROUP_MEMBERSOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: STUDY_GROUP_MEMBERSInclude<ExtArgs> | null
+    /**
+     * Filter, which STUDY_GROUP_MEMBERS to fetch.
+     */
+    where?: STUDY_GROUP_MEMBERSWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of STUDY_GROUP_MEMBERS to fetch.
+     */
+    orderBy?: STUDY_GROUP_MEMBERSOrderByWithRelationInput | STUDY_GROUP_MEMBERSOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for STUDY_GROUP_MEMBERS.
+     */
+    cursor?: STUDY_GROUP_MEMBERSWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` STUDY_GROUP_MEMBERS from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` STUDY_GROUP_MEMBERS.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of STUDY_GROUP_MEMBERS.
+     */
+    distinct?: STUDY_GROUP_MEMBERSScalarFieldEnum | STUDY_GROUP_MEMBERSScalarFieldEnum[]
+  }
+
+  /**
+   * STUDY_GROUP_MEMBERS findMany
+   */
+  export type STUDY_GROUP_MEMBERSFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the STUDY_GROUP_MEMBERS
+     */
+    select?: STUDY_GROUP_MEMBERSSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the STUDY_GROUP_MEMBERS
+     */
+    omit?: STUDY_GROUP_MEMBERSOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: STUDY_GROUP_MEMBERSInclude<ExtArgs> | null
+    /**
+     * Filter, which STUDY_GROUP_MEMBERS to fetch.
+     */
+    where?: STUDY_GROUP_MEMBERSWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of STUDY_GROUP_MEMBERS to fetch.
+     */
+    orderBy?: STUDY_GROUP_MEMBERSOrderByWithRelationInput | STUDY_GROUP_MEMBERSOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing STUDY_GROUP_MEMBERS.
+     */
+    cursor?: STUDY_GROUP_MEMBERSWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` STUDY_GROUP_MEMBERS from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` STUDY_GROUP_MEMBERS.
+     */
+    skip?: number
+    distinct?: STUDY_GROUP_MEMBERSScalarFieldEnum | STUDY_GROUP_MEMBERSScalarFieldEnum[]
+  }
+
+  /**
+   * STUDY_GROUP_MEMBERS create
+   */
+  export type STUDY_GROUP_MEMBERSCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the STUDY_GROUP_MEMBERS
+     */
+    select?: STUDY_GROUP_MEMBERSSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the STUDY_GROUP_MEMBERS
+     */
+    omit?: STUDY_GROUP_MEMBERSOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: STUDY_GROUP_MEMBERSInclude<ExtArgs> | null
+    /**
+     * The data needed to create a STUDY_GROUP_MEMBERS.
+     */
+    data: XOR<STUDY_GROUP_MEMBERSCreateInput, STUDY_GROUP_MEMBERSUncheckedCreateInput>
+  }
+
+  /**
+   * STUDY_GROUP_MEMBERS createMany
+   */
+  export type STUDY_GROUP_MEMBERSCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many STUDY_GROUP_MEMBERS.
+     */
+    data: STUDY_GROUP_MEMBERSCreateManyInput | STUDY_GROUP_MEMBERSCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * STUDY_GROUP_MEMBERS update
+   */
+  export type STUDY_GROUP_MEMBERSUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the STUDY_GROUP_MEMBERS
+     */
+    select?: STUDY_GROUP_MEMBERSSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the STUDY_GROUP_MEMBERS
+     */
+    omit?: STUDY_GROUP_MEMBERSOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: STUDY_GROUP_MEMBERSInclude<ExtArgs> | null
+    /**
+     * The data needed to update a STUDY_GROUP_MEMBERS.
+     */
+    data: XOR<STUDY_GROUP_MEMBERSUpdateInput, STUDY_GROUP_MEMBERSUncheckedUpdateInput>
+    /**
+     * Choose, which STUDY_GROUP_MEMBERS to update.
+     */
+    where: STUDY_GROUP_MEMBERSWhereUniqueInput
+  }
+
+  /**
+   * STUDY_GROUP_MEMBERS updateMany
+   */
+  export type STUDY_GROUP_MEMBERSUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update STUDY_GROUP_MEMBERS.
+     */
+    data: XOR<STUDY_GROUP_MEMBERSUpdateManyMutationInput, STUDY_GROUP_MEMBERSUncheckedUpdateManyInput>
+    /**
+     * Filter which STUDY_GROUP_MEMBERS to update
+     */
+    where?: STUDY_GROUP_MEMBERSWhereInput
+    /**
+     * Limit how many STUDY_GROUP_MEMBERS to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * STUDY_GROUP_MEMBERS upsert
+   */
+  export type STUDY_GROUP_MEMBERSUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the STUDY_GROUP_MEMBERS
+     */
+    select?: STUDY_GROUP_MEMBERSSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the STUDY_GROUP_MEMBERS
+     */
+    omit?: STUDY_GROUP_MEMBERSOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: STUDY_GROUP_MEMBERSInclude<ExtArgs> | null
+    /**
+     * The filter to search for the STUDY_GROUP_MEMBERS to update in case it exists.
+     */
+    where: STUDY_GROUP_MEMBERSWhereUniqueInput
+    /**
+     * In case the STUDY_GROUP_MEMBERS found by the `where` argument doesn't exist, create a new STUDY_GROUP_MEMBERS with this data.
+     */
+    create: XOR<STUDY_GROUP_MEMBERSCreateInput, STUDY_GROUP_MEMBERSUncheckedCreateInput>
+    /**
+     * In case the STUDY_GROUP_MEMBERS was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<STUDY_GROUP_MEMBERSUpdateInput, STUDY_GROUP_MEMBERSUncheckedUpdateInput>
+  }
+
+  /**
+   * STUDY_GROUP_MEMBERS delete
+   */
+  export type STUDY_GROUP_MEMBERSDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the STUDY_GROUP_MEMBERS
+     */
+    select?: STUDY_GROUP_MEMBERSSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the STUDY_GROUP_MEMBERS
+     */
+    omit?: STUDY_GROUP_MEMBERSOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: STUDY_GROUP_MEMBERSInclude<ExtArgs> | null
+    /**
+     * Filter which STUDY_GROUP_MEMBERS to delete.
+     */
+    where: STUDY_GROUP_MEMBERSWhereUniqueInput
+  }
+
+  /**
+   * STUDY_GROUP_MEMBERS deleteMany
+   */
+  export type STUDY_GROUP_MEMBERSDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which STUDY_GROUP_MEMBERS to delete
+     */
+    where?: STUDY_GROUP_MEMBERSWhereInput
+    /**
+     * Limit how many STUDY_GROUP_MEMBERS to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * STUDY_GROUP_MEMBERS without action
+   */
+  export type STUDY_GROUP_MEMBERSDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the STUDY_GROUP_MEMBERS
+     */
+    select?: STUDY_GROUP_MEMBERSSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the STUDY_GROUP_MEMBERS
+     */
+    omit?: STUDY_GROUP_MEMBERSOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: STUDY_GROUP_MEMBERSInclude<ExtArgs> | null
   }
 
 
@@ -11259,6 +12443,7 @@ export namespace Prisma {
     Admin?: boolean | USERS$AdminArgs<ExtArgs>
     ENROLLMENTS?: boolean | USERS$ENROLLMENTSArgs<ExtArgs>
     STUDY_BUDDY_GROUPS?: boolean | USERS$STUDY_BUDDY_GROUPSArgs<ExtArgs>
+    STUDY_GROUP_MEMBERS?: boolean | USERS$STUDY_GROUP_MEMBERSArgs<ExtArgs>
     Student?: boolean | USERS$StudentArgs<ExtArgs>
     TUTORING_SESSION?: boolean | USERS$TUTORING_SESSIONArgs<ExtArgs>
     Tutor?: boolean | USERS$TutorArgs<ExtArgs>
@@ -11281,6 +12466,7 @@ export namespace Prisma {
     Admin?: boolean | USERS$AdminArgs<ExtArgs>
     ENROLLMENTS?: boolean | USERS$ENROLLMENTSArgs<ExtArgs>
     STUDY_BUDDY_GROUPS?: boolean | USERS$STUDY_BUDDY_GROUPSArgs<ExtArgs>
+    STUDY_GROUP_MEMBERS?: boolean | USERS$STUDY_GROUP_MEMBERSArgs<ExtArgs>
     Student?: boolean | USERS$StudentArgs<ExtArgs>
     TUTORING_SESSION?: boolean | USERS$TUTORING_SESSIONArgs<ExtArgs>
     Tutor?: boolean | USERS$TutorArgs<ExtArgs>
@@ -11293,6 +12479,7 @@ export namespace Prisma {
       Admin: Prisma.$AdminPayload<ExtArgs> | null
       ENROLLMENTS: Prisma.$ENROLLMENTSPayload<ExtArgs>[]
       STUDY_BUDDY_GROUPS: Prisma.$STUDY_BUDDY_GROUPSPayload<ExtArgs>[]
+      STUDY_GROUP_MEMBERS: Prisma.$STUDY_GROUP_MEMBERSPayload<ExtArgs>[]
       Student: Prisma.$StudentPayload<ExtArgs> | null
       TUTORING_SESSION: Prisma.$TUTORING_SESSIONPayload<ExtArgs>[]
       Tutor: Prisma.$TutorPayload<ExtArgs> | null
@@ -11647,6 +12834,7 @@ export namespace Prisma {
     Admin<T extends USERS$AdminArgs<ExtArgs> = {}>(args?: Subset<T, USERS$AdminArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     ENROLLMENTS<T extends USERS$ENROLLMENTSArgs<ExtArgs> = {}>(args?: Subset<T, USERS$ENROLLMENTSArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ENROLLMENTSPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     STUDY_BUDDY_GROUPS<T extends USERS$STUDY_BUDDY_GROUPSArgs<ExtArgs> = {}>(args?: Subset<T, USERS$STUDY_BUDDY_GROUPSArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$STUDY_BUDDY_GROUPSPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    STUDY_GROUP_MEMBERS<T extends USERS$STUDY_GROUP_MEMBERSArgs<ExtArgs> = {}>(args?: Subset<T, USERS$STUDY_GROUP_MEMBERSArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$STUDY_GROUP_MEMBERSPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Student<T extends USERS$StudentArgs<ExtArgs> = {}>(args?: Subset<T, USERS$StudentArgs<ExtArgs>>): Prisma__StudentClient<$Result.GetResult<Prisma.$StudentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     TUTORING_SESSION<T extends USERS$TUTORING_SESSIONArgs<ExtArgs> = {}>(args?: Subset<T, USERS$TUTORING_SESSIONArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TUTORING_SESSIONPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     Tutor<T extends USERS$TutorArgs<ExtArgs> = {}>(args?: Subset<T, USERS$TutorArgs<ExtArgs>>): Prisma__TutorClient<$Result.GetResult<Prisma.$TutorPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
@@ -12092,6 +13280,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: STUDY_BUDDY_GROUPSScalarFieldEnum | STUDY_BUDDY_GROUPSScalarFieldEnum[]
+  }
+
+  /**
+   * USERS.STUDY_GROUP_MEMBERS
+   */
+  export type USERS$STUDY_GROUP_MEMBERSArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the STUDY_GROUP_MEMBERS
+     */
+    select?: STUDY_GROUP_MEMBERSSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the STUDY_GROUP_MEMBERS
+     */
+    omit?: STUDY_GROUP_MEMBERSOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: STUDY_GROUP_MEMBERSInclude<ExtArgs> | null
+    where?: STUDY_GROUP_MEMBERSWhereInput
+    orderBy?: STUDY_GROUP_MEMBERSOrderByWithRelationInput | STUDY_GROUP_MEMBERSOrderByWithRelationInput[]
+    cursor?: STUDY_GROUP_MEMBERSWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: STUDY_GROUP_MEMBERSScalarFieldEnum | STUDY_GROUP_MEMBERSScalarFieldEnum[]
   }
 
   /**
@@ -13188,12 +14400,24 @@ export namespace Prisma {
     User_ID: 'User_ID',
     Tutor_ID: 'Tutor_ID',
     Enrollment_ID: 'Enrollment_ID',
+    Group_Date: 'Group_Date',
+    Group_Time: 'Group_Time',
     Is_Accepted: 'Is_Accepted',
     Has_Tutor: 'Has_Tutor',
     Group_Members: 'Group_Members'
   };
 
   export type STUDY_BUDDY_GROUPSScalarFieldEnum = (typeof STUDY_BUDDY_GROUPSScalarFieldEnum)[keyof typeof STUDY_BUDDY_GROUPSScalarFieldEnum]
+
+
+  export const STUDY_GROUP_MEMBERSScalarFieldEnum: {
+    Member_ID: 'Member_ID',
+    Group_ID: 'Group_ID',
+    User_ID: 'User_ID',
+    Enrollment_ID: 'Enrollment_ID'
+  };
+
+  export type STUDY_GROUP_MEMBERSScalarFieldEnum = (typeof STUDY_GROUP_MEMBERSScalarFieldEnum)[keyof typeof STUDY_GROUP_MEMBERSScalarFieldEnum]
 
 
   export const StudentScalarFieldEnum: {
@@ -13472,6 +14696,7 @@ export namespace Prisma {
     Tutor?: XOR<TutorNullableScalarRelationFilter, TutorWhereInput> | null
     COURSES?: XOR<COURSESScalarRelationFilter, COURSESWhereInput>
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSListRelationFilter
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSListRelationFilter
     TUTORING_SESSION?: TUTORING_SESSIONListRelationFilter
   }
 
@@ -13485,6 +14710,7 @@ export namespace Prisma {
     Tutor?: TutorOrderByWithRelationInput
     COURSES?: COURSESOrderByWithRelationInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSOrderByRelationAggregateInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSOrderByRelationAggregateInput
     TUTORING_SESSION?: TUTORING_SESSIONOrderByRelationAggregateInput
   }
 
@@ -13501,6 +14727,7 @@ export namespace Prisma {
     Tutor?: XOR<TutorNullableScalarRelationFilter, TutorWhereInput> | null
     COURSES?: XOR<COURSESScalarRelationFilter, COURSESWhereInput>
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSListRelationFilter
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSListRelationFilter
     TUTORING_SESSION?: TUTORING_SESSIONListRelationFilter
   }, "Enrollment_ID">
 
@@ -13591,12 +14818,15 @@ export namespace Prisma {
     User_ID?: IntFilter<"STUDY_BUDDY_GROUPS"> | number
     Tutor_ID?: IntNullableFilter<"STUDY_BUDDY_GROUPS"> | number | null
     Enrollment_ID?: IntFilter<"STUDY_BUDDY_GROUPS"> | number
+    Group_Date?: DateTimeNullableFilter<"STUDY_BUDDY_GROUPS"> | Date | string | null
+    Group_Time?: DateTimeNullableFilter<"STUDY_BUDDY_GROUPS"> | Date | string | null
     Is_Accepted?: BoolNullableFilter<"STUDY_BUDDY_GROUPS"> | boolean | null
     Has_Tutor?: BoolNullableFilter<"STUDY_BUDDY_GROUPS"> | boolean | null
     Group_Members?: IntNullableFilter<"STUDY_BUDDY_GROUPS"> | number | null
     USERS?: XOR<USERSScalarRelationFilter, USERSWhereInput>
     Tutor?: XOR<TutorNullableScalarRelationFilter, TutorWhereInput> | null
     ENROLLMENTS?: XOR<ENROLLMENTSScalarRelationFilter, ENROLLMENTSWhereInput>
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSListRelationFilter
   }
 
   export type STUDY_BUDDY_GROUPSOrderByWithRelationInput = {
@@ -13604,12 +14834,15 @@ export namespace Prisma {
     User_ID?: SortOrder
     Tutor_ID?: SortOrderInput | SortOrder
     Enrollment_ID?: SortOrder
+    Group_Date?: SortOrderInput | SortOrder
+    Group_Time?: SortOrderInput | SortOrder
     Is_Accepted?: SortOrderInput | SortOrder
     Has_Tutor?: SortOrderInput | SortOrder
     Group_Members?: SortOrderInput | SortOrder
     USERS?: USERSOrderByWithRelationInput
     Tutor?: TutorOrderByWithRelationInput
     ENROLLMENTS?: ENROLLMENTSOrderByWithRelationInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSOrderByRelationAggregateInput
   }
 
   export type STUDY_BUDDY_GROUPSWhereUniqueInput = Prisma.AtLeast<{
@@ -13620,12 +14853,15 @@ export namespace Prisma {
     User_ID?: IntFilter<"STUDY_BUDDY_GROUPS"> | number
     Tutor_ID?: IntNullableFilter<"STUDY_BUDDY_GROUPS"> | number | null
     Enrollment_ID?: IntFilter<"STUDY_BUDDY_GROUPS"> | number
+    Group_Date?: DateTimeNullableFilter<"STUDY_BUDDY_GROUPS"> | Date | string | null
+    Group_Time?: DateTimeNullableFilter<"STUDY_BUDDY_GROUPS"> | Date | string | null
     Is_Accepted?: BoolNullableFilter<"STUDY_BUDDY_GROUPS"> | boolean | null
     Has_Tutor?: BoolNullableFilter<"STUDY_BUDDY_GROUPS"> | boolean | null
     Group_Members?: IntNullableFilter<"STUDY_BUDDY_GROUPS"> | number | null
     USERS?: XOR<USERSScalarRelationFilter, USERSWhereInput>
     Tutor?: XOR<TutorNullableScalarRelationFilter, TutorWhereInput> | null
     ENROLLMENTS?: XOR<ENROLLMENTSScalarRelationFilter, ENROLLMENTSWhereInput>
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSListRelationFilter
   }, "Group_ID">
 
   export type STUDY_BUDDY_GROUPSOrderByWithAggregationInput = {
@@ -13633,6 +14869,8 @@ export namespace Prisma {
     User_ID?: SortOrder
     Tutor_ID?: SortOrderInput | SortOrder
     Enrollment_ID?: SortOrder
+    Group_Date?: SortOrderInput | SortOrder
+    Group_Time?: SortOrderInput | SortOrder
     Is_Accepted?: SortOrderInput | SortOrder
     Has_Tutor?: SortOrderInput | SortOrder
     Group_Members?: SortOrderInput | SortOrder
@@ -13651,9 +14889,70 @@ export namespace Prisma {
     User_ID?: IntWithAggregatesFilter<"STUDY_BUDDY_GROUPS"> | number
     Tutor_ID?: IntNullableWithAggregatesFilter<"STUDY_BUDDY_GROUPS"> | number | null
     Enrollment_ID?: IntWithAggregatesFilter<"STUDY_BUDDY_GROUPS"> | number
+    Group_Date?: DateTimeNullableWithAggregatesFilter<"STUDY_BUDDY_GROUPS"> | Date | string | null
+    Group_Time?: DateTimeNullableWithAggregatesFilter<"STUDY_BUDDY_GROUPS"> | Date | string | null
     Is_Accepted?: BoolNullableWithAggregatesFilter<"STUDY_BUDDY_GROUPS"> | boolean | null
     Has_Tutor?: BoolNullableWithAggregatesFilter<"STUDY_BUDDY_GROUPS"> | boolean | null
     Group_Members?: IntNullableWithAggregatesFilter<"STUDY_BUDDY_GROUPS"> | number | null
+  }
+
+  export type STUDY_GROUP_MEMBERSWhereInput = {
+    AND?: STUDY_GROUP_MEMBERSWhereInput | STUDY_GROUP_MEMBERSWhereInput[]
+    OR?: STUDY_GROUP_MEMBERSWhereInput[]
+    NOT?: STUDY_GROUP_MEMBERSWhereInput | STUDY_GROUP_MEMBERSWhereInput[]
+    Member_ID?: IntFilter<"STUDY_GROUP_MEMBERS"> | number
+    Group_ID?: IntFilter<"STUDY_GROUP_MEMBERS"> | number
+    User_ID?: IntFilter<"STUDY_GROUP_MEMBERS"> | number
+    Enrollment_ID?: IntFilter<"STUDY_GROUP_MEMBERS"> | number
+    STUDY_BUDDY_GROUPS?: XOR<STUDY_BUDDY_GROUPSScalarRelationFilter, STUDY_BUDDY_GROUPSWhereInput>
+    USERS?: XOR<USERSScalarRelationFilter, USERSWhereInput>
+    ENROLLMENTS?: XOR<ENROLLMENTSScalarRelationFilter, ENROLLMENTSWhereInput>
+  }
+
+  export type STUDY_GROUP_MEMBERSOrderByWithRelationInput = {
+    Member_ID?: SortOrder
+    Group_ID?: SortOrder
+    User_ID?: SortOrder
+    Enrollment_ID?: SortOrder
+    STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSOrderByWithRelationInput
+    USERS?: USERSOrderByWithRelationInput
+    ENROLLMENTS?: ENROLLMENTSOrderByWithRelationInput
+  }
+
+  export type STUDY_GROUP_MEMBERSWhereUniqueInput = Prisma.AtLeast<{
+    Member_ID?: number
+    Group_ID_User_ID?: STUDY_GROUP_MEMBERSGroup_IDUser_IDCompoundUniqueInput
+    AND?: STUDY_GROUP_MEMBERSWhereInput | STUDY_GROUP_MEMBERSWhereInput[]
+    OR?: STUDY_GROUP_MEMBERSWhereInput[]
+    NOT?: STUDY_GROUP_MEMBERSWhereInput | STUDY_GROUP_MEMBERSWhereInput[]
+    Group_ID?: IntFilter<"STUDY_GROUP_MEMBERS"> | number
+    User_ID?: IntFilter<"STUDY_GROUP_MEMBERS"> | number
+    Enrollment_ID?: IntFilter<"STUDY_GROUP_MEMBERS"> | number
+    STUDY_BUDDY_GROUPS?: XOR<STUDY_BUDDY_GROUPSScalarRelationFilter, STUDY_BUDDY_GROUPSWhereInput>
+    USERS?: XOR<USERSScalarRelationFilter, USERSWhereInput>
+    ENROLLMENTS?: XOR<ENROLLMENTSScalarRelationFilter, ENROLLMENTSWhereInput>
+  }, "Member_ID" | "Group_ID_User_ID">
+
+  export type STUDY_GROUP_MEMBERSOrderByWithAggregationInput = {
+    Member_ID?: SortOrder
+    Group_ID?: SortOrder
+    User_ID?: SortOrder
+    Enrollment_ID?: SortOrder
+    _count?: STUDY_GROUP_MEMBERSCountOrderByAggregateInput
+    _avg?: STUDY_GROUP_MEMBERSAvgOrderByAggregateInput
+    _max?: STUDY_GROUP_MEMBERSMaxOrderByAggregateInput
+    _min?: STUDY_GROUP_MEMBERSMinOrderByAggregateInput
+    _sum?: STUDY_GROUP_MEMBERSSumOrderByAggregateInput
+  }
+
+  export type STUDY_GROUP_MEMBERSScalarWhereWithAggregatesInput = {
+    AND?: STUDY_GROUP_MEMBERSScalarWhereWithAggregatesInput | STUDY_GROUP_MEMBERSScalarWhereWithAggregatesInput[]
+    OR?: STUDY_GROUP_MEMBERSScalarWhereWithAggregatesInput[]
+    NOT?: STUDY_GROUP_MEMBERSScalarWhereWithAggregatesInput | STUDY_GROUP_MEMBERSScalarWhereWithAggregatesInput[]
+    Member_ID?: IntWithAggregatesFilter<"STUDY_GROUP_MEMBERS"> | number
+    Group_ID?: IntWithAggregatesFilter<"STUDY_GROUP_MEMBERS"> | number
+    User_ID?: IntWithAggregatesFilter<"STUDY_GROUP_MEMBERS"> | number
+    Enrollment_ID?: IntWithAggregatesFilter<"STUDY_GROUP_MEMBERS"> | number
   }
 
   export type StudentWhereInput = {
@@ -13912,6 +15211,7 @@ export namespace Prisma {
     Admin?: XOR<AdminNullableScalarRelationFilter, AdminWhereInput> | null
     ENROLLMENTS?: ENROLLMENTSListRelationFilter
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSListRelationFilter
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSListRelationFilter
     Student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
     TUTORING_SESSION?: TUTORING_SESSIONListRelationFilter
     Tutor?: XOR<TutorNullableScalarRelationFilter, TutorWhereInput> | null
@@ -13927,6 +15227,7 @@ export namespace Prisma {
     Admin?: AdminOrderByWithRelationInput
     ENROLLMENTS?: ENROLLMENTSOrderByRelationAggregateInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSOrderByRelationAggregateInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSOrderByRelationAggregateInput
     Student?: StudentOrderByWithRelationInput
     TUTORING_SESSION?: TUTORING_SESSIONOrderByRelationAggregateInput
     Tutor?: TutorOrderByWithRelationInput
@@ -13946,6 +15247,7 @@ export namespace Prisma {
     Admin?: XOR<AdminNullableScalarRelationFilter, AdminWhereInput> | null
     ENROLLMENTS?: ENROLLMENTSListRelationFilter
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSListRelationFilter
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSListRelationFilter
     Student?: XOR<StudentNullableScalarRelationFilter, StudentWhereInput> | null
     TUTORING_SESSION?: TUTORING_SESSIONListRelationFilter
     Tutor?: XOR<TutorNullableScalarRelationFilter, TutorWhereInput> | null
@@ -14137,6 +15439,7 @@ export namespace Prisma {
     Tutor?: TutorCreateNestedOneWithoutENROLLMENTSInput
     COURSES: COURSESCreateNestedOneWithoutENROLLMENTSInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSCreateNestedManyWithoutENROLLMENTSInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSCreateNestedManyWithoutENROLLMENTSInput
     TUTORING_SESSION?: TUTORING_SESSIONCreateNestedManyWithoutENROLLMENTSInput
   }
 
@@ -14147,6 +15450,7 @@ export namespace Prisma {
     Course_ID: number
     Total_Enrollment?: number | null
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedCreateNestedManyWithoutENROLLMENTSInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedCreateNestedManyWithoutENROLLMENTSInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedCreateNestedManyWithoutENROLLMENTSInput
   }
 
@@ -14156,6 +15460,7 @@ export namespace Prisma {
     Tutor?: TutorUpdateOneWithoutENROLLMENTSNestedInput
     COURSES?: COURSESUpdateOneRequiredWithoutENROLLMENTSNestedInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUpdateManyWithoutENROLLMENTSNestedInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUpdateManyWithoutENROLLMENTSNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUpdateManyWithoutENROLLMENTSNestedInput
   }
 
@@ -14166,6 +15471,7 @@ export namespace Prisma {
     Course_ID?: IntFieldUpdateOperationsInput | number
     Total_Enrollment?: NullableIntFieldUpdateOperationsInput | number | null
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedUpdateManyWithoutENROLLMENTSNestedInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedUpdateManyWithoutENROLLMENTSNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedUpdateManyWithoutENROLLMENTSNestedInput
   }
 
@@ -14234,12 +15540,15 @@ export namespace Prisma {
   }
 
   export type STUDY_BUDDY_GROUPSCreateInput = {
+    Group_Date?: Date | string | null
+    Group_Time?: Date | string | null
     Is_Accepted?: boolean | null
     Has_Tutor?: boolean | null
     Group_Members?: number | null
     USERS: USERSCreateNestedOneWithoutSTUDY_BUDDY_GROUPSInput
     Tutor?: TutorCreateNestedOneWithoutSTUDY_BUDDY_GROUPSInput
     ENROLLMENTS: ENROLLMENTSCreateNestedOneWithoutSTUDY_BUDDY_GROUPSInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSCreateNestedManyWithoutSTUDY_BUDDY_GROUPSInput
   }
 
   export type STUDY_BUDDY_GROUPSUncheckedCreateInput = {
@@ -14247,18 +15556,24 @@ export namespace Prisma {
     User_ID: number
     Tutor_ID?: number | null
     Enrollment_ID: number
+    Group_Date?: Date | string | null
+    Group_Time?: Date | string | null
     Is_Accepted?: boolean | null
     Has_Tutor?: boolean | null
     Group_Members?: number | null
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedCreateNestedManyWithoutSTUDY_BUDDY_GROUPSInput
   }
 
   export type STUDY_BUDDY_GROUPSUpdateInput = {
+    Group_Date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Group_Time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Is_Accepted?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Has_Tutor?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Group_Members?: NullableIntFieldUpdateOperationsInput | number | null
     USERS?: USERSUpdateOneRequiredWithoutSTUDY_BUDDY_GROUPSNestedInput
     Tutor?: TutorUpdateOneWithoutSTUDY_BUDDY_GROUPSNestedInput
     ENROLLMENTS?: ENROLLMENTSUpdateOneRequiredWithoutSTUDY_BUDDY_GROUPSNestedInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUpdateManyWithoutSTUDY_BUDDY_GROUPSNestedInput
   }
 
   export type STUDY_BUDDY_GROUPSUncheckedUpdateInput = {
@@ -14266,9 +15581,12 @@ export namespace Prisma {
     User_ID?: IntFieldUpdateOperationsInput | number
     Tutor_ID?: NullableIntFieldUpdateOperationsInput | number | null
     Enrollment_ID?: IntFieldUpdateOperationsInput | number
+    Group_Date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Group_Time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Is_Accepted?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Has_Tutor?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Group_Members?: NullableIntFieldUpdateOperationsInput | number | null
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedUpdateManyWithoutSTUDY_BUDDY_GROUPSNestedInput
   }
 
   export type STUDY_BUDDY_GROUPSCreateManyInput = {
@@ -14276,12 +15594,16 @@ export namespace Prisma {
     User_ID: number
     Tutor_ID?: number | null
     Enrollment_ID: number
+    Group_Date?: Date | string | null
+    Group_Time?: Date | string | null
     Is_Accepted?: boolean | null
     Has_Tutor?: boolean | null
     Group_Members?: number | null
   }
 
   export type STUDY_BUDDY_GROUPSUpdateManyMutationInput = {
+    Group_Date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Group_Time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Is_Accepted?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Has_Tutor?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Group_Members?: NullableIntFieldUpdateOperationsInput | number | null
@@ -14292,9 +15614,55 @@ export namespace Prisma {
     User_ID?: IntFieldUpdateOperationsInput | number
     Tutor_ID?: NullableIntFieldUpdateOperationsInput | number | null
     Enrollment_ID?: IntFieldUpdateOperationsInput | number
+    Group_Date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Group_Time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Is_Accepted?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Has_Tutor?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Group_Members?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type STUDY_GROUP_MEMBERSCreateInput = {
+    STUDY_BUDDY_GROUPS: STUDY_BUDDY_GROUPSCreateNestedOneWithoutSTUDY_GROUP_MEMBERSInput
+    USERS: USERSCreateNestedOneWithoutSTUDY_GROUP_MEMBERSInput
+    ENROLLMENTS: ENROLLMENTSCreateNestedOneWithoutSTUDY_GROUP_MEMBERSInput
+  }
+
+  export type STUDY_GROUP_MEMBERSUncheckedCreateInput = {
+    Member_ID?: number
+    Group_ID: number
+    User_ID: number
+    Enrollment_ID: number
+  }
+
+  export type STUDY_GROUP_MEMBERSUpdateInput = {
+    STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUpdateOneRequiredWithoutSTUDY_GROUP_MEMBERSNestedInput
+    USERS?: USERSUpdateOneRequiredWithoutSTUDY_GROUP_MEMBERSNestedInput
+    ENROLLMENTS?: ENROLLMENTSUpdateOneRequiredWithoutSTUDY_GROUP_MEMBERSNestedInput
+  }
+
+  export type STUDY_GROUP_MEMBERSUncheckedUpdateInput = {
+    Member_ID?: IntFieldUpdateOperationsInput | number
+    Group_ID?: IntFieldUpdateOperationsInput | number
+    User_ID?: IntFieldUpdateOperationsInput | number
+    Enrollment_ID?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type STUDY_GROUP_MEMBERSCreateManyInput = {
+    Member_ID?: number
+    Group_ID: number
+    User_ID: number
+    Enrollment_ID: number
+  }
+
+  export type STUDY_GROUP_MEMBERSUpdateManyMutationInput = {
+
+  }
+
+  export type STUDY_GROUP_MEMBERSUncheckedUpdateManyInput = {
+    Member_ID?: IntFieldUpdateOperationsInput | number
+    Group_ID?: IntFieldUpdateOperationsInput | number
+    User_ID?: IntFieldUpdateOperationsInput | number
+    Enrollment_ID?: IntFieldUpdateOperationsInput | number
   }
 
   export type StudentCreateInput = {
@@ -14526,6 +15894,7 @@ export namespace Prisma {
     Admin?: AdminCreateNestedOneWithoutUSERSInput
     ENROLLMENTS?: ENROLLMENTSCreateNestedManyWithoutUSERSInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSCreateNestedManyWithoutUSERSInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSCreateNestedManyWithoutUSERSInput
     Student?: StudentCreateNestedOneWithoutUSERSInput
     TUTORING_SESSION?: TUTORING_SESSIONCreateNestedManyWithoutUSERSInput
     Tutor?: TutorCreateNestedOneWithoutUSERSInput
@@ -14541,6 +15910,7 @@ export namespace Prisma {
     Admin?: AdminUncheckedCreateNestedOneWithoutUSERSInput
     ENROLLMENTS?: ENROLLMENTSUncheckedCreateNestedManyWithoutUSERSInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedCreateNestedManyWithoutUSERSInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedCreateNestedManyWithoutUSERSInput
     Student?: StudentUncheckedCreateNestedOneWithoutUSERSInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedCreateNestedManyWithoutUSERSInput
     Tutor?: TutorUncheckedCreateNestedOneWithoutUSERSInput
@@ -14555,6 +15925,7 @@ export namespace Prisma {
     Admin?: AdminUpdateOneWithoutUSERSNestedInput
     ENROLLMENTS?: ENROLLMENTSUpdateManyWithoutUSERSNestedInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUpdateManyWithoutUSERSNestedInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUpdateManyWithoutUSERSNestedInput
     Student?: StudentUpdateOneWithoutUSERSNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUpdateManyWithoutUSERSNestedInput
     Tutor?: TutorUpdateOneWithoutUSERSNestedInput
@@ -14570,6 +15941,7 @@ export namespace Prisma {
     Admin?: AdminUncheckedUpdateOneWithoutUSERSNestedInput
     ENROLLMENTS?: ENROLLMENTSUncheckedUpdateManyWithoutUSERSNestedInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedUpdateManyWithoutUSERSNestedInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedUpdateManyWithoutUSERSNestedInput
     Student?: StudentUncheckedUpdateOneWithoutUSERSNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedUpdateManyWithoutUSERSNestedInput
     Tutor?: TutorUncheckedUpdateOneWithoutUSERSNestedInput
@@ -14881,6 +16253,12 @@ export namespace Prisma {
     none?: STUDY_BUDDY_GROUPSWhereInput
   }
 
+  export type STUDY_GROUP_MEMBERSListRelationFilter = {
+    every?: STUDY_GROUP_MEMBERSWhereInput
+    some?: STUDY_GROUP_MEMBERSWhereInput
+    none?: STUDY_GROUP_MEMBERSWhereInput
+  }
+
   export type TUTORING_SESSIONListRelationFilter = {
     every?: TUTORING_SESSIONWhereInput
     some?: TUTORING_SESSIONWhereInput
@@ -14888,6 +16266,10 @@ export namespace Prisma {
   }
 
   export type STUDY_BUDDY_GROUPSOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type STUDY_GROUP_MEMBERSOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -14991,6 +16373,17 @@ export namespace Prisma {
     _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type ENROLLMENTSScalarRelationFilter = {
     is?: ENROLLMENTSWhereInput
     isNot?: ENROLLMENTSWhereInput
@@ -15001,6 +16394,8 @@ export namespace Prisma {
     User_ID?: SortOrder
     Tutor_ID?: SortOrder
     Enrollment_ID?: SortOrder
+    Group_Date?: SortOrder
+    Group_Time?: SortOrder
     Is_Accepted?: SortOrder
     Has_Tutor?: SortOrder
     Group_Members?: SortOrder
@@ -15019,6 +16414,8 @@ export namespace Prisma {
     User_ID?: SortOrder
     Tutor_ID?: SortOrder
     Enrollment_ID?: SortOrder
+    Group_Date?: SortOrder
+    Group_Time?: SortOrder
     Is_Accepted?: SortOrder
     Has_Tutor?: SortOrder
     Group_Members?: SortOrder
@@ -15029,6 +16426,8 @@ export namespace Prisma {
     User_ID?: SortOrder
     Tutor_ID?: SortOrder
     Enrollment_ID?: SortOrder
+    Group_Date?: SortOrder
+    Group_Time?: SortOrder
     Is_Accepted?: SortOrder
     Has_Tutor?: SortOrder
     Group_Members?: SortOrder
@@ -15040,6 +16439,65 @@ export namespace Prisma {
     Tutor_ID?: SortOrder
     Enrollment_ID?: SortOrder
     Group_Members?: SortOrder
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type STUDY_BUDDY_GROUPSScalarRelationFilter = {
+    is?: STUDY_BUDDY_GROUPSWhereInput
+    isNot?: STUDY_BUDDY_GROUPSWhereInput
+  }
+
+  export type STUDY_GROUP_MEMBERSGroup_IDUser_IDCompoundUniqueInput = {
+    Group_ID: number
+    User_ID: number
+  }
+
+  export type STUDY_GROUP_MEMBERSCountOrderByAggregateInput = {
+    Member_ID?: SortOrder
+    Group_ID?: SortOrder
+    User_ID?: SortOrder
+    Enrollment_ID?: SortOrder
+  }
+
+  export type STUDY_GROUP_MEMBERSAvgOrderByAggregateInput = {
+    Member_ID?: SortOrder
+    Group_ID?: SortOrder
+    User_ID?: SortOrder
+    Enrollment_ID?: SortOrder
+  }
+
+  export type STUDY_GROUP_MEMBERSMaxOrderByAggregateInput = {
+    Member_ID?: SortOrder
+    Group_ID?: SortOrder
+    User_ID?: SortOrder
+    Enrollment_ID?: SortOrder
+  }
+
+  export type STUDY_GROUP_MEMBERSMinOrderByAggregateInput = {
+    Member_ID?: SortOrder
+    Group_ID?: SortOrder
+    User_ID?: SortOrder
+    Enrollment_ID?: SortOrder
+  }
+
+  export type STUDY_GROUP_MEMBERSSumOrderByAggregateInput = {
+    Member_ID?: SortOrder
+    Group_ID?: SortOrder
+    User_ID?: SortOrder
+    Enrollment_ID?: SortOrder
   }
 
   export type StudentCountOrderByAggregateInput = {
@@ -15065,17 +16523,6 @@ export namespace Prisma {
   export type StudentSumOrderByAggregateInput = {
     User_ID?: SortOrder
     GPA?: SortOrder
-  }
-
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
   }
 
   export type TutorScalarRelationFilter = {
@@ -15141,20 +16588,6 @@ export namespace Prisma {
     Enrollment_ID?: SortOrder
     Students_Booked?: SortOrder
     Session_Max?: SortOrder
-  }
-
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type TUTOR_AVAILABILITYCountOrderByAggregateInput = {
@@ -15533,6 +16966,13 @@ export namespace Prisma {
     connect?: STUDY_BUDDY_GROUPSWhereUniqueInput | STUDY_BUDDY_GROUPSWhereUniqueInput[]
   }
 
+  export type STUDY_GROUP_MEMBERSCreateNestedManyWithoutENROLLMENTSInput = {
+    create?: XOR<STUDY_GROUP_MEMBERSCreateWithoutENROLLMENTSInput, STUDY_GROUP_MEMBERSUncheckedCreateWithoutENROLLMENTSInput> | STUDY_GROUP_MEMBERSCreateWithoutENROLLMENTSInput[] | STUDY_GROUP_MEMBERSUncheckedCreateWithoutENROLLMENTSInput[]
+    connectOrCreate?: STUDY_GROUP_MEMBERSCreateOrConnectWithoutENROLLMENTSInput | STUDY_GROUP_MEMBERSCreateOrConnectWithoutENROLLMENTSInput[]
+    createMany?: STUDY_GROUP_MEMBERSCreateManyENROLLMENTSInputEnvelope
+    connect?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
+  }
+
   export type TUTORING_SESSIONCreateNestedManyWithoutENROLLMENTSInput = {
     create?: XOR<TUTORING_SESSIONCreateWithoutENROLLMENTSInput, TUTORING_SESSIONUncheckedCreateWithoutENROLLMENTSInput> | TUTORING_SESSIONCreateWithoutENROLLMENTSInput[] | TUTORING_SESSIONUncheckedCreateWithoutENROLLMENTSInput[]
     connectOrCreate?: TUTORING_SESSIONCreateOrConnectWithoutENROLLMENTSInput | TUTORING_SESSIONCreateOrConnectWithoutENROLLMENTSInput[]
@@ -15545,6 +16985,13 @@ export namespace Prisma {
     connectOrCreate?: STUDY_BUDDY_GROUPSCreateOrConnectWithoutENROLLMENTSInput | STUDY_BUDDY_GROUPSCreateOrConnectWithoutENROLLMENTSInput[]
     createMany?: STUDY_BUDDY_GROUPSCreateManyENROLLMENTSInputEnvelope
     connect?: STUDY_BUDDY_GROUPSWhereUniqueInput | STUDY_BUDDY_GROUPSWhereUniqueInput[]
+  }
+
+  export type STUDY_GROUP_MEMBERSUncheckedCreateNestedManyWithoutENROLLMENTSInput = {
+    create?: XOR<STUDY_GROUP_MEMBERSCreateWithoutENROLLMENTSInput, STUDY_GROUP_MEMBERSUncheckedCreateWithoutENROLLMENTSInput> | STUDY_GROUP_MEMBERSCreateWithoutENROLLMENTSInput[] | STUDY_GROUP_MEMBERSUncheckedCreateWithoutENROLLMENTSInput[]
+    connectOrCreate?: STUDY_GROUP_MEMBERSCreateOrConnectWithoutENROLLMENTSInput | STUDY_GROUP_MEMBERSCreateOrConnectWithoutENROLLMENTSInput[]
+    createMany?: STUDY_GROUP_MEMBERSCreateManyENROLLMENTSInputEnvelope
+    connect?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
   }
 
   export type TUTORING_SESSIONUncheckedCreateNestedManyWithoutENROLLMENTSInput = {
@@ -15594,6 +17041,20 @@ export namespace Prisma {
     deleteMany?: STUDY_BUDDY_GROUPSScalarWhereInput | STUDY_BUDDY_GROUPSScalarWhereInput[]
   }
 
+  export type STUDY_GROUP_MEMBERSUpdateManyWithoutENROLLMENTSNestedInput = {
+    create?: XOR<STUDY_GROUP_MEMBERSCreateWithoutENROLLMENTSInput, STUDY_GROUP_MEMBERSUncheckedCreateWithoutENROLLMENTSInput> | STUDY_GROUP_MEMBERSCreateWithoutENROLLMENTSInput[] | STUDY_GROUP_MEMBERSUncheckedCreateWithoutENROLLMENTSInput[]
+    connectOrCreate?: STUDY_GROUP_MEMBERSCreateOrConnectWithoutENROLLMENTSInput | STUDY_GROUP_MEMBERSCreateOrConnectWithoutENROLLMENTSInput[]
+    upsert?: STUDY_GROUP_MEMBERSUpsertWithWhereUniqueWithoutENROLLMENTSInput | STUDY_GROUP_MEMBERSUpsertWithWhereUniqueWithoutENROLLMENTSInput[]
+    createMany?: STUDY_GROUP_MEMBERSCreateManyENROLLMENTSInputEnvelope
+    set?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
+    disconnect?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
+    delete?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
+    connect?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
+    update?: STUDY_GROUP_MEMBERSUpdateWithWhereUniqueWithoutENROLLMENTSInput | STUDY_GROUP_MEMBERSUpdateWithWhereUniqueWithoutENROLLMENTSInput[]
+    updateMany?: STUDY_GROUP_MEMBERSUpdateManyWithWhereWithoutENROLLMENTSInput | STUDY_GROUP_MEMBERSUpdateManyWithWhereWithoutENROLLMENTSInput[]
+    deleteMany?: STUDY_GROUP_MEMBERSScalarWhereInput | STUDY_GROUP_MEMBERSScalarWhereInput[]
+  }
+
   export type TUTORING_SESSIONUpdateManyWithoutENROLLMENTSNestedInput = {
     create?: XOR<TUTORING_SESSIONCreateWithoutENROLLMENTSInput, TUTORING_SESSIONUncheckedCreateWithoutENROLLMENTSInput> | TUTORING_SESSIONCreateWithoutENROLLMENTSInput[] | TUTORING_SESSIONUncheckedCreateWithoutENROLLMENTSInput[]
     connectOrCreate?: TUTORING_SESSIONCreateOrConnectWithoutENROLLMENTSInput | TUTORING_SESSIONCreateOrConnectWithoutENROLLMENTSInput[]
@@ -15620,6 +17081,20 @@ export namespace Prisma {
     update?: STUDY_BUDDY_GROUPSUpdateWithWhereUniqueWithoutENROLLMENTSInput | STUDY_BUDDY_GROUPSUpdateWithWhereUniqueWithoutENROLLMENTSInput[]
     updateMany?: STUDY_BUDDY_GROUPSUpdateManyWithWhereWithoutENROLLMENTSInput | STUDY_BUDDY_GROUPSUpdateManyWithWhereWithoutENROLLMENTSInput[]
     deleteMany?: STUDY_BUDDY_GROUPSScalarWhereInput | STUDY_BUDDY_GROUPSScalarWhereInput[]
+  }
+
+  export type STUDY_GROUP_MEMBERSUncheckedUpdateManyWithoutENROLLMENTSNestedInput = {
+    create?: XOR<STUDY_GROUP_MEMBERSCreateWithoutENROLLMENTSInput, STUDY_GROUP_MEMBERSUncheckedCreateWithoutENROLLMENTSInput> | STUDY_GROUP_MEMBERSCreateWithoutENROLLMENTSInput[] | STUDY_GROUP_MEMBERSUncheckedCreateWithoutENROLLMENTSInput[]
+    connectOrCreate?: STUDY_GROUP_MEMBERSCreateOrConnectWithoutENROLLMENTSInput | STUDY_GROUP_MEMBERSCreateOrConnectWithoutENROLLMENTSInput[]
+    upsert?: STUDY_GROUP_MEMBERSUpsertWithWhereUniqueWithoutENROLLMENTSInput | STUDY_GROUP_MEMBERSUpsertWithWhereUniqueWithoutENROLLMENTSInput[]
+    createMany?: STUDY_GROUP_MEMBERSCreateManyENROLLMENTSInputEnvelope
+    set?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
+    disconnect?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
+    delete?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
+    connect?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
+    update?: STUDY_GROUP_MEMBERSUpdateWithWhereUniqueWithoutENROLLMENTSInput | STUDY_GROUP_MEMBERSUpdateWithWhereUniqueWithoutENROLLMENTSInput[]
+    updateMany?: STUDY_GROUP_MEMBERSUpdateManyWithWhereWithoutENROLLMENTSInput | STUDY_GROUP_MEMBERSUpdateManyWithWhereWithoutENROLLMENTSInput[]
+    deleteMany?: STUDY_GROUP_MEMBERSScalarWhereInput | STUDY_GROUP_MEMBERSScalarWhereInput[]
   }
 
   export type TUTORING_SESSIONUncheckedUpdateManyWithoutENROLLMENTSNestedInput = {
@@ -15686,6 +17161,24 @@ export namespace Prisma {
     connect?: ENROLLMENTSWhereUniqueInput
   }
 
+  export type STUDY_GROUP_MEMBERSCreateNestedManyWithoutSTUDY_BUDDY_GROUPSInput = {
+    create?: XOR<STUDY_GROUP_MEMBERSCreateWithoutSTUDY_BUDDY_GROUPSInput, STUDY_GROUP_MEMBERSUncheckedCreateWithoutSTUDY_BUDDY_GROUPSInput> | STUDY_GROUP_MEMBERSCreateWithoutSTUDY_BUDDY_GROUPSInput[] | STUDY_GROUP_MEMBERSUncheckedCreateWithoutSTUDY_BUDDY_GROUPSInput[]
+    connectOrCreate?: STUDY_GROUP_MEMBERSCreateOrConnectWithoutSTUDY_BUDDY_GROUPSInput | STUDY_GROUP_MEMBERSCreateOrConnectWithoutSTUDY_BUDDY_GROUPSInput[]
+    createMany?: STUDY_GROUP_MEMBERSCreateManySTUDY_BUDDY_GROUPSInputEnvelope
+    connect?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
+  }
+
+  export type STUDY_GROUP_MEMBERSUncheckedCreateNestedManyWithoutSTUDY_BUDDY_GROUPSInput = {
+    create?: XOR<STUDY_GROUP_MEMBERSCreateWithoutSTUDY_BUDDY_GROUPSInput, STUDY_GROUP_MEMBERSUncheckedCreateWithoutSTUDY_BUDDY_GROUPSInput> | STUDY_GROUP_MEMBERSCreateWithoutSTUDY_BUDDY_GROUPSInput[] | STUDY_GROUP_MEMBERSUncheckedCreateWithoutSTUDY_BUDDY_GROUPSInput[]
+    connectOrCreate?: STUDY_GROUP_MEMBERSCreateOrConnectWithoutSTUDY_BUDDY_GROUPSInput | STUDY_GROUP_MEMBERSCreateOrConnectWithoutSTUDY_BUDDY_GROUPSInput[]
+    createMany?: STUDY_GROUP_MEMBERSCreateManySTUDY_BUDDY_GROUPSInputEnvelope
+    connect?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
   export type USERSUpdateOneRequiredWithoutSTUDY_BUDDY_GROUPSNestedInput = {
     create?: XOR<USERSCreateWithoutSTUDY_BUDDY_GROUPSInput, USERSUncheckedCreateWithoutSTUDY_BUDDY_GROUPSInput>
     connectOrCreate?: USERSCreateOrConnectWithoutSTUDY_BUDDY_GROUPSInput
@@ -15710,6 +17203,76 @@ export namespace Prisma {
     upsert?: ENROLLMENTSUpsertWithoutSTUDY_BUDDY_GROUPSInput
     connect?: ENROLLMENTSWhereUniqueInput
     update?: XOR<XOR<ENROLLMENTSUpdateToOneWithWhereWithoutSTUDY_BUDDY_GROUPSInput, ENROLLMENTSUpdateWithoutSTUDY_BUDDY_GROUPSInput>, ENROLLMENTSUncheckedUpdateWithoutSTUDY_BUDDY_GROUPSInput>
+  }
+
+  export type STUDY_GROUP_MEMBERSUpdateManyWithoutSTUDY_BUDDY_GROUPSNestedInput = {
+    create?: XOR<STUDY_GROUP_MEMBERSCreateWithoutSTUDY_BUDDY_GROUPSInput, STUDY_GROUP_MEMBERSUncheckedCreateWithoutSTUDY_BUDDY_GROUPSInput> | STUDY_GROUP_MEMBERSCreateWithoutSTUDY_BUDDY_GROUPSInput[] | STUDY_GROUP_MEMBERSUncheckedCreateWithoutSTUDY_BUDDY_GROUPSInput[]
+    connectOrCreate?: STUDY_GROUP_MEMBERSCreateOrConnectWithoutSTUDY_BUDDY_GROUPSInput | STUDY_GROUP_MEMBERSCreateOrConnectWithoutSTUDY_BUDDY_GROUPSInput[]
+    upsert?: STUDY_GROUP_MEMBERSUpsertWithWhereUniqueWithoutSTUDY_BUDDY_GROUPSInput | STUDY_GROUP_MEMBERSUpsertWithWhereUniqueWithoutSTUDY_BUDDY_GROUPSInput[]
+    createMany?: STUDY_GROUP_MEMBERSCreateManySTUDY_BUDDY_GROUPSInputEnvelope
+    set?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
+    disconnect?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
+    delete?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
+    connect?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
+    update?: STUDY_GROUP_MEMBERSUpdateWithWhereUniqueWithoutSTUDY_BUDDY_GROUPSInput | STUDY_GROUP_MEMBERSUpdateWithWhereUniqueWithoutSTUDY_BUDDY_GROUPSInput[]
+    updateMany?: STUDY_GROUP_MEMBERSUpdateManyWithWhereWithoutSTUDY_BUDDY_GROUPSInput | STUDY_GROUP_MEMBERSUpdateManyWithWhereWithoutSTUDY_BUDDY_GROUPSInput[]
+    deleteMany?: STUDY_GROUP_MEMBERSScalarWhereInput | STUDY_GROUP_MEMBERSScalarWhereInput[]
+  }
+
+  export type STUDY_GROUP_MEMBERSUncheckedUpdateManyWithoutSTUDY_BUDDY_GROUPSNestedInput = {
+    create?: XOR<STUDY_GROUP_MEMBERSCreateWithoutSTUDY_BUDDY_GROUPSInput, STUDY_GROUP_MEMBERSUncheckedCreateWithoutSTUDY_BUDDY_GROUPSInput> | STUDY_GROUP_MEMBERSCreateWithoutSTUDY_BUDDY_GROUPSInput[] | STUDY_GROUP_MEMBERSUncheckedCreateWithoutSTUDY_BUDDY_GROUPSInput[]
+    connectOrCreate?: STUDY_GROUP_MEMBERSCreateOrConnectWithoutSTUDY_BUDDY_GROUPSInput | STUDY_GROUP_MEMBERSCreateOrConnectWithoutSTUDY_BUDDY_GROUPSInput[]
+    upsert?: STUDY_GROUP_MEMBERSUpsertWithWhereUniqueWithoutSTUDY_BUDDY_GROUPSInput | STUDY_GROUP_MEMBERSUpsertWithWhereUniqueWithoutSTUDY_BUDDY_GROUPSInput[]
+    createMany?: STUDY_GROUP_MEMBERSCreateManySTUDY_BUDDY_GROUPSInputEnvelope
+    set?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
+    disconnect?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
+    delete?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
+    connect?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
+    update?: STUDY_GROUP_MEMBERSUpdateWithWhereUniqueWithoutSTUDY_BUDDY_GROUPSInput | STUDY_GROUP_MEMBERSUpdateWithWhereUniqueWithoutSTUDY_BUDDY_GROUPSInput[]
+    updateMany?: STUDY_GROUP_MEMBERSUpdateManyWithWhereWithoutSTUDY_BUDDY_GROUPSInput | STUDY_GROUP_MEMBERSUpdateManyWithWhereWithoutSTUDY_BUDDY_GROUPSInput[]
+    deleteMany?: STUDY_GROUP_MEMBERSScalarWhereInput | STUDY_GROUP_MEMBERSScalarWhereInput[]
+  }
+
+  export type STUDY_BUDDY_GROUPSCreateNestedOneWithoutSTUDY_GROUP_MEMBERSInput = {
+    create?: XOR<STUDY_BUDDY_GROUPSCreateWithoutSTUDY_GROUP_MEMBERSInput, STUDY_BUDDY_GROUPSUncheckedCreateWithoutSTUDY_GROUP_MEMBERSInput>
+    connectOrCreate?: STUDY_BUDDY_GROUPSCreateOrConnectWithoutSTUDY_GROUP_MEMBERSInput
+    connect?: STUDY_BUDDY_GROUPSWhereUniqueInput
+  }
+
+  export type USERSCreateNestedOneWithoutSTUDY_GROUP_MEMBERSInput = {
+    create?: XOR<USERSCreateWithoutSTUDY_GROUP_MEMBERSInput, USERSUncheckedCreateWithoutSTUDY_GROUP_MEMBERSInput>
+    connectOrCreate?: USERSCreateOrConnectWithoutSTUDY_GROUP_MEMBERSInput
+    connect?: USERSWhereUniqueInput
+  }
+
+  export type ENROLLMENTSCreateNestedOneWithoutSTUDY_GROUP_MEMBERSInput = {
+    create?: XOR<ENROLLMENTSCreateWithoutSTUDY_GROUP_MEMBERSInput, ENROLLMENTSUncheckedCreateWithoutSTUDY_GROUP_MEMBERSInput>
+    connectOrCreate?: ENROLLMENTSCreateOrConnectWithoutSTUDY_GROUP_MEMBERSInput
+    connect?: ENROLLMENTSWhereUniqueInput
+  }
+
+  export type STUDY_BUDDY_GROUPSUpdateOneRequiredWithoutSTUDY_GROUP_MEMBERSNestedInput = {
+    create?: XOR<STUDY_BUDDY_GROUPSCreateWithoutSTUDY_GROUP_MEMBERSInput, STUDY_BUDDY_GROUPSUncheckedCreateWithoutSTUDY_GROUP_MEMBERSInput>
+    connectOrCreate?: STUDY_BUDDY_GROUPSCreateOrConnectWithoutSTUDY_GROUP_MEMBERSInput
+    upsert?: STUDY_BUDDY_GROUPSUpsertWithoutSTUDY_GROUP_MEMBERSInput
+    connect?: STUDY_BUDDY_GROUPSWhereUniqueInput
+    update?: XOR<XOR<STUDY_BUDDY_GROUPSUpdateToOneWithWhereWithoutSTUDY_GROUP_MEMBERSInput, STUDY_BUDDY_GROUPSUpdateWithoutSTUDY_GROUP_MEMBERSInput>, STUDY_BUDDY_GROUPSUncheckedUpdateWithoutSTUDY_GROUP_MEMBERSInput>
+  }
+
+  export type USERSUpdateOneRequiredWithoutSTUDY_GROUP_MEMBERSNestedInput = {
+    create?: XOR<USERSCreateWithoutSTUDY_GROUP_MEMBERSInput, USERSUncheckedCreateWithoutSTUDY_GROUP_MEMBERSInput>
+    connectOrCreate?: USERSCreateOrConnectWithoutSTUDY_GROUP_MEMBERSInput
+    upsert?: USERSUpsertWithoutSTUDY_GROUP_MEMBERSInput
+    connect?: USERSWhereUniqueInput
+    update?: XOR<XOR<USERSUpdateToOneWithWhereWithoutSTUDY_GROUP_MEMBERSInput, USERSUpdateWithoutSTUDY_GROUP_MEMBERSInput>, USERSUncheckedUpdateWithoutSTUDY_GROUP_MEMBERSInput>
+  }
+
+  export type ENROLLMENTSUpdateOneRequiredWithoutSTUDY_GROUP_MEMBERSNestedInput = {
+    create?: XOR<ENROLLMENTSCreateWithoutSTUDY_GROUP_MEMBERSInput, ENROLLMENTSUncheckedCreateWithoutSTUDY_GROUP_MEMBERSInput>
+    connectOrCreate?: ENROLLMENTSCreateOrConnectWithoutSTUDY_GROUP_MEMBERSInput
+    upsert?: ENROLLMENTSUpsertWithoutSTUDY_GROUP_MEMBERSInput
+    connect?: ENROLLMENTSWhereUniqueInput
+    update?: XOR<XOR<ENROLLMENTSUpdateToOneWithWhereWithoutSTUDY_GROUP_MEMBERSInput, ENROLLMENTSUpdateWithoutSTUDY_GROUP_MEMBERSInput>, ENROLLMENTSUncheckedUpdateWithoutSTUDY_GROUP_MEMBERSInput>
   }
 
   export type USERSCreateNestedOneWithoutStudentInput = {
@@ -15742,10 +17305,6 @@ export namespace Prisma {
     create?: XOR<ENROLLMENTSCreateWithoutTUTORING_SESSIONInput, ENROLLMENTSUncheckedCreateWithoutTUTORING_SESSIONInput>
     connectOrCreate?: ENROLLMENTSCreateOrConnectWithoutTUTORING_SESSIONInput
     connect?: ENROLLMENTSWhereUniqueInput
-  }
-
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
   }
 
   export type USERSUpdateOneRequiredWithoutTUTORING_SESSIONNestedInput = {
@@ -16072,6 +17631,13 @@ export namespace Prisma {
     connect?: STUDY_BUDDY_GROUPSWhereUniqueInput | STUDY_BUDDY_GROUPSWhereUniqueInput[]
   }
 
+  export type STUDY_GROUP_MEMBERSCreateNestedManyWithoutUSERSInput = {
+    create?: XOR<STUDY_GROUP_MEMBERSCreateWithoutUSERSInput, STUDY_GROUP_MEMBERSUncheckedCreateWithoutUSERSInput> | STUDY_GROUP_MEMBERSCreateWithoutUSERSInput[] | STUDY_GROUP_MEMBERSUncheckedCreateWithoutUSERSInput[]
+    connectOrCreate?: STUDY_GROUP_MEMBERSCreateOrConnectWithoutUSERSInput | STUDY_GROUP_MEMBERSCreateOrConnectWithoutUSERSInput[]
+    createMany?: STUDY_GROUP_MEMBERSCreateManyUSERSInputEnvelope
+    connect?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
+  }
+
   export type StudentCreateNestedOneWithoutUSERSInput = {
     create?: XOR<StudentCreateWithoutUSERSInput, StudentUncheckedCreateWithoutUSERSInput>
     connectOrCreate?: StudentCreateOrConnectWithoutUSERSInput
@@ -16109,6 +17675,13 @@ export namespace Prisma {
     connectOrCreate?: STUDY_BUDDY_GROUPSCreateOrConnectWithoutUSERSInput | STUDY_BUDDY_GROUPSCreateOrConnectWithoutUSERSInput[]
     createMany?: STUDY_BUDDY_GROUPSCreateManyUSERSInputEnvelope
     connect?: STUDY_BUDDY_GROUPSWhereUniqueInput | STUDY_BUDDY_GROUPSWhereUniqueInput[]
+  }
+
+  export type STUDY_GROUP_MEMBERSUncheckedCreateNestedManyWithoutUSERSInput = {
+    create?: XOR<STUDY_GROUP_MEMBERSCreateWithoutUSERSInput, STUDY_GROUP_MEMBERSUncheckedCreateWithoutUSERSInput> | STUDY_GROUP_MEMBERSCreateWithoutUSERSInput[] | STUDY_GROUP_MEMBERSUncheckedCreateWithoutUSERSInput[]
+    connectOrCreate?: STUDY_GROUP_MEMBERSCreateOrConnectWithoutUSERSInput | STUDY_GROUP_MEMBERSCreateOrConnectWithoutUSERSInput[]
+    createMany?: STUDY_GROUP_MEMBERSCreateManyUSERSInputEnvelope
+    connect?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
   }
 
   export type StudentUncheckedCreateNestedOneWithoutUSERSInput = {
@@ -16170,6 +17743,20 @@ export namespace Prisma {
     update?: STUDY_BUDDY_GROUPSUpdateWithWhereUniqueWithoutUSERSInput | STUDY_BUDDY_GROUPSUpdateWithWhereUniqueWithoutUSERSInput[]
     updateMany?: STUDY_BUDDY_GROUPSUpdateManyWithWhereWithoutUSERSInput | STUDY_BUDDY_GROUPSUpdateManyWithWhereWithoutUSERSInput[]
     deleteMany?: STUDY_BUDDY_GROUPSScalarWhereInput | STUDY_BUDDY_GROUPSScalarWhereInput[]
+  }
+
+  export type STUDY_GROUP_MEMBERSUpdateManyWithoutUSERSNestedInput = {
+    create?: XOR<STUDY_GROUP_MEMBERSCreateWithoutUSERSInput, STUDY_GROUP_MEMBERSUncheckedCreateWithoutUSERSInput> | STUDY_GROUP_MEMBERSCreateWithoutUSERSInput[] | STUDY_GROUP_MEMBERSUncheckedCreateWithoutUSERSInput[]
+    connectOrCreate?: STUDY_GROUP_MEMBERSCreateOrConnectWithoutUSERSInput | STUDY_GROUP_MEMBERSCreateOrConnectWithoutUSERSInput[]
+    upsert?: STUDY_GROUP_MEMBERSUpsertWithWhereUniqueWithoutUSERSInput | STUDY_GROUP_MEMBERSUpsertWithWhereUniqueWithoutUSERSInput[]
+    createMany?: STUDY_GROUP_MEMBERSCreateManyUSERSInputEnvelope
+    set?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
+    disconnect?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
+    delete?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
+    connect?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
+    update?: STUDY_GROUP_MEMBERSUpdateWithWhereUniqueWithoutUSERSInput | STUDY_GROUP_MEMBERSUpdateWithWhereUniqueWithoutUSERSInput[]
+    updateMany?: STUDY_GROUP_MEMBERSUpdateManyWithWhereWithoutUSERSInput | STUDY_GROUP_MEMBERSUpdateManyWithWhereWithoutUSERSInput[]
+    deleteMany?: STUDY_GROUP_MEMBERSScalarWhereInput | STUDY_GROUP_MEMBERSScalarWhereInput[]
   }
 
   export type StudentUpdateOneWithoutUSERSNestedInput = {
@@ -16242,6 +17829,20 @@ export namespace Prisma {
     update?: STUDY_BUDDY_GROUPSUpdateWithWhereUniqueWithoutUSERSInput | STUDY_BUDDY_GROUPSUpdateWithWhereUniqueWithoutUSERSInput[]
     updateMany?: STUDY_BUDDY_GROUPSUpdateManyWithWhereWithoutUSERSInput | STUDY_BUDDY_GROUPSUpdateManyWithWhereWithoutUSERSInput[]
     deleteMany?: STUDY_BUDDY_GROUPSScalarWhereInput | STUDY_BUDDY_GROUPSScalarWhereInput[]
+  }
+
+  export type STUDY_GROUP_MEMBERSUncheckedUpdateManyWithoutUSERSNestedInput = {
+    create?: XOR<STUDY_GROUP_MEMBERSCreateWithoutUSERSInput, STUDY_GROUP_MEMBERSUncheckedCreateWithoutUSERSInput> | STUDY_GROUP_MEMBERSCreateWithoutUSERSInput[] | STUDY_GROUP_MEMBERSUncheckedCreateWithoutUSERSInput[]
+    connectOrCreate?: STUDY_GROUP_MEMBERSCreateOrConnectWithoutUSERSInput | STUDY_GROUP_MEMBERSCreateOrConnectWithoutUSERSInput[]
+    upsert?: STUDY_GROUP_MEMBERSUpsertWithWhereUniqueWithoutUSERSInput | STUDY_GROUP_MEMBERSUpsertWithWhereUniqueWithoutUSERSInput[]
+    createMany?: STUDY_GROUP_MEMBERSCreateManyUSERSInputEnvelope
+    set?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
+    disconnect?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
+    delete?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
+    connect?: STUDY_GROUP_MEMBERSWhereUniqueInput | STUDY_GROUP_MEMBERSWhereUniqueInput[]
+    update?: STUDY_GROUP_MEMBERSUpdateWithWhereUniqueWithoutUSERSInput | STUDY_GROUP_MEMBERSUpdateWithWhereUniqueWithoutUSERSInput[]
+    updateMany?: STUDY_GROUP_MEMBERSUpdateManyWithWhereWithoutUSERSInput | STUDY_GROUP_MEMBERSUpdateManyWithWhereWithoutUSERSInput[]
+    deleteMany?: STUDY_GROUP_MEMBERSScalarWhereInput | STUDY_GROUP_MEMBERSScalarWhereInput[]
   }
 
   export type StudentUncheckedUpdateOneWithoutUSERSNestedInput = {
@@ -16521,6 +18122,7 @@ export namespace Prisma {
     Is_Student?: boolean | null
     ENROLLMENTS?: ENROLLMENTSCreateNestedManyWithoutUSERSInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSCreateNestedManyWithoutUSERSInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSCreateNestedManyWithoutUSERSInput
     Student?: StudentCreateNestedOneWithoutUSERSInput
     TUTORING_SESSION?: TUTORING_SESSIONCreateNestedManyWithoutUSERSInput
     Tutor?: TutorCreateNestedOneWithoutUSERSInput
@@ -16535,6 +18137,7 @@ export namespace Prisma {
     Is_Student?: boolean | null
     ENROLLMENTS?: ENROLLMENTSUncheckedCreateNestedManyWithoutUSERSInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedCreateNestedManyWithoutUSERSInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedCreateNestedManyWithoutUSERSInput
     Student?: StudentUncheckedCreateNestedOneWithoutUSERSInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedCreateNestedManyWithoutUSERSInput
     Tutor?: TutorUncheckedCreateNestedOneWithoutUSERSInput
@@ -16585,6 +18188,7 @@ export namespace Prisma {
     Is_Student?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ENROLLMENTS?: ENROLLMENTSUpdateManyWithoutUSERSNestedInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUpdateManyWithoutUSERSNestedInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUpdateManyWithoutUSERSNestedInput
     Student?: StudentUpdateOneWithoutUSERSNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUpdateManyWithoutUSERSNestedInput
     Tutor?: TutorUpdateOneWithoutUSERSNestedInput
@@ -16599,6 +18203,7 @@ export namespace Prisma {
     Is_Student?: NullableBoolFieldUpdateOperationsInput | boolean | null
     ENROLLMENTS?: ENROLLMENTSUncheckedUpdateManyWithoutUSERSNestedInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedUpdateManyWithoutUSERSNestedInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedUpdateManyWithoutUSERSNestedInput
     Student?: StudentUncheckedUpdateOneWithoutUSERSNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedUpdateManyWithoutUSERSNestedInput
     Tutor?: TutorUncheckedUpdateOneWithoutUSERSNestedInput
@@ -16635,6 +18240,7 @@ export namespace Prisma {
     USERS: USERSCreateNestedOneWithoutENROLLMENTSInput
     Tutor?: TutorCreateNestedOneWithoutENROLLMENTSInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSCreateNestedManyWithoutENROLLMENTSInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSCreateNestedManyWithoutENROLLMENTSInput
     TUTORING_SESSION?: TUTORING_SESSIONCreateNestedManyWithoutENROLLMENTSInput
   }
 
@@ -16644,6 +18250,7 @@ export namespace Prisma {
     Tutor_ID?: number | null
     Total_Enrollment?: number | null
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedCreateNestedManyWithoutENROLLMENTSInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedCreateNestedManyWithoutENROLLMENTSInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedCreateNestedManyWithoutENROLLMENTSInput
   }
 
@@ -16736,6 +18343,7 @@ export namespace Prisma {
     Is_Student?: boolean | null
     Admin?: AdminCreateNestedOneWithoutUSERSInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSCreateNestedManyWithoutUSERSInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSCreateNestedManyWithoutUSERSInput
     Student?: StudentCreateNestedOneWithoutUSERSInput
     TUTORING_SESSION?: TUTORING_SESSIONCreateNestedManyWithoutUSERSInput
     Tutor?: TutorCreateNestedOneWithoutUSERSInput
@@ -16750,6 +18358,7 @@ export namespace Prisma {
     Is_Student?: boolean | null
     Admin?: AdminUncheckedCreateNestedOneWithoutUSERSInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedCreateNestedManyWithoutUSERSInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedCreateNestedManyWithoutUSERSInput
     Student?: StudentUncheckedCreateNestedOneWithoutUSERSInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedCreateNestedManyWithoutUSERSInput
     Tutor?: TutorUncheckedCreateNestedOneWithoutUSERSInput
@@ -16807,20 +18416,26 @@ export namespace Prisma {
   }
 
   export type STUDY_BUDDY_GROUPSCreateWithoutENROLLMENTSInput = {
+    Group_Date?: Date | string | null
+    Group_Time?: Date | string | null
     Is_Accepted?: boolean | null
     Has_Tutor?: boolean | null
     Group_Members?: number | null
     USERS: USERSCreateNestedOneWithoutSTUDY_BUDDY_GROUPSInput
     Tutor?: TutorCreateNestedOneWithoutSTUDY_BUDDY_GROUPSInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSCreateNestedManyWithoutSTUDY_BUDDY_GROUPSInput
   }
 
   export type STUDY_BUDDY_GROUPSUncheckedCreateWithoutENROLLMENTSInput = {
     Group_ID?: number
     User_ID: number
     Tutor_ID?: number | null
+    Group_Date?: Date | string | null
+    Group_Time?: Date | string | null
     Is_Accepted?: boolean | null
     Has_Tutor?: boolean | null
     Group_Members?: number | null
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedCreateNestedManyWithoutSTUDY_BUDDY_GROUPSInput
   }
 
   export type STUDY_BUDDY_GROUPSCreateOrConnectWithoutENROLLMENTSInput = {
@@ -16830,6 +18445,27 @@ export namespace Prisma {
 
   export type STUDY_BUDDY_GROUPSCreateManyENROLLMENTSInputEnvelope = {
     data: STUDY_BUDDY_GROUPSCreateManyENROLLMENTSInput | STUDY_BUDDY_GROUPSCreateManyENROLLMENTSInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type STUDY_GROUP_MEMBERSCreateWithoutENROLLMENTSInput = {
+    STUDY_BUDDY_GROUPS: STUDY_BUDDY_GROUPSCreateNestedOneWithoutSTUDY_GROUP_MEMBERSInput
+    USERS: USERSCreateNestedOneWithoutSTUDY_GROUP_MEMBERSInput
+  }
+
+  export type STUDY_GROUP_MEMBERSUncheckedCreateWithoutENROLLMENTSInput = {
+    Member_ID?: number
+    Group_ID: number
+    User_ID: number
+  }
+
+  export type STUDY_GROUP_MEMBERSCreateOrConnectWithoutENROLLMENTSInput = {
+    where: STUDY_GROUP_MEMBERSWhereUniqueInput
+    create: XOR<STUDY_GROUP_MEMBERSCreateWithoutENROLLMENTSInput, STUDY_GROUP_MEMBERSUncheckedCreateWithoutENROLLMENTSInput>
+  }
+
+  export type STUDY_GROUP_MEMBERSCreateManyENROLLMENTSInputEnvelope = {
+    data: STUDY_GROUP_MEMBERSCreateManyENROLLMENTSInput | STUDY_GROUP_MEMBERSCreateManyENROLLMENTSInput[]
     skipDuplicates?: boolean
   }
 
@@ -16883,6 +18519,7 @@ export namespace Prisma {
     Is_Student?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Admin?: AdminUpdateOneWithoutUSERSNestedInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUpdateManyWithoutUSERSNestedInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUpdateManyWithoutUSERSNestedInput
     Student?: StudentUpdateOneWithoutUSERSNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUpdateManyWithoutUSERSNestedInput
     Tutor?: TutorUpdateOneWithoutUSERSNestedInput
@@ -16897,6 +18534,7 @@ export namespace Prisma {
     Is_Student?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Admin?: AdminUncheckedUpdateOneWithoutUSERSNestedInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedUpdateManyWithoutUSERSNestedInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedUpdateManyWithoutUSERSNestedInput
     Student?: StudentUncheckedUpdateOneWithoutUSERSNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedUpdateManyWithoutUSERSNestedInput
     Tutor?: TutorUncheckedUpdateOneWithoutUSERSNestedInput
@@ -16984,9 +18622,37 @@ export namespace Prisma {
     User_ID?: IntFilter<"STUDY_BUDDY_GROUPS"> | number
     Tutor_ID?: IntNullableFilter<"STUDY_BUDDY_GROUPS"> | number | null
     Enrollment_ID?: IntFilter<"STUDY_BUDDY_GROUPS"> | number
+    Group_Date?: DateTimeNullableFilter<"STUDY_BUDDY_GROUPS"> | Date | string | null
+    Group_Time?: DateTimeNullableFilter<"STUDY_BUDDY_GROUPS"> | Date | string | null
     Is_Accepted?: BoolNullableFilter<"STUDY_BUDDY_GROUPS"> | boolean | null
     Has_Tutor?: BoolNullableFilter<"STUDY_BUDDY_GROUPS"> | boolean | null
     Group_Members?: IntNullableFilter<"STUDY_BUDDY_GROUPS"> | number | null
+  }
+
+  export type STUDY_GROUP_MEMBERSUpsertWithWhereUniqueWithoutENROLLMENTSInput = {
+    where: STUDY_GROUP_MEMBERSWhereUniqueInput
+    update: XOR<STUDY_GROUP_MEMBERSUpdateWithoutENROLLMENTSInput, STUDY_GROUP_MEMBERSUncheckedUpdateWithoutENROLLMENTSInput>
+    create: XOR<STUDY_GROUP_MEMBERSCreateWithoutENROLLMENTSInput, STUDY_GROUP_MEMBERSUncheckedCreateWithoutENROLLMENTSInput>
+  }
+
+  export type STUDY_GROUP_MEMBERSUpdateWithWhereUniqueWithoutENROLLMENTSInput = {
+    where: STUDY_GROUP_MEMBERSWhereUniqueInput
+    data: XOR<STUDY_GROUP_MEMBERSUpdateWithoutENROLLMENTSInput, STUDY_GROUP_MEMBERSUncheckedUpdateWithoutENROLLMENTSInput>
+  }
+
+  export type STUDY_GROUP_MEMBERSUpdateManyWithWhereWithoutENROLLMENTSInput = {
+    where: STUDY_GROUP_MEMBERSScalarWhereInput
+    data: XOR<STUDY_GROUP_MEMBERSUpdateManyMutationInput, STUDY_GROUP_MEMBERSUncheckedUpdateManyWithoutENROLLMENTSInput>
+  }
+
+  export type STUDY_GROUP_MEMBERSScalarWhereInput = {
+    AND?: STUDY_GROUP_MEMBERSScalarWhereInput | STUDY_GROUP_MEMBERSScalarWhereInput[]
+    OR?: STUDY_GROUP_MEMBERSScalarWhereInput[]
+    NOT?: STUDY_GROUP_MEMBERSScalarWhereInput | STUDY_GROUP_MEMBERSScalarWhereInput[]
+    Member_ID?: IntFilter<"STUDY_GROUP_MEMBERS"> | number
+    Group_ID?: IntFilter<"STUDY_GROUP_MEMBERS"> | number
+    User_ID?: IntFilter<"STUDY_GROUP_MEMBERS"> | number
+    Enrollment_ID?: IntFilter<"STUDY_GROUP_MEMBERS"> | number
   }
 
   export type TUTORING_SESSIONUpsertWithWhereUniqueWithoutENROLLMENTSInput = {
@@ -17108,6 +18774,7 @@ export namespace Prisma {
     Is_Student?: boolean | null
     Admin?: AdminCreateNestedOneWithoutUSERSInput
     ENROLLMENTS?: ENROLLMENTSCreateNestedManyWithoutUSERSInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSCreateNestedManyWithoutUSERSInput
     Student?: StudentCreateNestedOneWithoutUSERSInput
     TUTORING_SESSION?: TUTORING_SESSIONCreateNestedManyWithoutUSERSInput
     Tutor?: TutorCreateNestedOneWithoutUSERSInput
@@ -17122,6 +18789,7 @@ export namespace Prisma {
     Is_Student?: boolean | null
     Admin?: AdminUncheckedCreateNestedOneWithoutUSERSInput
     ENROLLMENTS?: ENROLLMENTSUncheckedCreateNestedManyWithoutUSERSInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedCreateNestedManyWithoutUSERSInput
     Student?: StudentUncheckedCreateNestedOneWithoutUSERSInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedCreateNestedManyWithoutUSERSInput
     Tutor?: TutorUncheckedCreateNestedOneWithoutUSERSInput
@@ -17159,6 +18827,7 @@ export namespace Prisma {
     USERS: USERSCreateNestedOneWithoutENROLLMENTSInput
     Tutor?: TutorCreateNestedOneWithoutENROLLMENTSInput
     COURSES: COURSESCreateNestedOneWithoutENROLLMENTSInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSCreateNestedManyWithoutENROLLMENTSInput
     TUTORING_SESSION?: TUTORING_SESSIONCreateNestedManyWithoutENROLLMENTSInput
   }
 
@@ -17168,12 +18837,34 @@ export namespace Prisma {
     Tutor_ID?: number | null
     Course_ID: number
     Total_Enrollment?: number | null
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedCreateNestedManyWithoutENROLLMENTSInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedCreateNestedManyWithoutENROLLMENTSInput
   }
 
   export type ENROLLMENTSCreateOrConnectWithoutSTUDY_BUDDY_GROUPSInput = {
     where: ENROLLMENTSWhereUniqueInput
     create: XOR<ENROLLMENTSCreateWithoutSTUDY_BUDDY_GROUPSInput, ENROLLMENTSUncheckedCreateWithoutSTUDY_BUDDY_GROUPSInput>
+  }
+
+  export type STUDY_GROUP_MEMBERSCreateWithoutSTUDY_BUDDY_GROUPSInput = {
+    USERS: USERSCreateNestedOneWithoutSTUDY_GROUP_MEMBERSInput
+    ENROLLMENTS: ENROLLMENTSCreateNestedOneWithoutSTUDY_GROUP_MEMBERSInput
+  }
+
+  export type STUDY_GROUP_MEMBERSUncheckedCreateWithoutSTUDY_BUDDY_GROUPSInput = {
+    Member_ID?: number
+    User_ID: number
+    Enrollment_ID: number
+  }
+
+  export type STUDY_GROUP_MEMBERSCreateOrConnectWithoutSTUDY_BUDDY_GROUPSInput = {
+    where: STUDY_GROUP_MEMBERSWhereUniqueInput
+    create: XOR<STUDY_GROUP_MEMBERSCreateWithoutSTUDY_BUDDY_GROUPSInput, STUDY_GROUP_MEMBERSUncheckedCreateWithoutSTUDY_BUDDY_GROUPSInput>
+  }
+
+  export type STUDY_GROUP_MEMBERSCreateManySTUDY_BUDDY_GROUPSInputEnvelope = {
+    data: STUDY_GROUP_MEMBERSCreateManySTUDY_BUDDY_GROUPSInput | STUDY_GROUP_MEMBERSCreateManySTUDY_BUDDY_GROUPSInput[]
+    skipDuplicates?: boolean
   }
 
   export type USERSUpsertWithoutSTUDY_BUDDY_GROUPSInput = {
@@ -17195,6 +18886,7 @@ export namespace Prisma {
     Is_Student?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Admin?: AdminUpdateOneWithoutUSERSNestedInput
     ENROLLMENTS?: ENROLLMENTSUpdateManyWithoutUSERSNestedInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUpdateManyWithoutUSERSNestedInput
     Student?: StudentUpdateOneWithoutUSERSNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUpdateManyWithoutUSERSNestedInput
     Tutor?: TutorUpdateOneWithoutUSERSNestedInput
@@ -17209,6 +18901,7 @@ export namespace Prisma {
     Is_Student?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Admin?: AdminUncheckedUpdateOneWithoutUSERSNestedInput
     ENROLLMENTS?: ENROLLMENTSUncheckedUpdateManyWithoutUSERSNestedInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedUpdateManyWithoutUSERSNestedInput
     Student?: StudentUncheckedUpdateOneWithoutUSERSNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedUpdateManyWithoutUSERSNestedInput
     Tutor?: TutorUncheckedUpdateOneWithoutUSERSNestedInput
@@ -17258,6 +18951,7 @@ export namespace Prisma {
     USERS?: USERSUpdateOneRequiredWithoutENROLLMENTSNestedInput
     Tutor?: TutorUpdateOneWithoutENROLLMENTSNestedInput
     COURSES?: COURSESUpdateOneRequiredWithoutENROLLMENTSNestedInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUpdateManyWithoutENROLLMENTSNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUpdateManyWithoutENROLLMENTSNestedInput
   }
 
@@ -17267,6 +18961,213 @@ export namespace Prisma {
     Tutor_ID?: NullableIntFieldUpdateOperationsInput | number | null
     Course_ID?: IntFieldUpdateOperationsInput | number
     Total_Enrollment?: NullableIntFieldUpdateOperationsInput | number | null
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedUpdateManyWithoutENROLLMENTSNestedInput
+    TUTORING_SESSION?: TUTORING_SESSIONUncheckedUpdateManyWithoutENROLLMENTSNestedInput
+  }
+
+  export type STUDY_GROUP_MEMBERSUpsertWithWhereUniqueWithoutSTUDY_BUDDY_GROUPSInput = {
+    where: STUDY_GROUP_MEMBERSWhereUniqueInput
+    update: XOR<STUDY_GROUP_MEMBERSUpdateWithoutSTUDY_BUDDY_GROUPSInput, STUDY_GROUP_MEMBERSUncheckedUpdateWithoutSTUDY_BUDDY_GROUPSInput>
+    create: XOR<STUDY_GROUP_MEMBERSCreateWithoutSTUDY_BUDDY_GROUPSInput, STUDY_GROUP_MEMBERSUncheckedCreateWithoutSTUDY_BUDDY_GROUPSInput>
+  }
+
+  export type STUDY_GROUP_MEMBERSUpdateWithWhereUniqueWithoutSTUDY_BUDDY_GROUPSInput = {
+    where: STUDY_GROUP_MEMBERSWhereUniqueInput
+    data: XOR<STUDY_GROUP_MEMBERSUpdateWithoutSTUDY_BUDDY_GROUPSInput, STUDY_GROUP_MEMBERSUncheckedUpdateWithoutSTUDY_BUDDY_GROUPSInput>
+  }
+
+  export type STUDY_GROUP_MEMBERSUpdateManyWithWhereWithoutSTUDY_BUDDY_GROUPSInput = {
+    where: STUDY_GROUP_MEMBERSScalarWhereInput
+    data: XOR<STUDY_GROUP_MEMBERSUpdateManyMutationInput, STUDY_GROUP_MEMBERSUncheckedUpdateManyWithoutSTUDY_BUDDY_GROUPSInput>
+  }
+
+  export type STUDY_BUDDY_GROUPSCreateWithoutSTUDY_GROUP_MEMBERSInput = {
+    Group_Date?: Date | string | null
+    Group_Time?: Date | string | null
+    Is_Accepted?: boolean | null
+    Has_Tutor?: boolean | null
+    Group_Members?: number | null
+    USERS: USERSCreateNestedOneWithoutSTUDY_BUDDY_GROUPSInput
+    Tutor?: TutorCreateNestedOneWithoutSTUDY_BUDDY_GROUPSInput
+    ENROLLMENTS: ENROLLMENTSCreateNestedOneWithoutSTUDY_BUDDY_GROUPSInput
+  }
+
+  export type STUDY_BUDDY_GROUPSUncheckedCreateWithoutSTUDY_GROUP_MEMBERSInput = {
+    Group_ID?: number
+    User_ID: number
+    Tutor_ID?: number | null
+    Enrollment_ID: number
+    Group_Date?: Date | string | null
+    Group_Time?: Date | string | null
+    Is_Accepted?: boolean | null
+    Has_Tutor?: boolean | null
+    Group_Members?: number | null
+  }
+
+  export type STUDY_BUDDY_GROUPSCreateOrConnectWithoutSTUDY_GROUP_MEMBERSInput = {
+    where: STUDY_BUDDY_GROUPSWhereUniqueInput
+    create: XOR<STUDY_BUDDY_GROUPSCreateWithoutSTUDY_GROUP_MEMBERSInput, STUDY_BUDDY_GROUPSUncheckedCreateWithoutSTUDY_GROUP_MEMBERSInput>
+  }
+
+  export type USERSCreateWithoutSTUDY_GROUP_MEMBERSInput = {
+    Name: string
+    Email: string
+    Is_Admin?: boolean | null
+    Is_Tutor?: boolean | null
+    Is_Student?: boolean | null
+    Admin?: AdminCreateNestedOneWithoutUSERSInput
+    ENROLLMENTS?: ENROLLMENTSCreateNestedManyWithoutUSERSInput
+    STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSCreateNestedManyWithoutUSERSInput
+    Student?: StudentCreateNestedOneWithoutUSERSInput
+    TUTORING_SESSION?: TUTORING_SESSIONCreateNestedManyWithoutUSERSInput
+    Tutor?: TutorCreateNestedOneWithoutUSERSInput
+  }
+
+  export type USERSUncheckedCreateWithoutSTUDY_GROUP_MEMBERSInput = {
+    User_ID?: number
+    Name: string
+    Email: string
+    Is_Admin?: boolean | null
+    Is_Tutor?: boolean | null
+    Is_Student?: boolean | null
+    Admin?: AdminUncheckedCreateNestedOneWithoutUSERSInput
+    ENROLLMENTS?: ENROLLMENTSUncheckedCreateNestedManyWithoutUSERSInput
+    STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedCreateNestedManyWithoutUSERSInput
+    Student?: StudentUncheckedCreateNestedOneWithoutUSERSInput
+    TUTORING_SESSION?: TUTORING_SESSIONUncheckedCreateNestedManyWithoutUSERSInput
+    Tutor?: TutorUncheckedCreateNestedOneWithoutUSERSInput
+  }
+
+  export type USERSCreateOrConnectWithoutSTUDY_GROUP_MEMBERSInput = {
+    where: USERSWhereUniqueInput
+    create: XOR<USERSCreateWithoutSTUDY_GROUP_MEMBERSInput, USERSUncheckedCreateWithoutSTUDY_GROUP_MEMBERSInput>
+  }
+
+  export type ENROLLMENTSCreateWithoutSTUDY_GROUP_MEMBERSInput = {
+    Total_Enrollment?: number | null
+    USERS: USERSCreateNestedOneWithoutENROLLMENTSInput
+    Tutor?: TutorCreateNestedOneWithoutENROLLMENTSInput
+    COURSES: COURSESCreateNestedOneWithoutENROLLMENTSInput
+    STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSCreateNestedManyWithoutENROLLMENTSInput
+    TUTORING_SESSION?: TUTORING_SESSIONCreateNestedManyWithoutENROLLMENTSInput
+  }
+
+  export type ENROLLMENTSUncheckedCreateWithoutSTUDY_GROUP_MEMBERSInput = {
+    Enrollment_ID?: number
+    User_ID: number
+    Tutor_ID?: number | null
+    Course_ID: number
+    Total_Enrollment?: number | null
+    STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedCreateNestedManyWithoutENROLLMENTSInput
+    TUTORING_SESSION?: TUTORING_SESSIONUncheckedCreateNestedManyWithoutENROLLMENTSInput
+  }
+
+  export type ENROLLMENTSCreateOrConnectWithoutSTUDY_GROUP_MEMBERSInput = {
+    where: ENROLLMENTSWhereUniqueInput
+    create: XOR<ENROLLMENTSCreateWithoutSTUDY_GROUP_MEMBERSInput, ENROLLMENTSUncheckedCreateWithoutSTUDY_GROUP_MEMBERSInput>
+  }
+
+  export type STUDY_BUDDY_GROUPSUpsertWithoutSTUDY_GROUP_MEMBERSInput = {
+    update: XOR<STUDY_BUDDY_GROUPSUpdateWithoutSTUDY_GROUP_MEMBERSInput, STUDY_BUDDY_GROUPSUncheckedUpdateWithoutSTUDY_GROUP_MEMBERSInput>
+    create: XOR<STUDY_BUDDY_GROUPSCreateWithoutSTUDY_GROUP_MEMBERSInput, STUDY_BUDDY_GROUPSUncheckedCreateWithoutSTUDY_GROUP_MEMBERSInput>
+    where?: STUDY_BUDDY_GROUPSWhereInput
+  }
+
+  export type STUDY_BUDDY_GROUPSUpdateToOneWithWhereWithoutSTUDY_GROUP_MEMBERSInput = {
+    where?: STUDY_BUDDY_GROUPSWhereInput
+    data: XOR<STUDY_BUDDY_GROUPSUpdateWithoutSTUDY_GROUP_MEMBERSInput, STUDY_BUDDY_GROUPSUncheckedUpdateWithoutSTUDY_GROUP_MEMBERSInput>
+  }
+
+  export type STUDY_BUDDY_GROUPSUpdateWithoutSTUDY_GROUP_MEMBERSInput = {
+    Group_Date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Group_Time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Is_Accepted?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Has_Tutor?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Group_Members?: NullableIntFieldUpdateOperationsInput | number | null
+    USERS?: USERSUpdateOneRequiredWithoutSTUDY_BUDDY_GROUPSNestedInput
+    Tutor?: TutorUpdateOneWithoutSTUDY_BUDDY_GROUPSNestedInput
+    ENROLLMENTS?: ENROLLMENTSUpdateOneRequiredWithoutSTUDY_BUDDY_GROUPSNestedInput
+  }
+
+  export type STUDY_BUDDY_GROUPSUncheckedUpdateWithoutSTUDY_GROUP_MEMBERSInput = {
+    Group_ID?: IntFieldUpdateOperationsInput | number
+    User_ID?: IntFieldUpdateOperationsInput | number
+    Tutor_ID?: NullableIntFieldUpdateOperationsInput | number | null
+    Enrollment_ID?: IntFieldUpdateOperationsInput | number
+    Group_Date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Group_Time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Is_Accepted?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Has_Tutor?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Group_Members?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type USERSUpsertWithoutSTUDY_GROUP_MEMBERSInput = {
+    update: XOR<USERSUpdateWithoutSTUDY_GROUP_MEMBERSInput, USERSUncheckedUpdateWithoutSTUDY_GROUP_MEMBERSInput>
+    create: XOR<USERSCreateWithoutSTUDY_GROUP_MEMBERSInput, USERSUncheckedCreateWithoutSTUDY_GROUP_MEMBERSInput>
+    where?: USERSWhereInput
+  }
+
+  export type USERSUpdateToOneWithWhereWithoutSTUDY_GROUP_MEMBERSInput = {
+    where?: USERSWhereInput
+    data: XOR<USERSUpdateWithoutSTUDY_GROUP_MEMBERSInput, USERSUncheckedUpdateWithoutSTUDY_GROUP_MEMBERSInput>
+  }
+
+  export type USERSUpdateWithoutSTUDY_GROUP_MEMBERSInput = {
+    Name?: StringFieldUpdateOperationsInput | string
+    Email?: StringFieldUpdateOperationsInput | string
+    Is_Admin?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Is_Tutor?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Is_Student?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Admin?: AdminUpdateOneWithoutUSERSNestedInput
+    ENROLLMENTS?: ENROLLMENTSUpdateManyWithoutUSERSNestedInput
+    STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUpdateManyWithoutUSERSNestedInput
+    Student?: StudentUpdateOneWithoutUSERSNestedInput
+    TUTORING_SESSION?: TUTORING_SESSIONUpdateManyWithoutUSERSNestedInput
+    Tutor?: TutorUpdateOneWithoutUSERSNestedInput
+  }
+
+  export type USERSUncheckedUpdateWithoutSTUDY_GROUP_MEMBERSInput = {
+    User_ID?: IntFieldUpdateOperationsInput | number
+    Name?: StringFieldUpdateOperationsInput | string
+    Email?: StringFieldUpdateOperationsInput | string
+    Is_Admin?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Is_Tutor?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Is_Student?: NullableBoolFieldUpdateOperationsInput | boolean | null
+    Admin?: AdminUncheckedUpdateOneWithoutUSERSNestedInput
+    ENROLLMENTS?: ENROLLMENTSUncheckedUpdateManyWithoutUSERSNestedInput
+    STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedUpdateManyWithoutUSERSNestedInput
+    Student?: StudentUncheckedUpdateOneWithoutUSERSNestedInput
+    TUTORING_SESSION?: TUTORING_SESSIONUncheckedUpdateManyWithoutUSERSNestedInput
+    Tutor?: TutorUncheckedUpdateOneWithoutUSERSNestedInput
+  }
+
+  export type ENROLLMENTSUpsertWithoutSTUDY_GROUP_MEMBERSInput = {
+    update: XOR<ENROLLMENTSUpdateWithoutSTUDY_GROUP_MEMBERSInput, ENROLLMENTSUncheckedUpdateWithoutSTUDY_GROUP_MEMBERSInput>
+    create: XOR<ENROLLMENTSCreateWithoutSTUDY_GROUP_MEMBERSInput, ENROLLMENTSUncheckedCreateWithoutSTUDY_GROUP_MEMBERSInput>
+    where?: ENROLLMENTSWhereInput
+  }
+
+  export type ENROLLMENTSUpdateToOneWithWhereWithoutSTUDY_GROUP_MEMBERSInput = {
+    where?: ENROLLMENTSWhereInput
+    data: XOR<ENROLLMENTSUpdateWithoutSTUDY_GROUP_MEMBERSInput, ENROLLMENTSUncheckedUpdateWithoutSTUDY_GROUP_MEMBERSInput>
+  }
+
+  export type ENROLLMENTSUpdateWithoutSTUDY_GROUP_MEMBERSInput = {
+    Total_Enrollment?: NullableIntFieldUpdateOperationsInput | number | null
+    USERS?: USERSUpdateOneRequiredWithoutENROLLMENTSNestedInput
+    Tutor?: TutorUpdateOneWithoutENROLLMENTSNestedInput
+    COURSES?: COURSESUpdateOneRequiredWithoutENROLLMENTSNestedInput
+    STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUpdateManyWithoutENROLLMENTSNestedInput
+    TUTORING_SESSION?: TUTORING_SESSIONUpdateManyWithoutENROLLMENTSNestedInput
+  }
+
+  export type ENROLLMENTSUncheckedUpdateWithoutSTUDY_GROUP_MEMBERSInput = {
+    Enrollment_ID?: IntFieldUpdateOperationsInput | number
+    User_ID?: IntFieldUpdateOperationsInput | number
+    Tutor_ID?: NullableIntFieldUpdateOperationsInput | number | null
+    Course_ID?: IntFieldUpdateOperationsInput | number
+    Total_Enrollment?: NullableIntFieldUpdateOperationsInput | number | null
+    STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedUpdateManyWithoutENROLLMENTSNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedUpdateManyWithoutENROLLMENTSNestedInput
   }
 
@@ -17279,6 +19180,7 @@ export namespace Prisma {
     Admin?: AdminCreateNestedOneWithoutUSERSInput
     ENROLLMENTS?: ENROLLMENTSCreateNestedManyWithoutUSERSInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSCreateNestedManyWithoutUSERSInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSCreateNestedManyWithoutUSERSInput
     TUTORING_SESSION?: TUTORING_SESSIONCreateNestedManyWithoutUSERSInput
     Tutor?: TutorCreateNestedOneWithoutUSERSInput
   }
@@ -17293,6 +19195,7 @@ export namespace Prisma {
     Admin?: AdminUncheckedCreateNestedOneWithoutUSERSInput
     ENROLLMENTS?: ENROLLMENTSUncheckedCreateNestedManyWithoutUSERSInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedCreateNestedManyWithoutUSERSInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedCreateNestedManyWithoutUSERSInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedCreateNestedManyWithoutUSERSInput
     Tutor?: TutorUncheckedCreateNestedOneWithoutUSERSInput
   }
@@ -17322,6 +19225,7 @@ export namespace Prisma {
     Admin?: AdminUpdateOneWithoutUSERSNestedInput
     ENROLLMENTS?: ENROLLMENTSUpdateManyWithoutUSERSNestedInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUpdateManyWithoutUSERSNestedInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUpdateManyWithoutUSERSNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUpdateManyWithoutUSERSNestedInput
     Tutor?: TutorUpdateOneWithoutUSERSNestedInput
   }
@@ -17336,6 +19240,7 @@ export namespace Prisma {
     Admin?: AdminUncheckedUpdateOneWithoutUSERSNestedInput
     ENROLLMENTS?: ENROLLMENTSUncheckedUpdateManyWithoutUSERSNestedInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedUpdateManyWithoutUSERSNestedInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedUpdateManyWithoutUSERSNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedUpdateManyWithoutUSERSNestedInput
     Tutor?: TutorUncheckedUpdateOneWithoutUSERSNestedInput
   }
@@ -17349,6 +19254,7 @@ export namespace Prisma {
     Admin?: AdminCreateNestedOneWithoutUSERSInput
     ENROLLMENTS?: ENROLLMENTSCreateNestedManyWithoutUSERSInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSCreateNestedManyWithoutUSERSInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSCreateNestedManyWithoutUSERSInput
     Student?: StudentCreateNestedOneWithoutUSERSInput
     Tutor?: TutorCreateNestedOneWithoutUSERSInput
   }
@@ -17363,6 +19269,7 @@ export namespace Prisma {
     Admin?: AdminUncheckedCreateNestedOneWithoutUSERSInput
     ENROLLMENTS?: ENROLLMENTSUncheckedCreateNestedManyWithoutUSERSInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedCreateNestedManyWithoutUSERSInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedCreateNestedManyWithoutUSERSInput
     Student?: StudentUncheckedCreateNestedOneWithoutUSERSInput
     Tutor?: TutorUncheckedCreateNestedOneWithoutUSERSInput
   }
@@ -17400,6 +19307,7 @@ export namespace Prisma {
     Tutor?: TutorCreateNestedOneWithoutENROLLMENTSInput
     COURSES: COURSESCreateNestedOneWithoutENROLLMENTSInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSCreateNestedManyWithoutENROLLMENTSInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSCreateNestedManyWithoutENROLLMENTSInput
   }
 
   export type ENROLLMENTSUncheckedCreateWithoutTUTORING_SESSIONInput = {
@@ -17409,6 +19317,7 @@ export namespace Prisma {
     Course_ID: number
     Total_Enrollment?: number | null
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedCreateNestedManyWithoutENROLLMENTSInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedCreateNestedManyWithoutENROLLMENTSInput
   }
 
   export type ENROLLMENTSCreateOrConnectWithoutTUTORING_SESSIONInput = {
@@ -17436,6 +19345,7 @@ export namespace Prisma {
     Admin?: AdminUpdateOneWithoutUSERSNestedInput
     ENROLLMENTS?: ENROLLMENTSUpdateManyWithoutUSERSNestedInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUpdateManyWithoutUSERSNestedInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUpdateManyWithoutUSERSNestedInput
     Student?: StudentUpdateOneWithoutUSERSNestedInput
     Tutor?: TutorUpdateOneWithoutUSERSNestedInput
   }
@@ -17450,6 +19360,7 @@ export namespace Prisma {
     Admin?: AdminUncheckedUpdateOneWithoutUSERSNestedInput
     ENROLLMENTS?: ENROLLMENTSUncheckedUpdateManyWithoutUSERSNestedInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedUpdateManyWithoutUSERSNestedInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedUpdateManyWithoutUSERSNestedInput
     Student?: StudentUncheckedUpdateOneWithoutUSERSNestedInput
     Tutor?: TutorUncheckedUpdateOneWithoutUSERSNestedInput
   }
@@ -17499,6 +19410,7 @@ export namespace Prisma {
     Tutor?: TutorUpdateOneWithoutENROLLMENTSNestedInput
     COURSES?: COURSESUpdateOneRequiredWithoutENROLLMENTSNestedInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUpdateManyWithoutENROLLMENTSNestedInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUpdateManyWithoutENROLLMENTSNestedInput
   }
 
   export type ENROLLMENTSUncheckedUpdateWithoutTUTORING_SESSIONInput = {
@@ -17508,6 +19420,7 @@ export namespace Prisma {
     Course_ID?: IntFieldUpdateOperationsInput | number
     Total_Enrollment?: NullableIntFieldUpdateOperationsInput | number | null
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedUpdateManyWithoutENROLLMENTSNestedInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedUpdateManyWithoutENROLLMENTSNestedInput
   }
 
   export type SCHEDULECreateWithoutTUTOR_AVAILABILITYInput = {
@@ -17602,6 +19515,7 @@ export namespace Prisma {
     USERS: USERSCreateNestedOneWithoutENROLLMENTSInput
     COURSES: COURSESCreateNestedOneWithoutENROLLMENTSInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSCreateNestedManyWithoutENROLLMENTSInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSCreateNestedManyWithoutENROLLMENTSInput
     TUTORING_SESSION?: TUTORING_SESSIONCreateNestedManyWithoutENROLLMENTSInput
   }
 
@@ -17611,6 +19525,7 @@ export namespace Prisma {
     Course_ID: number
     Total_Enrollment?: number | null
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedCreateNestedManyWithoutENROLLMENTSInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedCreateNestedManyWithoutENROLLMENTSInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedCreateNestedManyWithoutENROLLMENTSInput
   }
 
@@ -17625,20 +19540,26 @@ export namespace Prisma {
   }
 
   export type STUDY_BUDDY_GROUPSCreateWithoutTutorInput = {
+    Group_Date?: Date | string | null
+    Group_Time?: Date | string | null
     Is_Accepted?: boolean | null
     Has_Tutor?: boolean | null
     Group_Members?: number | null
     USERS: USERSCreateNestedOneWithoutSTUDY_BUDDY_GROUPSInput
     ENROLLMENTS: ENROLLMENTSCreateNestedOneWithoutSTUDY_BUDDY_GROUPSInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSCreateNestedManyWithoutSTUDY_BUDDY_GROUPSInput
   }
 
   export type STUDY_BUDDY_GROUPSUncheckedCreateWithoutTutorInput = {
     Group_ID?: number
     User_ID: number
     Enrollment_ID: number
+    Group_Date?: Date | string | null
+    Group_Time?: Date | string | null
     Is_Accepted?: boolean | null
     Has_Tutor?: boolean | null
     Group_Members?: number | null
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedCreateNestedManyWithoutSTUDY_BUDDY_GROUPSInput
   }
 
   export type STUDY_BUDDY_GROUPSCreateOrConnectWithoutTutorInput = {
@@ -17735,6 +19656,7 @@ export namespace Prisma {
     Admin?: AdminCreateNestedOneWithoutUSERSInput
     ENROLLMENTS?: ENROLLMENTSCreateNestedManyWithoutUSERSInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSCreateNestedManyWithoutUSERSInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSCreateNestedManyWithoutUSERSInput
     Student?: StudentCreateNestedOneWithoutUSERSInput
     TUTORING_SESSION?: TUTORING_SESSIONCreateNestedManyWithoutUSERSInput
   }
@@ -17749,6 +19671,7 @@ export namespace Prisma {
     Admin?: AdminUncheckedCreateNestedOneWithoutUSERSInput
     ENROLLMENTS?: ENROLLMENTSUncheckedCreateNestedManyWithoutUSERSInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedCreateNestedManyWithoutUSERSInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedCreateNestedManyWithoutUSERSInput
     Student?: StudentUncheckedCreateNestedOneWithoutUSERSInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedCreateNestedManyWithoutUSERSInput
   }
@@ -17869,6 +19792,7 @@ export namespace Prisma {
     Admin?: AdminUpdateOneWithoutUSERSNestedInput
     ENROLLMENTS?: ENROLLMENTSUpdateManyWithoutUSERSNestedInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUpdateManyWithoutUSERSNestedInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUpdateManyWithoutUSERSNestedInput
     Student?: StudentUpdateOneWithoutUSERSNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUpdateManyWithoutUSERSNestedInput
   }
@@ -17883,6 +19807,7 @@ export namespace Prisma {
     Admin?: AdminUncheckedUpdateOneWithoutUSERSNestedInput
     ENROLLMENTS?: ENROLLMENTSUncheckedUpdateManyWithoutUSERSNestedInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedUpdateManyWithoutUSERSNestedInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedUpdateManyWithoutUSERSNestedInput
     Student?: StudentUncheckedUpdateOneWithoutUSERSNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedUpdateManyWithoutUSERSNestedInput
   }
@@ -17906,6 +19831,7 @@ export namespace Prisma {
     Tutor?: TutorCreateNestedOneWithoutENROLLMENTSInput
     COURSES: COURSESCreateNestedOneWithoutENROLLMENTSInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSCreateNestedManyWithoutENROLLMENTSInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSCreateNestedManyWithoutENROLLMENTSInput
     TUTORING_SESSION?: TUTORING_SESSIONCreateNestedManyWithoutENROLLMENTSInput
   }
 
@@ -17915,6 +19841,7 @@ export namespace Prisma {
     Course_ID: number
     Total_Enrollment?: number | null
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedCreateNestedManyWithoutENROLLMENTSInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedCreateNestedManyWithoutENROLLMENTSInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedCreateNestedManyWithoutENROLLMENTSInput
   }
 
@@ -17929,20 +19856,26 @@ export namespace Prisma {
   }
 
   export type STUDY_BUDDY_GROUPSCreateWithoutUSERSInput = {
+    Group_Date?: Date | string | null
+    Group_Time?: Date | string | null
     Is_Accepted?: boolean | null
     Has_Tutor?: boolean | null
     Group_Members?: number | null
     Tutor?: TutorCreateNestedOneWithoutSTUDY_BUDDY_GROUPSInput
     ENROLLMENTS: ENROLLMENTSCreateNestedOneWithoutSTUDY_BUDDY_GROUPSInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSCreateNestedManyWithoutSTUDY_BUDDY_GROUPSInput
   }
 
   export type STUDY_BUDDY_GROUPSUncheckedCreateWithoutUSERSInput = {
     Group_ID?: number
     Tutor_ID?: number | null
     Enrollment_ID: number
+    Group_Date?: Date | string | null
+    Group_Time?: Date | string | null
     Is_Accepted?: boolean | null
     Has_Tutor?: boolean | null
     Group_Members?: number | null
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedCreateNestedManyWithoutSTUDY_BUDDY_GROUPSInput
   }
 
   export type STUDY_BUDDY_GROUPSCreateOrConnectWithoutUSERSInput = {
@@ -17952,6 +19885,27 @@ export namespace Prisma {
 
   export type STUDY_BUDDY_GROUPSCreateManyUSERSInputEnvelope = {
     data: STUDY_BUDDY_GROUPSCreateManyUSERSInput | STUDY_BUDDY_GROUPSCreateManyUSERSInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type STUDY_GROUP_MEMBERSCreateWithoutUSERSInput = {
+    STUDY_BUDDY_GROUPS: STUDY_BUDDY_GROUPSCreateNestedOneWithoutSTUDY_GROUP_MEMBERSInput
+    ENROLLMENTS: ENROLLMENTSCreateNestedOneWithoutSTUDY_GROUP_MEMBERSInput
+  }
+
+  export type STUDY_GROUP_MEMBERSUncheckedCreateWithoutUSERSInput = {
+    Member_ID?: number
+    Group_ID: number
+    Enrollment_ID: number
+  }
+
+  export type STUDY_GROUP_MEMBERSCreateOrConnectWithoutUSERSInput = {
+    where: STUDY_GROUP_MEMBERSWhereUniqueInput
+    create: XOR<STUDY_GROUP_MEMBERSCreateWithoutUSERSInput, STUDY_GROUP_MEMBERSUncheckedCreateWithoutUSERSInput>
+  }
+
+  export type STUDY_GROUP_MEMBERSCreateManyUSERSInputEnvelope = {
+    data: STUDY_GROUP_MEMBERSCreateManyUSERSInput | STUDY_GROUP_MEMBERSCreateManyUSERSInput[]
     skipDuplicates?: boolean
   }
 
@@ -18071,6 +20025,22 @@ export namespace Prisma {
   export type STUDY_BUDDY_GROUPSUpdateManyWithWhereWithoutUSERSInput = {
     where: STUDY_BUDDY_GROUPSScalarWhereInput
     data: XOR<STUDY_BUDDY_GROUPSUpdateManyMutationInput, STUDY_BUDDY_GROUPSUncheckedUpdateManyWithoutUSERSInput>
+  }
+
+  export type STUDY_GROUP_MEMBERSUpsertWithWhereUniqueWithoutUSERSInput = {
+    where: STUDY_GROUP_MEMBERSWhereUniqueInput
+    update: XOR<STUDY_GROUP_MEMBERSUpdateWithoutUSERSInput, STUDY_GROUP_MEMBERSUncheckedUpdateWithoutUSERSInput>
+    create: XOR<STUDY_GROUP_MEMBERSCreateWithoutUSERSInput, STUDY_GROUP_MEMBERSUncheckedCreateWithoutUSERSInput>
+  }
+
+  export type STUDY_GROUP_MEMBERSUpdateWithWhereUniqueWithoutUSERSInput = {
+    where: STUDY_GROUP_MEMBERSWhereUniqueInput
+    data: XOR<STUDY_GROUP_MEMBERSUpdateWithoutUSERSInput, STUDY_GROUP_MEMBERSUncheckedUpdateWithoutUSERSInput>
+  }
+
+  export type STUDY_GROUP_MEMBERSUpdateManyWithWhereWithoutUSERSInput = {
+    where: STUDY_GROUP_MEMBERSScalarWhereInput
+    data: XOR<STUDY_GROUP_MEMBERSUpdateManyMutationInput, STUDY_GROUP_MEMBERSUncheckedUpdateManyWithoutUSERSInput>
   }
 
   export type StudentUpsertWithoutUSERSInput = {
@@ -18280,6 +20250,7 @@ export namespace Prisma {
     USERS?: USERSUpdateOneRequiredWithoutENROLLMENTSNestedInput
     Tutor?: TutorUpdateOneWithoutENROLLMENTSNestedInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUpdateManyWithoutENROLLMENTSNestedInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUpdateManyWithoutENROLLMENTSNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUpdateManyWithoutENROLLMENTSNestedInput
   }
 
@@ -18289,6 +20260,7 @@ export namespace Prisma {
     Tutor_ID?: NullableIntFieldUpdateOperationsInput | number | null
     Total_Enrollment?: NullableIntFieldUpdateOperationsInput | number | null
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedUpdateManyWithoutENROLLMENTSNestedInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedUpdateManyWithoutENROLLMENTSNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedUpdateManyWithoutENROLLMENTSNestedInput
   }
 
@@ -18317,9 +20289,17 @@ export namespace Prisma {
     Group_ID?: number
     User_ID: number
     Tutor_ID?: number | null
+    Group_Date?: Date | string | null
+    Group_Time?: Date | string | null
     Is_Accepted?: boolean | null
     Has_Tutor?: boolean | null
     Group_Members?: number | null
+  }
+
+  export type STUDY_GROUP_MEMBERSCreateManyENROLLMENTSInput = {
+    Member_ID?: number
+    Group_ID: number
+    User_ID: number
   }
 
   export type TUTORING_SESSIONCreateManyENROLLMENTSInput = {
@@ -18334,29 +20314,54 @@ export namespace Prisma {
   }
 
   export type STUDY_BUDDY_GROUPSUpdateWithoutENROLLMENTSInput = {
+    Group_Date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Group_Time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Is_Accepted?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Has_Tutor?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Group_Members?: NullableIntFieldUpdateOperationsInput | number | null
     USERS?: USERSUpdateOneRequiredWithoutSTUDY_BUDDY_GROUPSNestedInput
     Tutor?: TutorUpdateOneWithoutSTUDY_BUDDY_GROUPSNestedInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUpdateManyWithoutSTUDY_BUDDY_GROUPSNestedInput
   }
 
   export type STUDY_BUDDY_GROUPSUncheckedUpdateWithoutENROLLMENTSInput = {
     Group_ID?: IntFieldUpdateOperationsInput | number
     User_ID?: IntFieldUpdateOperationsInput | number
     Tutor_ID?: NullableIntFieldUpdateOperationsInput | number | null
+    Group_Date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Group_Time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Is_Accepted?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Has_Tutor?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Group_Members?: NullableIntFieldUpdateOperationsInput | number | null
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedUpdateManyWithoutSTUDY_BUDDY_GROUPSNestedInput
   }
 
   export type STUDY_BUDDY_GROUPSUncheckedUpdateManyWithoutENROLLMENTSInput = {
     Group_ID?: IntFieldUpdateOperationsInput | number
     User_ID?: IntFieldUpdateOperationsInput | number
     Tutor_ID?: NullableIntFieldUpdateOperationsInput | number | null
+    Group_Date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Group_Time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Is_Accepted?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Has_Tutor?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Group_Members?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type STUDY_GROUP_MEMBERSUpdateWithoutENROLLMENTSInput = {
+    STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUpdateOneRequiredWithoutSTUDY_GROUP_MEMBERSNestedInput
+    USERS?: USERSUpdateOneRequiredWithoutSTUDY_GROUP_MEMBERSNestedInput
+  }
+
+  export type STUDY_GROUP_MEMBERSUncheckedUpdateWithoutENROLLMENTSInput = {
+    Member_ID?: IntFieldUpdateOperationsInput | number
+    Group_ID?: IntFieldUpdateOperationsInput | number
+    User_ID?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type STUDY_GROUP_MEMBERSUncheckedUpdateManyWithoutENROLLMENTSInput = {
+    Member_ID?: IntFieldUpdateOperationsInput | number
+    Group_ID?: IntFieldUpdateOperationsInput | number
+    User_ID?: IntFieldUpdateOperationsInput | number
   }
 
   export type TUTORING_SESSIONUpdateWithoutENROLLMENTSInput = {
@@ -18389,6 +20394,29 @@ export namespace Prisma {
     Session_Loc?: NullableStringFieldUpdateOperationsInput | string | null
     Students_Booked?: NullableIntFieldUpdateOperationsInput | number | null
     Session_Max?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type STUDY_GROUP_MEMBERSCreateManySTUDY_BUDDY_GROUPSInput = {
+    Member_ID?: number
+    User_ID: number
+    Enrollment_ID: number
+  }
+
+  export type STUDY_GROUP_MEMBERSUpdateWithoutSTUDY_BUDDY_GROUPSInput = {
+    USERS?: USERSUpdateOneRequiredWithoutSTUDY_GROUP_MEMBERSNestedInput
+    ENROLLMENTS?: ENROLLMENTSUpdateOneRequiredWithoutSTUDY_GROUP_MEMBERSNestedInput
+  }
+
+  export type STUDY_GROUP_MEMBERSUncheckedUpdateWithoutSTUDY_BUDDY_GROUPSInput = {
+    Member_ID?: IntFieldUpdateOperationsInput | number
+    User_ID?: IntFieldUpdateOperationsInput | number
+    Enrollment_ID?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type STUDY_GROUP_MEMBERSUncheckedUpdateManyWithoutSTUDY_BUDDY_GROUPSInput = {
+    Member_ID?: IntFieldUpdateOperationsInput | number
+    User_ID?: IntFieldUpdateOperationsInput | number
+    Enrollment_ID?: IntFieldUpdateOperationsInput | number
   }
 
   export type SCHEDULECreateManyTUTOR_AVAILABILITYInput = {
@@ -18425,6 +20453,8 @@ export namespace Prisma {
     Group_ID?: number
     User_ID: number
     Enrollment_ID: number
+    Group_Date?: Date | string | null
+    Group_Time?: Date | string | null
     Is_Accepted?: boolean | null
     Has_Tutor?: boolean | null
     Group_Members?: number | null
@@ -18458,6 +20488,7 @@ export namespace Prisma {
     USERS?: USERSUpdateOneRequiredWithoutENROLLMENTSNestedInput
     COURSES?: COURSESUpdateOneRequiredWithoutENROLLMENTSNestedInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUpdateManyWithoutENROLLMENTSNestedInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUpdateManyWithoutENROLLMENTSNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUpdateManyWithoutENROLLMENTSNestedInput
   }
 
@@ -18467,6 +20498,7 @@ export namespace Prisma {
     Course_ID?: IntFieldUpdateOperationsInput | number
     Total_Enrollment?: NullableIntFieldUpdateOperationsInput | number | null
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedUpdateManyWithoutENROLLMENTSNestedInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedUpdateManyWithoutENROLLMENTSNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedUpdateManyWithoutENROLLMENTSNestedInput
   }
 
@@ -18478,26 +20510,34 @@ export namespace Prisma {
   }
 
   export type STUDY_BUDDY_GROUPSUpdateWithoutTutorInput = {
+    Group_Date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Group_Time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Is_Accepted?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Has_Tutor?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Group_Members?: NullableIntFieldUpdateOperationsInput | number | null
     USERS?: USERSUpdateOneRequiredWithoutSTUDY_BUDDY_GROUPSNestedInput
     ENROLLMENTS?: ENROLLMENTSUpdateOneRequiredWithoutSTUDY_BUDDY_GROUPSNestedInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUpdateManyWithoutSTUDY_BUDDY_GROUPSNestedInput
   }
 
   export type STUDY_BUDDY_GROUPSUncheckedUpdateWithoutTutorInput = {
     Group_ID?: IntFieldUpdateOperationsInput | number
     User_ID?: IntFieldUpdateOperationsInput | number
     Enrollment_ID?: IntFieldUpdateOperationsInput | number
+    Group_Date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Group_Time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Is_Accepted?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Has_Tutor?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Group_Members?: NullableIntFieldUpdateOperationsInput | number | null
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedUpdateManyWithoutSTUDY_BUDDY_GROUPSNestedInput
   }
 
   export type STUDY_BUDDY_GROUPSUncheckedUpdateManyWithoutTutorInput = {
     Group_ID?: IntFieldUpdateOperationsInput | number
     User_ID?: IntFieldUpdateOperationsInput | number
     Enrollment_ID?: IntFieldUpdateOperationsInput | number
+    Group_Date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Group_Time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Is_Accepted?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Has_Tutor?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Group_Members?: NullableIntFieldUpdateOperationsInput | number | null
@@ -18582,9 +20622,17 @@ export namespace Prisma {
     Group_ID?: number
     Tutor_ID?: number | null
     Enrollment_ID: number
+    Group_Date?: Date | string | null
+    Group_Time?: Date | string | null
     Is_Accepted?: boolean | null
     Has_Tutor?: boolean | null
     Group_Members?: number | null
+  }
+
+  export type STUDY_GROUP_MEMBERSCreateManyUSERSInput = {
+    Member_ID?: number
+    Group_ID: number
+    Enrollment_ID: number
   }
 
   export type TUTORING_SESSIONCreateManyUSERSInput = {
@@ -18603,6 +20651,7 @@ export namespace Prisma {
     Tutor?: TutorUpdateOneWithoutENROLLMENTSNestedInput
     COURSES?: COURSESUpdateOneRequiredWithoutENROLLMENTSNestedInput
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUpdateManyWithoutENROLLMENTSNestedInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUpdateManyWithoutENROLLMENTSNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUpdateManyWithoutENROLLMENTSNestedInput
   }
 
@@ -18612,6 +20661,7 @@ export namespace Prisma {
     Course_ID?: IntFieldUpdateOperationsInput | number
     Total_Enrollment?: NullableIntFieldUpdateOperationsInput | number | null
     STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUncheckedUpdateManyWithoutENROLLMENTSNestedInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedUpdateManyWithoutENROLLMENTSNestedInput
     TUTORING_SESSION?: TUTORING_SESSIONUncheckedUpdateManyWithoutENROLLMENTSNestedInput
   }
 
@@ -18623,29 +20673,54 @@ export namespace Prisma {
   }
 
   export type STUDY_BUDDY_GROUPSUpdateWithoutUSERSInput = {
+    Group_Date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Group_Time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Is_Accepted?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Has_Tutor?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Group_Members?: NullableIntFieldUpdateOperationsInput | number | null
     Tutor?: TutorUpdateOneWithoutSTUDY_BUDDY_GROUPSNestedInput
     ENROLLMENTS?: ENROLLMENTSUpdateOneRequiredWithoutSTUDY_BUDDY_GROUPSNestedInput
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUpdateManyWithoutSTUDY_BUDDY_GROUPSNestedInput
   }
 
   export type STUDY_BUDDY_GROUPSUncheckedUpdateWithoutUSERSInput = {
     Group_ID?: IntFieldUpdateOperationsInput | number
     Tutor_ID?: NullableIntFieldUpdateOperationsInput | number | null
     Enrollment_ID?: IntFieldUpdateOperationsInput | number
+    Group_Date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Group_Time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Is_Accepted?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Has_Tutor?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Group_Members?: NullableIntFieldUpdateOperationsInput | number | null
+    STUDY_GROUP_MEMBERS?: STUDY_GROUP_MEMBERSUncheckedUpdateManyWithoutSTUDY_BUDDY_GROUPSNestedInput
   }
 
   export type STUDY_BUDDY_GROUPSUncheckedUpdateManyWithoutUSERSInput = {
     Group_ID?: IntFieldUpdateOperationsInput | number
     Tutor_ID?: NullableIntFieldUpdateOperationsInput | number | null
     Enrollment_ID?: IntFieldUpdateOperationsInput | number
+    Group_Date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    Group_Time?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     Is_Accepted?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Has_Tutor?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Group_Members?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type STUDY_GROUP_MEMBERSUpdateWithoutUSERSInput = {
+    STUDY_BUDDY_GROUPS?: STUDY_BUDDY_GROUPSUpdateOneRequiredWithoutSTUDY_GROUP_MEMBERSNestedInput
+    ENROLLMENTS?: ENROLLMENTSUpdateOneRequiredWithoutSTUDY_GROUP_MEMBERSNestedInput
+  }
+
+  export type STUDY_GROUP_MEMBERSUncheckedUpdateWithoutUSERSInput = {
+    Member_ID?: IntFieldUpdateOperationsInput | number
+    Group_ID?: IntFieldUpdateOperationsInput | number
+    Enrollment_ID?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type STUDY_GROUP_MEMBERSUncheckedUpdateManyWithoutUSERSInput = {
+    Member_ID?: IntFieldUpdateOperationsInput | number
+    Group_ID?: IntFieldUpdateOperationsInput | number
+    Enrollment_ID?: IntFieldUpdateOperationsInput | number
   }
 
   export type TUTORING_SESSIONUpdateWithoutUSERSInput = {

@@ -3,6 +3,10 @@ import { PrismaClient } from "@/lib/prisma/generated";
 export async function getAvailableTutors(courseTitle, date) {
   const prisma = new PrismaClient();
 
+  // Parse date string as UTC to match database @db.Date storage
+  const [year, month, day] = date.split("-");
+  const queryDate = new Date(Date.UTC(parseInt(year), parseInt(month) - 1, parseInt(day)));
+
   const tutors = await prisma.tutor.findMany({
     where: {
       TUTOR_COURSE: {
@@ -11,7 +15,7 @@ export async function getAvailableTutors(courseTitle, date) {
       TUTOR_AVAILABILITY: {
         some: {
           Is_Approved: true,
-          Date_Requested: new Date(date),
+          Date_Requested: queryDate,
         },
       },
     },
@@ -21,7 +25,7 @@ export async function getAvailableTutors(courseTitle, date) {
       TUTOR_AVAILABILITY: {
         where: {
           Is_Approved: true,
-          Date_Requested: new Date(date),
+          Date_Requested: queryDate,
         },
         select: {
           Times_Requested: true,

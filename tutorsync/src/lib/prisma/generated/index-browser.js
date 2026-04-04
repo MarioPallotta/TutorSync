@@ -154,9 +154,18 @@ exports.Prisma.STUDY_BUDDY_GROUPSScalarFieldEnum = {
   User_ID: 'User_ID',
   Tutor_ID: 'Tutor_ID',
   Enrollment_ID: 'Enrollment_ID',
+  Group_Date: 'Group_Date',
+  Group_Time: 'Group_Time',
   Is_Accepted: 'Is_Accepted',
   Has_Tutor: 'Has_Tutor',
   Group_Members: 'Group_Members'
+};
+
+exports.Prisma.STUDY_GROUP_MEMBERSScalarFieldEnum = {
+  Member_ID: 'Member_ID',
+  Group_ID: 'Group_ID',
+  User_ID: 'User_ID',
+  Enrollment_ID: 'Enrollment_ID'
 };
 
 exports.Prisma.StudentScalarFieldEnum = {
@@ -235,6 +244,7 @@ exports.Prisma.ModelName = {
   ENROLLMENTS: 'ENROLLMENTS',
   SCHEDULE: 'SCHEDULE',
   STUDY_BUDDY_GROUPS: 'STUDY_BUDDY_GROUPS',
+  STUDY_GROUP_MEMBERS: 'STUDY_GROUP_MEMBERS',
   Student: 'Student',
   TUTORING_SESSION: 'TUTORING_SESSION',
   TUTOR_AVAILABILITY: 'TUTOR_AVAILABILITY',

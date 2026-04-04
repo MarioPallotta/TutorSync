@@ -52,6 +52,7 @@ export default function FindTutorClient({ courses }) {
     });
 
     const data = await res.json();
+    console.log("Tutors response:", data);
     setTutors(data.tutors || []);
   }
 

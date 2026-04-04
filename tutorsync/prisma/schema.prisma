@@ -27,16 +27,17 @@ model COURSES {
 }
 
 model ENROLLMENTS {
-  Enrollment_ID      Int                  @id @default(autoincrement())
-  User_ID            Int
-  Tutor_ID           Int?
-  Course_ID          Int
-  Total_Enrollment   Int?                 @default(0)
-  USERS              USERS                @relation(fields: [User_ID], references: [User_ID], onDelete: Cascade, map: "ENROLLMENTS_ibfk_1")
-  Tutor              Tutor?               @relation(fields: [Tutor_ID], references: [Tutor_ID], map: "ENROLLMENTS_ibfk_2")
-  COURSES            COURSES              @relation(fields: [Course_ID], references: [Course_ID], onDelete: Cascade, map: "ENROLLMENTS_ibfk_3")
-  STUDY_BUDDY_GROUPS STUDY_BUDDY_GROUPS[]
-  TUTORING_SESSION   TUTORING_SESSION[]
+  Enrollment_ID       Int                   @id @default(autoincrement())
+  User_ID             Int
+  Tutor_ID            Int?
+  Course_ID           Int
+  Total_Enrollment    Int?                  @default(0)
+  USERS               USERS                 @relation(fields: [User_ID], references: [User_ID], onDelete: Cascade, map: "ENROLLMENTS_ibfk_1")
+  Tutor               Tutor?                @relation(fields: [Tutor_ID], references: [Tutor_ID], map: "ENROLLMENTS_ibfk_2")
+  COURSES             COURSES               @relation(fields: [Course_ID], references: [Course_ID], onDelete: Cascade, map: "ENROLLMENTS_ibfk_3")
+  STUDY_BUDDY_GROUPS  STUDY_BUDDY_GROUPS[]
+  STUDY_GROUP_MEMBERS STUDY_GROUP_MEMBERS[]
+  TUTORING_SESSION    TUTORING_SESSION[]
 
   @@index([Course_ID], map: "Course_ID")
   @@index([Tutor_ID], map: "Tutor_ID")
@@ -60,16 +61,39 @@ model STUDY_BUDDY_GROUPS {
   User_ID       Int
   Tutor_ID      Int?
   Enrollment_ID Int
+
+  Group_Date    DateTime?   @db.Date
+  Group_Time    DateTime?   @db.Timestamp(0)
+
   Is_Accepted   Boolean?    @default(false)
   Has_Tutor     Boolean?    @default(false)
   Group_Members Int?        @default(0)
+
   USERS         USERS       @relation(fields: [User_ID], references: [User_ID], onDelete: Cascade, map: "STUDY_BUDDY_GROUPS_ibfk_1")
   Tutor         Tutor?      @relation(fields: [Tutor_ID], references: [Tutor_ID], map: "STUDY_BUDDY_GROUPS_ibfk_2")
   ENROLLMENTS   ENROLLMENTS @relation(fields: [Enrollment_ID], references: [Enrollment_ID], onDelete: Cascade, map: "STUDY_BUDDY_GROUPS_ibfk_3")
 
+  STUDY_GROUP_MEMBERS STUDY_GROUP_MEMBERS[]
   @@index([Enrollment_ID], map: "Enrollment_ID")
   @@index([Tutor_ID], map: "Tutor_ID")
   @@index([User_ID], map: "User_ID")
+}
+
+model STUDY_GROUP_MEMBERS {
+  Member_ID     Int @id @default(autoincrement())
+  Group_ID      Int
+  User_ID       Int
+  Enrollment_ID Int
+
+  // Relations
+  STUDY_BUDDY_GROUPS STUDY_BUDDY_GROUPS @relation(fields: [Group_ID], references: [Group_ID])
+  USERS              USERS              @relation(fields: [User_ID], references: [User_ID])
+  ENROLLMENTS        ENROLLMENTS        @relation(fields: [Enrollment_ID], references: [Enrollment_ID])
+
+  @@unique([Group_ID, User_ID]) // user can only join once per group
+  @@index([Group_ID])
+  @@index([User_ID])
+  @@index([Enrollment_ID])
 }
 
 model Student {
@@ -121,18 +145,19 @@ model Tutor {
 }
 
 model USERS {
-  User_ID            Int                  @id @default(autoincrement())
-  Name               String               @db.VarChar(255)
-  Email              String               @unique(map: "Email") @db.VarChar(255)
-  Is_Admin           Boolean?             @default(false)
-  Is_Tutor           Boolean?             @default(false)
-  Is_Student         Boolean?             @default(true)
-  Admin              Admin?
-  ENROLLMENTS        ENROLLMENTS[]
-  STUDY_BUDDY_GROUPS STUDY_BUDDY_GROUPS[]
-  Student            Student?
-  TUTORING_SESSION   TUTORING_SESSION[]
-  Tutor              Tutor?
+  User_ID             Int                   @id @default(autoincrement())
+  Name                String                @db.VarChar(255)
+  Email               String                @unique(map: "Email") @db.VarChar(255)
+  Is_Admin            Boolean?              @default(false)
+  Is_Tutor            Boolean?              @default(false)
+  Is_Student          Boolean?              @default(true)
+  Admin               Admin?
+  ENROLLMENTS         ENROLLMENTS[]
+  STUDY_BUDDY_GROUPS  STUDY_BUDDY_GROUPS[]
+  STUDY_GROUP_MEMBERS STUDY_GROUP_MEMBERS[]
+  Student             Student?
+  TUTORING_SESSION    TUTORING_SESSION[]
+  Tutor               Tutor?
 }
 
 model TUTOR_COURSE {

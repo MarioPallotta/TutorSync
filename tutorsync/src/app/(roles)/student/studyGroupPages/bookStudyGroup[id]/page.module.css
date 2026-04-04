@@ -200,3 +200,36 @@
     transform: translateY(0);
   }
 }
+
+
+.confirmationModal {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f2f2f2;
+}
+
+.confirmationContent {
+  text-align: center;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.confirmationTitle {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #111111;
+}
+
+.confirmationText {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #555555;
+  line-height: 1.4;
+}
