@@ -1,109 +1,37 @@
-"use client";
+export const dynamic = "force-dynamic";
 
-import { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import BottomNav from "@/components/student/BottomNav/BottomNav";
-import styles from "./page.module.css";
+import prisma from "@/lib/prisma";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import StudyGroupClient from "./findAStudyGroup";
 
-const mockGroups = [
-  {
-    id: 1,
-    course: "Calculus I",
-    time: "Today, 4:00 PM",
-    spots: "4 of 8 spots filled",
-  },
-  {
-    id: 2,
-    course: "Biology",
-    time: "Tomorrow, 5:00 PM",
-    spots: "6 of 8 spots filled",
-  },
-  {
-    id: 3,
-    course: "Chemistry I",
-    time: "Wednesday, 9:00 AM",
-    spots: "2 of 8 spots filled",
-  },
-  {
-    id: 4,
-    course: "Calculus I",
-    time: "Wednesday, 11:00 AM",
-    spots: "3 of 8 spots filled",
-  },
-  {
-    id: 5,
-    course: "Calculus II",
-    time: "Thursday, 1:00 PM",
-    spots: "7 of 8 spots filled",
-  },
-];
+export default async function StudyGroupPage() {
+  const session = await getServerSession(authOptions);
+  const studentId = Number(session?.user?.id);
 
-export default function StudyBuddyPage() {
-  const [selectedCourse, setSelectedCourse] = useState("Select Course");
+  if (!studentId) {
+    return <div>You must be logged in to view study groups.</div>;
+  }
 
-  return (
-    <main className={styles.page}>
-      <section className={styles.card}>
-        <div className={styles.topSpacer} />
+  const enrollments = await prisma.ENROLLMENTS.findMany({
+    where: { User_ID: studentId },
+    select: {
+      COURSES: {
+        select: {
+          Course_ID: true,
+          Course_Title: true,
+          Course_Section: true,
+        },
+      },
+    },
+  });
 
-        <div className={styles.headerRow}>
-          <Link href="/student/home" className={styles.backButton}>
-            <Image src="/backbutton.svg" alt="Back" width={28} height={28} />
-          </Link>
+  const courses = enrollments.map((e) => e.COURSES);
 
-          <h1 className={styles.title}>Find Study Buddy</h1>
+  const safeCourses = courses.map((c) => ({
+    ...c,
+    Course_Section: c.Course_Section?.toString(),
+  }));
 
-          <div className={styles.headerSpacer} />
-        </div>
-
-        <div className={styles.content}>
-          {/* Course Dropdown */}
-          <div className={styles.dropdownSection}>
-            <select
-              className={styles.courseSelect}
-              value={selectedCourse}
-              onChange={(e) => setSelectedCourse(e.target.value)}
-            >
-              <option>Select Course</option>
-              <option>Calculus I</option>
-              <option>Calculus II</option>
-              <option>Biology</option>
-              <option>Chemistry I</option>
-              <option>Physics</option>
-            </select>
-          </div>
-
-          {/* List Section */}
-          <div className={styles.listSection}>
-            {mockGroups.map((group) => (
-              <div key={group.id} className={styles.groupCard}>
-                <div className={styles.groupLeft}>
-                  <p className={styles.groupCourse}>{group.course}</p>
-                  <p className={styles.groupTime}>{group.time}</p>
-                  <p className={styles.groupSpots}>{group.spots}</p>
-                </div>
-
-                <Link href="/student/studyGroupPages/bookStudyGroup" className={styles.joinButton}>
-                  Join
-                </Link>
-              </div>
-            ))}
-          </div>
-
-          {/* Group Button */}
-          <div className={styles.createGroupWrapper}>
-            <Link
-              href="/student/studyGroupPages/createStudyGroup"
-              className={styles.createGroupButton}
-            >
-              Create Group
-            </Link>
-          </div>
-        </div>
-
-        <BottomNav />
-      </section>
-    </main>
-  );
+  return <StudyGroupClient courses={safeCourses} />;
 }

@@ -181,6 +181,7 @@
 }
 
 .signInButton:hover {
+  cursor: pointer;
   transform: translateY(-2px);
   opacity: 0.96;
 }

@@ -1,7 +1,8 @@
-import { PrismaClient } from "@/lib/prisma/generated";
+import prisma from "@/lib/prisma";
 
 export async function getAvailableTutors(courseTitle, date) {
-  const prisma = new PrismaClient();
+  const [year, month, day] = date.split("-");
+  const queryDate = new Date(Date.UTC(parseInt(year), parseInt(month) - 1, parseInt(day)));
 
   const tutors = await prisma.tutor.findMany({
     where: {
@@ -11,7 +12,7 @@ export async function getAvailableTutors(courseTitle, date) {
       TUTOR_AVAILABILITY: {
         some: {
           Is_Approved: true,
-          Date_Requested: new Date(date),
+          Date_Requested: queryDate,
         },
       },
     },
@@ -21,7 +22,7 @@ export async function getAvailableTutors(courseTitle, date) {
       TUTOR_AVAILABILITY: {
         where: {
           Is_Approved: true,
-          Date_Requested: new Date(date),
+          Date_Requested: queryDate,
         },
         select: {
           Times_Requested: true,
@@ -42,7 +43,7 @@ export async function getAvailableTutors(courseTitle, date) {
       }
 
       const start = new Date(String(t.TUTOR_AVAILABILITY[0].Times_Requested));
-      const end = new Date(start.getTime() + 3 * 60 * 60 * 1000);
+      const end = new Date(start.getTime() + 4 * 60 * 60 * 1000);
 
       return {
         id: t.Tutor_ID,

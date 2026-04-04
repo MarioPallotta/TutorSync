@@ -1,12 +1,10 @@
 export const dynamic = "force-dynamic";
 
-import { PrismaClient } from "@/lib/prisma/generated";
+import prisma from "@/lib/prisma";
 import FindTutorClient from "./findATutor";
 
-const prisma = new PrismaClient();
-
 export default async function FindTutorPage() {
-  const courses = await prisma.cOURSES.findMany({
+  const courses = await prisma.COURSES.findMany({
     select: {
       Course_ID: true,
       Course_Section: true,
