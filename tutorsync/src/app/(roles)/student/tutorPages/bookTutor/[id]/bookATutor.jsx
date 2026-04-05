@@ -20,10 +20,7 @@ export default function BookingTutorPage({ tutor }) {
   const timeSlots = useMemo(() => {
     if (!tutor?.Times_Requested) return [];
     const base = new Date(tutor.Times_Requested);
-    return Array.from(
-      { length: 4 },
-      (_, i) => new Date(base.getTime() + i * 3600000),
-    );
+    return Array.from({ length: 4 }, (_, i) => new Date(base.getTime() + i * 3600000));
   }, [tutor]);
 
   const formatTime = (date) =>
@@ -50,8 +47,9 @@ export default function BookingTutorPage({ tutor }) {
         }),
       });
 
+      const data = await res.json();
+
       if (!res.ok) {
-        const data = await res.json();
         throw new Error(data.error || "Booking failed");
       }
 
@@ -92,10 +90,7 @@ export default function BookingTutorPage({ tutor }) {
         <div className={styles.topSpacer} />
 
         <div className={styles.headerRow}>
-          <Link
-            href="/student/tutorPages/findTutor"
-            className={styles.backButton}
-          >
+          <Link href="/student/tutorPages/findTutor" className={styles.backButton}>
             <Image src="/backbutton.svg" alt="Back" width={28} height={28} />
           </Link>
 
@@ -127,9 +122,7 @@ export default function BookingTutorPage({ tutor }) {
                 <button
                   key={i}
                   className={`${styles.timeButton} ${
-                    selectedTime === slot.toISOString()
-                      ? styles.timeSelected
-                      : ""
+                    selectedTime === slot.toISOString() ? styles.timeSelected : ""
                   }`}
                   onClick={() => setSelectedTime(slot.toISOString())}
                 >
@@ -152,6 +145,11 @@ export default function BookingTutorPage({ tutor }) {
             </select>
           </div>
 
+          {error && (
+            <div className={styles.errorBox}>
+              <p className={styles.errorText}>{error}</p>
+            </div>
+          )}
           {error && <p className={styles.errorMessage}>{error}</p>}
 
           <button
@@ -162,6 +160,7 @@ export default function BookingTutorPage({ tutor }) {
             {isLoading ? "Confirming..." : "Confirm Booking"}
           </button>
         </div>
+
         <BottomNav />
       </section>
     </main>

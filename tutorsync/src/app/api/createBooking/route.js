@@ -2,25 +2,103 @@ import prisma from "@/lib/prisma";
 
 export async function POST(req) {
   try {
-    const { tutorId, studentId, courseTitle, sessionDate, sessionTime, sessionLocation } = await req.json();
+    const {
+      tutorId,
+      studentId,
+      courseTitle,
+      sessionDate,
+      sessionTime,
+      sessionLocation,
+    } = await req.json();
 
-    if (!tutorId || !studentId || !courseTitle || !sessionDate || !sessionTime || !sessionLocation) {
+    if (
+      !tutorId ||
+      !studentId ||
+      !courseTitle ||
+      !sessionDate ||
+      !sessionTime ||
+      !sessionLocation
+    ) {
       return Response.json(
         { error: "Missing required fields" },
         { status: 400 }
       );
     }
+
+    const sessionDateObj = new Date(sessionDate);
+    const sessionTimeObj = new Date(sessionTime);
+
+    const studentTutorConflict = await prisma.TUTORING_SESSION.findFirst({
+      where: {
+        User_ID: studentId,
+        Session_Date: sessionDateObj,
+        Session_Time: sessionTimeObj,
+      },
+    });
+
+    if (studentTutorConflict) {
+      return Response.json(
+        { error: "You already have a tutoring session at this time." },
+        { status: 400 }
+      );
+    }
+
+    const studentGroupConflict = await prisma.STUDY_BUDDY_GROUPS.findFirst({
+      where: {
+        Group_Date: sessionDateObj,
+        Group_Time: sessionTimeObj,
+        STUDY_GROUP_MEMBERS: {
+          some: { User_ID: studentId },
+        },
+      },
+    });
+
+    if (studentGroupConflict) {
+      return Response.json(
+        { error: "You already have a study group at this time." },
+        { status: 400 }
+      );
+    }
+
+    const tutorTutorConflict = await prisma.TUTORING_SESSION.findFirst({
+      where: {
+        Tutor_ID: tutorId,
+        Session_Date: sessionDateObj,
+        Session_Time: sessionTimeObj,
+      },
+    });
+
+    if (tutorTutorConflict) {
+      return Response.json(
+        { error: "This tutor already has a session at this time." },
+        { status: 400 }
+      );
+    }
+
+    const tutorGroupConflict = await prisma.STUDY_BUDDY_GROUPS.findFirst({
+      where: {
+        Tutor_ID: tutorId,
+        Group_Date: sessionDateObj,
+        Group_Time: sessionTimeObj,
+      },
+    });
+
+    if (tutorGroupConflict) {
+      return Response.json(
+        { error: "This tutor is already leading a study group at this time." },
+        { status: 400 }
+      );
+    }
+
     const course = await prisma.COURSES.findFirst({
       where: { Course_Title: courseTitle },
       select: { Course_ID: true },
     });
 
     if (!course) {
-      return Response.json(
-        { error: "Course not found" },
-        { status: 404 }
-      );
+      return Response.json({ error: "Course not found" }, { status: 404 });
     }
+
     const enrollment = await prisma.ENROLLMENTS.findFirst({
       where: {
         User_ID: studentId,
@@ -35,13 +113,14 @@ export async function POST(req) {
         { status: 403 }
       );
     }
+
     const session = await prisma.TUTORING_SESSION.create({
       data: {
         User_ID: studentId,
         Tutor_ID: tutorId,
         Enrollment_ID: enrollment.Enrollment_ID,
-        Session_Date: new Date(sessionDate),
-        Session_Time: new Date(sessionTime),
+        Session_Date: sessionDateObj,
+        Session_Time: sessionTimeObj,
         Session_Loc: sessionLocation,
         Students_Booked: 1,
       },

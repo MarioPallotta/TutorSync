@@ -2,20 +2,24 @@ import prisma from "@/lib/prisma";
 import BookingTutorPage from "./bookATutor";
 
 export default async function Page({ params, searchParams }) {
-  const { id } = await params;
-  const { date } = await searchParams;
+  const { id } = await params;  
+  const { date } = searchParams; 
+
   const tutorId = Number(id);
 
   if (!tutorId) {
     return <div>Invalid tutor ID.</div>;
   }
 
-  // Parse the date to find the specific availability for this date
-  const queryDate = date ? new Date(Date.UTC(
-    parseInt(date.split("-")[0]),
-    parseInt(date.split("-")[1]) - 1,
-    parseInt(date.split("-")[2])
-  )) : null;
+  const queryDate = date
+    ? new Date(
+        Date.UTC(
+          parseInt(date.split("-")[0]),
+          parseInt(date.split("-")[1]) - 1,
+          parseInt(date.split("-")[2])
+        )
+      )
+    : null;
 
   const tutor = await prisma.tutor.findUnique({
     where: { Tutor_ID: tutorId },
@@ -27,15 +31,17 @@ export default async function Page({ params, searchParams }) {
           COURSES: { select: { Course_Title: true } },
         },
       },
-      TUTOR_AVAILABILITY: queryDate ? {
-        where: { Date_Requested: queryDate },
-        select: { Times_Requested: true },
-        take: 1,
-      } : {
-        select: { Times_Requested: true },
-        orderBy: { Times_Requested: "asc" },
-        take: 1,
-      },
+      TUTOR_AVAILABILITY: queryDate
+        ? {
+            where: { Date_Requested: queryDate },
+            select: { Times_Requested: true },
+            take: 1,
+          }
+        : {
+            select: { Times_Requested: true },
+            orderBy: { Times_Requested: "asc" },
+            take: 1,
+          },
     },
   });
 
