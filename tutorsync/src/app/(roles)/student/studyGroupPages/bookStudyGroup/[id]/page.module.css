@@ -106,6 +106,33 @@
   color: #111;
 }
 
+.creatorSection {
+ opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+  animation-delay: 0.3s;
+  background-color: #fff;
+  border: 3px solid #111;
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.creatorHeader {
+  margin: 0 0 8px 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #111;
+  border-bottom: 1px solid #ddd;
+}
+
+.creatorName {
+  margin: 0;
+  font-size: 1rem;
+  color: #333;
+}
+
 .participantSection {
   opacity: 0;
   animation: fadeUp 0.6s ease forwards;
@@ -232,4 +259,16 @@
   font-size: 1.1rem;
   color: #555555;
   line-height: 1.4;
+}
+
+.errorMessage {
+  width: calc(100% - 36px);
+  margin: 15px auto 0;
+  padding: 12px 14px;
+  background-color: #fee;
+  border: 2px solid #f44;
+  border-radius: 8px;
+  color: #c00;
+  font-size: 0.95rem;
+  text-align: center;
 }
