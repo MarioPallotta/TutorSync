@@ -4,11 +4,13 @@ import { useSession } from "next-auth/react";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import BottomNav from "@/components/student/BottomNav/BottomNav";
 import styles from "./page.module.css";
 
 export default function GroupDetailsClient({ group }) {
   const { data: session } = useSession();
+  const router = useRouter();
   const userId = Number(session?.user?.id);
 
   const [isJoining, setIsJoining] = useState(false);
@@ -17,103 +19,66 @@ export default function GroupDetailsClient({ group }) {
 
   const isCreator = userId === group.User_ID;
 
-  const participants = group.STUDY_GROUP_MEMBERS
-    .filter((m) => m.User_ID !== group.User_ID)
-    .map((m) => ({
-      name: m.USERS.Name,
-    }));
+  const participants = group.STUDY_GROUP_MEMBERS.filter(
+    (m) => m.User_ID !== group.User_ID,
+  ).map((m) => ({
+    name: m.USERS.Name,
+  }));
 
-  const isMember = group.STUDY_GROUP_MEMBERS.some(
-    (m) => m.User_ID === userId
-  );
+  const isMember = group.STUDY_GROUP_MEMBERS.some((m) => m.User_ID === userId);
 
   const isFull = participants.length >= 8;
 
-  async function handleJoin() {
-    if (isCreator) {
-      setError("You cannot join a group you created.");
-      return;
-    }
-
-    if (isMember) {
-      setError("You are already a member of this group.");
-      return;
-    }
-
-    if (isFull) {
-      setError("This group is already full.");
-      return;
-    }
-
-    setIsJoining(true);
+  const handleJoin = async () => {
     setError("");
 
-    const res = await fetch("/api/joinStudyGroup", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        groupId: group.Group_ID,
-        userId,
-      }),
-    });
+    try {
+      if (isCreator) {
+        throw new Error("You created this group.");
+      }
 
-    const data = await res.json();
+      if (isMember) {
+        throw new Error("You have already joined this group.");
+      }
 
-    if (!res.ok) {
-      setError(data.error);
+      if (isFull) {
+        throw new Error("This group is already full.");
+      }
+
+      setIsJoining(true);
+
+      const res = await fetch("/api/joinStudyGroup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          groupId: group.Group_ID,
+          userId,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to join group");
+      }
+
+      setIsConfirmed(true);
+
+      setTimeout(() => {
+        router.push("/student/home");
+      }, 3000);
+    } catch (err) {
+      setError(err.message);
       setIsJoining(false);
-      return;
     }
-
-    setIsConfirmed(true);
-  }
-
-  async function handleJoin() {
-  setError("");
-
-  if (isCreator) {
-    setError("You created this group.");
-    return;
-  }
-
-  if (isMember) {
-    setError("You have already joined this group.");
-    return;
-  }
-
-  if (isFull) {
-    setError("This group is already full.");
-    return;
-  }
-
-  setIsJoining(true);
-
-  const res = await fetch("/api/joinStudyGroup", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      groupId: group.Group_ID,
-      userId,
-    }),
-  });
-
-  const data = await res.json();
-
-  if (!res.ok) {
-    setError(data.error);
-    setIsJoining(false);
-    return;
-  }
-
-  setIsConfirmed(true);
-}
-
+  };
 
   if (isConfirmed) {
     return (
       <main className={styles.page}>
         <section className={styles.card}>
           <div className={styles.topSpacer} />
+
           <div className={styles.confirmationModal}>
             <div className={styles.confirmationContent}>
               <Image src="/check.svg" alt="Confirmed" width={64} height={64} />
@@ -208,12 +173,12 @@ export default function GroupDetailsClient({ group }) {
 
           <div className={styles.joinWrapper}>
             <button
-  className={styles.joinButton}
-  disabled={isJoining}
-  onClick={handleJoin}
->
-  {isJoining ? "Joining..." : "Join Group"}
-</button>
+              className={styles.joinButton}
+              disabled={isJoining}
+              onClick={handleJoin}
+            >
+              {isJoining ? "Joining..." : "Join Group"}
+            </button>
           </div>
         </div>
 
