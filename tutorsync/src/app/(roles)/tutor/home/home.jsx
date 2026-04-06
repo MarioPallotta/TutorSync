@@ -14,6 +14,25 @@ export default function HomeClient() {
   const [todayGroups, setTodayGroups] = useState([]);
   const [upcomingGroups, setUpcomingGroups] = useState([]);
 
+  const formatDateFromTime = (isoString) => {
+    if (!isoString) return "";
+    return new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/New_York",
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    }).format(new Date(isoString));
+  };
+
+  const formatTimeEST = (isoString) => {
+    if (!isoString) return "";
+    return new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/New_York",
+      hour: "numeric",
+      minute: "2-digit",
+    }).format(new Date(isoString));
+  };
+
   useEffect(() => {
     async function load() {
       const res = await fetch("/api/tutor/home", {
@@ -76,20 +95,18 @@ export default function HomeClient() {
                     </div>
 
                     <div className={styles.cardBody}>
-                      
                       <div className={styles.details}>
                         <span className={`${styles.detailRow} ${styles.dateTime}`}>
                           <Image
                             className={styles.icon}
                             src="/clock.svg"
-                            alt="location"
+                            alt="time"
                             width={18}
                             height={18}
                           />
-                        {req.Group_Time
-                          ? new Date(req.Group_Time).toLocaleString()
-                          : "TBD"}
-                      </span>
+                          {formatTimeEST(req.Group_Time)}
+                        </span>
+
                         <span className={styles.detailRow}>
                           <Image
                             className={styles.icon}
@@ -105,7 +122,7 @@ export default function HomeClient() {
                           <Image
                             className={styles.icon}
                             src="/person.svg"
-                            alt="person"
+                            alt="members"
                             width={18}
                             height={18}
                           />
@@ -147,9 +164,7 @@ export default function HomeClient() {
                         {group.ENROLLMENTS.COURSES.Course_Title}
                       </span>
                       <span className={styles.dateTime}>
-                        {group.Group_Time
-                          ? new Date(group.Group_Time).toLocaleTimeString()
-                          : ""}
+                        {formatTimeEST(group.Group_Time)}
                       </span>
                     </div>
 
@@ -182,7 +197,7 @@ export default function HomeClient() {
             </div>
           )}
 
-          {/* Today Sessions */}
+          {/* Today's Tutoring Sessions */}
           {todaySessions.length > 0 && (
             <div className={styles.section}>
               <h2 className={styles.sectionTitle}>Today&apos;s Tutoring Sessions</h2>
@@ -195,9 +210,7 @@ export default function HomeClient() {
                       </span>
 
                       <span className={styles.dateTime}>
-                        {session.Session_Time
-                          ? new Date(session.Session_Time).toLocaleTimeString()
-                          : ""}
+                        {formatTimeEST(session.Session_Time)}
                       </span>
                     </div>
 
@@ -243,9 +256,7 @@ export default function HomeClient() {
                       </span>
 
                       <span className={styles.dateTime}>
-                        {session.Session_Date
-                          ? new Date(session.Session_Date).toLocaleDateString()
-                          : ""}
+                        {formatDateFromTime(session.Session_Time)}
                       </span>
                     </div>
 
@@ -262,10 +273,7 @@ export default function HomeClient() {
 
                     <div className={styles.cardBody}>
                       <span className={styles.dateTimeUpcoming}>
-                        Time:{" "}
-                        {session.Session_Time
-                          ? new Date(session.Session_Time).toLocaleTimeString()
-                          : ""}
+                        Time: {formatTimeEST(session.Session_Time)}
                       </span>
 
                       <span className={styles.detailRow}>
@@ -298,9 +306,7 @@ export default function HomeClient() {
                       </span>
 
                       <span className={styles.dateTime}>
-                        {group.Group_Date
-                          ? new Date(group.Group_Date).toLocaleDateString()
-                          : ""}
+                        {formatDateFromTime(group.Group_Time)}
                       </span>
                     </div>
 
@@ -324,9 +330,7 @@ export default function HomeClient() {
                           width={18}
                           height={18}
                         />
-                        {group.Group_Time
-                          ? new Date(group.Group_Time).toLocaleTimeString()
-                          : ""}
+                        {formatTimeEST(group.Group_Time)}
                       </span>
 
                       <span className={styles.detailRow}>
