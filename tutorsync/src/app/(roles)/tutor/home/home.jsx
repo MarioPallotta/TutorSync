@@ -73,15 +73,23 @@ export default function HomeClient() {
                       <span className={styles.subject}>
                         {req.ENROLLMENTS.COURSES.Course_Title}
                       </span>
-                      <span className={styles.dateTime}>
+                    </div>
+
+                    <div className={styles.cardBody}>
+                      
+                      <div className={styles.details}>
+                        <span className={`${styles.detailRow} ${styles.dateTime}`}>
+                          <Image
+                            className={styles.icon}
+                            src="/clock.svg"
+                            alt="location"
+                            width={18}
+                            height={18}
+                          />
                         {req.Group_Time
                           ? new Date(req.Group_Time).toLocaleString()
                           : "TBD"}
                       </span>
-                    </div>
-
-                    <div className={styles.cardBody}>
-                      <div className={styles.details}>
                         <span className={styles.detailRow}>
                           <Image
                             className={styles.icon}
