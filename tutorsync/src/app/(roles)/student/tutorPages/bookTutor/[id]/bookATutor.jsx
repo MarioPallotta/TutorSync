@@ -17,7 +17,6 @@ export default function BookingTutorPage({ tutor }) {
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [error, setError] = useState("");
 
-  // ⭐ Generate 4 possible time slots AND filter out booked ones
   const timeSlots = useMemo(() => {
     if (!tutor?.Times_Requested) return [];
 
