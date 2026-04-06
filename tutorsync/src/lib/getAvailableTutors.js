@@ -2,7 +2,9 @@ import prisma from "@/lib/prisma";
 
 export async function getAvailableTutors(courseTitle, date) {
   const [year, month, day] = date.split("-");
-  const queryDate = new Date(Date.UTC(parseInt(year), parseInt(month) - 1, parseInt(day)));
+  const queryDate = new Date(
+    Date.UTC(parseInt(year), parseInt(month) - 1, parseInt(day)),
+  );
 
   const tutors = await prisma.tutor.findMany({
     where: {
@@ -25,8 +27,10 @@ export async function getAvailableTutors(courseTitle, date) {
           Date_Requested: queryDate,
         },
         select: {
+          Availability_ID: true,
           Times_Requested: true,
         },
+        take: 1,
       },
     },
   });
@@ -39,6 +43,7 @@ export async function getAvailableTutors(courseTitle, date) {
           name: t.USERS.Name,
           availability: "Unavailable",
           Times_Requested: null,
+          availabilityId: null,
         };
       }
 
@@ -48,6 +53,7 @@ export async function getAvailableTutors(courseTitle, date) {
       return {
         id: t.Tutor_ID,
         name: t.USERS.Name,
+        availabilityId: t.TUTOR_AVAILABILITY[0].Availability_ID,
         Times_Requested: start.toISOString(),
         availability:
           start.toLocaleTimeString("en-US", {

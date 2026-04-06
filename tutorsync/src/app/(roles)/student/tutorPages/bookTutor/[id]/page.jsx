@@ -3,7 +3,7 @@ import BookingTutorPage from "./bookATutor";
 
 export default async function Page({ params, searchParams }) {
   const { id } = await params;
-  const { date, time } = await searchParams; 
+  const { date, time, availabilityId, course } = await searchParams;
 
   const tutorId = Number(id);
 
@@ -11,16 +11,7 @@ export default async function Page({ params, searchParams }) {
     return <div>Invalid tutor ID.</div>;
   }
 
-  const queryDate = date
-    ? new Date(
-        Date.UTC(
-          parseInt(date.split("-")[0]),
-          parseInt(date.split("-")[1]) - 1,
-          parseInt(date.split("-")[2])
-        )
-      )
-    : null;
-
+  // Fetch tutor info + courses
   const tutor = await prisma.tutor.findUnique({
     where: { Tutor_ID: tutorId },
     select: {
@@ -31,21 +22,33 @@ export default async function Page({ params, searchParams }) {
           COURSES: { select: { Course_Title: true } },
         },
       },
-      TUTOR_AVAILABILITY: queryDate
-        ? {
-            where: { Date_Requested: queryDate },
-            select: { Times_Requested: true },
-            take: 1,
-          }
-        : {
-            select: { Times_Requested: true },
-            orderBy: { Times_Requested: "asc" },
-            take: 1,
-          },
     },
   });
 
   if (!tutor) return <div>Invalid tutor.</div>;
+
+  // Fetch availability row
+  let availability = null;
+
+  if (availabilityId) {
+    availability = await prisma.TUTOR_AVAILABILITY.findUnique({
+      where: { Availability_ID: Number(availabilityId) },
+      select: { Times_Requested: true },
+    });
+  }
+
+  // Fetch booked sessions for this tutor on this date
+  const bookedSessions = await prisma.TUTORING_SESSION.findMany({
+    where: {
+      Tutor_ID: tutorId,
+      Session_Date: new Date(date),
+    },
+    select: { Session_Time: true },
+  });
+
+  const bookedTimes = bookedSessions.map((s) =>
+    s.Session_Time.toISOString()
+  );
 
   return (
     <BookingTutorPage
@@ -53,8 +56,12 @@ export default async function Page({ params, searchParams }) {
         id: tutor.Tutor_ID,
         name: tutor.USERS.Name,
         email: tutor.USERS.Email,
-        course: tutor.TUTOR_COURSE[0]?.COURSES.Course_Title || "Course",
-        Times_Requested: tutor.TUTOR_AVAILABILITY[0]?.Times_Requested || null,
+        courses: tutor.TUTOR_COURSE.map((tc) => tc.COURSES.Course_Title),
+        Times_Requested: availability?.Times_Requested || time || null,
+        availabilityId: availabilityId ? Number(availabilityId) : null,
+        selectedCourse: course || null,
+        date,
+        bookedTimes, // ⭐ pass booked times to client
         bio: "Bio coming soon.",
       }}
     />

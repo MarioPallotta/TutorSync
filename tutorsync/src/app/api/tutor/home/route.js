@@ -17,8 +17,7 @@ export async function GET(req) {
   const tomorrow = new Date(today);
   tomorrow.setDate(today.getDate() + 1);
   console.log("SESSION:", session);
-console.log("Tutor ID:", session?.user?.tutorId);
-
+  console.log("Tutor ID:", session?.user?.tutorId);
 
   const pendingRequests = await prisma.sTUDY_BUDDY_GROUPS.findMany({
     where: {
@@ -59,6 +58,7 @@ console.log("Tutor ID:", session?.user?.tutorId);
       },
     },
     include: {
+      USERS: true,
       ENROLLMENTS: {
         include: { COURSES: true },
       },

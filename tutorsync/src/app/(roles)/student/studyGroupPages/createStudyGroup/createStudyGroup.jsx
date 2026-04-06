@@ -40,7 +40,7 @@ export default function CreateStudyGroupPage({ courses, tutors }) {
 
   const hours = Array.from({ length: 24 }, (_, i) => i);
   const minutes = Array.from({ length: 60 }, (_, i) => i);
-  const memberOptions = Array.from({ length: 7 }, (_, i) => i + 2); // 2-8 members
+  const memberOptions = Array.from({ length: 7 }, (_, i) => i + 2);
 
   const formattedDate = useMemo(() => {
     if (!date) return "Select Date";
@@ -100,7 +100,6 @@ export default function CreateStudyGroupPage({ courses, tutors }) {
       selectedMinute,
     ).padStart(2, "0")} ${selectedPeriod}`;
 
-    // Validate required fields
     if (
       course === "Select Course" ||
       !date ||
@@ -141,7 +140,6 @@ export default function CreateStudyGroupPage({ courses, tutors }) {
     }
   }
 
-  // ⭐ MODAL: identical structure to BookATutor modal
   if (success) {
     return (
       <main className={styles.page}>
@@ -185,7 +183,6 @@ export default function CreateStudyGroupPage({ courses, tutors }) {
         </div>
 
         <div className={styles.content}>
-          {/* ⭐ REAL COURSES */}
           <div className={styles.inputSection}>
             <label className={styles.label}>Select Course</label>
             <select
@@ -302,7 +299,6 @@ export default function CreateStudyGroupPage({ courses, tutors }) {
             />
           </div>
 
-          {/* ⭐ REAL TUTORS */}
           {includeTutor && (
             <div className={styles.inputSection}>
               <label className={styles.label}>Select Tutor</label>
@@ -398,7 +394,6 @@ export default function CreateStudyGroupPage({ courses, tutors }) {
               <h3 className={styles.modalTitle}>Select Time</h3>
 
               <div className={styles.timePickerContainer}>
-                {/* HOUR COLUMN */}
                 <div className={styles.timeColumn}>
                   <h4 className={styles.timeColumnLabel}>Hour</h4>
                   <div className={styles.timeScroller}>
@@ -416,7 +411,6 @@ export default function CreateStudyGroupPage({ courses, tutors }) {
                   </div>
                 </div>
 
-                {/* MINUTE COLUMN */}
                 <div className={styles.timeColumn}>
                   <h4 className={styles.timeColumnLabel}>Minute</h4>
                   <div className={styles.timeScroller}>
@@ -438,7 +432,6 @@ export default function CreateStudyGroupPage({ courses, tutors }) {
                   </div>
                 </div>
 
-                {/* AM / PM COLUMN */}
                 <div className={styles.timeColumn}>
                   <h4 className={styles.timeColumnLabel}>AM / PM</h4>
                   <div className={styles.timeScroller}>
@@ -474,7 +467,6 @@ export default function CreateStudyGroupPage({ courses, tutors }) {
           </div>
         )}
 
-        {/* Max Members Modal */}
         {showMaxMembersModal && (
           <div className={styles.calendarOverlay}>
             <div className={styles.calendarModal}>

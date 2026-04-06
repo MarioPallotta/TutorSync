@@ -17,10 +17,26 @@ export default function BookingTutorPage({ tutor }) {
   const [isConfirmed, setIsConfirmed] = useState(false);
   const [error, setError] = useState("");
 
+  // ⭐ Generate 4 possible time slots AND filter out booked ones
   const timeSlots = useMemo(() => {
     if (!tutor?.Times_Requested) return [];
+
     const base = new Date(tutor.Times_Requested);
-    return Array.from({ length: 4 }, (_, i) => new Date(base.getTime() + i * 3600000));
+
+    // Generate 4-hour block: base, +1h, +2h, +3h
+    const slots = Array.from({ length: 4 }, (_, i) => {
+      return new Date(base.getTime() + i * 3600000);
+    });
+
+    // Booked times passed from server
+    const booked = tutor.bookedTimes || [];
+
+    // Filter out booked times
+    const available = slots.filter(
+      (slot) => !booked.includes(slot.toISOString())
+    );
+
+    return available;
   }, [tutor]);
 
   const formatTime = (date) =>
@@ -40,10 +56,11 @@ export default function BookingTutorPage({ tutor }) {
         body: JSON.stringify({
           tutorId: tutor.id,
           studentId: session?.user?.id,
-          courseTitle: tutor.course,
-          sessionDate: new Date(selectedTime).toISOString().split("T")[0],
+          courseTitle: tutor.selectedCourse,
+          sessionDate: tutor.date,
           sessionTime: selectedTime,
           sessionLocation: selectedLocation,
+          availabilityId: tutor.availabilityId,
         }),
       });
 
@@ -110,12 +127,31 @@ export default function BookingTutorPage({ tutor }) {
           </div>
 
           <div className={styles.subjectSection}>
-            <h2 className={styles.sectionTitle}>Subject</h2>
-            <div className={styles.subjectTag}>{tutor.course}</div>
+            <h2 className={styles.sectionTitle}>Subjects</h2>
+
+            <div className={styles.subjectTagList}>
+              {tutor.courses.map((course) => (
+                <div
+                  key={course}
+                  className={`${styles.subjectTag} ${
+                    course === tutor.selectedCourse ? styles.subjectTagSelected : ""
+                  }`}
+                >
+                  {course}
+                </div>
+              ))}
+            </div>
           </div>
 
           <div className={styles.timeSection}>
             <h2 className={styles.sectionTitle}>Select Time</h2>
+
+            {/* 🔴 Show banner when no times available */}
+            {timeSlots.length === 0 && (
+              <div className={styles.errorMessage}>
+                No time slots available.
+              </div>
+            )}
 
             <div className={styles.timeList}>
               {timeSlots.map((slot, i) => (
@@ -126,7 +162,7 @@ export default function BookingTutorPage({ tutor }) {
                   }`}
                   onClick={() => setSelectedTime(slot.toISOString())}
                 >
-                  Today, {formatTime(slot)}
+                  {formatTime(slot)}
                 </button>
               ))}
             </div>
@@ -154,7 +190,12 @@ export default function BookingTutorPage({ tutor }) {
 
           <button
             className={styles.confirmButton}
-            disabled={!selectedTime || !selectedLocation || isLoading}
+            disabled={
+              !selectedTime ||
+              !selectedLocation ||
+              isLoading ||
+              timeSlots.length === 0
+            }
             onClick={handleConfirmBooking}
           >
             {isLoading ? "Confirming..." : "Confirm Booking"}

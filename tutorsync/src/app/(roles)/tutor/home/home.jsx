@@ -121,13 +121,13 @@ export default function HomeClient() {
             </div>
           )}
 
-          {/* Today */}
           {todaySessions.length > 0 && (
             <div className={styles.section}>
               <h2 className={styles.sectionTitle}>Today</h2>
               <div className={styles.listContainer}>
                 {todaySessions.map((session) => (
                   <div key={session.Session_ID} className={styles.infoCard}>
+                    {/* Header */}
                     <div className={styles.cardHeader}>
                       <span className={styles.subject}>
                         {session.ENROLLMENTS.COURSES.Course_Title}
@@ -136,7 +136,23 @@ export default function HomeClient() {
                       <span className={styles.dateTime}>
                         {new Date(session.Session_Time).toLocaleTimeString()}
                       </span>
+                    </div>
 
+                    {/* Body */}
+                    <div className={styles.cardBody}>
+                      {/* Student */}
+                      <span className={styles.detailRow}>
+                        <Image
+                          className={styles.icon}
+                          src="/person.svg"
+                          alt="student"
+                          width={18}
+                          height={18}
+                        />
+                        {session.USERS?.Name || "Unknown Student"}
+                      </span>
+
+                      {/* Location */}
                       <span className={styles.detailRow}>
                         <Image
                           className={styles.icon}
@@ -148,20 +164,11 @@ export default function HomeClient() {
                         {session.Session_Loc || "Study Room Library"}
                       </span>
                     </div>
-
-                    <div className={styles.cardBody}>
-                      <div className={styles.detailsHorizontal}>
-                        <span className={styles.detailRow}>
-                          {session.USERS.Name}
-                        </span>
-                      </div>
-                    </div>
                   </div>
                 ))}
               </div>
             </div>
           )}
-
           {/* Upcoming */}
           {upcomingSessions.length > 0 && (
             <div className={styles.section}>
@@ -178,10 +185,20 @@ export default function HomeClient() {
                         {new Date(session.Session_Date).toLocaleDateString()}
                       </span>
                     </div>
-
+                    <span className={styles.detailRow}>
+                      <Image
+                        className={styles.icon}
+                        src="/person.svg"
+                        alt="student"
+                        width={18}
+                        height={18}
+                      />
+                      {session.USERS.Name}
+                    </span>
                     <div className={styles.cardBody}>
                       <span className={styles.dateTimeUpcoming}>
-                        Time: {new Date(session.Session_Time).toLocaleTimeString()}
+                        Time:{" "}
+                        {new Date(session.Session_Time).toLocaleTimeString()}
                       </span>
 
                       <span className={styles.detailRow}>

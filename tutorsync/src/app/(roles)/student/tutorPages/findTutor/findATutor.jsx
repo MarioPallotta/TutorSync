@@ -13,9 +13,10 @@ export default function FindTutorClient({ courses }) {
   const [selectedSubject, setSelectedSubject] = useState("Select a subject");
   const [selectedDate, setSelectedDate] = useState("");
   const [tutors, setTutors] = useState([]);
+
   const daysInMonth = Array.from(
     { length: new Date(currentYear, currentMonth + 1, 0).getDate() },
-    (_, i) => i + 1,
+    (_, i) => i + 1
   );
 
   const subjects = useMemo(() => {
@@ -34,7 +35,11 @@ export default function FindTutorClient({ courses }) {
       dateObj.getMonth() === today.getMonth() &&
       dateObj.getDate() === today.getDate();
 
-    const shortDate = dateObj.toLocaleDateString("en-US", { timeZone: "America/New_York", month: "short", day: "numeric" });
+    const shortDate = dateObj.toLocaleDateString("en-US", {
+      timeZone: "America/New_York",
+      month: "short",
+      day: "numeric",
+    });
 
     return isToday ? `Today, ${shortDate}` : shortDate;
   }, [selectedDate]);
@@ -141,6 +146,7 @@ export default function FindTutorClient({ courses }) {
               )}
 
               {tutors.map((tutor) => (
+                console.log("Tutor card:", tutor),
                 <div key={tutor.id} className={styles.tutorCard}>
                   <div className={styles.tutorLeft}>
                     <div className={styles.avatarCircle}>
@@ -164,7 +170,12 @@ export default function FindTutorClient({ courses }) {
                     className={styles.bookButton}
                     href={{
                       pathname: `/student/tutorPages/bookTutor/${tutor.id}`,
-                      query: { date: selectedDate, time: tutor.Times_Requested },
+                      query: {
+                        date: selectedDate,
+                        time: tutor.Times_Requested,
+                        availabilityId: tutor.availabilityId,
+                        course: selectedSubject,
+                      },
                     }}
                   >
                     <span>Book</span>
@@ -175,6 +186,7 @@ export default function FindTutorClient({ courses }) {
             </div>
           </div>
         </div>
+
         {showCalendar && (
           <div className={styles.calendarOverlay}>
             <div className={styles.calendarModal}>
@@ -185,7 +197,10 @@ export default function FindTutorClient({ courses }) {
                 >
                   {Array.from({ length: 12 }).map((_, i) => (
                     <option key={i} value={i}>
-                      {new Date(0, i).toLocaleString("en-US", { timeZone: "America/New_York", month: "long" })}
+                      {new Date(0, i).toLocaleString("en-US", {
+                        timeZone: "America/New_York",
+                        month: "long",
+                      })}
                     </option>
                   ))}
                 </select>
@@ -209,7 +224,7 @@ export default function FindTutorClient({ courses }) {
                     className={styles.calendarDay}
                     onClick={() => {
                       const formatted = `${currentYear}-${String(
-                        currentMonth + 1,
+                        currentMonth + 1
                       ).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
                       setSelectedDate(formatted);
                       setShowCalendar(false);

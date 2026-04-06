@@ -106,7 +106,7 @@
 }
 
 .sectionTitle {
-  margin: 0 0 10px;
+  margin: 0 0 3px;
   font-size: clamp(1.4rem, 4vw, 1.8rem);
   font-weight: 500;
   color: #111111;
@@ -120,6 +120,7 @@
   border-radius: 12px;
   font-size: 1rem;
   color: #111111;
+  margin: 3px;
 }
 
 .timeSection {
