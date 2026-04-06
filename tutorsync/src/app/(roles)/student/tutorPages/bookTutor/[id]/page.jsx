@@ -2,8 +2,8 @@ import prisma from "@/lib/prisma";
 import BookingTutorPage from "./bookATutor";
 
 export default async function Page({ params, searchParams }) {
-  const { id } = await params;  
-  const { date } = searchParams; 
+  const { id } = await params;
+  const { date, time } = await searchParams; 
 
   const tutorId = Number(id);
 
