@@ -62,7 +62,7 @@ const group = await prisma.sTUDY_BUDDY_GROUPS.create({
     Group_Members: 1,
     Group_Date: new Date(date),
     Group_Time: new Date(`${date}T${time24}`),
-    Is_Accepted: true,
+    Is_Accepted: false,
   },
 });
 
