@@ -147,16 +147,26 @@ export default function GroupDetailsClient({ group }) {
 
           <div className={styles.participantSection}>
             <p className={styles.participantHeader}>
-              Participants ({participants.length} / 8)
+              Participants ({1 + participants.length} / 8)
             </p>
 
-            <div className={styles.participantList}>
-              {participants.map((p, i) => (
-                <p key={i} className={styles.participantName}>
-                  {p.name}
-                </p>
-              ))}
-            </div>
+            {/* If only the creator exists */}
+            {participants.length === 0 && (
+              <p className={styles.errorMessage}>
+                No other members have joined yet.
+              </p>
+            )}
+
+            {/* If there are additional members */}
+            {participants.length > 0 && (
+              <div className={styles.participantList}>
+                {participants.map((p, i) => (
+                  <p key={i} className={styles.participantName}>
+                    {p.name}
+                  </p>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className={styles.tutorBox}>

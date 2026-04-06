@@ -11,6 +11,8 @@ export default function HomeClient() {
   const [pending, setPending] = useState([]);
   const [todaySessions, setTodaySessions] = useState([]);
   const [upcomingSessions, setUpcomingSessions] = useState([]);
+  const [todayGroups, setTodayGroups] = useState([]);
+  const [upcomingGroups, setUpcomingGroups] = useState([]);
 
   useEffect(() => {
     async function load() {
@@ -24,6 +26,8 @@ export default function HomeClient() {
       setPending(data.pendingRequests || []);
       setTodaySessions(data.todaySessions || []);
       setUpcomingSessions(data.upcomingSessions || []);
+      setTodayGroups(data.todayStudyGroups || []);
+      setUpcomingGroups(data.upcomingStudyGroups || []);
     }
 
     load();
@@ -70,7 +74,9 @@ export default function HomeClient() {
                         {req.ENROLLMENTS.COURSES.Course_Title}
                       </span>
                       <span className={styles.dateTime}>
-                        {new Date(req.Group_Time).toLocaleString()}
+                        {req.Group_Time
+                          ? new Date(req.Group_Time).toLocaleString()
+                          : "TBD"}
                       </span>
                     </div>
 
@@ -121,26 +127,73 @@ export default function HomeClient() {
             </div>
           )}
 
+          {/* Today's Study Groups */}
+          {todayGroups.length > 0 && (
+            <div className={styles.section}>
+              <h2 className={styles.sectionTitle}>Today&apos;s Study Groups</h2>
+              <div className={styles.listContainer}>
+                {todayGroups.map((group) => (
+                  <div key={group.Group_ID} className={styles.infoCard}>
+                    <div className={styles.cardHeader}>
+                      <span className={styles.subject}>
+                        {group.ENROLLMENTS.COURSES.Course_Title}
+                      </span>
+                      <span className={styles.dateTime}>
+                        {group.Group_Time
+                          ? new Date(group.Group_Time).toLocaleTimeString()
+                          : ""}
+                      </span>
+                    </div>
+
+                    <div className={styles.cardBody}>
+                      <span className={styles.detailRow}>
+                        <Image
+                          className={styles.icon}
+                          src="/person.svg"
+                          alt="members"
+                          width={18}
+                          height={18}
+                        />
+                        {group.Group_Members} / 8
+                      </span>
+
+                      <span className={styles.detailRow}>
+                        <Image
+                          className={styles.icon}
+                          src="/location.svg"
+                          alt="location"
+                          width={18}
+                          height={18}
+                        />
+                        Study Room Library
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Today Sessions */}
           {todaySessions.length > 0 && (
             <div className={styles.section}>
-              <h2 className={styles.sectionTitle}>Today</h2>
+              <h2 className={styles.sectionTitle}>Today&apos;s Tutoring Sessions</h2>
               <div className={styles.listContainer}>
                 {todaySessions.map((session) => (
                   <div key={session.Session_ID} className={styles.infoCard}>
-                    {/* Header */}
                     <div className={styles.cardHeader}>
                       <span className={styles.subject}>
                         {session.ENROLLMENTS.COURSES.Course_Title}
                       </span>
 
                       <span className={styles.dateTime}>
-                        {new Date(session.Session_Time).toLocaleTimeString()}
+                        {session.Session_Time
+                          ? new Date(session.Session_Time).toLocaleTimeString()
+                          : ""}
                       </span>
                     </div>
 
-                    {/* Body */}
                     <div className={styles.cardBody}>
-                      {/* Student */}
                       <span className={styles.detailRow}>
                         <Image
                           className={styles.icon}
@@ -152,7 +205,6 @@ export default function HomeClient() {
                         {session.USERS?.Name || "Unknown Student"}
                       </span>
 
-                      {/* Location */}
                       <span className={styles.detailRow}>
                         <Image
                           className={styles.icon}
@@ -169,10 +221,11 @@ export default function HomeClient() {
               </div>
             </div>
           )}
-          {/* Upcoming */}
+
+          {/* Upcoming Tutoring Sessions */}
           {upcomingSessions.length > 0 && (
             <div className={styles.section}>
-              <h2 className={styles.sectionTitle}>Upcoming Tutoring Session</h2>
+              <h2 className={styles.sectionTitle}>Upcoming Tutoring Sessions</h2>
               <div className={styles.listContainer}>
                 {upcomingSessions.map((session) => (
                   <div key={session.Session_ID} className={styles.infoCard}>
@@ -182,9 +235,12 @@ export default function HomeClient() {
                       </span>
 
                       <span className={styles.dateTime}>
-                        {new Date(session.Session_Date).toLocaleDateString()}
+                        {session.Session_Date
+                          ? new Date(session.Session_Date).toLocaleDateString()
+                          : ""}
                       </span>
                     </div>
+
                     <span className={styles.detailRow}>
                       <Image
                         className={styles.icon}
@@ -193,12 +249,15 @@ export default function HomeClient() {
                         width={18}
                         height={18}
                       />
-                      {session.USERS.Name}
+                      {session.USERS?.Name || "Unknown Student"}
                     </span>
+
                     <div className={styles.cardBody}>
                       <span className={styles.dateTimeUpcoming}>
                         Time:{" "}
-                        {new Date(session.Session_Time).toLocaleTimeString()}
+                        {session.Session_Time
+                          ? new Date(session.Session_Time).toLocaleTimeString()
+                          : ""}
                       </span>
 
                       <span className={styles.detailRow}>
@@ -210,6 +269,67 @@ export default function HomeClient() {
                           height={18}
                         />
                         {session.Session_Loc || "Study Room Library"}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Upcoming Study Groups */}
+          {upcomingGroups.length > 0 && (
+            <div className={styles.section}>
+              <h2 className={styles.sectionTitle}>Upcoming Study Groups</h2>
+              <div className={styles.listContainer}>
+                {upcomingGroups.map((group) => (
+                  <div key={group.Group_ID} className={styles.infoCard}>
+                    <div className={styles.cardHeader}>
+                      <span className={styles.subject}>
+                        {group.ENROLLMENTS.COURSES.Course_Title}
+                      </span>
+
+                      <span className={styles.dateTime}>
+                        {group.Group_Date
+                          ? new Date(group.Group_Date).toLocaleDateString()
+                          : ""}
+                      </span>
+                    </div>
+
+                    <div className={styles.cardBody}>
+                      <span className={styles.detailRow}>
+                        <Image
+                          className={styles.icon}
+                          src="/person.svg"
+                          alt="members"
+                          width={18}
+                          height={18}
+                        />
+                        {group.Group_Members} / 8
+                      </span>
+
+                      <span className={styles.detailRow}>
+                        <Image
+                          className={styles.icon}
+                          src="/clock.svg"
+                          alt="time"
+                          width={18}
+                          height={18}
+                        />
+                        {group.Group_Time
+                          ? new Date(group.Group_Time).toLocaleTimeString()
+                          : ""}
+                      </span>
+
+                      <span className={styles.detailRow}>
+                        <Image
+                          className={styles.icon}
+                          src="/location.svg"
+                          alt="location"
+                          width={18}
+                          height={18}
+                        />
+                        Study Room Library
                       </span>
                     </div>
                   </div>

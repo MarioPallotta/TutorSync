@@ -26,6 +26,7 @@ export async function getAvailableStudyGroups(courseTitle) {
       },
     },
   });
+
   const groups = enrollments.flatMap((enrollment) =>
     enrollment.STUDY_BUDDY_GROUPS.map((group) => ({
       ...group,
@@ -43,6 +44,7 @@ export async function getAvailableStudyGroups(courseTitle) {
             year: "numeric",
           })
         : "TBD";
+
       const formattedTime = g.Group_Time
         ? new Date(g.Group_Time).toLocaleTimeString("en-US", {
             timeZone: "America/New_York",
@@ -56,7 +58,10 @@ export async function getAvailableStudyGroups(courseTitle) {
         course: g.course,
         date: formattedDate,
         time: formattedTime,
-        members: g.STUDY_GROUP_MEMBERS.length,
+
+        // ⭐ FIXED: always includes creator
+        members: g.Group_Members ?? g.STUDY_GROUP_MEMBERS.length,
+
         max: 8,
       };
     }),
