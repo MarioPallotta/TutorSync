@@ -3,6 +3,7 @@
 import { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import BottomNav from "@/components/student/BottomNav/BottomNav";
 import styles from "./page.module.css";
 
@@ -15,25 +16,28 @@ export default function CreateStudyGroupPage({ courses, tutors }) {
   const [selectedTutor, setSelectedTutor] = useState("Select Tutor");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-  
+  const [isJoining, setIsJoining] = useState(false);
+  const router = useRouter();
+
   // Calendar modal state
   const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   const [showCalendar, setShowCalendar] = useState(false);
-  
+
   // Time modal state
   const [showTimeModal, setShowTimeModal] = useState(false);
   const [selectedHour, setSelectedHour] = useState(8);
   const [selectedMinute, setSelectedMinute] = useState(0);
-  
+  const [selectedPeriod, setSelectedPeriod] = useState("AM");
+
   // Max Members modal state
   const [showMaxMembersModal, setShowMaxMembersModal] = useState(false);
-  
+
   const daysInMonth = Array.from(
     { length: new Date(currentYear, currentMonth + 1, 0).getDate() },
     (_, i) => i + 1,
   );
-  
+
   const hours = Array.from({ length: 24 }, (_, i) => i);
   const minutes = Array.from({ length: 60 }, (_, i) => i);
   const memberOptions = Array.from({ length: 7 }, (_, i) => i + 2); // 2-8 members
@@ -50,7 +54,11 @@ export default function CreateStudyGroupPage({ courses, tutors }) {
       dateObj.getMonth() === today.getMonth() &&
       dateObj.getDate() === today.getDate();
 
-    const shortDate = dateObj.toLocaleDateString("en-US", { timeZone: "America/New_York", month: "short", day: "numeric" });
+    const shortDate = dateObj.toLocaleDateString("en-US", {
+      timeZone: "America/New_York",
+      month: "short",
+      day: "numeric",
+    });
 
     return isToday ? `Today, ${shortDate}` : shortDate;
   }, [date]);
@@ -88,8 +96,11 @@ export default function CreateStudyGroupPage({ courses, tutors }) {
   async function handleCreate() {
     setError("");
 
-    const timeString = `${String(selectedHour).padStart(2, "0")}:${String(selectedMinute).padStart(2, "0")}`;
+    const timeString = `${String(selectedHour).padStart(2, "0")}:${String(
+      selectedMinute,
+    ).padStart(2, "0")} ${selectedPeriod}`;
 
+    // Validate required fields
     if (
       course === "Select Course" ||
       !date ||
@@ -99,27 +110,35 @@ export default function CreateStudyGroupPage({ courses, tutors }) {
       return;
     }
 
-    const res = await fetch("/api/createStudyGroup", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        courseTitle: course,
-        date,
-        time: timeString,
-        maxMembers,
-        includeTutor,
-        tutorId: includeTutor ? selectedTutor : null,
-      }),
-    });
+    try {
+      const res = await fetch("/api/createStudyGroup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          courseTitle: course,
+          date,
+          time: timeString,
+          maxMembers,
+          includeTutor,
+          tutorId: includeTutor ? selectedTutor : null,
+        }),
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (!res.ok) {
-      setError(data.error || "Failed to create group");
-      return;
+      if (!res.ok) {
+        setError(data.error || "Failed to create group");
+        return;
+      }
+
+      setSuccess(true);
+
+      setTimeout(() => {
+        router.push("/student/home");
+      }, 3000);
+    } catch (err) {
+      setError(err.message);
     }
-
-    setSuccess(true);
   }
 
   // ⭐ MODAL: identical structure to BookATutor modal
@@ -134,7 +153,8 @@ export default function CreateStudyGroupPage({ courses, tutors }) {
               <Image src="/check.svg" alt="Confirmed" width={64} height={64} />
               <h2 className={styles.confirmationTitle}>Group Created!</h2>
               <p className={styles.confirmationText}>
-                Your study group for {course} on {date} at {time} has been created.
+                Your study group for {course} on {date} at {time} has been
+                created.
               </p>
             </div>
           </div>
@@ -142,6 +162,9 @@ export default function CreateStudyGroupPage({ courses, tutors }) {
       </main>
     );
   }
+  const uniqueTutors = Array.from(
+    new Map(tutors.map((t) => [t.id, t])).values(),
+  );
 
   return (
     <main className={styles.page}>
@@ -149,7 +172,10 @@ export default function CreateStudyGroupPage({ courses, tutors }) {
         <div className={styles.topSpacer} />
 
         <div className={styles.headerRow}>
-          <Link href="/student/studyGroupPages/findStudyGroup" className={styles.backButton}>
+          <Link
+            href="/student/studyGroupPages/findStudyGroup"
+            className={styles.backButton}
+          >
             <Image src="/backbutton.svg" alt="Back" width={28} height={28} />
           </Link>
 
@@ -178,7 +204,10 @@ export default function CreateStudyGroupPage({ courses, tutors }) {
 
           <div className={styles.inputSection}>
             <label className={styles.label}>Select Date</label>
-            <div className={styles.yellowInputCal} onClick={handleOpenDatePicker}>
+            <div
+              className={styles.yellowInputCal}
+              onClick={handleOpenDatePicker}
+            >
               <button
                 type="button"
                 className={styles.dateBar}
@@ -207,19 +236,17 @@ export default function CreateStudyGroupPage({ courses, tutors }) {
 
           <div className={styles.inputSection}>
             <label className={styles.label}>Select Time</label>
-            <div className={styles.yellowInputCal} onClick={handleOpenTimeModal}>
+            <div
+              className={styles.yellowInputCal}
+              onClick={handleOpenTimeModal}
+            >
               <button
                 type="button"
                 className={styles.dateBar}
                 onClick={handleOpenTimeModal}
               >
                 <div className={styles.dateBarLeft}>
-                  <Image
-                    src="/clock.svg"
-                    alt="Time"
-                    width={18}
-                    height={18}
-                  />
+                  <Image src="/clock.svg" alt="Time" width={18} height={18} />
                   <span className={styles.dateText}>{formattedTime}</span>
                 </div>
 
@@ -233,6 +260,7 @@ export default function CreateStudyGroupPage({ courses, tutors }) {
               </button>
             </div>
           </div>
+          {/* Can add if we alter database to include max members for study groups
 
           <div className={styles.inputSection}>
             <label className={styles.label}>Max Members</label>
@@ -262,6 +290,7 @@ export default function CreateStudyGroupPage({ courses, tutors }) {
               </button>
             </div>
           </div>
+          */}
 
           <div className={styles.toggleRow}>
             <label className={styles.label}>Include Tutor?</label>
@@ -283,9 +312,9 @@ export default function CreateStudyGroupPage({ courses, tutors }) {
                 onChange={(e) => setSelectedTutor(e.target.value)}
               >
                 <option>Select Tutor</option>
-                {tutors.map((t, index) => (
+                {uniqueTutors.map((t, index) => (
                   <option key={`${t.id}-${index}`} value={t.id}>
-                    {t.name} — {t.course}
+                    {t.name}
                   </option>
                 ))}
               </select>
@@ -295,8 +324,12 @@ export default function CreateStudyGroupPage({ courses, tutors }) {
           {error && <p className={styles.errorMessage}>{error}</p>}
 
           <div className={styles.createGroupWrapper}>
-            <button className={styles.createGroupButton} onClick={handleCreate}>
-              Create Group
+            <button
+              className={styles.createGroupButton}
+              disabled={isJoining}
+              onClick={handleCreate}
+            >
+              {isJoining ? "Creating..." : "Create Group"}
             </button>
           </div>
         </div>
@@ -311,7 +344,10 @@ export default function CreateStudyGroupPage({ courses, tutors }) {
                 >
                   {Array.from({ length: 12 }).map((_, i) => (
                     <option key={i} value={i}>
-                      {new Date(0, i).toLocaleString("en-US", { timeZone: "America/New_York", month: "long" })}
+                      {new Date(0, i).toLocaleString("en-US", {
+                        timeZone: "America/New_York",
+                        month: "long",
+                      })}
                     </option>
                   ))}
                 </select>
@@ -360,33 +396,63 @@ export default function CreateStudyGroupPage({ courses, tutors }) {
           <div className={styles.calendarOverlay}>
             <div className={styles.calendarModal}>
               <h3 className={styles.modalTitle}>Select Time</h3>
-              
+
               <div className={styles.timePickerContainer}>
+                {/* HOUR COLUMN */}
                 <div className={styles.timeColumn}>
                   <h4 className={styles.timeColumnLabel}>Hour</h4>
                   <div className={styles.timeScroller}>
-                    {hours.map((hour) => (
+                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((hour) => (
                       <button
                         key={hour}
-                        className={`${styles.timeOption} ${selectedHour === hour ? styles.timeOptionSelected : ""}`}
+                        className={`${styles.timeOption} ${
+                          selectedHour === hour ? styles.timeOptionSelected : ""
+                        }`}
                         onClick={() => setSelectedHour(hour)}
                       >
-                        {String(hour).padStart(2, "0")}
+                        {hour}
                       </button>
                     ))}
                   </div>
                 </div>
 
+                {/* MINUTE COLUMN */}
                 <div className={styles.timeColumn}>
                   <h4 className={styles.timeColumnLabel}>Minute</h4>
                   <div className={styles.timeScroller}>
-                    {minutes.map((minute) => (
+                    {[0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55].map(
+                      (minute) => (
+                        <button
+                          key={minute}
+                          className={`${styles.timeOption} ${
+                            selectedMinute === minute
+                              ? styles.timeOptionSelected
+                              : ""
+                          }`}
+                          onClick={() => setSelectedMinute(minute)}
+                        >
+                          {String(minute).padStart(2, "0")}
+                        </button>
+                      ),
+                    )}
+                  </div>
+                </div>
+
+                {/* AM / PM COLUMN */}
+                <div className={styles.timeColumn}>
+                  <h4 className={styles.timeColumnLabel}>AM / PM</h4>
+                  <div className={styles.timeScroller}>
+                    {["AM", "PM"].map((period) => (
                       <button
-                        key={minute}
-                        className={`${styles.timeOption} ${selectedMinute === minute ? styles.timeOptionSelected : ""}`}
-                        onClick={() => setSelectedMinute(minute)}
+                        key={period}
+                        className={`${styles.timeOption} ${
+                          selectedPeriod === period
+                            ? styles.timeOptionSelected
+                            : ""
+                        }`}
+                        onClick={() => setSelectedPeriod(period)}
                       >
-                        {String(minute).padStart(2, "0")}
+                        {period}
                       </button>
                     ))}
                   </div>
@@ -398,7 +464,7 @@ export default function CreateStudyGroupPage({ courses, tutors }) {
                 onClick={() => {
                   const hourStr = String(selectedHour).padStart(2, "0");
                   const minStr = String(selectedMinute).padStart(2, "0");
-                  setTime(`${hourStr}:${minStr}`);
+                  setTime(`${hourStr}:${minStr} ${selectedPeriod}`);
                   setShowTimeModal(false);
                 }}
               >
@@ -408,11 +474,12 @@ export default function CreateStudyGroupPage({ courses, tutors }) {
           </div>
         )}
 
+        {/* Max Members Modal */}
         {showMaxMembersModal && (
           <div className={styles.calendarOverlay}>
             <div className={styles.calendarModal}>
               <h3 className={styles.modalTitle}>Select Max Members</h3>
-              
+
               <div className={styles.membersGrid}>
                 {memberOptions.map((num) => (
                   <button

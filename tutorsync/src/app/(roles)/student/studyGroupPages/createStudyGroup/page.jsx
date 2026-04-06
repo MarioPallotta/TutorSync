@@ -60,10 +60,5 @@ export default async function Page() {
     course: t.COURSES.Course_Title,
   }));
 
-  return (
-    <CreateStudyGroupPage
-      courses={courses}
-      tutors={tutorList}
-    />
-  );
+  return <CreateStudyGroupPage courses={courses} tutors={tutorList} />;
 }

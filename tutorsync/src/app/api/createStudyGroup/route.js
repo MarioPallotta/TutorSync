@@ -22,6 +22,22 @@ export async function POST(req) {
       );
     }
 
+function convertTo24Hour(timeStr) {
+  // timeStr example: "03:00 PM"
+  const [time, modifier] = timeStr.split(" ");
+  let [hours, minutes] = time.split(":");
+
+  hours = parseInt(hours, 10);
+
+  if (modifier === "PM" && hours !== 12) {
+    hours += 12;
+  }
+  if (modifier === "AM" && hours === 12) {
+    hours = 0;
+  }
+
+  return `${String(hours).padStart(2, "0")}:${minutes}:00`;
+}
     const enrollment = await prisma.eNROLLMENTS.findFirst({
       where: {
         User_ID: userId,
@@ -35,19 +51,21 @@ export async function POST(req) {
         { status: 400 }
       );
     }
+const time24 = convertTo24Hour(time);
 
-    const group = await prisma.sTUDY_BUDDY_GROUPS.create({
-      data: {
-        User_ID: userId,
-        Enrollment_ID: enrollment.Enrollment_ID,
-        Tutor_ID: includeTutor ? Number(tutorId) : null,
-        Has_Tutor: includeTutor,
-        Group_Members: 1,
-        Group_Date: new Date(date),
-        Group_Time: new Date(`${date}T${time}:00`),
-        Is_Accepted: true,
-      },
-    });
+const group = await prisma.sTUDY_BUDDY_GROUPS.create({
+  data: {
+    User_ID: userId,
+    Enrollment_ID: enrollment.Enrollment_ID,
+    Tutor_ID: includeTutor ? Number(tutorId) : null,
+    Has_Tutor: includeTutor,
+    Group_Members: 1,
+    Group_Date: new Date(date),
+    Group_Time: new Date(`${date}T${time24}`),
+    Is_Accepted: true,
+  },
+});
+
 
     return Response.json({ success: true, group });
   } catch (err) {
