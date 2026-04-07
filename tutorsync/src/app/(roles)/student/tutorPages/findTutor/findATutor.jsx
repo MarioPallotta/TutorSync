@@ -47,7 +47,7 @@ export default function FindTutorClient({ courses }) {
   async function fetchTutors() {
     if (selectedSubject === "Select a subject" || !selectedDate) return;
 
-    const res = await fetch("/api/getTutors", {
+    const res = await fetch("/api/student/getTutors", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

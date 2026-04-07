@@ -110,7 +110,7 @@ export default function CreateStudyGroupPage({ courses, tutors }) {
     }
 
     try {
-      const res = await fetch("/api/createStudyGroup", {
+      const res = await fetch("/api/student/createStudyGroup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

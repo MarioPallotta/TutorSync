@@ -1,13 +1,17 @@
 "use client";
+
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import styles from "./TopHeader.module.css";
 
 export default function TopHeader({
-  email = "user@kent.edu",
   isEditing,
   onEdit,
   onExitEdit,
 }) {
+  const { data: session } = useSession();
+  const email = session?.user?.email ?? "user@kent.edu";
+
   const handleClick = () => {
     if (isEditing) {
       onExitEdit?.();

@@ -110,6 +110,12 @@
   animation-delay: 0.25s;
 }
 
+.emptyState {
+  color: #111;
+  margin: 0 auto;
+  font-size: clamp(1rem, 3vw, 1.15rem);
+}
+
 .groupCard {
   border: 3px solid #111;
   border-radius: 14px;

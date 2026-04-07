@@ -1,14 +1,18 @@
 "use client";
+
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import styles from "./TopHeader.module.css";
 
 export default function TopHeader({
-  email = "user@kent.edu",
   isEditing,
   onEdit,
   onExitEdit,
   showEdit = true,
 }) {
+  const { data: session } = useSession();
+  const email = session?.user?.email ?? "user@kent.edu";
+
   const handleClick = () => {
     if (!showEdit) return;
     if (isEditing) onExitEdit?.();
@@ -38,8 +42,6 @@ export default function TopHeader({
         <p className={styles.email}>{email}</p>
       </div>
 
-      {/* ⭐ If showEdit is true → show button  
-          ⭐ If false → show an invisible spacer of equal width */}
       {showEdit ? (
         <button
           className={styles.editButton}

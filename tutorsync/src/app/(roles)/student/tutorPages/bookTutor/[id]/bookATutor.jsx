@@ -49,7 +49,7 @@ export default function BookingTutorPage({ tutor }) {
     setError("");
 
     try {
-      const res = await fetch("/api/createBooking", {
+      const res = await fetch("/api/student/createBooking", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

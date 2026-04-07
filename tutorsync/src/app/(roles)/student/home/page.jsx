@@ -1,117 +1,67 @@
-"use client";
+export const dynamic = "force-dynamic";
 
-import { Suspense } from "react";
-import { useState, useEffect, useRef } from "react";
-import { useSearchParams, useRouter } from "next/navigation";
-import Link from "next/link";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import prisma from "@/lib/prisma";
+import StudentHome from "./studentHome";
 
-import TopHeader from "@/components/student/TopHeader/TopHeader";
-import BottomNav from "@/components/student/BottomNav/BottomNav";
-import WidgetCard from "@/components/widgets/widgetCard";
-import styles from "./page.module.css";
+export default async function Page() {
+  const session = await getServerSession(authOptions);
+  if (!session) return <div>Unauthorized</div>;
 
-function UserHomePageInner() {
-  const [isEditing, setIsEditing] = useState(false);
-  const [widgets, setWidgets] = useState([]);
-  const [loaded, setLoaded] = useState(false);
+  const userId = Number(session.user.id);
 
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  const widgetToAdd = searchParams.get("add");
+  // ⭐ GPA
+  const student = await prisma.student.findUnique({
+    where: { User_ID: userId },
+    select: { GPA: true },
+  });
 
-  const addedRef = useRef(false);
-  const removeWidget = (type) => {
-    setWidgets((prev) => prev.filter((w) => w !== type));
-  };
-  const [editingLoaded, setEditingLoaded] = useState(false);
+const gpa = student?.GPA ? Number(student.GPA) : null;
 
-  useEffect(() => {
-    const savedEditing = localStorage.getItem("isEditing");
-    if (savedEditing === "true") {
-      setIsEditing(true);
-    }
-    setEditingLoaded(true);
-  }, []);
+  // ⭐ Upcoming tutoring sessions
+  const upcomingTutorSessionsRaw = await prisma.TUTORING_SESSION.findMany({
+    where: {
+      User_ID: userId,
+      Session_Time: { gt: new Date() },
+    },
+    include: {
+      ENROLLMENTS: {
+        include: {
+          COURSES: true,
+        },
+      },
+    },
+    orderBy: { Session_Time: "asc" },
+  });
 
-  useEffect(() => {
-    localStorage.setItem("isEditing", isEditing);
-  }, [isEditing]);
+  const upcomingTutorSessions = upcomingTutorSessionsRaw.map((s) => {
+    const course = s.ENROLLMENTS?.COURSES;
+    const start = s.Session_Time;
 
-  useEffect(() => {
-    const saved = localStorage.getItem("widgets");
-    if (saved) {
-      setWidgets(JSON.parse(saved));
-    }
-    setLoaded(true);
-  }, []);
+    return {
+      Session_ID: s.Session_ID,
+      course: course?.Course_Title || "Unknown Course",
+      timeFormatted: start
+        ? new Date(start).toLocaleString("en-US", {
+            month: "short",
+            day: "numeric",
+            hour: "numeric",
+            minute: "2-digit",
+          })
+        : "TBD",
+      Session_Loc: s.Session_Loc || "Study Room Library",
+    };
+  });
 
-  useEffect(() => {
-    addedRef.current = false;
-  }, []);
-
-  useEffect(() => {
-    if (loaded) {
-      localStorage.setItem("widgets", JSON.stringify(widgets));
-    }
-  }, [widgets, loaded]);
-
-  useEffect(() => {
-    if (!loaded) return;
-    if (!widgetToAdd) return;
-    if (addedRef.current) return;
-
-    setWidgets((prev) => {
-      if (prev.includes(widgetToAdd)) return prev;
-      return [...prev, widgetToAdd];
-    });
-
-    addedRef.current = true;
-
-    router.replace("/student/home", undefined, { shallow: true });
-  }, [widgetToAdd, loaded]);
+  // ⭐ Study groups (stub for now)
+  const upcomingStudyGroups = [];
 
   return (
-    <>
-      <TopHeader
-        email="student@kent.edu"
-        isEditing={isEditing}
-        onEdit={() => setIsEditing(true)}
-        onExitEdit={() => setIsEditing(false)}
-        showEdit={true}
-      />
-
-      <div className={styles.content}>
-        <div className={styles.widgetContainer}>
-          {widgets.map((type, i) => (
-            <WidgetCard
-              key={i}
-              type={type}
-              isEditing={isEditing}
-              onDelete={() => removeWidget(type)}
-            />
-          ))}
-        </div>
-      </div>
-
-      {isEditing && (
-        <Link className={styles.addButton} href="/student/widgetOptions">
-          <img src="/plus.svg" alt="Add" className={styles.plusIcon} />
-        </Link>
-      )}
-
-      <BottomNav />
-    </>
-  );
-}
-
-export default function UserHomePage() {
-  return (
-    <main className={styles.page}>
-      <section className={styles.card}>
-        <Suspense fallback={null}>
-          <UserHomePageInner />
-        </Suspense>
-      </section>
-    </main>
+    <StudentHome
+      gpa={gpa}
+      upcomingTutorSessions={upcomingTutorSessions}
+      upcomingStudyGroups={upcomingStudyGroups}
+    />
   );
 }

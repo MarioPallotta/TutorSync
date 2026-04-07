@@ -18,7 +18,7 @@ export default function StudyGroupClient({ courses }) {
     if (selectedCourse === "Select Course") return;
 
     try {
-      const res = await fetch("/api/getStudyGroups", {
+      const res = await fetch("/api/student/getStudyGroups", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ courseTitle: selectedCourse }),

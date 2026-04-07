@@ -47,7 +47,7 @@ export default function GroupDetailsClient({ group }) {
 
       setIsJoining(true);
 
-      const res = await fetch("/api/joinStudyGroup", {
+      const res = await fetch("/api/student/joinStudyGroup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

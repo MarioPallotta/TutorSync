@@ -6,8 +6,8 @@ export async function POST(req) {
       tutorId,
       studentId,
       courseTitle,
-      sessionDate,   // e.g. "2026-04-26"
-      sessionTime,   // ISO string "2026-04-26T14:00:00.000Z"
+      sessionDate, 
+      sessionTime,  
       sessionLocation,
     } = await req.json();
 
@@ -24,12 +24,8 @@ export async function POST(req) {
         { status: 400 }
       );
     }
-
-    // Normalize date to avoid timezone shifting the calendar day
-    // Store date around midday so local toLocaleDateString shows the correct day
     const sessionDateObj = new Date(sessionDate + "T12:00:00");
 
-    // Build a time value on the same calendar date as sessionDate
     const rawTime = new Date(sessionTime);
     const sessionTimeObj = new Date(sessionDateObj);
     sessionTimeObj.setHours(
@@ -39,7 +35,6 @@ export async function POST(req) {
       0
     );
 
-    // Conflict checks
     const studentTutorConflict = await prisma.TUTORING_SESSION.findFirst({
       where: {
         User_ID: studentId,
@@ -131,8 +126,8 @@ export async function POST(req) {
         User_ID: studentId,
         Tutor_ID: tutorId,
         Enrollment_ID: enrollment.Enrollment_ID,
-        Session_Date: sessionDateObj,   // @db.Date
-        Session_Time: sessionTimeObj,   // @db.Timestamp(0)
+        Session_Date: sessionDateObj, 
+        Session_Time: sessionTimeObj, 
         Session_Loc: sessionLocation,
         Students_Booked: 1,
       },

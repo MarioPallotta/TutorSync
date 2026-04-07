@@ -23,7 +23,7 @@ export async function POST(req) {
     }
 
 function convertTo24Hour(timeStr) {
-  // timeStr example: "03:00 PM"
+
   const [time, modifier] = timeStr.split(" ");
   let [hours, minutes] = time.split(":");
 
