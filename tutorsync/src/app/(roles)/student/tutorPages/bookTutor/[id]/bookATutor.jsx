@@ -145,7 +145,6 @@ export default function BookingTutorPage({ tutor }) {
           <div className={styles.timeSection}>
             <h2 className={styles.sectionTitle}>Select Time</h2>
 
-            {/* 🔴 Show banner when no times available */}
             {timeSlots.length === 0 && (
               <div className={styles.errorMessage}>
                 No time slots available.
