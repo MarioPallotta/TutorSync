@@ -17,10 +17,10 @@ export default async function Page() {
     select: { GPA: true },
   });
 
-const gpa = student?.GPA ? Number(student.GPA) : null;
+  const gpa = student?.GPA ? Number(student.GPA) : null;
 
   // ⭐ Upcoming tutoring sessions
-  const upcomingTutorSessionsRaw = await prisma.TUTORING_SESSION.findMany({
+  const upcomingTutorSessionsRaw = await prisma.tUTORING_SESSION.findMany({
     where: {
       User_ID: userId,
       Session_Time: { gt: new Date() },
@@ -51,11 +51,64 @@ const gpa = student?.GPA ? Number(student.GPA) : null;
           })
         : "TBD",
       Session_Loc: s.Session_Loc || "Study Room Library",
+      sortTime: start ? new Date(start).getTime() : Infinity,
     };
   });
 
-  // ⭐ Study groups (stub for now)
-  const upcomingStudyGroups = [];
+  // ⭐ Upcoming study groups
+const upcomingStudyGroupsRaw = await prisma.sTUDY_BUDDY_GROUPS.findMany({
+  where: {
+    Group_Time: { gt: new Date() },
+    OR: [
+      { User_ID: userId }, // ⭐ creator
+      {
+        STUDY_GROUP_MEMBERS: {
+          some: { User_ID: userId }, // ⭐ member
+        },
+      },
+    ],
+  },
+  include: {
+    ENROLLMENTS: {
+      include: {
+        COURSES: true,
+      },
+    },
+    STUDY_GROUP_MEMBERS: true,
+  },
+  orderBy: { Group_Time: "asc" },
+});
+
+
+  const upcomingStudyGroups = upcomingStudyGroupsRaw.map((g) => {
+    const course = g.ENROLLMENTS?.COURSES;
+
+    return {
+      Group_ID: g.Group_ID,
+      course: course?.Course_Title || "Unknown Course",
+      timeFormatted: g.Group_Time
+        ? new Date(g.Group_Time).toLocaleString("en-US", {
+            month: "short",
+            day: "numeric",
+            hour: "numeric",
+            minute: "2-digit",
+          })
+        : "TBD",
+      Group_Members: g.STUDY_GROUP_MEMBERS.length,
+      Has_Tutor: g.Has_Tutor ?? false,
+
+      // ⭐ Leader logic restored
+      isLeader: g.User_ID === userId,
+
+      sortTime: g.Group_Time ? new Date(g.Group_Time).getTime() : Infinity,
+    };
+  });
+  console.log("RAW GROUPS:", JSON.stringify(upcomingStudyGroupsRaw, null, 2));
+
+
+  // ⭐ Sort by closest upcoming
+  upcomingTutorSessions.sort((a, b) => a.sortTime - b.sortTime);
+  upcomingStudyGroups.sort((a, b) => a.sortTime - b.sortTime);
 
   return (
     <StudentHome

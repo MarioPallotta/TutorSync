@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma";
-import GroupDetailsClient from "./student/bookAStudyGroup";
+import GroupDetailsClient from "./bookAStudyGroup";
 
 export default async function Page({ params }) {
   const { id } = await params;
