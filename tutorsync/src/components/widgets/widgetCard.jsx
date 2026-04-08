@@ -40,7 +40,7 @@ export default function WidgetCard({
             {gpa ? Number(gpa).toFixed(2) : "N/A"}
           </div>
         )}
-      </>
+      </>,
     );
   }
 
@@ -142,12 +142,18 @@ export default function WidgetCard({
                     <span className={styles.members}>
                       {g.Group_Members} / 8
                     </span>
-                    {g.Has_Tutor && (
-                      <span className={styles.tutor}>Tutor Assigned</span>
+                    {g.Has_Tutor && !g.Is_Accepted && (
+                      <span className={styles.tutor}>Tutor Requested</span>
+                    )}
+
+                    {g.Has_Tutor && g.Is_Accepted && (
+                      <span className={styles.tutor}>
+                        {g.Tutor_Name} Accepted
+                      </span>
                     )}
                   </div>
 
-                  {g.isLeader && g.Group_Members === 0 ? (
+                  {g.isLeader && g.Group_Members === 1 ? (
                     <button
                       className={styles.actionButtonDelete}
                       onClick={() => onDeleteGroup(g.Group_ID)}
@@ -167,7 +173,7 @@ export default function WidgetCard({
             )}
           </>
         )}
-      </>
+      </>,
     );
   }
 

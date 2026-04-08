@@ -21,6 +21,7 @@ export default function StudentHome({
   const [tutorSessions, setTutorSessions] = useState(upcomingTutorSessions || []);
   const [studyGroups, setStudyGroups] = useState(upcomingStudyGroups || []);
 
+  // ⭐ Keep study groups & tutor sessions synced with server props
   useEffect(() => {
     setTutorSessions(upcomingTutorSessions || []);
     setStudyGroups(upcomingStudyGroups || []);
