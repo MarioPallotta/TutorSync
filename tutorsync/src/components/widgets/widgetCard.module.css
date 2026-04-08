@@ -3,17 +3,23 @@
   background: white;
   border: 3px solid #111;
   border-radius: 10px;
-  padding: 14px;
   margin-bottom: 12px;
   box-sizing: border-box;
   color: #111;
   position: relative;
 }
 
-.title {
+.title{
   margin: 0 0 10px;
   font-size: 1.2rem;
   font-weight: 600;
+}
+
+.sessiontitle {
+  margin: 0 0 10px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 0 14px 0 14px;
 }
 
 .row {
@@ -21,7 +27,7 @@
   justify-content: space-between;
   padding: 6px 0;
   font-size: 1rem;
-  border-bottom: 1px solid #ddd;
+  padding: 0 14px 0 14px;
 }
 
 .row:last-child {
@@ -30,6 +36,11 @@
 
 .card {
   position: relative;
+}
+
+.gpaCard {
+  padding: 14px;
+
 }
 
 .link {
@@ -76,10 +87,61 @@
   text-decoration: none;
 }
 
+.link,
+.linkcard {
+  position: relative;
+}
+
+.link::before,
+.linkcard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #2f63dd;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+  z-index: 0;
+}
+
+.link:hover::before,
+.linkcard:hover::before {
+  transform: scaleX(1);
+}
+
+.link *,
+.linkcard * {
+  position: relative;
+  z-index: 2;
+}
+
 .linkTitle {
   padding-left: 10px;
   font-size: 1.2rem;
   font-weight: 600;
+}
+
+.sessionCard {
+  width: 100%;
+  position: relative;
+  color: #111;
+  padding-top: 14px;
+  padding-bottom: 14px;
+
+
+  /* Light blue base */
+  background: linear-gradient(
+    to bottom,
+    #a0c2fa 0%,   /* very light blue at the top */
+    #d0e1fa 40%,  /* fades softer */
+    #ffffff 100%  /* blends into white at bottom */
+  );
+  border: 3px solid #111;
+  border-radius: 10px;
+  box-sizing: border-box;
 }
 
 .circle {
@@ -117,11 +179,7 @@
   width: 24px;
   height: 24px;
 }
-/* ============================
-   UPCOMING SESSION STYLING
-   ============================ */
 
-/* Course name */
 .course {
   font-weight: 700;
   font-size: 1rem;
@@ -129,7 +187,6 @@
   display: block;
 }
 
-/* Time */
 .time {
   font-size: 0.95rem;
   color: #333;
@@ -137,7 +194,6 @@
   display: block;
 }
 
-/* Location */
 .location {
   font-size: 0.9rem;
   color: #555;
@@ -145,14 +201,10 @@
   display: block;
 }
 
-/* Members count */
 .members {
   font-size: 0.9rem;
   font-weight: 600;
   color: #111;
-  background: #f2f2f2;
-  border: 2px solid #111;
-  border-radius: 8px;
   padding: 2px 6px;
   display: inline-block;
   margin-top: 4px;
@@ -164,30 +216,36 @@
   font-weight: bolder;
   color: #111;
    width: 100%;
-  background: linear-gradient(to right, #fff 0%, #2f63dd 50%, #fff 100%);
+  background-color: #f2f2f2;
   padding: 6px 16px;
-  border-radius: 6px;
   font-size: 14px;
   font-weight: 500;
   display: flex;
   justify-content: center;
+  gap: 10px;
 }
-/* Tutor assigned badge */
+
 .tutor {
   font-size: 0.85rem;
   font-weight: 700;
   color: white;
   background: #111;
   border: 2px solid #111;
-  border-radius: 8px;
   padding: 2px 6px;
   display: inline-block;
   margin-top: 4px;
 }
 
-/* ============================
-   GPA STYLING
-   ============================ */
+.tutorAccepted {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: white;
+  background: #34c759;
+  border: 2px solid #111;
+  padding: 2px 6px;
+  display: inline-block;
+  margin-top: 4px;
+}
 
 .gpaValue {
   font-size: 2.4rem;
@@ -199,31 +257,33 @@
   background: #f2f2f2;
 }
 
-/* ============================
-   ACTION BUTTONS
-   ============================ */
-
 .actionButton {
-  background: white;
-  border: 3px solid #111;
+  margin: auto 0;
+  padding: 6px 16px;
   border-radius: 10px;
-  padding: 6px 12px;
-  font-size: 0.95rem;
-  font-weight: 600;
+  border: 2px solid #111;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  background-color: #fff;
+  color: #000;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .actionButton:hover {
-  background-color: #d0d0d0;
+  background-color: #ec3f3f;;
+  color: #fff;
   transform: scale(1.03);
 }
 
-/* Delete / Disband button */
 .actionButtonDelete {
+  margin: auto 0;
   background: #ec3f3f;
   color: white;
-  border: 3px solid #111;
+  border: 2px solid #111;
   border-radius: 10px;
   padding: 6px 12px;
   font-size: 0.95rem;
