@@ -113,6 +113,8 @@
 }
 
 .subjectTag {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
   display: inline-block;
   padding: 8px 14px;
   background-color: #ffc500;
@@ -134,38 +136,44 @@
   flex-direction: column;
   gap: 10px;
 }
-
 .timeButton {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 2px solid hsl(218, 86%, 46%);
   width: 100%;
-  min-height: 48px;
-  border: 2px solid #111111;
+  min-height: 42px;
   border-radius: 12px;
-  background-color: #ffffff;
-  color: #111111;
-  font-size: 1rem;
-  padding: 10px 14px;
-  text-align: left;
+  color: hsl(218, 86%, 46%);
+  font-size: clamp(1rem, 3vw, 1.15rem);
+  padding: 0 14px;
+  box-sizing: border-box;
+  outline: none;
   cursor: pointer;
+  font-family: inherit;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
   transition:
+    color 0.2s ease,
     background-color 0.2s ease,
-    transform 0.2s ease;
+    transform 0.2s ease,
+    border 0.1s ease;
 }
 
 .timeButton:hover {
-  background-color: #eaeaea;
-  transform: scale(1.02);
+  border: 2px solid hsl(218, 86%, 46%);
+  background-color: hsl(218, 86%, 46%);
+  color: #fff;
 }
 
 .timeSelected {
   background-color: hsl(218, 86%, 46%);
   color: #ffffff;
-  border-color: #111111;
+  border-color: hsl(218, 86%, 46%);
 }
 
 .timeSelected:hover {
-  background-color: hsl(218, 86%, 46%);
+  background-color: hsl(218, 95%, 23%);
   color: #ffffff;
-  border-color: #111111;
+  border-color: hsl(218, 95%, 23%);
 }
 
 .locationSection {
@@ -175,23 +183,38 @@
 }
 
 .locationSelect {
+  border: 2px solid hsl(218, 86%, 46%);
   width: 100%;
-  min-height: 48px;
-  border: 2px solid #111111;
+  min-height: 42px;
   border-radius: 12px;
-  background-color: #ffffff;
-  color: #111111;
-  font-size: 1rem;
+  color: hsl(218, 86%, 46%);
+  font-size: clamp(1rem, 3vw, 1.15rem);
   padding: 0 14px;
+  box-sizing: border-box;
+  outline: none;
   cursor: pointer;
   font-family: inherit;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    border 0.1s ease;
+}
+
+.locationSelect:hover {
+  border: 2px solid hsl(218, 86%, 46%);
+  background-color: hsl(218, 86%, 46%);
+  color: #fff;
 }
 
 .confirmButton {
   width: calc(100% - 36px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   margin: 20px auto 0;
   min-height: 52px;
-  border: 2px solid #111111;
+  border: 2px solid hsl(218, 86%, 46%);
   border-radius: 14px;
   background-color: hsl(218, 86%, 46%);
   color: #ffffff;

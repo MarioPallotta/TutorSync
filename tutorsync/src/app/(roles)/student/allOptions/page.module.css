@@ -72,7 +72,7 @@
   flex-direction: column;
   gap: 14px;
   overflow-y: auto;
-  background-color: #f2f2f2;
+  background-color: transparent;
 }
 
 .grid {

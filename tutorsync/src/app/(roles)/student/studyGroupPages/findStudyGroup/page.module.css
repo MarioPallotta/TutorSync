@@ -84,18 +84,30 @@
 }
 
 .courseSelect {
+  border: 2px solid hsl(218, 86%, 46%);
   width: 100%;
   min-height: 42px;
-  border: 2px solid #111;
   border-radius: 12px;
-  background-color: #ffc500;
-  color: #111;
+  color: hsl(218, 86%, 46%);
   font-size: clamp(1rem, 3vw, 1.15rem);
   padding: 0 14px;
   box-sizing: border-box;
   outline: none;
   cursor: pointer;
   font-family: inherit;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    border 0.1s ease;
+}
+
+.courseSelect:hover {
+  border: 2px solid hsl(218, 86%, 46%);
+  background-color: hsl(218, 86%, 46%);
+  color: #fff;
 }
 
 .listSection {
@@ -159,13 +171,14 @@
 .joinButton {
   padding: 6px 16px;
   border-radius: 10px;
-  border: 2px solid #111;
-  background-color: hsl(218, 86%, 46%);
-  color: #fff;
+  border: 1px solid #8cc8ff;
+  background-color: #fff;
+  color: hsl(218, 86%, 46%);
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
   transition:
+    color 0.2s ease,
     background-color 0.2s ease,
     transform 0.2s ease;
 
@@ -175,6 +188,7 @@
 }
 
 .joinButton:hover {
+  color: #fff;
   transform: scale(1.04);
   background-color: #244fb8;
 }

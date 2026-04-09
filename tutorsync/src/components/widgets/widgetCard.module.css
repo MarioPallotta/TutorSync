@@ -2,7 +2,7 @@
   position: relative;
 }
 
-.title{
+.title {
   margin: 0 0 10px;
   font-size: 1.2rem;
   font-weight: 600;
@@ -13,6 +13,14 @@
   font-size: 1.2rem;
   font-weight: 600;
   padding: 0 14px 0 14px;
+}
+
+.emptyText {
+  margin: 0;
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+  padding: 10px;
 }
 
 .row {
@@ -35,7 +43,7 @@
   width: 100%;
   background: white;
   border-radius: 10px;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
   box-sizing: border-box;
   color: #111;
   padding: 14px;
@@ -46,8 +54,8 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   background: linear-gradient(
     to bottom,
-    #ffc500,   /* light gray at the top */
-    #ffffff 100% /* fades to white at the bottom */
+    #ffc500,
+    /* light gray at the top */ #ffffff 100% /* fades to white at the bottom */
   );
 }
 
@@ -58,7 +66,7 @@
   width: 100%;
   background: #fff;
   padding: 14px;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
   box-sizing: border-box;
   position: relative;
   display: flex;
@@ -67,13 +75,15 @@
   text-decoration: none;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-   transition:
+  transition:
     transform 0.25s,
     background-color 0.25s ease,
-    color 0.25s ease;
+    color 0.25s ease,
+    border-color 0.1s ease;
 }
 
 .link:hover {
+  border: 1px solid hsl(218, 86%, 46%);
   color: #fff;
   background-color: hsl(218, 86%, 46%);
   transform: scale(1.03);
@@ -84,13 +94,13 @@
 }
 
 .linkcard {
-background: #fff;
+  background: #fff;
   border: 1px solid #8cc8ff;
   color: hsl(218, 86%, 46%);
   width: 100%;
   border-radius: 10px;
   padding: 14px;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
   box-sizing: border-box;
   position: relative;
   display: flex;
@@ -113,22 +123,21 @@ background: #fff;
   padding-top: 14px;
   padding-bottom: 14px;
 
-
   /* Light blue base */
   background: linear-gradient(
     to bottom,
-    #a0c2fa 0%,   /* very light blue at the top */
-    #d0e1fa 40%,  /* fades softer */
-    #ffffff 100%  /* blends into white at bottom */
+    #a0c2fa 0%,
+    /* very light blue at the top */ #d0e1fa 40%,
+    /* fades softer */ #ffffff 100% /* blends into white at bottom */
   );
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
 }
 
 .circle {
-   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   background-color: #dcd8d8;
   padding: 5px;
   border-radius: 50%;
@@ -166,7 +175,6 @@ background: #fff;
 .course {
   font-weight: 700;
   font-size: 1rem;
-  margin-bottom: 2px;
   display: block;
 }
 
@@ -193,13 +201,13 @@ background: #fff;
   margin-top: 4px;
 }
 
-.subTitle{
+.subTitle {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
   font-size: 0.95rem;
   font-weight: bolder;
   color: #111;
-   width: 100%;
+  width: 100%;
   background-color: #f2f2f2;
   padding: 6px 16px;
   font-size: 14px;
@@ -278,13 +286,15 @@ background: #fff;
   margin: auto 0;
   background: #ec3f3f;
   color: white;
-  border: 2px solid #111;
+  border: 2px solid #ec3f3f;
   border-radius: 10px;
   padding: 6px 12px;
   font-size: 0.95rem;
   font-weight: 700;
   cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .actionButtonDelete:hover {
@@ -293,29 +303,27 @@ background: #fff;
 }
 
 .tutoringSuggestionsCard {
-  box-sizing: border-box;
-    width: 100%;
+  width: 100%;
   color: #111;
   padding-top: 14px;
   padding-bottom: 14px;
 
-
   /* Light blue base */
   background: linear-gradient(
     to bottom,
-    #9cadc4 0%,   /* very light blue at the top */
-    #9fbbe4 40%,  /* fades softer */
-    #ffffff 100%  /* blends into white at bottom */
+    #9cadc4 0%,
+    /* very light blue at the top */ #9fbbe4 40%,
+    /* fades softer */ #ffffff 100% /* blends into white at bottom */
   );
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
 }
 
-.tutoringSuggestionsTitle{
+.tutoringSuggestionsTitle {
   border-bottom: 1px solid #e7e7e7;
- margin: 0 10px 15px;
+  margin: 0 10px 15px;
   font-size: 1.2rem;
   font-weight: 600;
   padding: 0 14px 0 14px;
@@ -344,41 +352,125 @@ background: #fff;
 
 .notificationsCard {
   width: 100%;
-  color: #111;
-  padding-top: 14px;
-  padding-bottom: 14px;
-
+  color: #555555;
 
   /* Light blue base */
   background: linear-gradient(
     to bottom,
-    #a0c2fa 0%,   /* very light blue at the top */
-    #d0e1fa 40%,  /* fades softer */
-    #ffffff 100%  /* blends into white at bottom */
+    #ffc500 0%,
+    /* very light blue at the top */ #eeedb6 40%,
+    /* fades softer */ #ffffff 100% /* blends into white at bottom */
   );
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
+  padding-bottom: 4px;
+}
+
+.notificationsHeader {
+  display: flex;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 14px;
+  background-color: #ffc500;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.notificationsTitle {
+  color: #fff;
+  padding-left: 10px;
+}
+
+.nrow {
+  display: flex;
+  padding: 6px 0;
+  font-size: 1rem;
+  padding: 0 14px 0 14px;
+  margin-bottom: 5px;
+}
+
+.nicon {
+  margin: 0 10px;
 }
 
 .flashlineCard {
-  width: 100%;
-  position: relative;
-  color: #111;
-  padding-top: 14px;
-  padding-bottom: 14px;
-
-
-  /* Light blue base */
-  background: linear-gradient(
-    to bottom,
-    #a0c2fa 0%,   /* very light blue at the top */
-    #d0e1fa 40%,  /* fades softer */
-    #ffffff 100%  /* blends into white at bottom */
-  );
   border-radius: 10px;
+  width: 100%;
+  color: #fff;
+  background-color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.flashlineHeader {
+  align-items: center;
+  display: flex;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 14px;
+  background: linear-gradient(
+    to right,
+    #ffc500 0%,
+    /* very light blue at the top */ #f8cf49 60%,
+    /* fades softer */ #ffffff 100% /* blends into white at bottom */
+  );
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.flashlineContent {
+  border: 1px solid transparent;
+  text-decoration: underline;
+  font-weight: 600;
+  color: hsl(218, 86%, 46%);
+  padding: 20px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.flashlineLinkHeader {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 14px;
+  background: linear-gradient(
+    to right,
+    #ffc500 0%,
+    /* very light blue at the top */ #f8cf49 60%,
+    /* fades softer */ #ffffff 100% /* blends into white at bottom */
+  );
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.flashlineicon {
+  padding-bottom: 5px;
+}
+
+.flashlineLinkContent {
+  border: 1px solid transparent;
+  text-decoration: underline;
+  font-weight: 600;
+  color: hsl(218, 86%, 46%);
+  padding: 20px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  cursor: pointer;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    border 0.1s ease;
+}
+
+.flashlineLinkContent:hover {
+  text-decoration: none;
+  border: 1px solid hsl(218, 86%, 46%);
+  background-color: hsl(218, 86%, 46%);
+  color: #fff;
 }
