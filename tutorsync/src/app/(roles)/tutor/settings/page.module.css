@@ -33,7 +33,7 @@
 
 .titleBar {
   width: 100%;
-  background-color: #f4c524;
+  background-color: #ffc500;
   border-top: 2px solid #111111;
   border-bottom: 2px solid #111111;
   display: flex;
@@ -129,7 +129,7 @@
 }
 
 .toggleOn {
-  background-color: #f4c524;
+  background-color: #ffc500;
 }
 
 .toggleOn .toggleKnob {

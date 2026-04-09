@@ -202,7 +202,7 @@
 .joinButton {
   width: 100%;
   padding: 16px;
-  background-color: #2f63e0;
+  background-color: hsl(218, 86%, 46%);
   color: #fff;
   border: 2px solid #111;
   border-radius: 12px;

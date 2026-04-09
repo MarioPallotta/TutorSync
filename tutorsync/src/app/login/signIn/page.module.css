@@ -123,7 +123,7 @@
 
 .flashlineTitle {
   width: 100%;
-  background: linear-gradient(to right, #f2f2f2 0%, #f5c400 50%, #f2f2f2 100%);
+  background: linear-gradient(to right, #f2f2f2 0%, #ffc500 50%, #f2f2f2 100%);
   color: #111111;
   padding: 5px 10px;
   font-size: clamp(1.1rem, 3.8vw, 1.45rem);
@@ -164,7 +164,7 @@
   margin: 0 auto;
   width: 50%;
   max-width: 100%;
-  background-color: #002664;
+  background-color: hsl(218, 86%, 46%);
   color: white;
   border: 3px solid #111111;
   border-radius: 12px;

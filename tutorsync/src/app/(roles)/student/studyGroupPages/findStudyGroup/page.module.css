@@ -88,7 +88,7 @@
   min-height: 42px;
   border: 2px solid #111;
   border-radius: 12px;
-  background-color: #f4c524;
+  background-color: #ffc500;
   color: #111;
   font-size: clamp(1rem, 3vw, 1.15rem);
   padding: 0 14px;
@@ -160,7 +160,7 @@
   padding: 6px 16px;
   border-radius: 10px;
   border: 2px solid #111;
-  background-color: #2f63e0;
+  background-color: hsl(218, 86%, 46%);
   color: #fff;
   font-size: 1rem;
   font-weight: 500;

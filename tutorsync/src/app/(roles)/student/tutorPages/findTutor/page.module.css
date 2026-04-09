@@ -80,7 +80,7 @@
   min-height: 42px;
   border: 2px solid #111111;
   border-radius: 12px;
-  background-color: #f4c524;
+  background-color: #ffc500;
   color: #111111;
   font-size: clamp(1rem, 3vw, 1.15rem);
   padding: 0 14px;
@@ -92,7 +92,7 @@
 
 .dateBarWrapper {
   width: 100%;
-  background-color: #2f63e0;
+  background-color: hsl(218, 86%, 46%);
   position: relative;
 }
 
@@ -100,7 +100,7 @@
   width: 100%;
   min-height: 56px;
   border: none;
-  background-color: #2f63e0;
+  background-color: hsl(218, 86%, 46%);
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -240,7 +240,7 @@
   height: 32px;
   border: 2px solid #111111;
   border-radius: 10px;
-  background-color: #f4c524;
+  background-color: #ffc500;
   color: #111111;
   display: flex;
   align-items: center;
@@ -343,7 +343,7 @@
   margin-top: 14px;
   width: 100%;
   padding: 10px;
-  background: #2f63e0;
+  background: hsl(218, 86%, 46%)0;
   color: white;
   border-radius: 10px;
   border: none;

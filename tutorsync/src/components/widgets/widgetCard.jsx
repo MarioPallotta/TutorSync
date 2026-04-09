@@ -26,14 +26,14 @@ export default function WidgetCard({
         </button>
       )}
       {content}
-    </div>
+      </div>
   );
 
   // GPA WIDGET
   if (type === "grades") {
     return wrap(
       <div className={styles.gpaCard}>
-        <h3 className={styles.title}>GPA</h3>
+        <h3 className={styles.gpaTitle}>Semester GPA:</h3>
         {loading ? (
           <div className={styles.skeletonGPA}></div>
         ) : (
@@ -290,6 +290,88 @@ export default function WidgetCard({
       </div>
     );
   }
+
+  // NOTIFICATIONS WIDGET
+if (type === "notifications") {
+  return wrap(
+    <div className={styles.notificationsCard}>
+      <h3 className={styles.sessiontitle}>Notifications</h3>
+
+      <div className={styles.row}>
+        <span className={styles.course}>Your tutor accepted your request</span>
+      </div>
+
+      <div className={styles.row}>
+        <span className={styles.course}>A new study group was created for Calculus II</span>
+      </div>
+
+      <div className={styles.row}>
+        <span className={styles.course}>Reminder: Session tomorrow at 3 PM</span>
+      </div>
+    </div>
+  );
+}
+
+// TUTORING SUGGESTIONS WIDGET
+if (type === "tutoringSuggestions") {
+  return wrap(
+    <div className={styles.tutoringSuggestionsCard}>
+      <h3 className={styles.tutoringSuggestionsTitle}>Tutoring Suggestions</h3>
+
+<div className={styles.tutoringSuggestionsRows}>
+      <div className={styles.tSrow}>
+        <span className={styles.suggestion}>Try a Calculus I review session</span>
+      </div>
+
+      <div className={styles.tSrow}>
+        <span className={styles.suggestion}>Improve study habits with weekly tutoring</span>
+      </div>
+
+      <div className={styles.tSrow}>
+        <span className={styles.suggestion}>Recommended: Chemistry II tutoring</span>
+      </div>
+    </div>
+    </div>
+  );
+}
+
+// FLASHLINE LINK WIDGET
+if (type === "flashline") {
+  return isEditing ? (
+    <div className={styles.flashlineCard}>
+      <Image
+        src="/external.svg"
+        alt="external link icon"
+        width={20}
+        height={20}
+        className={styles.icon}
+      />
+      <h3 className={styles.linkTitle}>FlashLine Portal</h3>
+
+      <button className={styles.deleteButton} onClick={onDelete}>
+        <div className={styles.circle}>
+          <img src="/trash.svg" alt="Delete widget" />
+        </div>
+      </button>
+    </div>
+  ) : (
+    <Link
+      href="https://flashline.kent.edu/welcome"
+      target="_blank"
+      className={styles.link}
+    >
+      <Image
+        src="/external.svg"
+        alt="external link icon"
+        width={20}
+        height={20}
+        className={styles.icon}
+      />
+      <h3 className={styles.linkTitle}>FlashLine Portal</h3>
+    </Link>
+  );
+}
+
 
   return null;
 }

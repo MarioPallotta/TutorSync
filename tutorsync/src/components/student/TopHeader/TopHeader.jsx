@@ -51,7 +51,12 @@ export default function TopHeader({
           {isEditing ? (
             <span className={styles.exitIcon}>✕</span>
           ) : (
-            <img src="/edit.svg" alt="Edit" className={styles.icon} />
+            <Image 
+              src="/edit.svg" 
+              alt="Edit" 
+              width={38}
+              height={38}
+              className={styles.icon} />
           )}
         </button>
       ) : (

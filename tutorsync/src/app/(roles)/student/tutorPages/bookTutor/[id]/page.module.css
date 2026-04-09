@@ -115,7 +115,7 @@
 .subjectTag {
   display: inline-block;
   padding: 8px 14px;
-  background-color: #f4c524;
+  background-color: #ffc500;
   border: 2px solid #111111;
   border-radius: 12px;
   font-size: 1rem;
@@ -157,13 +157,13 @@
 }
 
 .timeSelected {
-  background-color: #2f63e0;
+  background-color: hsl(218, 86%, 46%);
   color: #ffffff;
   border-color: #111111;
 }
 
 .timeSelected:hover {
-  background-color: #2f63e0;
+  background-color: hsl(218, 86%, 46%);
   color: #ffffff;
   border-color: #111111;
 }
@@ -193,7 +193,7 @@
   min-height: 52px;
   border: 2px solid #111111;
   border-radius: 14px;
-  background-color: #2f63e0;
+  background-color: hsl(218, 86%, 46%);
   color: #ffffff;
   font-size: 1.2rem;
   font-weight: 500;

@@ -66,6 +66,27 @@ export default function WidgetOptionsPage() {
                 <span className={styles.widgetText}>Grades</span>
               </div>
             </Link>
+
+            <Link href="/student/home?add=tutoringSuggestions" className={styles.widgetRow}>
+              <div className={styles.widgetLeft}>
+                <div className={styles.aPlus}>A+</div>
+                <span className={styles.widgetText}>Tutoring Suggestions</span>
+              </div>
+            </Link>
+
+            <Link href="/student/home?add=notifications" className={styles.widgetRow}>
+              <div className={styles.widgetLeft}>
+                <div className={styles.aPlus}>A+</div>
+                <span className={styles.widgetText}>Notifications</span>
+              </div> 
+            </Link>
+
+            <Link href="/student/home?add=flashline" className={styles.widgetRow}>
+              <div className={styles.widgetLeft}>
+                <div className={styles.aPlus}>A+</div>
+                <span className={styles.widgetText}>Flashline</span>
+              </div>
+            </Link>
           </div>
         </div>
 
