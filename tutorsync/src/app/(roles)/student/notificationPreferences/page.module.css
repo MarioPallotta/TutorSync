@@ -23,21 +23,20 @@
 
 .titleBar {
   width: 100%;
-  background-color: #f4c524;
-  border-top: 2px solid #111111;
-  border-bottom: 2px solid #111111;
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 10px 12px;
+  justify-content: space-between;
+  padding: 18px 26px 12px;
   box-sizing: border-box;
+  box-shadow: 0 0px 7px rgba(0, 0, 0, 0.4);
+  background-color: hsl(218, 86%, 46%);
 }
 
 .title {
-  margin: 0;
+  margin: 0 auto;
   font-size: clamp(1.8rem, 5vw, 2.2rem);
   font-weight: 500;
-  color: #111111;
+  color: #fff;
 }
 
 .content {
@@ -47,7 +46,7 @@
   flex: 1;
   padding-bottom: 20px;
   box-sizing: border-box;
-  background-color: #f2f2f2;
+  background-color: transparent;
 }
 
 .section {
@@ -65,20 +64,20 @@
 .settingRow {
   width: 100%;
   min-height: 54px;
-  border: 3px solid #111111;
+  border: 2px solid #8cc8ff;
   border-radius: 14px;
   background-color: #f2f2f2;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 10px 0 14px;
+  padding: 0 10px 0 12px;
   box-sizing: border-box;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .settingText {
-  font-size: clamp(1rem, 3vw, 1.18rem);
-  color: #111111;
+  font-size: clamp(1rem, 3vw, 1.2rem);
+  color: #111;
 }
 
 .toggle {
@@ -106,7 +105,7 @@
 }
 
 .toggleOn {
-  background-color: #f4c524;
+  background-color: hsl(218, 86%, 46%);
 }
 
 .toggleOn .toggleKnob {

@@ -76,23 +76,33 @@
 }
 
 .subjectSelect {
+  border: 2px solid hsl(218, 86%, 46%);
   width: 100%;
   min-height: 42px;
-  border: 2px solid #111111;
   border-radius: 12px;
-  background-color: #f4c524;
-  color: #111111;
+  color: hsl(218, 86%, 46%);
   font-size: clamp(1rem, 3vw, 1.15rem);
   padding: 0 14px;
   box-sizing: border-box;
   outline: none;
   cursor: pointer;
   font-family: inherit;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    border 0.1s ease;
+}
+
+.subjectSelect:hover {
+  border: 2px solid hsl(218, 86%, 46%);
+  background-color: hsl(218, 86%, 46%);
+  color: #fff;
 }
 
 .dateBarWrapper {
   width: 100%;
-  background-color: #2f63e0;
+  background-color: hsl(218, 86%, 46%);
   position: relative;
 }
 
@@ -100,7 +110,7 @@
   width: 100%;
   min-height: 56px;
   border: none;
-  background-color: #2f63e0;
+  background-color: hsl(218, 86%, 46%);
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -165,7 +175,8 @@
   box-sizing: border-box;
   opacity: 0;
   animation: fadeUp 0.55s ease forwards;
-  will-change: transform, opacity; /* iOS fix */
+  will-change: transform, opacity;
+  /* iOS fix */
 }
 
 @keyframes fadeUp {
@@ -173,6 +184,7 @@
     opacity: 0;
     transform: translateY(18px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0);
@@ -187,15 +199,19 @@
 .tutorCard:nth-child(1) {
   animation-delay: 0.05s;
 }
+
 .tutorCard:nth-child(2) {
   animation-delay: 0.12s;
 }
+
 .tutorCard:nth-child(3) {
   animation-delay: 0.18s;
 }
+
 .tutorCard:nth-child(4) {
   animation-delay: 0.24s;
 }
+
 .tutorCard:nth-child(5) {
   animation-delay: 0.3s;
 }
@@ -240,7 +256,7 @@
   height: 32px;
   border: 2px solid #111111;
   border-radius: 10px;
-  background-color: #f4c524;
+  background-color: #ffc500;
   color: #111111;
   display: flex;
   align-items: center;
@@ -296,6 +312,7 @@
     opacity: 0;
     transform: scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -343,7 +360,7 @@
   margin-top: 14px;
   width: 100%;
   padding: 10px;
-  background: #2f63e0;
+  background: hsl(218, 86%, 46%) 0;
   color: white;
   border-radius: 10px;
   border: none;

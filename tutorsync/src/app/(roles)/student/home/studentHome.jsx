@@ -18,9 +18,12 @@ export default function StudentHome({
   const [widgets, setWidgets] = useState([]);
   const [loaded, setLoaded] = useState(false);
 
-  const [tutorSessions, setTutorSessions] = useState(upcomingTutorSessions || []);
+  const [tutorSessions, setTutorSessions] = useState(
+    upcomingTutorSessions || [],
+  );
   const [studyGroups, setStudyGroups] = useState(upcomingStudyGroups || []);
 
+  // ⭐ Keep study groups & tutor sessions synced with server props
   useEffect(() => {
     setTutorSessions(upcomingTutorSessions || []);
     setStudyGroups(upcomingStudyGroups || []);
@@ -55,7 +58,21 @@ export default function StudentHome({
   // Load widgets
   useEffect(() => {
     const saved = localStorage.getItem("widgets");
-    if (saved) setWidgets(JSON.parse(saved));
+
+    if (saved) {
+      setWidgets(JSON.parse(saved));
+    } else {
+      // ⭐ Default widgets on first visit
+      const defaults = [
+        "findTutor",
+        "studyGroups",
+        "upcomingSessions",
+        "grades",
+      ];
+      setWidgets(defaults);
+      localStorage.setItem("widgets", JSON.stringify(defaults));
+    }
+
     setLoaded(true);
   }, []);
 
@@ -85,9 +102,7 @@ export default function StudentHome({
       body: JSON.stringify({ sessionId }),
     });
 
-    setTutorSessions((prev) =>
-      prev.filter((s) => s.Session_ID !== sessionId)
-    );
+    setTutorSessions((prev) => prev.filter((s) => s.Session_ID !== sessionId));
   };
 
   // Leave study group
@@ -97,9 +112,7 @@ export default function StudentHome({
       body: JSON.stringify({ groupId }),
     });
 
-    setStudyGroups((prev) =>
-      prev.filter((g) => g.Group_ID !== groupId)
-    );
+    setStudyGroups((prev) => prev.filter((g) => g.Group_ID !== groupId));
   };
 
   // Delete (disband) study group
@@ -109,9 +122,7 @@ export default function StudentHome({
       body: JSON.stringify({ groupId }),
     });
 
-    setStudyGroups((prev) =>
-      prev.filter((g) => g.Group_ID !== groupId)
-    );
+    setStudyGroups((prev) => prev.filter((g) => g.Group_ID !== groupId));
   };
 
   const removeWidget = (type) => {
@@ -145,19 +156,19 @@ export default function StudentHome({
                   onCancelSession={(id) =>
                     openConfirm(
                       "Are you sure you want to cancel this tutoring session?",
-                      () => cancelSession(id)
+                      () => cancelSession(id),
                     )
                   }
                   onLeaveGroup={(id) =>
                     openConfirm(
                       "Are you sure you want to leave this study group?",
-                      () => leaveGroup(id)
+                      () => leaveGroup(id),
                     )
                   }
                   onDeleteGroup={(id) =>
                     openConfirm(
                       "Are you sure you want to disband this study group?",
-                      () => deleteGroup(id)
+                      () => deleteGroup(id),
                     )
                   }
                   loading={loading}
@@ -199,35 +210,39 @@ export default function StudentHome({
               boxShadow: "0 8px 24px rgba(0,0,0,0.15)",
             }}
           >
-            <h3 style={{ marginBottom: "8px", fontSize: "18px", fontWeight: 600 }}>
+            <h3
+              style={{
+                marginBottom: "8px",
+                color: "#111",
+                fontSize: "18px",
+                fontWeight: 600,
+              }}
+            >
               Confirm Action
             </h3>
 
-            <p style={{ marginBottom: "20px", fontSize: "14px", color: "#444" }}>
+            <p
+              style={{ marginBottom: "20px", fontSize: "14px", color: "#444" }}
+            >
               {confirmMessage}
             </p>
 
-            <div style={{ display: "flex", justifyContent: "flex-end", gap: "10px" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                gap: "10px",
+              }}
+            >
               <button
-                style={{
-                  padding: "8px 14px",
-                  borderRadius: "6px",
-                  background: "#e5e5e5",
-                  border: "none",
-                }}
+                className={styles.goBackButton}
                 onClick={() => setConfirmOpen(false)}
               >
                 Go Back
               </button>
 
               <button
-                style={{
-                  padding: "8px 14px",
-                  borderRadius: "6px",
-                  background: "#d9534f",
-                  color: "white",
-                  border: "none",
-                }}
+                className={styles.confirmButton}
                 onClick={() => {
                   if (confirmAction) confirmAction();
                   setConfirmOpen(false);

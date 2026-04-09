@@ -21,7 +21,7 @@ export default function LandingPage() {
 
         <div className={styles.bottomSection}>
           <Link href="/login/signIn" className={styles.signInButton}>
-            Sign in with Kent State Account
+            Sign In with Flashline
           </Link>
 
           <p className={styles.subtext}>Use your university credentials</p>

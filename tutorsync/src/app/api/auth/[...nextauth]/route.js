@@ -5,6 +5,11 @@ import prisma from "@/lib/prisma";
 export const authOptions = {
   session: {
     strategy: "jwt",
+    maxAge: 60 * 60,
+  },
+
+  jwt: {
+    maxAge: 60 * 60,
   },
 
   providers: [

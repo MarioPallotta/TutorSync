@@ -56,29 +56,33 @@ export default async function Page() {
   });
 
   // ⭐ Upcoming study groups
-const upcomingStudyGroupsRaw = await prisma.sTUDY_BUDDY_GROUPS.findMany({
-  where: {
-    Group_Time: { gt: new Date() },
-    OR: [
-      { User_ID: userId }, // ⭐ creator
-      {
-        STUDY_GROUP_MEMBERS: {
-          some: { User_ID: userId }, // ⭐ member
+  const upcomingStudyGroupsRaw = await prisma.sTUDY_BUDDY_GROUPS.findMany({
+    where: {
+      Group_Time: { gt: new Date() },
+      OR: [
+        { User_ID: userId }, // creator
+        {
+          STUDY_GROUP_MEMBERS: {
+            some: { User_ID: userId }, // member
+          },
+        },
+      ],
+    },
+    include: {
+      ENROLLMENTS: {
+        include: {
+          COURSES: true,
         },
       },
-    ],
-  },
-  include: {
-    ENROLLMENTS: {
-      include: {
-        COURSES: true,
+      STUDY_GROUP_MEMBERS: true,
+      Tutor: {
+        include: {
+          USERS: true, // ⭐ Needed for tutor name
+        },
       },
     },
-    STUDY_GROUP_MEMBERS: true,
-  },
-  orderBy: { Group_Time: "asc" },
-});
-
+    orderBy: { Group_Time: "asc" },
+  });
 
   const upcomingStudyGroups = upcomingStudyGroupsRaw.map((g) => {
     const course = g.ENROLLMENTS?.COURSES;
@@ -94,17 +98,21 @@ const upcomingStudyGroupsRaw = await prisma.sTUDY_BUDDY_GROUPS.findMany({
             minute: "2-digit",
           })
         : "TBD",
-      Group_Members: g.STUDY_GROUP_MEMBERS.length,
-      Has_Tutor: g.Has_Tutor ?? false,
+      Group_Members: g.Group_Members ?? g.STUDY_GROUP_MEMBERS.length,
 
-      // ⭐ Leader logic restored
+      // ⭐ Tutor status
+      Has_Tutor: g.Has_Tutor ?? false,
+      Is_Accepted: g.Is_Accepted ?? false,
+      Tutor_Name: g.Tutor?.USERS?.Name || null,
+
+      // ⭐ Leader logic
       isLeader: g.User_ID === userId,
 
       sortTime: g.Group_Time ? new Date(g.Group_Time).getTime() : Infinity,
     };
   });
-  console.log("RAW GROUPS:", JSON.stringify(upcomingStudyGroupsRaw, null, 2));
 
+  console.log("RAW GROUPS:", JSON.stringify(upcomingStudyGroupsRaw, null, 2));
 
   // ⭐ Sort by closest upcoming
   upcomingTutorSessions.sort((a, b) => a.sortTime - b.sortTime);

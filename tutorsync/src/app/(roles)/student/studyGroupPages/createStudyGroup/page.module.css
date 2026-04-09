@@ -67,7 +67,7 @@
   display: flex;
   flex-direction: column;
   overflow-y: auto;
- overflow-y: scroll;
+  overflow-y: scroll;
   opacity: 0;
   animation: fadeUp 0.6s ease forwards;
   animation-delay: 0.15s;
@@ -91,37 +91,62 @@
 }
 
 .yellowInput {
+  border: 2px solid hsl(218, 86%, 46%);
   width: 100%;
   min-height: 42px;
-  border: 3px solid #111;
   border-radius: 12px;
-  background-color: #f4c524;
-  color: #111;
+  color: hsl(218, 86%, 46%);
   font-size: clamp(1rem, 3vw, 1.15rem);
   padding: 0 14px;
   box-sizing: border-box;
   outline: none;
-  font-family: inherit;
   cursor: pointer;
+  font-family: inherit;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    border 0.1s ease;
+}
+
+.yellowInput:hover {
+  border: 2px solid hsl(218, 86%, 46%);
+  background-color: hsl(218, 86%, 46%);
+  color: #fff;
 }
 
 .yellowInputCal {
+  border: 2px solid hsl(218, 86%, 46%);
   width: 100%;
   min-height: 42px;
-  border: 3px solid #111;
   border-radius: 12px;
-  background-color: #f4c524;
-  color: #111;
+  color: hsl(218, 86%, 46%);
   font-size: clamp(1rem, 3vw, 1.15rem);
   padding: 0 14px;
   box-sizing: border-box;
   outline: none;
+  cursor: pointer;
   font-family: inherit;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    border 0.1s ease;
+}
+
+.yellowInputCal:hover {
+  border: 2px solid hsl(218, 86%, 46%);
+  background-color: hsl(218, 86%, 46%);
+  color: #fff;
 }
 
 .dateBarWrapper {
   width: 100%;
-  background-color: #2f63e0;
+  background-color: hsl(218, 86%, 46%);
   position: relative;
 }
 
@@ -194,7 +219,9 @@
   font-weight: 500;
   cursor: pointer;
   text-align: center;
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
 }
 
 .createGroupButton:hover {
@@ -212,7 +239,6 @@
     transform: translateY(0);
   }
 }
-
 
 .calendarOverlay {
   position: fixed;
@@ -286,7 +312,7 @@
   margin-top: 14px;
   width: 100%;
   padding: 10px;
-  background: #2f63e0;
+  background: hsl(218, 86%, 46%);
   color: white;
   border-radius: 10px;
   border: none;
@@ -358,9 +384,9 @@
 }
 
 .timeOptionSelected {
-  background-color: #2f63e0;
+  background-color: hsl(218, 86%, 46%);
   color: #ffffff;
-  border-color: #2f63e0;
+  border-color: hsl(218, 86%, 46%);
 }
 
 .membersGrid {
@@ -387,9 +413,9 @@
 }
 
 .memberOptionSelected {
-  background-color: #2f63e0;
+  background-color: hsl(218, 86%, 46%);
   color: #ffffff;
-  border-color: #2f63e0;
+  border-color: hsl(218, 86%, 46%);
 }
 
 body.modal-open {
