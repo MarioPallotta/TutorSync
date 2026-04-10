@@ -63,7 +63,7 @@
 .settingRow {
   width: 100%;
   min-height: 54px;
-  border: 2px solid #8cc8ff;
+  border: 2px solid hsl(218, 86%, 46%);
   border-radius: 14px;
   background-color: #f2f2f2;
   display: flex;
@@ -83,10 +83,10 @@
   display: block;
   width: 100%;
   min-height: 54px;
-  border: 2px solid #8cc8ff;
+  border: 2px solid hsl(218, 86%, 46%);
   border-radius: 14px;
   background-color: #f2f2f2;
-  color: hsl(218, 86%, 46%);
+  color: #111;
   font-size: clamp(1rem, 3vw, 1.2rem);
   text-align: left;
   padding: 10px 12px;

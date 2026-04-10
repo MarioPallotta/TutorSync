@@ -24,30 +24,28 @@
 .content {
   width: 100%;
   flex: 1;
-  background-color: #f2f2f2;
+  background-color: transparent;
   display: flex;
   flex-direction: column;
   padding-bottom: 20px;
-  overflow-y: auto;
 }
 
 .titleBar {
   width: 100%;
-  background-color: #ffc500;
-  border-top: 2px solid #111111;
-  border-bottom: 2px solid #111111;
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 10px 12px;
+  justify-content: space-between;
+  padding: 18px 26px 12px;
   box-sizing: border-box;
+  box-shadow: 0 0px 7px rgba(0, 0, 0, 0.4);
+  background-color: hsl(218, 86%, 46%);
 }
 
 .title {
-  margin: 0;
+  margin: 0 auto;
   font-size: clamp(1.8rem, 5vw, 2.2rem);
   font-weight: 500;
-  color: #111111;
+  color: #fff;
 }
 
 .section {
@@ -65,7 +63,7 @@
 .settingRow {
   width: 100%;
   min-height: 54px;
-  border: 3px solid #111111;
+  border: 2px solid hsl(218, 86%, 46%);
   border-radius: 14px;
   background-color: #f2f2f2;
   display: flex;
@@ -78,17 +76,17 @@
 
 .settingText {
   font-size: clamp(1rem, 3vw, 1.2rem);
-  color: #111111;
+  color: #111;
 }
 
 .settingButton {
   display: block;
   width: 100%;
   min-height: 54px;
-  border: 3px solid #111111;
+  border: 2px solid hsl(218, 86%, 46%);
   border-radius: 14px;
   background-color: #f2f2f2;
-  color: #111111;
+  color: #111;
   font-size: clamp(1rem, 3vw, 1.2rem);
   text-align: left;
   padding: 10px 12px;
@@ -96,12 +94,16 @@
   cursor: pointer;
   transition:
     transform 0.25s,
-    background-color 0.25s ease;
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.1s ease;
 }
 
 .settingButton:hover {
+  border: 1px solid hsl(218, 86%, 46%);
   transform: scale(1.04);
-  background-color: rgb(162, 162, 162);
+  color: #fff;
+  background-color: hsl(218, 86%, 46%);
 }
 
 .toggle {
@@ -129,7 +131,7 @@
 }
 
 .toggleOn {
-  background-color: #ffc500;
+  background-color: hsl(218, 86%, 46%);
 }
 
 .toggleOn .toggleKnob {
@@ -144,7 +146,7 @@
 .textarea {
   width: 100%;
   min-height: 130px;
-  border: 3px solid #111111;
+  border: 3px solid hsl(218, 86%, 46%);
   border-radius: 10px;
   background-color: #f2f2f2;
   resize: none;
@@ -176,7 +178,6 @@
     transform 0.2s ease,
     opacity 0.2s ease;
 }
-
 .submitButton:hover {
   transform: translateY(-2px);
   opacity: 0.96;
@@ -202,7 +203,6 @@
     transform 0.2s ease,
     opacity 0.2s ease;
 }
-
 .signOutButton:hover {
   transform: translateY(-2px);
   opacity: 0.96;

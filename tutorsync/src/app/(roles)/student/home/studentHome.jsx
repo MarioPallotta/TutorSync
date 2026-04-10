@@ -62,7 +62,6 @@ export default function StudentHome({
     if (saved) {
       setWidgets(JSON.parse(saved));
     } else {
-      // ⭐ Default widgets on first visit
       const defaults = [
         "findTutor",
         "studyGroups",
@@ -82,7 +81,6 @@ export default function StudentHome({
     }
   }, [widgets, loaded]);
 
-  // Add widget from URL param
   useEffect(() => {
     if (!loaded || !widgetToAdd || addedRef.current) return;
 
@@ -95,7 +93,6 @@ export default function StudentHome({
     router.replace("/student/home", undefined, { shallow: true });
   }, [widgetToAdd, loaded, router]);
 
-  // Cancel tutoring session
   const cancelSession = async (sessionId) => {
     await fetch("/api/student/cancelSession", {
       method: "DELETE",
@@ -105,7 +102,6 @@ export default function StudentHome({
     setTutorSessions((prev) => prev.filter((s) => s.Session_ID !== sessionId));
   };
 
-  // Leave study group
   const leaveGroup = async (groupId) => {
     await fetch("/api/student/leaveGroup", {
       method: "DELETE",
@@ -115,7 +111,6 @@ export default function StudentHome({
     setStudyGroups((prev) => prev.filter((g) => g.Group_ID !== groupId));
   };
 
-  // Delete (disband) study group
   const deleteGroup = async (groupId) => {
     await fetch("/api/student/deleteGroup", {
       method: "DELETE",

@@ -29,10 +29,15 @@ export async function DELETE(req) {
       },
     });
 
-    // Decrement member count
+    // ⭐ Recalculate member count
+    const newCount = await prisma.sTUDY_GROUP_MEMBERS.count({
+      where: { Group_ID: groupId },
+    });
+
+    // ⭐ Sync Group_Members
     await prisma.sTUDY_BUDDY_GROUPS.update({
       where: { Group_ID: groupId },
-      data: { Group_Members: { decrement: 1 } },
+      data: { Group_Members: newCount },
     });
 
     return Response.json({ success: true });

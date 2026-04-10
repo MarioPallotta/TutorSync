@@ -37,13 +37,15 @@ export async function getAvailableStudyGroups(courseTitle) {
   return {
     groups: groups.map((g) => {
       // ⭐ DATE — NO TIMEZONE CONVERSION
-      const formattedDate = g.Group_Date
-        ? new Intl.DateTimeFormat("en-US", {
-            month: "short",
-            day: "numeric",
-            year: "numeric",
-          }).format(new Date(g.Group_Date))
-        : "TBD";
+      const formattedDate = g.Group_Time
+  ? new Intl.DateTimeFormat("en-US", {
+      timeZone: "America/New_York",
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    }).format(new Date(g.Group_Time))
+  : "TBD";
+
 
       // ⭐ TIME — CONVERT TO EST
       const formattedTime = g.Group_Time
@@ -59,8 +61,9 @@ export async function getAvailableStudyGroups(courseTitle) {
         course: g.course,
         date: formattedDate,
         time: formattedTime,
-        members: g.Group_Members ?? g.STUDY_GROUP_MEMBERS.length,
-        max: 8,
+        members: g.STUDY_GROUP_MEMBERS.length,
+max: 8,
+
       };
     }),
   };
