@@ -55,16 +55,36 @@ const time24 = convertTo24Hour(time);
 
 const group = await prisma.sTUDY_BUDDY_GROUPS.create({
   data: {
-    User_ID: userId,
+    User_ID: userId, // leader
     Enrollment_ID: enrollment.Enrollment_ID,
     Tutor_ID: includeTutor ? Number(tutorId) : null,
     Has_Tutor: includeTutor,
-    Group_Members: 1,
+    Is_Accepted: false,
+    Group_Members: 0, // will sync after member insert
     Group_Date: new Date(date),
     Group_Time: new Date(`${date}T${time24}`),
-    Is_Accepted: false,
   },
 });
+
+// ⭐ Add leader as a member
+await prisma.sTUDY_GROUP_MEMBERS.create({
+  data: {
+    Group_ID: group.Group_ID,
+    User_ID: userId,
+    Enrollment_ID: enrollment.Enrollment_ID,
+  },
+});
+
+// ⭐ Sync Group_Members to STUDY_GROUP_MEMBERS count
+const memberCount = await prisma.sTUDY_GROUP_MEMBERS.count({
+  where: { Group_ID: group.Group_ID },
+});
+
+await prisma.sTUDY_BUDDY_GROUPS.update({
+  where: { Group_ID: group.Group_ID },
+  data: { Group_Members: memberCount },
+});
+
 
 
     return Response.json({ success: true, group });

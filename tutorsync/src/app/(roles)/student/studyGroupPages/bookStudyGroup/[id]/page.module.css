@@ -200,14 +200,16 @@
 }
 
 .joinButton {
+  width: 100%;
   border: 1px solid #8cc8ff;
   color: hsl(218, 86%, 46%);
   border-radius: 10px;
   margin: auto 0;
-  padding: 6px 16px;
+  padding: 16px;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
+  font: 600 1rem/1.4 "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: #fff;
   transition:
     color 0.2s ease,

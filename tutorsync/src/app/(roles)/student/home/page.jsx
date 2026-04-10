@@ -11,7 +11,6 @@ export default async function Page() {
 
   const userId = Number(session.user.id);
 
-  // ⭐ GPA
   const student = await prisma.student.findUnique({
     where: { User_ID: userId },
     select: { GPA: true },
@@ -19,7 +18,6 @@ export default async function Page() {
 
   const gpa = student?.GPA ? Number(student.GPA) : null;
 
-  // ⭐ Upcoming tutoring sessions
   const upcomingTutorSessionsRaw = await prisma.tUTORING_SESSION.findMany({
     where: {
       User_ID: userId,
@@ -55,7 +53,6 @@ export default async function Page() {
     };
   });
 
-  // ⭐ Upcoming study groups
   const upcomingStudyGroupsRaw = await prisma.sTUDY_BUDDY_GROUPS.findMany({
     where: {
       Group_Time: { gt: new Date() },
@@ -77,7 +74,7 @@ export default async function Page() {
       STUDY_GROUP_MEMBERS: true,
       Tutor: {
         include: {
-          USERS: true, // ⭐ Needed for tutor name
+          USERS: true,
         },
       },
     },
@@ -99,13 +96,10 @@ export default async function Page() {
           })
         : "TBD",
       Group_Members: g.Group_Members ?? g.STUDY_GROUP_MEMBERS.length,
-
-      // ⭐ Tutor status
       Has_Tutor: g.Has_Tutor ?? false,
       Is_Accepted: g.Is_Accepted ?? false,
       Tutor_Name: g.Tutor?.USERS?.Name || null,
 
-      // ⭐ Leader logic
       isLeader: g.User_ID === userId,
 
       sortTime: g.Group_Time ? new Date(g.Group_Time).getTime() : Infinity,
@@ -114,7 +108,6 @@ export default async function Page() {
 
   console.log("RAW GROUPS:", JSON.stringify(upcomingStudyGroupsRaw, null, 2));
 
-  // ⭐ Sort by closest upcoming
   upcomingTutorSessions.sort((a, b) => a.sortTime - b.sortTime);
   upcomingStudyGroups.sort((a, b) => a.sortTime - b.sortTime);
 
