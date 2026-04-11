@@ -6,8 +6,8 @@
   justify-content: space-between;
   padding: 18px 26px 12px;
   box-sizing: border-box;
-  border-bottom: 1.5px solid #8f8f8f;
-  background-color: #f2f2f2;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.4);
+  background-color: hsl(218, 86%, 46%);
 }
 
 .left {
@@ -41,6 +41,6 @@
   margin: 0;
   font-size: clamp(1rem, 2.6vw, 1.35rem);
   font-weight: 400;
-  color: #1a1a1a;
+  color: #fff;
   text-align: center;
 }
