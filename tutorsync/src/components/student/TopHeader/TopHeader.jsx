@@ -33,7 +33,7 @@ export default function TopHeader({
 
       <div className={styles.center}>
         <Image
-          src="/person.svg"
+          src="/personwhite.svg"
           alt="User"
           width={38}
           height={38}
