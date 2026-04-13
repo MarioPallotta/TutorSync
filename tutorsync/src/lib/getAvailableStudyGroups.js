@@ -36,7 +36,6 @@ export async function getAvailableStudyGroups(courseTitle) {
 
   return {
     groups: groups.map((g) => {
-      // ⭐ DATE — NO TIMEZONE CONVERSION
       const formattedDate = g.Group_Time
   ? new Intl.DateTimeFormat("en-US", {
       timeZone: "America/New_York",
@@ -47,7 +46,6 @@ export async function getAvailableStudyGroups(courseTitle) {
   : "TBD";
 
 
-      // ⭐ TIME — CONVERT TO EST
       const formattedTime = g.Group_Time
         ? new Intl.DateTimeFormat("en-US", {
             timeZone: "America/New_York",

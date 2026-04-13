@@ -41,7 +41,7 @@
 .circleLarge {
   width: 94px;
   height: 94px;
-  margin-top: -26px; /* lifts the home button above the blue bar */
+  margin-top: -26px;
 }
 
 .icon {
