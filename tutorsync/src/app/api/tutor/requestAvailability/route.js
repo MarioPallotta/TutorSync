@@ -14,7 +14,6 @@ export async function POST(req) {
       return Response.json({ error: "Missing fields" }, { status: 400 });
     }
 
-    // Convert "3:00 PM" → "15:00:00"
     function convertTo24Hour(timeStr) {
       const [t, modifier] = timeStr.split(" ");
       let [hours, minutes] = t.split(":");
@@ -29,10 +28,8 @@ export async function POST(req) {
     const time24 = convertTo24Hour(time);
     const timestamp = new Date(`${date}T${time24}`);
 
-    // ⭐ Ensure tutor is linked to the course
     await prisma.tUTOR_COURSE.upsert({
       where: {
-        // Prisma will auto‑match the correct composite key
         Tutor_ID_Course_ID: {
           Tutor_ID: Number(tutorId),
           Course_ID: Number(courseId),
@@ -44,7 +41,6 @@ export async function POST(req) {
         Course_ID: Number(courseId),
       },
     }).catch(async () => {
-      // Fallback: manually check if row exists
       const exists = await prisma.tUTOR_COURSE.findFirst({
         where: {
           Tutor_ID: Number(tutorId),
@@ -62,7 +58,6 @@ export async function POST(req) {
       }
     });
 
-    // ⭐ Create availability
     await prisma.tUTOR_AVAILABILITY.create({
       data: {
         Tutor_ID: Number(tutorId),

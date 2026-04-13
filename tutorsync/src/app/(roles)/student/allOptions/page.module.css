@@ -58,7 +58,9 @@
 }
 
 .tile,
-.link {
+.link, 
+.link2,
+.flashline {
   opacity: 0;
   animation: popIn 0.55s ease forwards;
   animation-delay: 0.3s;
@@ -104,32 +106,66 @@
 }
 
 .link {
+  border: 1px solid #8cc8ff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  color: hsl(218, 86%, 46%);
   width: 100%;
-  background: white;
-  border: 3px solid #111;
-  border-radius: 14px;
+  background: #fff;
   padding: 14px;
   box-sizing: border-box;
-  color: #111;
+  position: relative;
   display: flex;
   align-items: center;
   gap: 12px;
   text-decoration: none;
-  position: relative;
-
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition:
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    background-color 0.25s ease;
+    transform 0.25s,
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.1s ease;
 }
 
-.link:hover {
-  transform: scale(1.05);
-  background-color: rgb(208, 208, 208);
+.link2 {
+  border: 1px solid #8cc8ff;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  color: hsl(218, 86%, 46%);
+  width: 100%;
+  background: #fff;
+  padding: 14px;
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.25s,
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.1s ease;
+}
+
+.link:hover, .link2:hover {
+   border: 1px solid hsl(218, 86%, 46%);
+  color: #fff;
+  background-color: hsl(218, 86%, 46%);
 }
 
 .icon {
   width: 32px;
   height: 32px;
+}
+
+.gradesTitle{
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111;
 }
 
 .linkTitle {
@@ -139,8 +175,72 @@
 
 .sectionHeader {
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 40;
   margin-top: 20px;
   margin-bottom: 6px;
   color: #333;
+}
+
+.tile{
+  background: white;
+  border: 1px solid #ffc500;
+  border-radius: 10px;
+  padding: 14px;
+  box-sizing: border-box;
+  color: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-align: center;
+  cursor: pointer;
+   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  transition: 
+  background-color 0.25s ease,
+  color 0.15s ease;
+}
+
+.tile:hover {
+  color: #fff;
+  background-color: #ffc500;
+}
+
+.flashline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, #ffc500, #ffffff 100%);
+  border: 1px solid #ffc500;
+  border-radius: 10px;
+  padding: 12px 12px 12px 0;
+  box-sizing: border-box;
+  color: #111;
+  gap: 8px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition:
+    background-color 0.25s ease,
+    color 0.15s ease;
+}
+
+.flashline:hover {
+  color: #fff;
+}
+
+.flashlineHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.flashlineicon {
+margin-bottom: 10px;
 }

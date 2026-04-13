@@ -55,7 +55,7 @@
   background: linear-gradient(
     to bottom,
     #ffc500,
-    /* light gray at the top */ #ffffff 100% /* fades to white at the bottom */
+    #ffffff 100%
   );
 }
 
@@ -416,8 +416,8 @@
   background: linear-gradient(
     to right,
     #ffc500 0%,
-    /* very light blue at the top */ #f8cf49 60%,
-    /* fades softer */ #ffffff 100% /* blends into white at bottom */
+    #f8cf49 60%,
+    #ffffff 100%
   );
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -442,8 +442,8 @@
   background: linear-gradient(
     to right,
     #ffc500 0%,
-    /* very light blue at the top */ #f8cf49 60%,
-    /* fades softer */ #ffffff 100% /* blends into white at bottom */
+    #f8cf49 60%,
+    #ffffff 100%
   );
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;

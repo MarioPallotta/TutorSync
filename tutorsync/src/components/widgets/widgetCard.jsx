@@ -366,7 +366,7 @@ export default function WidgetCard({
 
           <div className={styles.tSrow}>
             <span className={styles.suggestion}>
-              Improve study habits with weekly tutoring
+              Improve studying with weekly tutoring
             </span>
           </div>
 

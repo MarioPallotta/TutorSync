@@ -10,7 +10,6 @@ export async function GET() {
 
   const userId = session.user.id;
 
-  // Fetch GPA from Student table
   const student = await prisma.student.findUnique({
     where: { User_ID: userId },
     select: { GPA: true },

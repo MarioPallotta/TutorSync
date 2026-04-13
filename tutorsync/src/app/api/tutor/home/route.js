@@ -20,7 +20,7 @@ export async function GET(req) {
   console.log("SESSION:", session);
   console.log("Tutor ID:", session?.user?.tutorId);
 
-  // Pending group requests (not yet accepted)
+  // pending group requests (not yet accepted)
   const pendingRequests = await prisma.STUDY_BUDDY_GROUPS.findMany({
     where: {
       Tutor_ID: tutorId,
@@ -40,7 +40,7 @@ export async function GET(req) {
     ],
   });
 
-  // Today's tutoring sessions (by Session_Date)
+  // today's tutoring sessions (by Session_Date)
   const todaySessions = await prisma.TUTORING_SESSION.findMany({
     where: {
       Tutor_ID: tutorId,
@@ -60,7 +60,7 @@ export async function GET(req) {
     },
   });
 
-  // Upcoming tutoring sessions (after today)
+  // upcoming tutoring sessions (after today)
   const upcomingSessions = await prisma.TUTORING_SESSION.findMany({
     where: {
       Tutor_ID: tutorId,
@@ -80,7 +80,7 @@ export async function GET(req) {
     ],
   });
 
-  // Today's accepted study groups
+  // today's accepted study groups
   const todayStudyGroups = await prisma.STUDY_BUDDY_GROUPS.findMany({
     where: {
       Tutor_ID: tutorId,
@@ -103,7 +103,7 @@ export async function GET(req) {
     ],
   });
 
-  // Upcoming accepted study groups
+  // upcoming accepted study groups
   const upcomingStudyGroups = await prisma.STUDY_BUDDY_GROUPS.findMany({
     where: {
       Tutor_ID: tutorId,
