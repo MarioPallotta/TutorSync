@@ -69,6 +69,12 @@ export default function WidgetOptionsPage() {
 
             <Link href="/student/home?add=tutoringSuggestions" className={styles.widgetRow}>
               <div className={styles.widgetLeft}>
+                <Image
+                  src="/check.svg"
+                  alt="check mark"
+                  width={32}
+                  height={32}
+                />
                 <div className={styles.aPlus}></div>
                 <span className={styles.widgetText}>Tutoring Suggestions</span>
               </div>
@@ -76,13 +82,25 @@ export default function WidgetOptionsPage() {
 
             <Link href="/student/home?add=notifications" className={styles.widgetRow}>
               <div className={styles.widgetLeft}>
+                <Image
+                  src="/bell.svg"
+                  alt="bell"
+                  width={32}
+                  height={32}
+                />
                 <div className={styles.aPlus}></div>
                 <span className={styles.widgetText}>Notifications</span>
               </div> 
             </Link>
 
             <Link href="/student/home?add=flashline" className={styles.widgetRow}>
-              <div className={styles.widgetLeft}>
+              <div className={styles.flashWidgetLeft}>
+                <Image
+                  src="/kentstateimage.png"
+                  alt="kent state logo"
+                  width={60}
+                  height={32}
+                />
                 <div className={styles.aPlus}></div>
                 <span className={styles.widgetText}>Flashline</span>
               </div>

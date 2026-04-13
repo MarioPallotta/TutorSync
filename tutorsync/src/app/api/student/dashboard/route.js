@@ -16,11 +16,7 @@ export async function GET() {
       );
     }
 
-    // ⭐ GPA (if you don't have this yet, it will just be null)
     let gpa = null;
-    // You can compute GPA here later if needed
-
-    // ⭐ Upcoming tutoring sessions
     const upcomingTutorSessionsRaw = await prisma.TUTORING_SESSION.findMany({
       where: {
         User_ID: userId,
@@ -55,8 +51,7 @@ export async function GET() {
       };
     });
 
-    // ⭐ Upcoming study groups (stubbed for now if you don't have logic yet)
-    const upcomingStudyGroups = []; // fill in later if needed
+    const upcomingStudyGroups = []; 
 
     const payload = {
       gpa,

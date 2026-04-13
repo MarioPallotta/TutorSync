@@ -17,7 +17,7 @@ export async function POST(req) {
       return NextResponse.json({ error: "Group not found" }, { status: 404 });
     }
 
-    // Cannot join your own group
+    // cannot join your own group
     if (group.User_ID === userId) {
       return NextResponse.json(
         { error: "You cannot join a group you created." },
@@ -27,7 +27,7 @@ export async function POST(req) {
 
     const memberCount = group.STUDY_GROUP_MEMBERS.length;
 
-    // Group full
+    // group full
     if (memberCount >= 8) {
       return NextResponse.json(
         { error: "This group is full." },
@@ -35,7 +35,7 @@ export async function POST(req) {
       );
     }
 
-    // Already a member
+    // already a member
     const alreadyMember = group.STUDY_GROUP_MEMBERS.some(
       (m) => m.User_ID === userId
     );
@@ -47,7 +47,7 @@ export async function POST(req) {
       );
     }
 
-    // Must be enrolled in the same course
+    // must be enrolled in the same course
     const enrollment = await prisma.eNROLLMENTS.findFirst({
       where: {
         User_ID: userId,
@@ -62,7 +62,6 @@ export async function POST(req) {
       );
     }
 
-    // ⭐ Add student to STUDY_GROUP_MEMBERS
     await prisma.sTUDY_GROUP_MEMBERS.create({
       data: {
         Group_ID: groupId,
@@ -71,7 +70,6 @@ export async function POST(req) {
       },
     });
 
-    // ⭐ Sync Group_Members to actual count
     const newCount = await prisma.sTUDY_GROUP_MEMBERS.count({
       where: { Group_ID: groupId },
     });

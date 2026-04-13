@@ -11,7 +11,7 @@ export async function DELETE(req) {
     const userId = Number(session.user.id);
     const { groupId } = await req.json();
 
-    // Check membership
+    // check membership
     const membership = await prisma.sTUDY_GROUP_MEMBERS.findUnique({
       where: {
         Group_ID_User_ID: { Group_ID: groupId, User_ID: userId },
@@ -22,19 +22,17 @@ export async function DELETE(req) {
       return Response.json({ error: "Not a member" }, { status: 400 });
     }
 
-    // Remove membership
+    // remove membership
     await prisma.sTUDY_GROUP_MEMBERS.delete({
       where: {
         Group_ID_User_ID: { Group_ID: groupId, User_ID: userId },
       },
     });
-
-    // ⭐ Recalculate member count
+    
     const newCount = await prisma.sTUDY_GROUP_MEMBERS.count({
       where: { Group_ID: groupId },
     });
 
-    // ⭐ Sync Group_Members
     await prisma.sTUDY_BUDDY_GROUPS.update({
       where: { Group_ID: groupId },
       data: { Group_Members: newCount },

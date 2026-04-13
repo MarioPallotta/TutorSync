@@ -254,10 +254,9 @@
 .bookButton {
   min-width: 68px;
   height: 32px;
-  border: 2px solid #111111;
+  border: 1px solid #8cc8ff;
+  color: hsl(218, 86%, 46%);
   border-radius: 10px;
-  background-color: #ffc500;
-  color: #111111;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -268,14 +267,17 @@
   padding: 0 10px;
   flex-shrink: 0;
   transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
     transform 0.2s ease,
-    background-color 0.2s ease;
+    border-color 0.1s ease;
   text-decoration: none;
 }
 
 .bookButton:hover {
-  transform: scale(1.04);
-  background-color: #e7b914;
+  border: 1px solid hsl(218, 86%, 46%);
+  color: #fff;
+  background-color: hsl(218, 86%, 46%);
 }
 
 .bookArrow {
