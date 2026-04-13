@@ -109,6 +109,10 @@
   animation-delay: 0.3s;
 }
 
+.infoCard:last-of-type{
+  margin-bottom: 20px;
+}
+
 .cardHeader {
   display: flex;
   justify-content: space-between;

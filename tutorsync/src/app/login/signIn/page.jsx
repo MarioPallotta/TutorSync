@@ -17,8 +17,7 @@ export default function LandingPage() {
       return;
     }
 
-    setError(""); // clears the old errors
-
+    setError("");
     const res = await signIn("credentials", {
       email,
       redirect: false,

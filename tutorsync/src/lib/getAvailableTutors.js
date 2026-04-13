@@ -50,14 +50,12 @@ export async function getAvailableTutors(courseTitle, date) {
       const start = new Date(String(t.TUTOR_AVAILABILITY[0].Times_Requested));
       const end = new Date(start.getTime() + 4 * 60 * 60 * 1000);
 
-      // ⭐ DATE — DO NOT timezone convert
       const formattedDate = new Intl.DateTimeFormat("en-US", {
         month: "short",
         day: "numeric",
         year: "numeric",
       }).format(queryDate);
 
-      // ⭐ TIME — convert to EST
       const formattedStart = new Intl.DateTimeFormat("en-US", {
         timeZone: "America/New_York",
         hour: "numeric",
@@ -74,11 +72,7 @@ export async function getAvailableTutors(courseTitle, date) {
         id: t.Tutor_ID,
         name: t.USERS.Name,
         availabilityId: t.TUTOR_AVAILABILITY[0].Availability_ID,
-
-        // raw UTC timestamp for booking
         Times_Requested: start.toISOString(),
-
-        // formatted for UI
         availability: `${formattedStart} - ${formattedEnd}`,
         date: formattedDate,
       };
