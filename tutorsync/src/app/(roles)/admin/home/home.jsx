@@ -1,12 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TopHeader from "@/components/admin/TopHeader/TopHeader";
 import BottomNav from "@/components/admin/BottomNav/BottomNav";
 import styles from "./page.module.css";
 
 export default function AdminHomeClient({ pending, approved }) {
   const [pendingList, setPendingList] = useState(pending);
+  const [analytics, setAnalytics] = useState(null);
+useEffect(() => {
+  async function loadAnalytics() {
+    const res = await fetch("/api/admin/analytics");
+    const data = await res.json();
+    setAnalytics(data);
+  }
+  loadAnalytics();
+}, []);
   const [approvedList, setApprovedList] = useState(
     [...approved].sort((a, b) => b.Availability_ID - a.Availability_ID),
   );
@@ -61,10 +70,39 @@ export default function AdminHomeClient({ pending, approved }) {
         <div className={styles.content}>
           <h1 className={styles.welcome}>Welcome, Admin</h1>
 
+{analytics && (
+  <div className={styles.analyticsCard}>
+    <h2 className={styles.sectionTitle}>Platform Analytics</h2>
+
+    <div className={styles.analyticsGrid}>
+      <div className={styles.analyticsItem}>
+        <span className={styles.analyticsLabel}>Monthly Visits</span>
+        <span className={styles.analyticsValue}>
+          {analytics.visits.reduce((sum, m) => sum + m.visits, 0)}
+        </span>
+      </div>
+
+      <div className={styles.analyticsItem}>
+        <span className={styles.analyticsLabel}>Study Groups</span>
+        <span className={styles.analyticsValue}>
+          {analytics.totalStudyGroups}
+        </span>
+      </div>
+
+      <div className={styles.analyticsItem}>
+        <span className={styles.analyticsLabel}>Tutor Sessions</span>
+        <span className={styles.analyticsValue}>
+          {analytics.totalSessions}
+        </span>
+      </div>
+    </div>
+  </div>
+)}
+
           {/* Pending */}
           <div className={styles.section}>
             <h2 className={styles.sectionTitle}>
-              Pending ({pendingList.length})
+              Pending Availability ({pendingList.length})
             </h2>
 
             <div className={styles.listContainer}>
@@ -96,7 +134,7 @@ export default function AdminHomeClient({ pending, approved }) {
 
           {/* Approved */}
           <div className={styles.section}>
-            <h2 className={styles.sectionTitle}>Approved availability</h2>
+            <h2 className={styles.sectionTitle}>Approved Availability ({approvedList.length})</h2>
 
             <div className={styles.listContainer}>
               {approvedList.map((req) => (

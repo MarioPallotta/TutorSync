@@ -281,7 +281,7 @@ export default function WidgetCard({
                       className={styles.actionButton}
                       onClick={() => onLeaveGroup(g.Group_ID)}
                     >
-                      Leave
+                      Leave 
                     </button>
                   )}
                 </div>

@@ -41,7 +41,6 @@ export default function RequestAvailabilityClient({
     (_, i) => i + 1
   );
 
-  // Scroll lock when modals open
   useEffect(() => {
     if (showCalendar || showTimeModal) {
       document.body.classList.add("modal-open");
@@ -73,7 +72,6 @@ export default function RequestAvailabilityClient({
 
       setIsConfirmed(true);
 
-      // Auto redirect after 3 seconds
       setTimeout(() => {
         window.location.href = "/tutor/home";
       }, 3000);
@@ -82,7 +80,6 @@ export default function RequestAvailabilityClient({
     }
   }
 
-  // ---------------------- SUCCESS MODAL ----------------------
   if (isConfirmed) {
     return (
       <main className={styles.page}>
@@ -234,7 +231,6 @@ export default function RequestAvailabilityClient({
           </div>
         )}
 
-        {/* ---------------------- TIME PICKER MODAL ---------------------- */}
         {showTimeModal && (
           <div className={styles.calendarOverlay}>
             <div className={styles.calendarModal}>
