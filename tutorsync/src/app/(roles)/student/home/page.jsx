@@ -5,6 +5,26 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import prisma from "@/lib/prisma";
 import StudentHome from "./studentHome";
 
+// Convert any timestamp to EST before formatting
+function formatEST(date) {
+  if (!date) return "TBD";
+
+  // Convert UTC → EST
+  const estString = new Date(date).toLocaleString("en-US", {
+    timeZone: "America/New_York",
+  });
+
+  const estDate = new Date(estString);
+
+  // Format the EST date
+  return estDate.toLocaleString("en-US", {
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "2-digit",
+  });
+}
+
 export default async function Page() {
   const session = await getServerSession(authOptions);
   if (!session) return <div>Unauthorized</div>;
@@ -18,6 +38,7 @@ export default async function Page() {
 
   const gpa = student?.GPA ? Number(student.GPA) : null;
 
+  // Upcoming tutoring sessions
   const upcomingTutorSessionsRaw = await prisma.tUTORING_SESSION.findMany({
     where: {
       User_ID: userId,
@@ -40,19 +61,13 @@ export default async function Page() {
     return {
       Session_ID: s.Session_ID,
       course: course?.Course_Title || "Unknown Course",
-      timeFormatted: start
-        ? new Date(start).toLocaleString("en-US", {
-            month: "short",
-            day: "numeric",
-            hour: "numeric",
-            minute: "2-digit",
-          })
-        : "TBD",
+      timeFormatted: formatEST(start),
       Session_Loc: s.Session_Loc || "Study Room Library",
       sortTime: start ? new Date(start).getTime() : Infinity,
     };
   });
 
+  // Upcoming study groups
   const upcomingStudyGroupsRaw = await prisma.sTUDY_BUDDY_GROUPS.findMany({
     where: {
       Group_Time: { gt: new Date() },
@@ -87,14 +102,7 @@ export default async function Page() {
     return {
       Group_ID: g.Group_ID,
       course: course?.Course_Title || "Unknown Course",
-      timeFormatted: g.Group_Time
-        ? new Date(g.Group_Time).toLocaleString("en-US", {
-            month: "short",
-            day: "numeric",
-            hour: "numeric",
-            minute: "2-digit",
-          })
-        : "TBD",
+      timeFormatted: formatEST(g.Group_Time),
       Group_Members: g.Group_Members ?? g.STUDY_GROUP_MEMBERS.length,
       Has_Tutor: g.Has_Tutor ?? false,
       Is_Accepted: g.Is_Accepted ?? false,
@@ -105,8 +113,6 @@ export default async function Page() {
       sortTime: g.Group_Time ? new Date(g.Group_Time).getTime() : Infinity,
     };
   });
-
-  console.log("RAW GROUPS:", JSON.stringify(upcomingStudyGroupsRaw, null, 2));
 
   upcomingTutorSessions.sort((a, b) => a.sortTime - b.sortTime);
   upcomingStudyGroups.sort((a, b) => a.sortTime - b.sortTime);
