@@ -28,7 +28,7 @@
   justify-content: space-between;
   padding: 6px 0;
   font-size: 1rem;
-  padding: 0 14px 0 14px;
+  padding: 5px 14px 0 14px;
 }
 
 .row:last-child {
@@ -197,7 +197,6 @@
   color: #111;
   padding: 2px 6px;
   display: inline-block;
-  margin-top: 4px;
 }
 
 .subTitle {
