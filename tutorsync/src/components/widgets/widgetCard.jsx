@@ -29,7 +29,7 @@ export default function WidgetCard({
     </div>
   );
 
-  // GPA WIDGET
+  // GPA Widget
   if (type === "grades") {
     return wrap(
       <div className={styles.gpaCard}>
@@ -45,7 +45,7 @@ export default function WidgetCard({
     );
   }
 
-  // FIND TUTOR
+  // Find Tutor
   if (type === "findTutor") {
     return isEditing ? (
       <div className={styles.linkcard}>
@@ -65,7 +65,7 @@ export default function WidgetCard({
     );
   }
 
-  // STUDY GROUPS LINK
+  // Study Groups
   if (type === "studyGroups") {
     return isEditing ? (
       <div className={styles.linkcard}>
@@ -88,7 +88,7 @@ export default function WidgetCard({
     );
   }
 
-  // UPCOMING SESSIONS
+  // Upcoming Sessions
   if (type === "upcomingSessions") {
     return isEditing ? (
       <>
@@ -110,7 +110,7 @@ export default function WidgetCard({
 
           {!loading && (
             <>
-              {/* TUTORING SESSIONS */}
+              {/* Tutoring Sessions */}
               <h4 className={styles.subTitle}>
                 <Image
                   src="/userplus.svg"
@@ -140,7 +140,7 @@ export default function WidgetCard({
                 ))
               )}
 
-              {/* STUDY GROUPS */}
+              {/* Study Groups */}
               <h4 className={styles.subTitle}>
                 <Image
                   src="/users.svg"
@@ -198,7 +198,7 @@ export default function WidgetCard({
 
         {!loading && (
           <>
-            {/* TUTORING SESSIONS */}
+            {/* Tutoring Sessions */}
             <h4 className={styles.subTitle}>
               <Image
                 src="/userplus.svg"
@@ -233,7 +233,7 @@ export default function WidgetCard({
               ))
             )}
 
-            {/* STUDY GROUPS */}
+            {/* Study Groups */}
             <h4 className={styles.subTitle}>
               <Image
                 src="/users.svg"
@@ -293,7 +293,7 @@ export default function WidgetCard({
     );
   }
 
-  // NOTIFICATIONS WIDGET
+  // Notifications Widget
   if (type === "notifications") {
     return wrap(
       <div className={styles.notificationsCard}>
@@ -349,7 +349,7 @@ export default function WidgetCard({
     );
   }
 
-  // TUTORING SUGGESTIONS WIDGET
+  // Tutoring Suggestions Widget
   if (type === "tutoringSuggestions") {
     return wrap(
       <div className={styles.tutoringSuggestionsCard}>
@@ -380,7 +380,7 @@ export default function WidgetCard({
     );
   }
 
-  // FLASHLINE LINK WIDGET
+  // Flashline Link Widget
   if (type === "flashline") {
     return isEditing ? (
       <div className={styles.flashlineCard}>

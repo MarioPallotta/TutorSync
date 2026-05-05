@@ -307,13 +307,11 @@
   color: #111;
   padding-top: 14px;
   padding-bottom: 14px;
-
-  /* Light blue base */
   background: linear-gradient(
     to bottom,
     #9cadc4 0%,
-    /* very light blue at the top */ #9fbbe4 40%,
-    /* fades softer */ #ffffff 100% /* blends into white at bottom */
+    #9fbbe4 40%,
+    #ffffff 100%
   );
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -353,13 +351,11 @@
 .notificationsCard {
   width: 100%;
   color: #555555;
-
-  /* Light blue base */
   background: linear-gradient(
     to bottom,
     #ffc500 0%,
-    /* very light blue at the top */ #eeedb6 40%,
-    /* fades softer */ #ffffff 100% /* blends into white at bottom */
+    #eeedb6 40%,
+    #ffffff 100%
   );
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);

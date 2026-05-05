@@ -175,7 +175,6 @@ export default function RequestAvailabilityClient({
           </div>
         </div>
 
-        {/* ---------------------- CALENDAR MODAL ---------------------- */}
         {showCalendar && (
           <div className={styles.calendarOverlay}>
             <div className={styles.calendarModal}>
