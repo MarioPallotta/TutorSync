@@ -61,7 +61,7 @@ export default async function Page({ params, searchParams }) {
         availabilityId: availabilityId ? Number(availabilityId) : null,
         selectedCourse: course || null,
         date,
-        bookedTimes, // ⭐ pass booked times to client
+        bookedTimes,
         bio: "Bio coming soon.",
       }}
     />
